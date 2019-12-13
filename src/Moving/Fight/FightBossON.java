@@ -1,6 +1,7 @@
 package Moving.Fight;
 
 import Armor.Equipment;
+import Armor.Stick;
 import Armor.Weapon;
 import Mobs.MainCharactericticOfMobs;
 import Main.Interface01;
@@ -16,6 +17,7 @@ public class FightBossON extends MainCharactericticOfMobs implements Interface01
     private String randomgamage = " (Random damage from " + minspelldamageHERO + " to " + maxspellDamageHero;
     private int hero_HP = Equipment.getRess();
     private int healcast = 33;
+    private int manafinal = Stick.getResult();
 
     public FightBossON(String name, int healthpoint, int max_Damage, int min_Damage, int increaseBoss, int restoreBoss, int chanseToSuperDamageBOSS) {
         super(name, healthpoint, max_Damage, min_Damage, increaseBoss, restoreBoss, chanseToSuperDamageBOSS);
@@ -41,7 +43,7 @@ public class FightBossON extends MainCharactericticOfMobs implements Interface01
                 "\n Your Max Spell Damage = " + maxspellDamageHero +
                 "\n Your Min Spell Damage = " + minspelldamageHERO +
                 "\n Your plus to restore Healthpoint = " + restoreshealth + "    (defalut restore index = " + 6 + ")" +
-                "\n You Have " + mana + " Mana, one heal spell = " + healcast + " Mana";
+                "\n You Have " + manafinal + " Mana, one heal spell = " + healcast + " Mana";
         System.out.println(info);
         move();
     }
@@ -49,7 +51,7 @@ public class FightBossON extends MainCharactericticOfMobs implements Interface01
     public void move() {
         String cases = "\n Your Turn \n" +
                 " 1. Hit " + name + on + Weapon.getRET() + h + "\n 2. Strike with magic" + on + randomgamage + h +
-                "\n 3. Restore " + res + hp + " (Need " + healcast + " Mana) " + "You Have " + mana + " Mana" +
+                "\n 3. Restore " + res + hp + " (Need " + healcast + " Mana) " + "You Have " + manafinal + " Mana" +
                 "\n 4. To get defeat and back to Main Menu ";
         System.out.println(cases);
         Scanner scan = new Scanner(System.in);
@@ -106,35 +108,38 @@ public class FightBossON extends MainCharactericticOfMobs implements Interface01
     }
 
     private void heal() {
-        while (mana >= healcast) {
-            hero_HP += res;
-            System.out.println(youchoseHealingyourself);
-            mana -= healcast;
-            System.out.println("\nYou have been recovered " + res + hp);
-            System.out.println(nowyourhealthpointequal + hero_HP);
-            System.out.println("Now you have left " + mana + " Mana ");
-            Scanner scan = new Scanner(System.in);
-            System.out.println("\n " + nowchosenextOption);
-            String healcases = "\n 1. Hit " + name + on + Weapon.getRET() + h + "\n 2. Strike with magic " + on + randomgamage + h
-                    + "\n 3. To get defeat and back to Main Menu";
-            System.out.println(healcases);
-            switch (scan.nextInt()) {
-                case 1: {
-                    heromove();
-                    break;
+        while (healthpoint > 0 && hero_HP > 0) {
+            if (manafinal >= healcast) {
+                hero_HP += res;
+                System.out.println(youchoseHealingyourself);
+                manafinal -= healcast;
+                System.out.println("\nYou have been recovered " + res + hp);
+                System.out.println(nowyourhealthpointequal + hero_HP);
+                System.out.println("Now you have left " + manafinal + " Mana ");
+                Scanner scan = new Scanner(System.in);
+                System.out.println("\n " + nowchosenextOption);
+                String healcases = "\n 1. Hit " + name + on + Weapon.getRET() + h + "\n 2. Strike with magic " + on + randomgamage + h
+                        + "\n 3. To get defeat and back to Main Menu";
+                System.out.println(healcases);
+                switch (scan.nextInt()) {
+                    case 1: {
+                        heromove();
+                        break;
+                    }
+                    case 2: {
+                        spell();
+                        break;
+                    }
                 }
-                case 2: {
-                    spell();
-                    break;
-                }
+                break;
+            }
+            if (manafinal < healcast) {
+                System.out.println("\nSorry, but you have no more Mana\nPlease Select Something else");
+                move();
+                break;
             }
         }
-        if (mana < healcast) {
-            System.out.println("Sorry, but you have no more Mana");
-            move();
-        }
     }
-
 
     private int random_Spell_damage() {
         int max = maxspellDamageHero;

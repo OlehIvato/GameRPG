@@ -12,11 +12,10 @@ public class UserName {
     protected static String NameOfUser() {
         System.out.println("What is your name ? ");
         Scanner scan = new Scanner(System.in);
-
         UserNameIs = scan.nextLine();
         System.out.println("Your name is " + UserNameIs + ".");
-        return UserNameIs;
 
+        return UserNameIs;
     }
 }
 

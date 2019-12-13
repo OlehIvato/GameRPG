@@ -16,7 +16,8 @@ public class FightON extends MainCharactericticOfMobs implements Interface01 {
     private String randomgamage = " (Random damage from " + minspelldamageHERO + " to " + maxspellDamageHero + ")";
     private int hero_HP = Equipment.getRess();
     private static int healcast = 33;
-    private int mana = MainCharactericticOfMobs.mana;
+    private int manafinal = Stick.getResult();
+
 
     public FightON(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
@@ -41,7 +42,7 @@ public class FightON extends MainCharactericticOfMobs implements Interface01 {
                 "\n Your Max Spell Damage = " + maxspellDamageHero +
                 "\n Your Min Spell Damage = " + minspelldamageHERO +
                 "\n Your plus to restore Healthpoint = " + restoreshealth + "    (defalut restore index = " + 6 + ")" +
-                "\n You Have " + Stick.getResult() + " Mana, one heal spell = " + healcast + " Mana";
+                "\n You Have " + manafinal + " Mana, one heal spell = " + healcast + " Mana";
 
         System.out.println(info);
         move();
@@ -50,7 +51,7 @@ public class FightON extends MainCharactericticOfMobs implements Interface01 {
     public void move() {
         String cases = "\n Your Turn \n" +
                 " 1. Hit " + name + on + Weapon.getRET() + h + "\n 2. Strike with magic" + on + randomgamage + h +
-                "\n 3. Restore " + res + hp + " (Need " + healcast + " Mana) " + "You Have " + mana + " Mana" +
+                "\n 3. Restore " + res + hp + " (Need " + healcast + " Mana) " + "You Have " + manafinal + " Mana" +
                 "\n 4. To get defeat and back to Main Menu ";
         System.out.println(cases);
 
@@ -109,13 +110,13 @@ public class FightON extends MainCharactericticOfMobs implements Interface01 {
 
     private void heal() {
         while (healthpoint > 0 && hero_HP > 0) {
-            if (mana >= healcast) {
+            if (manafinal >= healcast) {
                 hero_HP += res;
                 System.out.println(youchoseHealingyourself);
-                mana -= healcast;
+                manafinal -= healcast;
                 System.out.println("\nYou have been recovered " + res + hp);
                 System.out.println(nowyourhealthpointequal + hero_HP);
-                System.out.println("Now you have left " + mana + " Mana ");
+                System.out.println("Now you have left " + manafinal + " Mana ");
                 Scanner scan = new Scanner(System.in);
                 System.out.println("\n " + nowchosenextOption);
                 String healcases = "\n 1. Hit " + name + on + Weapon.getRET() + h + "\n 2. Strike with magic " + on + randomgamage + h
@@ -133,7 +134,7 @@ public class FightON extends MainCharactericticOfMobs implements Interface01 {
                 }
                 break;
             }
-            if (mana < healcast) {
+            if (manafinal < healcast) {
                 System.out.println("\nSorry, but you have no more Mana\nPlease Select Something else");
                 move();
                 break;

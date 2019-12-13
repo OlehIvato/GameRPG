@@ -10,7 +10,7 @@ public class Warrior extends MainCharactericticOfMobs {
 
     public void Main() {
         setHeroName("Warrior");
-        setHeroHP(140);
+        setHeroHP(160);
         setDefaultDamage(19);
         setMinspelldamageHERO(0);
         setMaxspellDamageHero(0);

@@ -2,6 +2,7 @@ package Armor;
 
 import Mobs.MainCharactericticOfMobs;
 import Main.Menu;
+
 import java.util.Scanner;
 
 public class Weapon extends MainCharactericticOfMobs {
@@ -16,6 +17,7 @@ public class Weapon extends MainCharactericticOfMobs {
     public static int getRET() {
         return RET;
     }
+
     public static int getA() {
         return a;
     }
@@ -55,6 +57,7 @@ public class Weapon extends MainCharactericticOfMobs {
             }
             case 4: {
                 a = 0;
+                break;
             }
             case 5: {
                 Menu.mainMenu();

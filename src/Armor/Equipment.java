@@ -72,6 +72,7 @@ public class Equipment extends MainCharactericticOfMobs {
             }
             case 4: {
                 a = 0;
+                break;
             }
             case 5: {
                 Menu.mainMenu();
@@ -108,6 +109,7 @@ public class Equipment extends MainCharactericticOfMobs {
             }
             case 4: {
                 a = 0;
+                break;
             }
             case 5: {
                 Menu.mainMenu();
@@ -144,6 +146,7 @@ public class Equipment extends MainCharactericticOfMobs {
             }
             case 4: {
                 a = 0;
+                break;
             }
             case 5: {
                 Menu.mainMenu();
@@ -180,6 +183,7 @@ public class Equipment extends MainCharactericticOfMobs {
             }
             case 4: {
                 a = 0;
+                break;
             }
             case 5: {
                 Menu.mainMenu();

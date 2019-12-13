@@ -22,17 +22,17 @@ public class Stick extends MainCharactericticOfMobs {
     }
 
     public int main_Stick() {
-        int result = createStick();
-        System.out.println("You chose +" + result + " to Damage ");
-        System.out.print("Your Final damage equal ");
-        System.out.print(mana + result);
-        result = (mana + result);
+        int info = createStick();
+        System.out.println("You chose +" + info + " to Mana ");
+        System.out.print("Your Final Mana equal ");
+        System.out.print(mana + info);
+        result = (mana + info);
         return result;
     }
 
 
     private static int createStick() {
-        String weap = " Choose your Stick"
+        String weap = "\n\n Choose your Stick"
                 + "\n    1. Arcanite Stick  (+13  to Mana)"
                 + "\n    2. Helcular's Stick  (+21  to Mana)"
                 + "\n    3. Golden Stick (+35 to Mana)"
@@ -43,19 +43,20 @@ public class Stick extends MainCharactericticOfMobs {
         a = scan.nextInt();
         switch (a) {
             case 1: {
-                a = 5;
+                a = 13;
                 break;
             }
             case 2: {
-                a = 11;
+                a = 21;
                 break;
             }
             case 3: {
-                a = 18;
+                a = 35;
                 break;
             }
             case 4: {
                 a = 0;
+                break;
             }
             case 5: {
                 Menu.mainMenu();

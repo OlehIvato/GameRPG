@@ -1,6 +1,4 @@
 package Main;
-
-
 import java.util.Scanner;
 
 public class Menu {
@@ -12,8 +10,7 @@ public class Menu {
         switch (scan.nextInt()) {
             case 1: {
                 UserName.NameOfUser();
-               NewGame.createHero();
-    //            ChoseNewHero.Main();
+                NewGame.createHero();
                 break;
             }
             case 2: {
