@@ -1,8 +1,6 @@
 package Mobs;
-
 import Moving.Fight.FightOFF;
 import Moving.Fight.FightON;
-
 
 public class Ork extends MainCharactericticOfMobs {
     public Ork(String name, int healthpoint, int max_Damage, int min_Damage, int chanseToSuperDamageMob) {

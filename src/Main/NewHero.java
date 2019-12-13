@@ -1,6 +1,7 @@
 package Main;
 
 import Armor.Equipment;
+import Armor.Stick;
 import Armor.Weapon;
 import Mobs.MainCharactericticOfMobs;
 import Moving.Fight.Level;
@@ -9,18 +10,17 @@ import Moving.Fight.Winning;
 import java.util.Scanner;
 
 public class NewHero extends MainCharactericticOfMobs {
-    public NewHero(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth);
+    public NewHero(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
     }
 
-
     public void createNewHero() {
-        Equipment e = new Equipment(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth);
-        Weapon w = new Weapon(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth);
-
+        Equipment e = new Equipment(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+        Weapon w = new Weapon(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+        Stick s = new Stick(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("\n  "+UserName.getUserNameIs() + " do you wanna choose Armor and Weapon for your " + heroName+" ?");
+        System.out.println("\n  " + UserName.getUserNameIs() + " do you wanna choose Armor and Weapon for your " + heroName + " ?");
         String cases = "\n  1. Yes \n" +
                 "  2. No.  Play with Standart Characteristics:"
                 + "\n  3. Turn Back  \n";
@@ -36,6 +36,7 @@ public class NewHero extends MainCharactericticOfMobs {
 
                 e.mainEquip();
                 w.main_WEAPON();
+                s.main_Stick();
 
                 Level.level_1_1();
                 Level.level_1_2();

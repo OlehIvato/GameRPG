@@ -18,7 +18,7 @@ public class Mage extends MainCharactericticOfMobs {
         setRestoreshealth(19);
         setMana(100);
 
-        NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth);
+        NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         n.createNewHero();
 
     }

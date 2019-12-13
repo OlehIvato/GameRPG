@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class Equipment extends MainCharactericticOfMobs {
 
-    public Equipment(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth);
+    public Equipment(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
     }
 
     private static int ress;
@@ -17,6 +17,7 @@ public class Equipment extends MainCharactericticOfMobs {
     public static int getRess() {
         return ress;
     }
+
     public static void setRess(int ress) {
         Equipment.ress = ress;
     }
@@ -50,7 +51,8 @@ public class Equipment extends MainCharactericticOfMobs {
                 "\n   1. Cloth  (+7 to Healthpoint) " +
                 "\n   2. Leather (+15 to Healthpoint)" +
                 "\n   3. Steel (+22 to Healthpoint) " +
-                "\n   4. Back to  Main Menu";
+                "\n   4. Not to choose this thing (+0 to Healthpoint)" +
+                "\n   5. Back to  Main Menu";
         System.out.println(cases);
         Scanner scan = new Scanner(System.in);
         int a;
@@ -69,14 +71,15 @@ public class Equipment extends MainCharactericticOfMobs {
                 break;
             }
             case 4: {
+                a = 0;
+            }
+            case 5: {
                 Menu.mainMenu();
                 break;
             }
 
         }
         return a;
-
-
     }
 
     private static int creatFootArmor() {
@@ -84,7 +87,8 @@ public class Equipment extends MainCharactericticOfMobs {
                 "\n   1. Boots  (+6  to Healthpoint) " +
                 "\n   2. Cloth Slippers  (+11  to Healthpoint)" +
                 "\n   3. Boots of Wrought Shadow  (+17 to Healthpoint) " +
-                "\n   4. Back to  Main Menu";
+                "\n   4. Not to choose this thing (+0 to Healthpoint)" +
+                "\n   5. Back to  Main Menu";
         System.out.println(cases);
         Scanner scan = new Scanner(System.in);
         int a = 0;
@@ -103,9 +107,13 @@ public class Equipment extends MainCharactericticOfMobs {
                 break;
             }
             case 4: {
+                a = 0;
+            }
+            case 5: {
                 Menu.mainMenu();
                 break;
             }
+
         }
         return a;
     }
@@ -115,7 +123,8 @@ public class Equipment extends MainCharactericticOfMobs {
                 "\n   1. Farseer's Mask (+2  to Healthpoint) " +
                 "\n   2. Mail Helm  (+5  to Healthpoint)" +
                 "\n   3. Shadowsong Vengeance Helm  (+11 to Healthpoint) " +
-                "\n   4. Back to  Main Menu";
+                "\n   4. Not to choose this thing (+0 to Healthpoint)" +
+                "\n   5. Back to  Main Menu";
         System.out.println(cases);
         Scanner scan = new Scanner(System.in);
         int a = 0;
@@ -134,20 +143,24 @@ public class Equipment extends MainCharactericticOfMobs {
                 break;
             }
             case 4: {
+                a = 0;
+            }
+            case 5: {
                 Menu.mainMenu();
                 break;
             }
+
         }
         return a;
     }
-
 
     private static int creatBootsArmor() {
         String cases = "\n Choose chest armor: " +
                 "\n   1. Albino Crocscale Boots (+2  to Healthpoint) " +
                 "\n   2. Veteran's Leather Boots  (+4  to Healthpoint)" +
                 "\n   3. Fathomstalker Boots  (+6 to Healthpoint) " +
-                "\n   4. Back to  Main Menu";
+                "\n   4. Not to choose this thing (+0 to Healthpoint)" +
+                "\n   5. Back to  Main Menu";
         System.out.println(cases);
         Scanner scan = new Scanner(System.in);
         int a = 0;
@@ -166,9 +179,13 @@ public class Equipment extends MainCharactericticOfMobs {
                 break;
             }
             case 4: {
+                a = 0;
+            }
+            case 5: {
                 Menu.mainMenu();
                 break;
             }
+
         }
         return a;
     }

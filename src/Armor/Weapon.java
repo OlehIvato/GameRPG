@@ -2,17 +2,15 @@ package Armor;
 
 import Mobs.MainCharactericticOfMobs;
 import Main.Menu;
-import Main.NewHero;
-
 import java.util.Scanner;
 
-public class Weapon  extends MainCharactericticOfMobs {
+public class Weapon extends MainCharactericticOfMobs {
 
     private static int a;
     private static int RET;
 
-    public Weapon(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth);
+    public Weapon(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
     }
 
     public static int getRET() {
@@ -22,13 +20,12 @@ public class Weapon  extends MainCharactericticOfMobs {
         return a;
     }
 
-    public  int main_WEAPON() {
+    public int main_WEAPON() {
         int result = createWeapon();
         System.out.println("You chose +" + result + " to Damage ");
         System.out.print("Your Final damage equal ");
         System.out.print(defaultDamage + result);
         RET = (defaultDamage + result);
-
         return RET;
     }
 
@@ -37,7 +34,8 @@ public class Weapon  extends MainCharactericticOfMobs {
                 + "\n    1. Daggers  (+7  to Damage)"
                 + "\n    2. Crossbows  (+13  to Damage)"
                 + "\n    3. Sword (+21 to Damage)"
-                + "\n    4. Back to Main menu ";
+                + "\n    4. Not to choose this thing (+0 to Healthpoint)"
+                + "\n    5. Back to  Main Menu";
         System.out.println(weap);
         Scanner scan = new Scanner(System.in);
         a = scan.nextInt();
@@ -56,12 +54,14 @@ public class Weapon  extends MainCharactericticOfMobs {
                 break;
             }
             case 4: {
+                a = 0;
+            }
+            case 5: {
                 Menu.mainMenu();
                 break;
             }
+
         }
         return a;
     }
-
-
 }

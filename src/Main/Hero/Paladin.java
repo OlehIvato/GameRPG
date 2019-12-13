@@ -19,7 +19,7 @@ public class Paladin extends MainCharactericticOfMobs {
         setMana(100);
 
 
-        NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth);
+        NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         n.createNewHero();
     }
 
