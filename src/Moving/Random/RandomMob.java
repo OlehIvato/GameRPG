@@ -1,5 +1,6 @@
 package Moving.Random;
 
+import Main.Location.LocationMain;
 import Mobs.*;
 
 import java.util.Random;
@@ -19,7 +20,6 @@ public class RandomMob extends MainCharactericticOfMobs {
         DeathKnight deathKnight = new DeathKnight(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
         Ork ork = new Ork(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
         Pig pig = new Pig(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
-
         switch (random.nextInt(6)) {
             case 0: {
                 pudge.fightON();

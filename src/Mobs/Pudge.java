@@ -1,4 +1,6 @@
 package Mobs;
+
+import Main.Location.LocationMain;
 import Moving.Fight.FightOFF;
 import Moving.Fight.FightON;
 
@@ -13,7 +15,7 @@ public class Pudge extends MainCharactericticOfMobs {
         fight.main();
     }
 
-    public void fightOff(){
+    public void fightOff() {
         FightOFF f = new FightOFF("Pudge", 120, 34, 27, 56);
         f.main();
     }

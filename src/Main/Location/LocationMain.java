@@ -10,33 +10,32 @@ public class LocationMain {
         Map <Integer, String> loc = new HashMap <>();
         System.out.println("Select location for the game:\n");
         Scanner s = new Scanner(System.in);
-        loc.put(1, "JAPAN");
-        loc.put(2, "AUSTRALIA");
-        loc.put(3, "SCANDINAVIA");
-        loc.put(4, "ICELAND");
+        loc.put(1, "Northrend" );
+        loc.put(2, "Kalimdor");
+        loc.put(3, "Azeroth ");
+        loc.put(4, "Isle of Dread");
         for (Integer key : loc.keySet()) {
             System.out.println(key + " - " + loc.get(key));
         }
-
         switch (s.nextInt()) {
             case 1: {
                 System.out.println("You chose " + loc.get(1));
-                Japan.main();
+                Northrend.main();
                 break;
             }
             case 2: {
                 System.out.println("You chose " + loc.get(2));
-                Australia.main();
+                Kalimdor.main();
                 break;
             }
             case 3: {
                 System.out.println("You chose " + loc.get(3));
-                Scandinavia.main();
+                Azeroth.main();
                 break;
             }
             case 4: {
                 System.out.println("You chose " + loc.get(4));
-                Iceland.main();
+                IsleofDread.main();
                 break;
             }
         }

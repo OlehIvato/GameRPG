@@ -1,4 +1,5 @@
 package Mobs.BossMobs;
+import Main.Location.LocationMain;
 import Mobs.MainCharactericticOfMobs;
 import Moving.Fight.FightBossON;
 

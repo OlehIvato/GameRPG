@@ -10,12 +10,12 @@ public class Warrior extends MainCharactericticOfMobs {
 
     public void Main() {
         setHeroName("Warrior");
-        setHeroHP(160);
+        setHeroHP(167);
         setDefaultDamage(19);
         setMinspelldamageHERO(0);
         setMaxspellDamageHero(0);
         setIncreasesDamage(0);
-        setRestoreshealth(8);
+        setRestoreshealth(0);
 
         NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         n.createNewHero();

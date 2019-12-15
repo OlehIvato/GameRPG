@@ -1,7 +1,6 @@
 package Main.Location;
 
-public class Australia {
-
+public class IsleofDread {
 
 
     public static  void main(){

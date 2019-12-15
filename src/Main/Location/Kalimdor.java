@@ -1,6 +1,6 @@
 package Main.Location;
 
-public class Scandinavia {
+public class Kalimdor {
 
 
 
@@ -8,5 +8,7 @@ public class Scandinavia {
 
 
     }
+
+
 
 }

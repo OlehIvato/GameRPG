@@ -3,6 +3,7 @@ package Main;
 import Armor.Equipment;
 import Armor.Stick;
 import Armor.Weapon;
+import Main.Location.LocationMain;
 import Mobs.MainCharactericticOfMobs;
 import Moving.Fight.Level;
 import Moving.Fight.Winning;
@@ -42,9 +43,13 @@ public class NewHero extends MainCharactericticOfMobs {
                 Level.level_1_2();
                 Level.level_1_3();
 
+                Level.fight_vs_boss();
+
                 Level.level_2_1();
                 Level.level_2_2();
                 Level.level_2_3();
+
+                Level.fight_vs_boss();
 
                 Level.level_3_1();
                 Level.level_3_2();
