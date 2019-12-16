@@ -13,7 +13,7 @@ public class Druid extends MainCharactericticOfMobs {
     }
 
     public void fightOff(){
-        FightOFF f = new FightOFF(  "Druid", 115, 54, 37,37);
+        FightOFF f = new FightOFF(  "Druid", 100, 50, 35,37);
         f.main();
     }
 

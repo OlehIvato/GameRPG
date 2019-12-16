@@ -1,6 +1,8 @@
 package Mobs.BossMobs;
+
 import Main.Location.LocationMain;
 import Mobs.MainCharactericticOfMobs;
+import Moving.Fight.FightBossOFF;
 import Moving.Fight.FightBossON;
 
 public class CaptainPrice extends MainCharactericticOfMobs {
@@ -9,16 +11,12 @@ public class CaptainPrice extends MainCharactericticOfMobs {
     }
 
     public void fightON() {
-        FightBossON f = new FightBossON("Captain Price",137,45,35,14,9, 44);
+        FightBossON f = new FightBossON("Captain Price", 137, 45, 35, 14, 9, 44);
         f.main();
     }
 
-//    public void Fight_WithOut_Equip() {
-//
-//        Fight_WithOut_Equipmenut fight_withOut_equipmenut = new Fight_WithOut_Equipmenut(name, healthpoint, max_Damage, min_Damage, increasesDamage, restoreshealth);
-//
-//        fight_withOut_equipmenut.Fighting();
-//    }
-
-
+    public void fightoff() {
+        FightBossOFF f = new FightBossOFF("Captain Price", 125, 40, 30, 14, 9, 29);
+        f.main();
+    }
 }

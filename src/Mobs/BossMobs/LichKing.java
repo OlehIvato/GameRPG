@@ -1,6 +1,7 @@
 package Mobs.BossMobs;
 
 import Mobs.MainCharactericticOfMobs;
+import Moving.Fight.FightBossOFF;
 import Moving.Fight.FightBossON;
 
 
@@ -10,16 +11,12 @@ public class LichKing extends MainCharactericticOfMobs {
     }
 
     public void fightON() {
-        FightBossON f = new FightBossON("Lich King",170,34,29,0,0,24);
+        FightBossON f = new FightBossON("Lich King", 170, 34, 29, 0, 0, 24);
         f.main();
-
     }
 
-//    public void Fight_WithOut_Equip(){
-//
-//        Fight_WithOut_Equipmenut fight_withOut_equipmenut = new Fight_WithOut_Equipmenut(name, healthpoint, max_Damage, min_Damage, increasesDamage, restoreshealth);
-//
-//        fight_withOut_equipmenut.Fighting();
-//    }
-
+    public void fightoff() {
+        FightBossOFF f = new FightBossOFF("Lich King", 160, 25, 20, 0, 0, 15);
+        f.main();
+    }
 }

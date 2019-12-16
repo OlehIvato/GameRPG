@@ -16,7 +16,7 @@ public class Pudge extends MainCharactericticOfMobs {
     }
 
     public void fightOff() {
-        FightOFF f = new FightOFF("Pudge", 120, 34, 27, 56);
+        FightOFF f = new FightOFF("Pudge", 105, 30, 25, 37);
         f.main();
     }
 

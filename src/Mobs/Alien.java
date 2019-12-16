@@ -17,7 +17,7 @@ public class Alien extends MainCharactericticOfMobs {
     }
 
     public void fightOff(){
-        FightOFF f = new FightOFF( "Alien", 105, 60, 28,34);
+        FightOFF f = new FightOFF( "Alien", 105, 50, 18,34);
         f.main();
 
     }

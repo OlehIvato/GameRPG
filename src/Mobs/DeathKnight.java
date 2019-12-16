@@ -16,7 +16,7 @@ public class DeathKnight extends MainCharactericticOfMobs {
     }
 
     public void fightOff(){
-        FightOFF f = new FightOFF( "Death King", 130, 25, 18,51);
+        FightOFF f = new FightOFF( "Death King", 120, 25, 18,51);
         f.main();
     }
 

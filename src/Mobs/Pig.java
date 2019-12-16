@@ -14,7 +14,7 @@ public class Pig extends  MainCharactericticOfMobs{
     }
 
     public void fightOff(){
-        FightOFF f = new FightOFF( "Pig", 110, 29, 20,43);
+        FightOFF f = new FightOFF( "Pig", 101, 29, 20,43);
         f.main();
     }
 

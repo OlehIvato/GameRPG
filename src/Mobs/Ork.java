@@ -13,7 +13,7 @@ public class Ork extends MainCharactericticOfMobs {
     }
 
     public void fightOff(){
-        FightOFF f = new FightOFF("Ork", 114, 28, 27, 38);
+        FightOFF f = new FightOFF("Ork", 104, 28, 27, 20);
         f.main();
     }
 
