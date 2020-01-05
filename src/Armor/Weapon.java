@@ -1,11 +1,12 @@
 package Armor;
 
-import Mobs.MainCharactericticOfMobs;
+
 import Main.Menu;
+import Mobs.Main_Mob_Hero;
 
 import java.util.Scanner;
 
-public class Weapon extends MainCharactericticOfMobs {
+public class Weapon extends Main_Mob_Hero {
 
     private static int a;
     private static int RET;
@@ -18,8 +19,8 @@ public class Weapon extends MainCharactericticOfMobs {
         return RET;
     }
 
-    public static int getA() {
-        return a;
+    public static void setRET(int RET) {
+        Weapon.RET = RET;
     }
 
     public int main_WEAPON() {

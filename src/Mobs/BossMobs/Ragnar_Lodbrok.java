@@ -1,8 +1,10 @@
 package Mobs.BossMobs;
-import Mobs.MainCharactericticOfMobs;
+
+import Mobs.Main_Mob_Hero;
 import Moving.Fight.FightBossOFF;
 import Moving.Fight.FightBossON;
-public class Ragnar_Lodbrok extends MainCharactericticOfMobs {
+
+public class Ragnar_Lodbrok extends Main_Mob_Hero {
     public Ragnar_Lodbrok(String name, int healthpoint, int max_Damage, int min_Damage, int increaseBoss, int restoreBoss, int chanseToSuperDamageBOSS) {
         super(name, healthpoint, max_Damage, min_Damage, increaseBoss, restoreBoss, chanseToSuperDamageBOSS);
     }

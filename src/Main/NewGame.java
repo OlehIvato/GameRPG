@@ -1,12 +1,13 @@
 package Main;
 
-import Mobs.MainCharactericticOfMobs;
+
 import Main.EnumTestPac.ENUM;
 import Main.EnumTestPac.EnumCases;
+import Mobs.Main_Mob_Hero;
 
 import java.util.Scanner;
 
-public class NewGame extends MainCharactericticOfMobs {
+public class NewGame extends Main_Mob_Hero {
 
     public NewGame(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);

@@ -1,12 +1,11 @@
 package Armor;
 
-import Mobs.MainCharactericticOfMobs;
-import Main.Menu;
-import Main.NewHero;
 
+import Main.Menu;
+import Mobs.Main_Mob_Hero;
 import java.util.Scanner;
 
-public class Equipment extends MainCharactericticOfMobs {
+public class Equipment extends Main_Mob_Hero {
 
     public Equipment(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);

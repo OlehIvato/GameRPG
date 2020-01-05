@@ -4,13 +4,13 @@ import Armor.Equipment;
 import Armor.Stick;
 import Armor.Weapon;
 import Main.Location.LocationMain;
-import Mobs.MainCharactericticOfMobs;
+import Mobs.Main_Mob_Hero;
 import Moving.Fight.Level;
 import Moving.Fight.Winning;
 
 import java.util.Scanner;
 
-public class NewHero extends MainCharactericticOfMobs {
+public class NewHero extends Main_Mob_Hero {
     public NewHero(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
     }
@@ -39,6 +39,8 @@ public class NewHero extends MainCharactericticOfMobs {
                 w.main_WEAPON();
                 s.main_Stick();
 
+                LocationMain.location();
+
                 Level.level_1_1();
                 Level.level_1_2();
                 Level.level_1_3();
@@ -63,6 +65,9 @@ public class NewHero extends MainCharactericticOfMobs {
 
             }
             case 2: {
+
+                LocationMain.location();
+
                 Level.level_1_1_NOequip();
                 Level.level_1_2_NOequip();
                 Level.level_1_3_NOequip();

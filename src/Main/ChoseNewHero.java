@@ -1,15 +1,16 @@
 package Main;
 
-import Mobs.MainCharactericticOfMobs;
+
 import Main.Hero.Mage;
 import Main.Hero.Paladin;
 import Main.Hero.Warrior;
+import Mobs.Main_Mob_Hero;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ChoseNewHero extends MainCharactericticOfMobs {
+public class ChoseNewHero extends Main_Mob_Hero {
 
     public ChoseNewHero(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);

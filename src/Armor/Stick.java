@@ -1,20 +1,17 @@
 package Armor;
 
 import Main.Menu;
-import Mobs.MainCharactericticOfMobs;
+
+import Mobs.Main_Mob_Hero;
 
 import java.util.Scanner;
 
-public class Stick extends MainCharactericticOfMobs {
+public class Stick extends Main_Mob_Hero {
     private static int a;
     private static int result;
 
     public Stick(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-    }
-
-    public static int getA() {
-        return a;
     }
 
     public static int getResult() {

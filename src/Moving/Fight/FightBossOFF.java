@@ -1,17 +1,19 @@
 package Moving.Fight;
 
 
-import Mobs.MainCharactericticOfMobs;
-import Main.Interface01;
+import Main.Text;
+
+import Mobs.Main_Mob_Hero;
+
 
 import java.util.Random;
 import java.util.Scanner;
 
 
-public class FightBossOFF extends MainCharactericticOfMobs implements Interface01 {
+public class FightBossOFF extends Main_Mob_Hero implements Text {
 
-    private static int index = 6;
-    private static int res = index + restoreshealth;
+
+    private static int res = Main_Mob_Hero.getIndex() + restoreshealth;
     private String randomgamage = " (Random damage from " + minspelldamageHERO + " to " + maxspellDamageHero;
     private int healcast = 33;
 
@@ -39,13 +41,16 @@ public class FightBossOFF extends MainCharactericticOfMobs implements Interface0
                 "\n Your Damage = " + defaultDamage +
                 "\n Your Max Spell Damage = " + maxspellDamageHero +
                 "\n Your Min Spell Damage = " + minspelldamageHERO +
-                "\n Your plus to restore Healthpoint = " + restoreshealth + "    (defalut restore index = " + 6 + ")" +
+                "\n Your plus to restore Healthpoint = " + restoreshealth + "    (defalut restore index = " + Main_Mob_Hero.getIndex() + ")" +
                 "\n You Have " + mana + " Mana, one heal spell = " + healcast + " Mana";
         System.out.println(info);
         move();
     }
 
     public void move() {
+        if(defaultDamage < 0){
+            defaultDamage = 0;
+        }
         String cases = "\n Your Turn \n" +
                 " 1. Hit " + name + on + defaultDamage + h + "\n 2. Strike with magic" + on + randomgamage + h +
                 "\n 3. Restore " + res + hp + " (Need " + healcast + " Mana) " + "You Have " + mana + " Mana" +

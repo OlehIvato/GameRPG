@@ -3,11 +3,10 @@ package Moving.Random;
 import Mobs.BossMobs.CaptainPrice;
 import Mobs.BossMobs.LichKing;
 import Mobs.BossMobs.Ragnar_Lodbrok;
-import Mobs.MainCharactericticOfMobs;
-
+import Mobs.Main_Mob_Hero;
 import java.util.Random;
 
-public class RandomBoss_WithOut_Equipment extends MainCharactericticOfMobs {
+public class RandomBoss_WithOut_Equipment extends Main_Mob_Hero {
 
     public RandomBoss_WithOut_Equipment(String name, int healthpoint, int max_Damage, int min_Damage, int increaseBoss, int restoreBoss, int chanseToSuperDamageBOSS) {
         super(name, healthpoint, max_Damage, min_Damage, increaseBoss, restoreBoss, chanseToSuperDamageBOSS);

@@ -1,9 +1,10 @@
 package Main.Hero;
 
-import Mobs.MainCharactericticOfMobs;
-import Main.NewHero;
 
-public class Warrior extends MainCharactericticOfMobs {
+import Main.NewHero;
+import Mobs.Main_Mob_Hero;
+
+public class Warrior extends Main_Mob_Hero {
     public Warrior(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
     }

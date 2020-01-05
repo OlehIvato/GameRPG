@@ -1,10 +1,9 @@
 package Moving.Random;
 
 import Mobs.*;
-
 import java.util.Random;
 
-public class RandomMob_WithOut_Equipment extends  MainCharactericticOfMobs {
+public class RandomMob_WithOut_Equipment extends  Main_Mob_Hero {
 
     public RandomMob_WithOut_Equipment(String name, int healthpoint, int max_Damage, int min_Damage, int chanseToSuperDamageMob) {
         super(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);

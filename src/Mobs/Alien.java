@@ -3,7 +3,7 @@ package Mobs;
 import Moving.Fight.FightOFF;
 import Moving.Fight.FightON;
 
-public class Alien extends MainCharactericticOfMobs {
+public class Alien extends Main_Mob_Hero {
     public Alien(String name, int healthpoint, int max_Damage, int min_Damage, int chanseToSuperDamageMob) {
         super(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
     }

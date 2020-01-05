@@ -3,16 +3,17 @@ package Moving.Fight;
 import Armor.Equipment;
 import Armor.Stick;
 import Armor.Weapon;
-import Mobs.MainCharactericticOfMobs;
-import Main.Interface01;
+import Main.Text;
+
+import Mobs.Main_Mob_Hero;
+
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class FightON extends MainCharactericticOfMobs implements Interface01 {
+public class FightON extends Main_Mob_Hero implements Text {
 
-    private static int index = 6;
-    private static int res = index + restoreshealth;
+    private static int res = Main_Mob_Hero.getIndex() + restoreshealth;
     private String randomgamage = " (Random damage from " + minspelldamageHERO + " to " + maxspellDamageHero + ")";
     private int hero_HP = Equipment.getRess();
     private static int healcast = 33;
@@ -41,7 +42,7 @@ public class FightON extends MainCharactericticOfMobs implements Interface01 {
                 "\n Your Damage = " + Weapon.getRET() +
                 "\n Your Max Spell Damage = " + maxspellDamageHero +
                 "\n Your Min Spell Damage = " + minspelldamageHERO +
-                "\n Your plus to restore Healthpoint = " + restoreshealth + "    (defalut restore index = " + 6 + ")" +
+                "\n Your plus to restore Healthpoint = " + restoreshealth + "    (defalut restore index = " + Main_Mob_Hero.getIndex() + ")" +
                 "\n You Have " + manafinal + " Mana, one heal spell = " + healcast + " Mana";
 
         System.out.println(info);
@@ -49,12 +50,14 @@ public class FightON extends MainCharactericticOfMobs implements Interface01 {
     }
 
     public void move() {
+        if (Weapon.getRET() < 0) {
+            Weapon.setRET(0);
+        }
         String cases = "\n Your Turn \n" +
                 " 1. Hit " + name + on + Weapon.getRET() + h + "\n 2. Strike with magic" + on + randomgamage + h +
                 "\n 3. Restore " + res + hp + " (Need " + healcast + " Mana) " + "You Have " + manafinal + " Mana" +
                 "\n 4. To get defeat and back to Main Menu ";
         System.out.println(cases);
-
         Scanner scan = new Scanner(System.in);
         while (healthpoint > 0 && hero_HP > 0)
             switch (scan.nextInt()) {
