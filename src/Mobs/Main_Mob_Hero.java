@@ -1,5 +1,7 @@
 package Mobs;
 
+import Armor.Stick;
+
 public class Main_Mob_Hero {
     protected static String heroName;                 //  HERO NAME
     protected static int heroHP;                      // healthpoint of HERO
@@ -19,6 +21,12 @@ public class Main_Mob_Hero {
     protected static int chance;                      // test  [ do not realizations ]
     protected static int mana;                        // mana for Heal Hero
     private static int index = 6;                     // default index to restore damage
+    private static int healcast = 33;
+
+
+
+
+
 
 
     public Main_Mob_Hero(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {       //FOR HERO
@@ -140,7 +148,13 @@ public class Main_Mob_Hero {
     public static void setIncreasesDamage(int increasesDamage) {
         Main_Mob_Hero.increasesDamage = increasesDamage;
     }
+    public static int getHealcast() {
+        return healcast;
+    }
 
+    public static void setHealcast(int healcast) {
+        Main_Mob_Hero.healcast = healcast;
+    }
     public static int getRestoreshealth() {
         return restoreshealth;
     }
