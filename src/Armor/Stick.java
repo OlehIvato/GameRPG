@@ -1,12 +1,11 @@
 package Armor;
 
 import Main.Menu;
-
 import Mobs.Main_Mob_Hero;
-
 import java.util.Scanner;
 
 public class Stick extends Main_Mob_Hero {
+
     private static int a;
     private static int result;
 

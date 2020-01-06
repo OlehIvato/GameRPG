@@ -17,7 +17,7 @@ public class RandomBoss extends  Main_Mob_Hero{
         Ragnar_Lodbrok ragnar_lodbrok = new Ragnar_Lodbrok(name, healthpoint, max_Damage, min_Damage, increaseBoss, restoreBoss, chanseToSuperDamageBOSS);
 
         Random random = new Random();
-        switch (random.nextInt(1)) {
+        switch (random.nextInt(3)) {
             case 0:
                 captainPrice.fightON();
                 break;

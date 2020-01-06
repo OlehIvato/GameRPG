@@ -1,6 +1,5 @@
 package Armor;
 
-
 import Main.Menu;
 import Mobs.Main_Mob_Hero;
 import java.util.Scanner;
@@ -36,8 +35,7 @@ public class Equipment extends Main_Mob_Hero {
         System.out.println("You chose +" + result3 + " to Healthpoint ");
         result4 = creatBootsArmor();
         System.out.println("You chose +" + result4 + " to Healthpoint ");
-        System.out.println();
-        System.out.print("Your final Healthpoint equal ");
+        System.out.print("\nYour final Healthpoint equal ");
         System.out.print(result1 + result2 + result3 + result4 + heroHP);
         ress = (result1 + result2 + result3 + result4 + heroHP);
 
@@ -77,7 +75,6 @@ public class Equipment extends Main_Mob_Hero {
                 Menu.mainMenu();
                 break;
             }
-
         }
         return a;
     }
@@ -114,7 +111,6 @@ public class Equipment extends Main_Mob_Hero {
                 Menu.mainMenu();
                 break;
             }
-
         }
         return a;
     }
@@ -151,7 +147,6 @@ public class Equipment extends Main_Mob_Hero {
                 Menu.mainMenu();
                 break;
             }
-
         }
         return a;
     }
@@ -188,11 +183,9 @@ public class Equipment extends Main_Mob_Hero {
                 Menu.mainMenu();
                 break;
             }
-
         }
         return a;
     }
-
 }
 
 

@@ -10,8 +10,6 @@ public interface Text {
     String randomgamage = " (Random damage from " + Main_Mob_Hero.getMinspelldamageHERO() + " to " + Main_Mob_Hero.getMaxspellDamageHero() + ")";
     int res = Main_Mob_Hero.getIndex() + Main_Mob_Hero.getRestoreshealth();
 
-    int hero_HP = Equipment.getRess();
-
 
     String youhit = " You Hit ";
     String on = " on ";
@@ -70,8 +68,6 @@ public interface Text {
                 "\n Your plus to restore Healthpoint = " + Main_Mob_Hero.getRestoreshealth() + "    (defalut restore index = " + Main_Mob_Hero.getIndex() + ")" +
                 "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
         System.out.println(info);
-
-
     }
 
 

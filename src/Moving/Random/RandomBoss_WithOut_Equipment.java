@@ -23,17 +23,15 @@ public class RandomBoss_WithOut_Equipment extends Main_Mob_Hero {
         Case = random.nextInt(3);
         switch (Case) {
             case 0:
-             //   captainPrice.Fight_WithOut_Equip();
+                captainPrice.fightoff();
                 break;
             case 1:
-            //    lichKing.Fight_WithOut_Equip();
+                lichKing.fightoff();
                 break;
             case 2:
-             //   ragnar_lodbrok.Fight_WithOut_Equip();
+                ragnar_lodbrok.fightoff();
                 break;
         }
         return Case;
     }
-
-
 }

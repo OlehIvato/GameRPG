@@ -1,12 +1,10 @@
 package Moving.Fight;
 
-import Armor.Stick;
+
 import Armor.Weapon;
 import Main.Menu;
 import Main.Text;
-
 import Mobs.Main_Mob_Hero;
-
 import java.util.Random;
 import java.util.Scanner;
 

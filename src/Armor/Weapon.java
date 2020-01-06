@@ -51,7 +51,6 @@ public class Weapon extends Main_Mob_Hero {
                 a = 13;
                 break;
             }
-
             case 3: {
                 a = 21;
                 break;
@@ -64,7 +63,6 @@ public class Weapon extends Main_Mob_Hero {
                 Menu.mainMenu();
                 break;
             }
-
         }
         return a;
     }
