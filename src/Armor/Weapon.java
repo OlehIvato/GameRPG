@@ -24,11 +24,19 @@ public class Weapon extends Main_Mob_Hero {
     }
 
     public int main_WEAPON() {
-        int result = createWeapon();
-        System.out.println("You chose +" + result + " to Damage ");
-        System.out.print("Your Final damage equal ");
-        System.out.print(defaultDamage + result);
-        RET = (defaultDamage + result);
+        int checkPoint = 0;
+        while (checkPoint == 0) {
+            if (defaultDamage < 10) {
+                break;
+            } else {
+                int result = createWeapon();
+                System.out.println("You chose +" + result + " to Damage ");
+                System.out.print("Your Final damage equal ");
+                System.out.print(defaultDamage + result);
+                RET = (defaultDamage + result);
+                break;
+            }
+        }
         return RET;
     }
 

@@ -1,6 +1,7 @@
 package Main;
 
 import Armor.Equipment;
+import Armor.Shield;
 import Armor.Stick;
 import Armor.Weapon;
 import Main.Location.LocationMain;
@@ -19,6 +20,7 @@ public class NewHero extends Main_Mob_Hero {
         Equipment e = new Equipment(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         Weapon w = new Weapon(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         Stick s = new Stick(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+        Shield sh = new Shield(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         Scanner scan = new Scanner(System.in);
 
         System.out.println("\n  " + UserName.getUserNameIs() + " do you wanna choose Armor and Weapon for your " + heroName + " ?");
@@ -30,7 +32,8 @@ public class NewHero extends Main_Mob_Hero {
                 "\n          Damage = " + defaultDamage +
                 "\n          Min Spell Damage = " + minspelldamageHERO +
                 "\n          Max Spell Damage = " + maxspellDamageHero +
-                "\n          Plus to restore Healthpoint = " + restoreshealth;
+                "\n          Plus to restore Healthpoint = " + restoreshealth +
+                "\n          Mana = " + mana;
         System.out.println(characteristics);
         switch (scan.nextInt()) {
             case 1: {
@@ -38,6 +41,7 @@ public class NewHero extends Main_Mob_Hero {
                 e.mainEquip();
                 w.main_WEAPON();
                 s.main_Stick();
+                sh.main_Shield();
 
                 LocationMain.location();
 

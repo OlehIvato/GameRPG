@@ -5,7 +5,7 @@ import java.util.*;
 public class LocationMain {
     public static void location() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n\nWould you like to select Location for fight ?  it change your characteristics");
+        System.out.println("\n\nWould you like to select Location for Fight, It change your Characteristics.");
         System.out.println("1. Yes \n2. No, continue without Locations");
         switch (scanner.nextInt()) {
             case 1:
@@ -21,12 +21,12 @@ public class LocationMain {
         System.out.println("Select location for the game:\n");
         Scanner scanner = new Scanner(System.in);
 
-        list.add(new Value(1, "Northrend", "HP +8, Spell Damage + 14, Damage -5, Restore Health +5"));
-        list.add(new Value(2, "Kalimdor", "HP +2, Spell Damage + 9, Damage + 14, Restore Health -16"));
-        list.add(new Value(3, "Azeroth", "HP -9, Spell Damage -5, Damage - 3, Restore Health +15"));
-        list.add(new Value(4, "Isle of Dread", "HP -13, Spell Damage + 14, Damage + 9, Restore Health -9"));
+        list.add(new Value(1, "Northrend", "+8", "+14", "-5", "+5"));
+        list.add(new Value(2, "Kalimdor", "+2,", "+9", "+14", "-16"));
+        list.add(new Value(3, "Azeroth", "-9", "-5", "-3", "+15"));
+        list.add(new Value(4, "Isle of Dread", "-13", "+14", "+9", "-9"));
 
-        list.stream().forEach(s -> System.out.println(s));
+        list.stream().forEach(System.out::println);
         switch (scanner.nextInt()) {
             case 1: {
                 System.out.println("You chose " + list.get(0));
@@ -90,44 +90,22 @@ class Value {
 
     private Integer key;
     private String name;
-    private String characteristics;
+    private String hp;
+    private String spellDamage;
+    private String damage;
+    private String restoreHealth;
 
-
-    public Value(Integer key, String name, String characteristics) {
+    public Value(Integer key, String name, String hp, String spellDamage, String damage, String restoreHealth) {
         this.key = key;
         this.name = name;
-        this.characteristics = characteristics;
+        this.hp = hp;
+        this.spellDamage = spellDamage;
+        this.damage = damage;
+        this.restoreHealth = restoreHealth;
     }
 
     @Override
     public String toString() {
-        return key + " - " + name + " - " + characteristics;
+        return key + " - " + name + " - " + " HP: " + hp + " Spell Damage: " + spellDamage + " Damege: " + damage + " Restore Health: " + restoreHealth + ".";
     }
-
-
-    public Integer getKey() {
-        return key;
-    }
-
-    public void setKey(Integer key) {
-        this.key = key;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCharacteristics() {
-        return characteristics;
-    }
-
-    public void setCharacteristics(String characteristics) {
-        this.characteristics = characteristics;
-    }
-
-
 }

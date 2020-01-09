@@ -2,6 +2,7 @@ package Armor;
 
 import Main.Menu;
 import Mobs.Main_Mob_Hero;
+
 import java.util.Scanner;
 
 public class Equipment extends Main_Mob_Hero {
@@ -26,10 +27,11 @@ public class Equipment extends Main_Mob_Hero {
         int result2;
         int result3;
         int result4;
+        int checkPoint = 0;
 
         result1 = createArmor();
         System.out.println("You chose +" + result1 + " to Healthpoint ");
-        result2 = creatFootArmor();
+        result2 = creatFeetArmor();
         System.out.println("You chose +" + result2 + " to Healthpoint ");
         result3 = creatHeadArmor();
         System.out.println("You chose +" + result3 + " to Healthpoint ");
@@ -43,8 +45,9 @@ public class Equipment extends Main_Mob_Hero {
         return ress;
     }
 
+
     private static int createArmor() {
-        String cases = "\n Choose chest armor: " +
+        String cases = "\n Choose Chest Armor: " +
                 "\n   1. Cloth  (+7 to Healthpoint) " +
                 "\n   2. Leather (+15 to Healthpoint)" +
                 "\n   3. Steel (+22 to Healthpoint) " +
@@ -79,8 +82,8 @@ public class Equipment extends Main_Mob_Hero {
         return a;
     }
 
-    private static int creatFootArmor() {
-        String cases = "\n Choose chest armor: " +
+    private static int creatFeetArmor() {
+        String cases = "\n Choose Feet Armor: " +
                 "\n   1. Boots  (+6  to Healthpoint) " +
                 "\n   2. Cloth Slippers  (+11  to Healthpoint)" +
                 "\n   3. Boots of Wrought Shadow  (+17 to Healthpoint) " +
@@ -116,7 +119,7 @@ public class Equipment extends Main_Mob_Hero {
     }
 
     private static int creatHeadArmor() {
-        String cases = "\n Choose chest armor: " +
+        String cases = "\n Choose Head Armor: " +
                 "\n   1. Farseer's Mask (+2  to Healthpoint) " +
                 "\n   2. Mail Helm  (+5  to Healthpoint)" +
                 "\n   3. Shadowsong Vengeance Helm  (+11 to Healthpoint) " +
@@ -152,7 +155,7 @@ public class Equipment extends Main_Mob_Hero {
     }
 
     private static int creatBootsArmor() {
-        String cases = "\n Choose chest armor: " +
+        String cases = "\n Choose Boots: " +
                 "\n   1. Albino Crocscale Boots (+2  to Healthpoint) " +
                 "\n   2. Veteran's Leather Boots  (+4  to Healthpoint)" +
                 "\n   3. Fathomstalker Boots  (+6 to Healthpoint) " +

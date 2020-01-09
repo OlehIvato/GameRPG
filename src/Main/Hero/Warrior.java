@@ -12,11 +12,12 @@ public class Warrior extends Main_Mob_Hero {
     public void Main() {
         setHeroName("Warrior");
         setHeroHP(167);
-        setDefaultDamage(19);
+        setDefaultDamage(21);
         setMinspelldamageHERO(0);
         setMaxspellDamageHero(0);
         setIncreasesDamage(0);
         setRestoreshealth(0);
+        setMana(0);
 
         NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         n.createNewHero();

@@ -5,7 +5,7 @@ import Armor.Weapon;
 
 import Mobs.Main_Mob_Hero;
 
-public class Kalimdor extends Main_Mob_Hero {
+public class Kalimdor extends Main_Mob_Hero  {
 
 
     public Kalimdor(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
