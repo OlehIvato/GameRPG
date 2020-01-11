@@ -28,7 +28,7 @@ public class ChoseNewHero extends Main_Mob_Hero {
         n.put(2, "Warrior");
         n.put(3, "Paladin");
         for (Integer key : n.keySet()) {
-            System.out.println(key + ". - " + n.get(key));
+            System.out.println(key + " | " + n.get(key));
         }
         Scanner s = new Scanner(System.in);
         switch (s.nextInt()) {

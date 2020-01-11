@@ -5,21 +5,21 @@ import Armor.Weapon;
 
 import Mobs.Main_Mob_Hero;
 
-public class Kalimdor extends Main_Mob_Hero  {
+public class Kalimdor extends Value  {
 
 
-    public Kalimdor(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    public Kalimdor( String nameLocation, int hpLocation, int spellDamageLocation, int damageLocation, int restoreHealthLocation) {
+        super( nameLocation, hpLocation, spellDamageLocation, damageLocation, restoreHealthLocation);
     }
 
-    public static void main() {
-        Equipment.setRess(Equipment.getRess() + 2);
-        setMaxspellDamageHero(getMaxspellDamageHero() + 9);
-        setMinspelldamageHERO(getMinspelldamageHERO() + 9);
-        Weapon.setRET(Weapon.getRET() + 14);
-        setRestoreshealth(getRestoreshealth() - 16);
+    public void main() {
+        Equipment.setRess(Equipment.getRess() + hpLocation);
+        Main_Mob_Hero.setMaxspellDamageHero(Main_Mob_Hero.getMaxspellDamageHero() + spellDamageLocation);
+        Main_Mob_Hero.setMinspelldamageHERO(Main_Mob_Hero.getMinspelldamageHERO() + spellDamageLocation);
+        Weapon.setRET(Weapon.getRET() + damageLocation);
+        Main_Mob_Hero.setRestoreshealth(Main_Mob_Hero.getRestoreshealth() + restoreHealthLocation);
 
-        heroHP += 2;
-        defaultDamage += 14;
+        Main_Mob_Hero.setHeroHP(Main_Mob_Hero.getHeroHP() + getHpLocation());
+        Main_Mob_Hero.setDefaultDamage(Main_Mob_Hero.getDefaultDamage() + getDamageLocation());
     }
 }

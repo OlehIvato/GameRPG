@@ -5,22 +5,21 @@ import Armor.Weapon;
 import Mobs.Main_Mob_Hero;
 
 
-public class Azeroth extends Main_Mob_Hero {
+public class Azeroth extends Value {
 
-    public Azeroth(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+
+    public Azeroth( String nameLocation, int hpLocation, int spellDamageLocation, int damageLocation, int restoreHealthLocation) {
+        super( nameLocation, hpLocation, spellDamageLocation, damageLocation, restoreHealthLocation);
     }
 
-    public static void main() {
+    public void main() {
+        Equipment.setRess(Equipment.getRess() + hpLocation);
+        Main_Mob_Hero.setMaxspellDamageHero(Main_Mob_Hero.getMaxspellDamageHero() + spellDamageLocation);
+        Main_Mob_Hero.setMinspelldamageHERO(Main_Mob_Hero.getMinspelldamageHERO() + spellDamageLocation);
+        Weapon.setRET(Weapon.getRET() + damageLocation);
+        Main_Mob_Hero.setRestoreshealth(Main_Mob_Hero.getRestoreshealth() + restoreHealthLocation);
 
-        Equipment.setRess(Equipment.getRess() - 9);
-        setMaxspellDamageHero(getMaxspellDamageHero() - 5);
-        setMinspelldamageHERO(getMinspelldamageHERO() - 5);
-        Weapon.setRET(Weapon.getRET() - 3);
-        setRestoreshealth(getRestoreshealth() + 15);
-
-        heroHP -= 9;
-        defaultDamage -= 5;
-
+        Main_Mob_Hero.setHeroHP(Main_Mob_Hero.getHeroHP() + getHpLocation());
+        Main_Mob_Hero.setDefaultDamage(Main_Mob_Hero.getDefaultDamage() + getDamageLocation());
     }
 }

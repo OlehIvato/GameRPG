@@ -2,7 +2,6 @@ package Armor;
 
 import Main.Menu;
 import Mobs.Main_Mob_Hero;
-
 import java.util.Scanner;
 
 public class Equipment extends Main_Mob_Hero {
@@ -27,7 +26,6 @@ public class Equipment extends Main_Mob_Hero {
         int result2;
         int result3;
         int result4;
-        int checkPoint = 0;
 
         result1 = createArmor();
         System.out.println("You chose +" + result1 + " to Healthpoint ");
@@ -44,7 +42,6 @@ public class Equipment extends Main_Mob_Hero {
         System.out.println("\n\n");
         return ress;
     }
-
 
     private static int createArmor() {
         String cases = "\n Choose Chest Armor: " +

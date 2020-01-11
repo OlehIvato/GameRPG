@@ -2,110 +2,142 @@ package Main.Location;
 
 import java.util.*;
 
-public class LocationMain {
+public class LocationMain  {
+
     public static void location() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n\nWould you like to select Location for Fight, It change your Characteristics.");
         System.out.println("1. Yes \n2. No, continue without Locations");
+        LocationMain l = new LocationMain();
         switch (scanner.nextInt()) {
             case 1:
-                LocationMain.main();
+                l.main();
                 break;
             case 2:
                 break;
         }
     }
 
-    public static void main() {
-        List <Value> list = new ArrayList <>();
+    public void main() {
+
         System.out.println("Select location for the game:\n");
-        Scanner scanner = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
 
-        list.add(new Value(1, "Northrend", "+8", "+14", "-5", "+5"));
-        list.add(new Value(2, "Kalimdor", "+2,", "+9", "+14", "-16"));
-        list.add(new Value(3, "Azeroth", "-9", "-5", "-3", "+15"));
-        list.add(new Value(4, "Isle of Dread", "-13", "+14", "+9", "-9"));
+        IsleofDread isleofDread = new IsleofDread("Isle of Dread", -13, +14, +9, -9);
+        Northrend northrend = new Northrend("Northrend", +8, +14, -5, +5);
+        Kalimdor kalimdor = new Kalimdor("Kalimdor", +2, +9, +14, -16);
+        Azeroth azeroth = new Azeroth("Azeroth", -9, -5, -3, +15);
 
-        list.stream().forEach(System.out::println);
-        switch (scanner.nextInt()) {
+
+        Map <Integer, Value> map = new HashMap <>();
+        map.put(4, isleofDread);
+        map.put(3, azeroth);
+        map.put(2, kalimdor);
+        map.put(1, northrend);
+
+        //  map.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
+
+        for (Map.Entry show : map.entrySet()) {
+            System.out.println(show.getKey() + " | " + show.getValue());
+        }
+
+        switch (s.nextInt()) {
             case 1: {
-                System.out.println("You chose " + list.get(0));
-                Northrend.main();
+                System.out.println("You chose " + map.get(1));
+                northrend.main();
                 break;
             }
             case 2: {
-                System.out.println("You chose " + list.get(1));
-                Kalimdor.main();
+                System.out.println("You chose " + map.get(2));
+                kalimdor.main();
                 break;
             }
             case 3: {
-                System.out.println("You chose " + list.get(2));
-                Azeroth.main();
+                System.out.println("You chose " + map.get(3));
+                azeroth.main();
                 break;
             }
             case 4: {
-                System.out.println("You chose " + list.get(3));
-                IsleofDread.main();
+                System.out.println("You chose " + map.get(4));
+                isleofDread.main();
                 break;
             }
         }
-
-//        Map <Integer, String> loc = new HashMap <>();
-//        System.out.println("Select location for the game:\n");
-//        Scanner s = new Scanner(System.in);
-//        loc.put(1, "Northrend -     HP +8, Spell Damage + 14, Damage -5, Restore Health +5");
-//        loc.put(2, "Kalimdor -      HP +2, Spell Damage + 9, Damage + 14, Restore Health -16");
-//        loc.put(3, "Azeroth -       HP -9, Spell Damage -5, Damage - 3, Restore Health +15");
-//        loc.put(4, "Isle of Dread - HP -13, Spell Damage + 14, Damage + 9, Restore Health -9");
-//        for (Integer key : loc.keySet()) {
-//            System.out.println(key + " - " + loc.get(key));
-//        }
-//        switch (s.nextInt()) {
-//            case 1: {
-//                System.out.println("You chose " + loc.get(1));
-//                Northrend.main();
-//                break;
-//            }
-//            case 2: {
-//                System.out.println("You chose " + loc.get(2));
-//                Kalimdor.main();
-//                break;
-//            }
-//            case 3: {
-//                System.out.println("You chose " + loc.get(3));
-//                Azeroth.main();
-//                break;
-//            }
-//            case 4: {
-//                System.out.println("You chose " + loc.get(4));
-//                IsleofDread.main();
-//                break;
-//            }
-//        }
     }
 }
 
 
 class Value {
 
-    private Integer key;
-    private String name;
-    private String hp;
-    private String spellDamage;
-    private String damage;
-    private String restoreHealth;
 
-    public Value(Integer key, String name, String hp, String spellDamage, String damage, String restoreHealth) {
-        this.key = key;
-        this.name = name;
-        this.hp = hp;
-        this.spellDamage = spellDamage;
-        this.damage = damage;
-        this.restoreHealth = restoreHealth;
+    protected String nameLocation;
+    protected int hpLocation;
+    protected int spellDamageLocation;
+    protected int damageLocation;
+    protected int restoreHealthLocation;
+
+
+    public Value(String nameLocation, int hpLocation, int spellDamageLocation, int damageLocation, int restoreHealthLocation) {
+        this.nameLocation = nameLocation;
+        this.hpLocation = hpLocation;
+        this.spellDamageLocation = spellDamageLocation;
+        this.damageLocation = damageLocation;
+        this.restoreHealthLocation = restoreHealthLocation;
+    }
+
+
+    public static String format(int number) {
+        if (number > 0)
+            return "+"+number;
+        else return ""+number;
     }
 
     @Override
     public String toString() {
-        return key + " - " + name + " - " + " HP: " + hp + " Spell Damage: " + spellDamage + " Damege: " + damage + " Restore Health: " + restoreHealth + ".";
+
+        return nameLocation + " - " + " HP: " + format(hpLocation) + " Spell Damage: " + format(spellDamageLocation) + " Damege: " + format(damageLocation) + " Restore Health: " + format(restoreHealthLocation) + ".";
     }
+
+
+    public String getNameLocation() {
+        return nameLocation;
+    }
+
+    public void setNameLocation(String nameLocation) {
+        this.nameLocation = nameLocation;
+    }
+
+    public int getHpLocation() {
+        return hpLocation;
+    }
+
+    public void setHpLocation(int hpLocation) {
+        this.hpLocation = hpLocation;
+    }
+
+    public int getSpellDamageLocation() {
+        return spellDamageLocation;
+    }
+
+    public void setSpellDamageLocation(int spellDamageLocation) {
+        this.spellDamageLocation = spellDamageLocation;
+    }
+
+    public int getDamageLocation() {
+        return damageLocation;
+    }
+
+    public void setDamageLocation(int damageLocation) {
+        this.damageLocation = damageLocation;
+    }
+
+    public int getRestoreHealthLocation() {
+        return restoreHealthLocation;
+    }
+
+    public void setRestoreHealthLocation(int restoreHealthLocation) {
+        this.restoreHealthLocation = restoreHealthLocation;
+    }
+
+
 }

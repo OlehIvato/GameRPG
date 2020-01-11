@@ -2,24 +2,23 @@ package Main.Location;
 
 import Armor.Equipment;
 import Armor.Weapon;
-
 import Mobs.Main_Mob_Hero;
 
-public class IsleofDread extends Main_Mob_Hero {
+public class IsleofDread extends Value {
 
-
-    public IsleofDread(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    public IsleofDread( String nameLocation, int hpLocation, int spellDamageLocation, int damageLocation, int restoreHealthLocation) {
+        super( nameLocation, hpLocation, spellDamageLocation, damageLocation, restoreHealthLocation);
     }
 
-    public static void main() {
-        Equipment.setRess(Equipment.getRess() - 13);
-        setMaxspellDamageHero(getMaxspellDamageHero() + 14);
-        setMinspelldamageHERO(getMinspelldamageHERO() + 14);
-        Weapon.setRET(Weapon.getRET() + 9);
-        setRestoreshealth(getRestoreshealth() - 9);
 
-        heroHP -= 13;
-        defaultDamage += 9;
+    public void main() {
+        Equipment.setRess(Equipment.getRess() + hpLocation);
+        Main_Mob_Hero.setMaxspellDamageHero(Main_Mob_Hero.getMaxspellDamageHero() + spellDamageLocation);
+        Main_Mob_Hero.setMinspelldamageHERO(Main_Mob_Hero.getMinspelldamageHERO() + spellDamageLocation);
+        Weapon.setRET(Weapon.getRET() + damageLocation);
+        Main_Mob_Hero.setRestoreshealth(Main_Mob_Hero.getRestoreshealth() + restoreHealthLocation);
+
+        Main_Mob_Hero.setHeroHP(Main_Mob_Hero.getHeroHP() + getHpLocation());
+        Main_Mob_Hero.setDefaultDamage(Main_Mob_Hero.getDefaultDamage() + getDamageLocation());
     }
 }
