@@ -1,18 +1,13 @@
 package Moving.Fight;
 
-
+import Main.Enum_Case;
 import Main.Menu;
 import Main.Text;
-
 import Mobs.Main_Mob_Hero;
-
-
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class FightBossOFF extends Main_Mob_Hero implements Text {
-
 
     private static int res = Main_Mob_Hero.getIndex() + restoreshealth;
     private int hero_HP = getHeroHP();
@@ -65,7 +60,6 @@ public class FightBossOFF extends Main_Mob_Hero implements Text {
             }
     }
 
-
     private void heromove() {
         while (healthpoint > 0 && hero_HP > 0) {
             System.out.println(youhit + name + on + defaultDamage + hp);
@@ -88,7 +82,7 @@ public class FightBossOFF extends Main_Mob_Hero implements Text {
             System.out.println(s + now_you_have + hero_HP + hp);
             if (hero_HP <= 0) {
                 System.out.println(youweredefeatedby + name);
-                PlayAgain.again();
+                again();
                 break;
             } else move();
             break;
@@ -167,7 +161,11 @@ public class FightBossOFF extends Main_Mob_Hero implements Text {
             System.out.println(youhit + name + usingSpell + on + result + hp);
             System.out.println(RES + restoreBoss + h + name + have + ((healthpoint + restoreBoss) - result) + hp);
             healthpoint = (healthpoint + restoreBoss) - result;
-            if (healthpoint <= 0) {
+            if (minspelldamageHERO < 0 && maxspellDamageHero < 0) {
+                System.out.println(sorryButYouCantDoThat);
+                move();
+                break;
+            } else if (healthpoint <= 0) {
                 System.out.println(youhavewonoverthe + name);
                 break;
             } else mobmove();
@@ -175,7 +173,23 @@ public class FightBossOFF extends Main_Mob_Hero implements Text {
         }
     }
 
-
+    public static void again() {
+        Scanner scanner = new Scanner(System.in);
+        String cases = "\n Would you like to play Again ? " +
+                "\n 1. Yes." +
+                "\n 2. No (Back to Main Menu)";
+        System.out.println(cases);
+        switch (scanner.nextInt()) {
+            case 1: {
+                Level.level_1_1_NOequip();
+            }
+            case 2: {
+                Enum_Case.TestEnum(Enum_Case.ENUM.FINISHED);
+                Menu.mainMenu();
+                break;
+            }
+        }
+    }
 }
 
 

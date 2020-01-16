@@ -3,6 +3,8 @@ package Moving.Fight;
 import Armor.Equipment;
 import Armor.Stick;
 import Armor.Weapon;
+import Main.ChoseNewHero;
+import Main.Enum_Case;
 import Main.Menu;
 import Main.Text;
 import Mobs.Main_Mob_Hero;
@@ -87,7 +89,7 @@ public class FightBossON extends Main_Mob_Hero implements Text {
             System.out.println(s + now_you_have + hero_HP + hp);
             if (hero_HP <= 0) {
                 System.out.println(youweredefeatedby + name);
-                PlayAgain.again();
+                again();
                 break;
             } else move();
             break;
@@ -116,7 +118,8 @@ public class FightBossON extends Main_Mob_Hero implements Text {
                     case 2: {
                         spell();
                         break;
-                    } case 3:{
+                    }
+                    case 3: {
                         System.err.println(getLOSS);
                         Menu.mainMenu();
                         break;
@@ -165,7 +168,11 @@ public class FightBossON extends Main_Mob_Hero implements Text {
             System.out.println(youhit + name + usingSpell + on + result + hp);
             System.out.println(RES + restoreBoss + h + name + have + ((healthpoint + restoreBoss) - result) + hp);
             healthpoint = (healthpoint + restoreBoss) - result;
-            if (healthpoint <= 0) {
+            if (minspelldamageHERO < 0 && maxspellDamageHero < 0) {
+                System.out.println(sorryButYouCantDoThat);
+                move();
+                break;
+            } else if (healthpoint <= 0) {
                 System.out.println(youhavewonoverthe + name);
                 break;
             } else mobmove();
@@ -173,7 +180,28 @@ public class FightBossON extends Main_Mob_Hero implements Text {
         }
     }
 
-
+    public static void again() {
+        Scanner scanner = new Scanner(System.in);
+        String cases = "\n Select option :" +
+                "\n 1. Play Again " +
+                "\n 2. Create new Hero and play Again" +
+                "\n 3 Exit ";
+        System.out.println(cases);
+        switch (scanner.nextInt()) {
+            case 1: {
+                Level.level_1_1();
+            }
+            case 2: {
+                ChoseNewHero.main();
+                break;
+            }
+            case 3: {
+                Enum_Case.TestEnum(Enum_Case.ENUM.FINISHED);
+                Menu.mainMenu();
+                break;
+            }
+        }
+    }
 }
 
 

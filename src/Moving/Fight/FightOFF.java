@@ -1,7 +1,7 @@
 package Moving.Fight;
 
-
 import Armor.Weapon;
+import Main.Enum_Case;
 import Main.Menu;
 import Main.Text;
 import Mobs.Main_Mob_Hero;
@@ -82,7 +82,7 @@ public class FightOFF extends Main_Mob_Hero implements Text {
             System.out.println(s + now_you_have + hero_HP + hp);
             if (hero_HP <= 0) {
                 System.out.println(youweredefeatedby + name);
-                PlayAgainOFF.again();
+                again();
                 break;
             } else move();
             break;
@@ -159,7 +159,11 @@ public class FightOFF extends Main_Mob_Hero implements Text {
             System.out.print(now + name + have);
             System.out.println(healthpoint - result + hp);
             healthpoint = healthpoint - result;
-            if (healthpoint <= 0) {
+            if (minspelldamageHERO < 0 && maxspellDamageHero < 0) {
+                System.out.println(sorryButYouCantDoThat);
+                move();
+                break;
+            } else if (healthpoint <= 0) {
                 System.out.println(youhavewonoverthe + name);
                 break;
             } else mobmove();
@@ -167,7 +171,23 @@ public class FightOFF extends Main_Mob_Hero implements Text {
         }
     }
 
-
+    public static void again() {
+        Scanner scanner = new Scanner(System.in);
+        String cases = "\n Would you like to play Again ? " +
+                "\n 1. Yes." +
+                "\n 2. No (Back to Main Menu)";
+        System.out.println(cases);
+        switch (scanner.nextInt()) {
+            case 1: {
+                Level.level_1_1_NOequip();
+            }
+            case 2: {
+                Enum_Case.TestEnum(Enum_Case.ENUM.FINISHED);
+                Menu.mainMenu();
+                break;
+            }
+        }
+    }
 }
 
 

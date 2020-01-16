@@ -1,14 +1,11 @@
 package Moving.Fight;
 
 import Main.ChoseNewHero;
-import Main.EnumTestPac.ENUM;
-import Main.EnumTestPac.EnumCases;
+import Main.Enum_Case;
 import Main.UserName;
-
 import java.util.Scanner;
 
 public class Winning {
-
 
     public static void win() {
         String win = "\n\n\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
@@ -19,7 +16,6 @@ public class Winning {
         System.out.println(win.toUpperCase());
         backtomain();
     }
-
 
     public static void backtomain() {
         String cases = "\n\n\n Select option :" +
@@ -33,12 +29,11 @@ public class Winning {
                 break;
             }
             case 2: {
-                EnumCases.TestEnum(ENUM.FINISHED);
+                Enum_Case.TestEnum(Enum_Case.ENUM.FINISHED);
                 System.err.println(" EXIT ");
                 System.exit(0);
                 break;
             }
         }
     }
-
 }

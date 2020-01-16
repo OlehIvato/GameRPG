@@ -1,6 +1,5 @@
 package Moving.Fight;
 
-import Main.Location.LocationMain;
 import Moving.Random.RandomBoss;
 import Moving.Random.RandomBoss_WithOut_Equipment;
 import Moving.Random.RandomMob;

@@ -1,9 +1,13 @@
-package Main.EnumTestPac;
+package Main;
 
 import java.time.LocalTime;
 
-public class EnumCases {
+public class Enum_Case {
 
+    public enum ENUM {
+        STARTGAME,
+        FINISHED
+    }
     public static void TestEnum(ENUM e) {
         switch (e) {
             case STARTGAME: {

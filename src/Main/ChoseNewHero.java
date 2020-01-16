@@ -5,7 +5,6 @@ import Main.Hero.Mage;
 import Main.Hero.Paladin;
 import Main.Hero.Warrior;
 import Mobs.Main_Mob_Hero;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -48,10 +47,6 @@ public class ChoseNewHero extends Main_Mob_Hero {
                 break;
             }
         }
-
-
     }
 }
-
-
 

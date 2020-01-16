@@ -2,7 +2,6 @@ package Main.Location;
 
 import Armor.Equipment;
 import Armor.Weapon;
-
 import Mobs.Main_Mob_Hero;
 
 public class Kalimdor extends Value  {

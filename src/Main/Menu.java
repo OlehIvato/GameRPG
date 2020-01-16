@@ -1,4 +1,5 @@
 package Main;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -19,5 +20,4 @@ public class Menu {
             }
         }
     }
-
 }

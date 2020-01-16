@@ -1,6 +1,5 @@
 package Main.Hero;
 
-
 import Main.NewHero;
 import Mobs.Main_Mob_Hero;
 
@@ -21,9 +20,6 @@ public class Mage extends Main_Mob_Hero {
 
         NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         n.createNewHero();
-
     }
-
-
 }
 

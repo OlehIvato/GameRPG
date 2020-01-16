@@ -17,5 +17,4 @@ public class Pig extends  Main_Mob_Hero{
         FightOFF f = new FightOFF( "Pig", 101, 29, 20,43);
         f.main();
     }
-
 }

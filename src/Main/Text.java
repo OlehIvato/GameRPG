@@ -10,10 +10,9 @@ public interface Text {
     String randomgamage = " (Random damage from " + Main_Mob_Hero.getMinspelldamageHERO() + " to " + Main_Mob_Hero.getMaxspellDamageHero() + ")";
     int res = Main_Mob_Hero.getIndex() + Main_Mob_Hero.getRestoreshealth();
 
-
     String youhit = " You Hit ";
     String on = " on ";
-    String hp = " healthpoint ";
+    String hp = " health point ";
     String now = " Now ";
     String have = " Have ";
     String hitsyouon = " hits you on ";
@@ -22,8 +21,9 @@ public interface Text {
     String now_you_have = "Now You Have ";
     String usingSpell = " Using Spell ";
     String h = " hp. ";
+    String sorryButYouCantDoThat = "\nSorry but you can't do that, Try something else";
     String youchoseHealingyourself = "\nYou chose Healing yourself ";
-    String nowyourhealthpointequal = "Now your healthpoint equal ";
+    String nowyourhealthpointequal = "Now your health point equal ";
     String nowchosenextOption = "Now Chose Next Options: ";
     String RES = " After Recovering  ";
     String noMoreMana = "\nSorry, but you haven't Mana\nPlease Select Something else";
@@ -47,7 +47,7 @@ public interface Text {
                 "\n Your Damage = " + Weapon.getRET() +
                 "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
                 "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
-                "\n Your plus to restore Healthpoint = " + Main_Mob_Hero.getRestoreshealth() + "    (defalut restore index = " + Main_Mob_Hero.getIndex() + ")" +
+                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreshealth() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
                 "\n You Have " + Stick.getResult() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
         System.out.println(info);
     }
@@ -65,7 +65,7 @@ public interface Text {
                 "\n Your Damage = " + Main_Mob_Hero.getDefaultDamage() +
                 "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
                 "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
-                "\n Your plus to restore Healthpoint = " + Main_Mob_Hero.getRestoreshealth() + "    (defalut restore index = " + Main_Mob_Hero.getIndex() + ")" +
+                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreshealth() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
                 "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
         System.out.println(info);
     }
@@ -78,7 +78,7 @@ public interface Text {
                 "\n His Max Damage = " + Main_Mob_Hero.getMax_Damage() +
                 "\n And Min Damage = " + Main_Mob_Hero.getMin_Damage() +
                 "\n He restoring " + Main_Mob_Hero.getRestoreBoss() + hp + "every move" +
-                "\n When his healthpoint will be less than 20, his damage will be increased on " + Main_Mob_Hero.getIncreaseBoss() + ", Increased Damage = " + (Main_Mob_Hero.getMax_Damage() + Main_Mob_Hero.getIncreaseBoss()) +
+                "\n When his health point will be less than 20, his damage will be increased on " + Main_Mob_Hero.getIncreaseBoss() + ", Increased Damage = " + (Main_Mob_Hero.getMax_Damage() + Main_Mob_Hero.getIncreaseBoss()) +
                 "\n He also have " + Main_Mob_Hero.getChanseToSuperDamageBOSS() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
 
         System.out.println(inf);
@@ -86,7 +86,7 @@ public interface Text {
                 "\n Your Damage = " + Weapon.getRET() +
                 "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
                 "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
-                "\n Your plus to restore Healthpoint = " + Main_Mob_Hero.getRestoreBoss() + "    (defalut restore index = " + Main_Mob_Hero.getIndex() + ")" +
+                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreBoss() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
                 "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
         System.out.println(info);
     }
@@ -98,7 +98,7 @@ public interface Text {
                 "\n His Max Damage = " + Main_Mob_Hero.getMax_Damage() +
                 "\n And Min Damage = " + Main_Mob_Hero.getMin_Damage() +
                 "\n He restoring " + Main_Mob_Hero.getRestoreBoss() + hp + "every move" +
-                "\n When his healthpoint will be less than 20, his damage will be increased on " + Main_Mob_Hero.getIncreaseBoss() + ", Increased Damage = " + (Main_Mob_Hero.getMax_Damage() + Main_Mob_Hero.getIncreaseBoss()) +
+                "\n When his health point will be less than 20, his damage will be increased on " + Main_Mob_Hero.getIncreaseBoss() + ", Increased Damage = " + (Main_Mob_Hero.getMax_Damage() + Main_Mob_Hero.getIncreaseBoss()) +
                 "\n He also have " + Main_Mob_Hero.getChanseToSuperDamageBOSS() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
 
         System.out.println(inf);
@@ -106,7 +106,7 @@ public interface Text {
                 "\n Your Damage = " + Main_Mob_Hero.getDefaultDamage() +
                 "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
                 "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
-                "\n Your plus to restore Healthpoint = " + Main_Mob_Hero.getRestoreBoss() + "    (defalut restore index = " + Main_Mob_Hero.getIndex() + ")" +
+                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreBoss() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
                 "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
         System.out.println(info);
 

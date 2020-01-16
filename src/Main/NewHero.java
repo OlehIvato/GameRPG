@@ -20,8 +20,8 @@ public class NewHero extends Main_Mob_Hero {
         Weapon w = new Weapon(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         Stick s = new Stick(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         Shield sh = new Shield(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-        Scanner scan = new Scanner(System.in);
 
+        Scanner scan = new Scanner(System.in);
         System.out.println("\n  " + UserName.getUserNameIs() + " do you wanna choose Armor and Weapon for your " + heroName + " ?");
         String cases = "\n  1. Yes \n" +
                 "  2. No, Play with Standard Characteristics:"

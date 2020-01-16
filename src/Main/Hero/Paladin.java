@@ -9,6 +9,7 @@ public class Paladin extends Main_Mob_Hero {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
     }
 
+
     public void Main() {
         setHeroName("Paladin");
         setHeroHP(110);
@@ -23,12 +24,4 @@ public class Paladin extends Main_Mob_Hero {
         NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
         n.createNewHero();
     }
-
-
-
-
-
-
-
-
 }

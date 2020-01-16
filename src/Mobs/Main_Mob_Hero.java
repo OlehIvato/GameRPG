@@ -66,21 +66,6 @@ public class Main_Mob_Hero {
         Main_Mob_Hero.heroName = heroName;
     }
 
-    public static int getHeroHP() {
-        return heroHP;
-    }
-
-    public static void setHeroHP(int heroHP) {
-        Main_Mob_Hero.heroHP = heroHP;
-    }
-
-    public static int getIndex() {
-        return index;
-    }
-
-    public static void setIndex(int index) {
-        Main_Mob_Hero.index = index;
-    }
 
     public static String getName() {
         return name;
@@ -100,6 +85,14 @@ public class Main_Mob_Hero {
 
     public static int getHealthpoint() {
         return healthpoint;
+    }
+
+    public static int getHeroHP() {
+        return heroHP;
+    }
+
+    public static void setHeroHP(int heroHP) {
+        Main_Mob_Hero.heroHP = heroHP;
     }
 
     public static void setHealthpoint(int healthpoint) {
@@ -144,14 +137,6 @@ public class Main_Mob_Hero {
 
     public static void setIncreasesDamage(int increasesDamage) {
         Main_Mob_Hero.increasesDamage = increasesDamage;
-    }
-
-    public static int getHealcast() {
-        return healcast;
-    }
-
-    public static void setHealcast(int healcast) {
-        Main_Mob_Hero.healcast = healcast;
     }
 
     public static int getRestoreshealth() {
@@ -208,5 +193,21 @@ public class Main_Mob_Hero {
 
     public static void setMana(int mana) {
         Main_Mob_Hero.mana = mana;
+    }
+
+    public static int getIndex() {
+        return index;
+    }
+
+    public static void setIndex(int index) {
+        Main_Mob_Hero.index = index;
+    }
+
+    public static int getHealcast() {
+        return healcast;
+    }
+
+    public static void setHealcast(int healcast) {
+        Main_Mob_Hero.healcast = healcast;
     }
 }

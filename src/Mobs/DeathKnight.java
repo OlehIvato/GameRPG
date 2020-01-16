@@ -7,7 +7,6 @@ public class DeathKnight extends Main_Mob_Hero {
         super(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
     }
 
-
     public void fightON() {
 
         FightON fight  = new FightON( "Death King", 130, 25, 18,51);
