@@ -1,7 +1,6 @@
 package Mobs;
 
-import Moving.Fight.FightOFF;
-import Moving.Fight.FightON;
+import Moving.Fight.Fight;
 
 public class Alien extends Main_Mob_Hero {
     public Alien(String name, int healthpoint, int max_Damage, int min_Damage, int chanseToSuperDamageMob) {
@@ -9,17 +8,8 @@ public class Alien extends Main_Mob_Hero {
     }
 
 
-    public void fightON() {
-        FightON fight = new FightON( "Alien", 105, 60, 28,34);
+    public void fight() {
+        Fight fight = new Fight( "Alien", 105, 60, 28,34);
         fight.main();
-
-
     }
-
-    public void fightOff(){
-        FightOFF f = new FightOFF( "Alien", 105, 50, 18,34);
-        f.main();
-
-    }
-
 }

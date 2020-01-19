@@ -25,9 +25,8 @@ public class Shield extends Main_Mob_Hero {
                 System.out.print(Equipment.getRess() + info);
                 Equipment.setRess(Equipment.getRess() + info);
                 break;
-            } else {
+            } else
                 break;
-            }
         }
     }
 

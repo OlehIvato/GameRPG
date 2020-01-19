@@ -38,13 +38,12 @@ public class Equipment extends Main_Mob_Hero {
         System.out.print("\nYour final Healthpoint equal ");
         System.out.print(result1 + result2 + result3 + result4 + heroHP);
         ress = (result1 + result2 + result3 + result4 + heroHP);
-
-        System.out.println("\n\n");
+        System.out.println();
         return ress;
     }
 
     private static int createArmor() {
-        String cases = "\n Choose Chest Armor: " +
+        String cases = "\nChoose Chest Armor: " +
                 "\n   1. Cloth  (+7 to Healthpoint) " +
                 "\n   2. Leather (+15 to Healthpoint)" +
                 "\n   3. Steel (+22 to Healthpoint) " +
@@ -80,7 +79,7 @@ public class Equipment extends Main_Mob_Hero {
     }
 
     private static int creatFeetArmor() {
-        String cases = "\n Choose Feet Armor: " +
+        String cases = "\nChoose Feet Armor: " +
                 "\n   1. Boots  (+6  to Healthpoint) " +
                 "\n   2. Cloth Slippers  (+11  to Healthpoint)" +
                 "\n   3. Boots of Wrought Shadow  (+17 to Healthpoint) " +
@@ -116,7 +115,7 @@ public class Equipment extends Main_Mob_Hero {
     }
 
     private static int creatHeadArmor() {
-        String cases = "\n Choose Head Armor: " +
+        String cases = "\nChoose Head Armor: " +
                 "\n   1. Farseer's Mask (+2  to Healthpoint) " +
                 "\n   2. Mail Helm  (+5  to Healthpoint)" +
                 "\n   3. Shadowsong Vengeance Helm  (+11 to Healthpoint) " +
@@ -152,7 +151,7 @@ public class Equipment extends Main_Mob_Hero {
     }
 
     private static int creatBootsArmor() {
-        String cases = "\n Choose Boots: " +
+        String cases = "\nChoose Boots: " +
                 "\n   1. Albino Crocscale Boots (+2  to Healthpoint) " +
                 "\n   2. Veteran's Leather Boots  (+4  to Healthpoint)" +
                 "\n   3. Fathomstalker Boots  (+6 to Healthpoint) " +

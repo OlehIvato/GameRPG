@@ -38,7 +38,7 @@ public class Stick extends Main_Mob_Hero {
 
 
     private static int createStick() {
-        String weap = "\n\n Choose your Stick"
+        String weap = "\n\nChoose your Stick"
                 + "\n    1. Arcanite Stick  (+13  to Mana)"
                 + "\n    2. Helcular's Stick  (+21  to Mana)"
                 + "\n    3. Golden Stick (+35 to Mana)"

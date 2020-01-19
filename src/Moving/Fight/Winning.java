@@ -14,10 +14,10 @@ public class Winning {
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
         System.out.println(win.toUpperCase());
-        backtomain();
+        backToMain();
     }
 
-    public static void backtomain() {
+    private static void backToMain() {
         String cases = "\n\n\n Select option :" +
                 "\n   1. Create new Hero and play Again ?  " +
                 "\n   2. EXIT ";

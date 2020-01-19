@@ -10,7 +10,7 @@ public class RandomMob extends Main_Mob_Hero {
         super(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
     }
 
-    public static void  get_random_mob() {
+    public static void random() {
         Random random = new Random();
 
         Pudge pudge = new Pudge(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
@@ -19,34 +19,37 @@ public class RandomMob extends Main_Mob_Hero {
         DeathKnight deathKnight = new DeathKnight(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
         Ork ork = new Ork(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
         Pig pig = new Pig(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
+
         switch (random.nextInt(6)) {
             case 0: {
-                pudge.fightON();
+                pudge.fight();
                 break;
             }
             case 1: {
-                pig.fightON();
+                pig.fight();
                 break;
             }
             case 2: {
-                ork.fightON();
+                ork.fight();
                 break;
             }
             case 3: {
-                druid.fightON();
+                druid.fight();
                 break;
             }
             case 4: {
-                alien.fightON();
+                alien.fight();
                 break;
             }
             case 5: {
-                deathKnight.fightON();
+                deathKnight.fight();
                 break;
             }
         }
     }
 }
+
+
 
 
 

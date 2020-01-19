@@ -1,8 +1,6 @@
 package Mobs;
 
-
-import Moving.Fight.FightOFF;
-import Moving.Fight.FightON;
+import Moving.Fight.Fight;
 
 
 public class Pudge extends Main_Mob_Hero {
@@ -10,15 +8,9 @@ public class Pudge extends Main_Mob_Hero {
         super(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
     }
 
-    public void fightON() {
-        FightON fight = new FightON("Pudge", 120, 34, 27, 56);
+    public void fight() {
+        Fight fight = new Fight("Pudge", 120, 34, 27, 56);
         fight.main();
     }
-
-    public void fightOff() {
-        FightOFF f = new FightOFF("Pudge", 105, 30, 25, 37);
-        f.main();
-    }
-
 
 }

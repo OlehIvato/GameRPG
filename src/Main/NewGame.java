@@ -1,7 +1,5 @@
 package Main;
 
-
-
 import Mobs.Main_Mob_Hero;
 import java.util.Scanner;
 
@@ -13,8 +11,7 @@ public class NewGame extends Main_Mob_Hero {
 
     public static void createHero() {
         System.out.println();
-        Enum_Case.TestEnum(Enum_Case.ENUM.STARTGAME);
-        String create = "\nWould you like to create new Hero and play game ? \n " +
+        String create = "Would you like to create new Hero and play game ? \n " +
                 "1. Yes \n " +
                 "2. No (exit) ";
         System.out.println(create);
@@ -31,6 +28,5 @@ public class NewGame extends Main_Mob_Hero {
                 break;
             }
         }
-
     }
 }

@@ -1,6 +1,6 @@
 package Main.Hero;
 
-import Main.NewHero;
+import Main.TheGame;
 import Mobs.Main_Mob_Hero;
 
 public class Mage extends Main_Mob_Hero {
@@ -18,8 +18,8 @@ public class Mage extends Main_Mob_Hero {
         setRestoreshealth(19);
         setMana(87);
 
-        NewHero n = new NewHero(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-        n.createNewHero();
+        TheGame game = new TheGame(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+        game.createNewHero();
     }
 }
 

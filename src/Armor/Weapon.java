@@ -1,6 +1,5 @@
 package Armor;
 
-
 import Main.Menu;
 import Mobs.Main_Mob_Hero;
 
@@ -41,13 +40,13 @@ public class Weapon extends Main_Mob_Hero {
     }
 
     private static int createWeapon() {
-        String weap = " Choose your Weapon"
+        String weap = "\nChoose your Weapon"
                 + "\n    1. Daggers  (+7  to Damage)"
                 + "\n    2. Crossbows  (+13  to Damage)"
                 + "\n    3. Sword (+21 to Damage)"
                 + "\n    4. Not to choose this thing (+0 to Healthpoint)"
                 + "\n    5. Back to  Main Menu";
-        System.out.println(weap);
+        System.out.println(weap + "\n");
         Scanner scan = new Scanner(System.in);
         a = scan.nextInt();
         switch (a) {
