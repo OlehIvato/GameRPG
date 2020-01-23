@@ -1,7 +1,7 @@
 package Armor;
 
 import Main.Menu;
-import Mobs.Main_Mob_Hero;
+import Сreature.Mobs.Main_Mob_Hero;
 import java.util.Scanner;
 
 public class Equipment extends Main_Mob_Hero {

@@ -1,31 +1,26 @@
 package Main;
 
+import Hero.Mage;
+import Hero.Paladin;
+import Hero.Warrior;
 
-import Main.Hero.Mage;
-import Main.Hero.Paladin;
-import Main.Hero.Warrior;
-import Mobs.Main_Mob_Hero;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ChoseNewHero extends Main_Mob_Hero {
-
-    public ChoseNewHero(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-    }
+public class ChoseNewHero {
 
     public static void main() {
 
-        Mage m = new Mage(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-        Warrior w = new Warrior(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-        Paladin p = new Paladin(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+        Mage mage = new Mage("Mage", 90, 4, 35, 55, 0, 19, 0, 87);
+        Warrior warrior = new Warrior("Warrior", 167, 21, 0, 0, 0, 0, 0, 0);
+        Paladin paladin = new Paladin("Paladin", 110, 15, 17, 40, 0, 35, 0, 105);
 
         System.out.println("\nChoose new hero:");
-        Map <Integer, String> n = new HashMap <>();
-        n.put(1, "Mage");
-        n.put(2, "Warrior");
-        n.put(3, "Paladin");
+        Map <Integer, Object> n = new HashMap <>();
+        n.put(1, mage);
+        n.put(2, warrior);
+        n.put(3, paladin);
         for (Integer key : n.keySet()) {
             System.out.println(key + " | " + n.get(key));
         }
@@ -33,20 +28,19 @@ public class ChoseNewHero extends Main_Mob_Hero {
         switch (s.nextInt()) {
             case 1: {
                 System.out.println("You chose: " + n.get(1));
-                m.Main();
+                mage.Main();
                 break;
             }
             case 2: {
                 System.out.println("You chose: " + n.get(2));
-                w.Main();
+                warrior.Main();
                 break;
             }
             case 3: {
                 System.out.println("You chose: " + n.get(3));
-                p.Main();
+                paladin.Main();
                 break;
             }
         }
     }
 }
-

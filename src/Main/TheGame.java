@@ -4,16 +4,18 @@ import Armor.Equipment;
 import Armor.Shield;
 import Armor.Stick;
 import Armor.Weapon;
-import Main.Location.LocationMain;
-import Mobs.Main_Mob_Hero;
-import Moving.Fight.Levels;
-import Moving.Fight.Winning;
-
+import Fight.Levels;
+import Fight.Winning;
+import Location.LocationMain;
+import Сreature.Mobs.Main_Mob_Hero;
 import java.util.Scanner;
 
 public class TheGame extends Main_Mob_Hero implements Levels {
     public TheGame(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    }
+
+    public TheGame() {
     }
 
     private static int info;
@@ -38,13 +40,6 @@ public class TheGame extends Main_Mob_Hero implements Levels {
                 "2. No, Play with Standard Characteristics:"
                 + "\n3. Turn Back  \n";
         System.out.println(cases);
-        String characteristics = "          HP = " + heroHP +
-                "\n          Damage = " + defaultDamage +
-                "\n          Min Spell Damage = " + minspelldamageHERO +
-                "\n          Max Spell Damage = " + maxspellDamageHero +
-                "\n          Plus to restore Health point = " + restoreshealth +
-                "\n          Mana = " + mana;
-        System.out.println(characteristics);
         switch (scan.nextInt()) {
             case 1: {
 
