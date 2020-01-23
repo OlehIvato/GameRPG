@@ -100,7 +100,6 @@ public class TheGame extends Main_Mob_Hero implements Levels {
                 Levels.final_vs_boss();
 
                 Winning.win();
-
                 break;
             }
             case 3: {

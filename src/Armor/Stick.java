@@ -2,7 +2,6 @@ package Armor;
 
 import Main.Menu;
 import Сreature.Mobs.Main_Mob_Hero;
-
 import java.util.Scanner;
 
 public class Stick extends Main_Mob_Hero {
@@ -35,7 +34,6 @@ public class Stick extends Main_Mob_Hero {
         }
         return result;
     }
-
 
     private static int createStick() {
         String weap = "\n\nChoose your Stick"

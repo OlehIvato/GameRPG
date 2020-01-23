@@ -60,4 +60,3 @@ public class Shield extends Main_Mob_Hero {
         return a;
     }
 }
-

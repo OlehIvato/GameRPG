@@ -8,7 +8,6 @@ import Сreature.Mobs.Main_Mob_Hero;
 public interface Text {
 
     int res = Main_Mob_Hero.getIndex() + Main_Mob_Hero.getRestoreshealth();
-
     String randomDamage = " (Random damage from " + Main_Mob_Hero.getMinspelldamageHERO() + " to " + Main_Mob_Hero.getMaxspellDamageHero() + ")";
 
     String youHaveBeenRecovered = "\nYou have been recovered " + res + " health point";

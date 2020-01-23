@@ -2,7 +2,6 @@ package Armor;
 
 import Main.Menu;
 import Сreature.Mobs.Main_Mob_Hero;
-
 import java.util.Scanner;
 
 public class Weapon extends Main_Mob_Hero {

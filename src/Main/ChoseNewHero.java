@@ -3,7 +3,6 @@ package Main;
 import Hero.Mage;
 import Hero.Paladin;
 import Hero.Warrior;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

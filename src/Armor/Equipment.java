@@ -186,5 +186,3 @@ public class Equipment extends Main_Mob_Hero {
         return a;
     }
 }
-
-
