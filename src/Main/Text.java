@@ -3,7 +3,7 @@ package Main;
 import Armor.Equipment;
 import Armor.Stick;
 import Armor.Weapon;
-import Сreature.Mobs.Main_Mob_Hero;
+import Сreature.Main_Mob_Hero;
 
 public interface Text {
 

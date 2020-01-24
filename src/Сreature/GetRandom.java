@@ -1,4 +1,4 @@
-package Fight;
+package Сreature;
 
 import Сreature.Bosses.CaptainPrice;
 import Сreature.Bosses.LichKing;
@@ -6,7 +6,8 @@ import Сreature.Bosses.Ragnar_Lodbrok;
 import Сreature.Mobs.*;
 import java.util.Random;
 
-public class GetMobsRandom {
+public class GetRandom {
+
     public static void random() {
         Random random = new Random();
 

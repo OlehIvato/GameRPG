@@ -6,8 +6,8 @@ import Armor.Stick;
 import Armor.Weapon;
 import Fight.Levels;
 import Fight.Winning;
-import Location.LocationMain;
-import Сreature.Mobs.Main_Mob_Hero;
+import Location.MainLocation;
+import Сreature.Main_Mob_Hero;
 import java.util.Scanner;
 
 public class TheGame extends Main_Mob_Hero implements Levels {
@@ -50,7 +50,7 @@ public class TheGame extends Main_Mob_Hero implements Levels {
                 s.main_Stick();
                 sh.main_Shield();
 
-                LocationMain.location();
+                MainLocation.location();
 
                 Levels.level_1_1();
                 Levels.level_1_2();
@@ -79,7 +79,7 @@ public class TheGame extends Main_Mob_Hero implements Levels {
 
                 info = 2;
 
-                LocationMain.location();
+                MainLocation.location();
 
                 Levels.level_1_1();
                 Levels.level_1_2();

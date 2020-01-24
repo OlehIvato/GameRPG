@@ -2,6 +2,7 @@ package Сreature.Mobs;
 
 import Fight.Fight;
 import Сreature.MainMobs;
+import Сreature.Main_Mob_Hero;
 
 public class DeathKnight extends MainMobs {
     public DeathKnight(String nameMOb, int healthpointMOb, int min_DamageMOb, int max_DamageMob, int chanceToSuperDamageMob) {
@@ -10,11 +11,11 @@ public class DeathKnight extends MainMobs {
 
     public void fight() {
 
-        Сreature.Mobs.Main_Mob_Hero.setName(getNameMOb());
-        Сreature.Mobs.Main_Mob_Hero.setHealthpoint(getHealthpointMOb());
-        Сreature.Mobs.Main_Mob_Hero.setMin_Damage(getMin_DamageMOb());
-        Сreature.Mobs.Main_Mob_Hero.setMax_Damage(getMax_DamageMob());
-        Сreature.Mobs.Main_Mob_Hero.setChanseToSuperDamageMob(getChanceToSuperDamageMob());
+        Main_Mob_Hero.setName(getNameMOb());
+        Main_Mob_Hero.setHealthpoint(getHealthpointMOb());
+        Main_Mob_Hero.setMin_Damage(getMin_DamageMOb());
+        Main_Mob_Hero.setMax_Damage(getMax_DamageMob());
+        Main_Mob_Hero.setChanseToSuperDamageMob(getChanceToSuperDamageMob());
 
         Fight fight = new Fight();
         fight.main();

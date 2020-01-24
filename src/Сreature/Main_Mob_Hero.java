@@ -1,4 +1,4 @@
-package Сreature.Mobs;
+package Сreature;
 
 public class Main_Mob_Hero {
     protected static String heroName;                 //  HERO NAME
@@ -66,6 +66,13 @@ public class Main_Mob_Hero {
         Main_Mob_Hero.heroName = heroName;
     }
 
+    public static int getHeroHP() {
+        return heroHP;
+    }
+
+    public static void setHeroHP(int heroHP) {
+        Main_Mob_Hero.heroHP = heroHP;
+    }
 
     public static String getName() {
         return name;
@@ -85,14 +92,6 @@ public class Main_Mob_Hero {
 
     public static int getHealthpoint() {
         return healthpoint;
-    }
-
-    public static int getHeroHP() {
-        return heroHP;
-    }
-
-    public static void setHeroHP(int heroHP) {
-        Main_Mob_Hero.heroHP = heroHP;
     }
 
     public static void setHealthpoint(int healthpoint) {

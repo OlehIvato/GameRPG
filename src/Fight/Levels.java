@@ -1,5 +1,7 @@
 package Fight;
 
+import Сreature.GetRandom;
+
 public interface Levels {
 
     static void level_1_1() {
@@ -8,7 +10,7 @@ public interface Levels {
                 "\n======================== FIRST GAME =======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
     }
 
     static void level_1_2() {
@@ -17,7 +19,7 @@ public interface Levels {
                 "\n======================== SECOND GAME ======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
     }
 
@@ -27,7 +29,7 @@ public interface Levels {
                 "\n======================== THIRD GAME =======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
     }
 
@@ -37,7 +39,7 @@ public interface Levels {
                 "\n======================== FIRST GAME =======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
     }
 
@@ -47,7 +49,7 @@ public interface Levels {
                 "\n======================== SECOND GAME ======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
     }
 
@@ -57,7 +59,7 @@ public interface Levels {
                 "\n======================== THIRD GAME =======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
     }
 
@@ -67,7 +69,7 @@ public interface Levels {
                 "\n======================== FIRST GAME =======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
 
     }
@@ -78,7 +80,7 @@ public interface Levels {
                 "\n======================== SECOND GAME ======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
     }
 
@@ -88,7 +90,7 @@ public interface Levels {
                 "\n======================== THIRD GAME =======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random();
+        GetRandom.random();
 
     }
 
@@ -98,7 +100,7 @@ public interface Levels {
                 "\n========================= VS BOSS =========================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random_Boss();
+        GetRandom.random_Boss();
 
     }
 
@@ -108,7 +110,7 @@ public interface Levels {
                 "\n========================= VS BOSS =========================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetMobsRandom.random_Boss();
+        GetRandom.random_Boss();
 
     }
 }

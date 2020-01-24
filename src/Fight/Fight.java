@@ -4,8 +4,7 @@ import Armor.Equipment;
 import Armor.Stick;
 import Armor.Weapon;
 import Main.*;
-import Сreature.Mobs.Main_Mob_Hero;
-
+import Сreature.Main_Mob_Hero;
 import java.util.Random;
 import java.util.Scanner;
 

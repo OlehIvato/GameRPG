@@ -1,6 +1,6 @@
 package Main;
 
-import Сreature.Mobs.Main_Mob_Hero;
+import Сreature.Main_Mob_Hero;
 import java.util.Scanner;
 
 public class NewGame extends Main_Mob_Hero {

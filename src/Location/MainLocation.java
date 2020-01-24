@@ -2,13 +2,13 @@ package Location;
 
 import java.util.*;
 
-public class LocationMain {
+public class MainLocation {
 
     public static void location() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n\nWould you like to select Location for Fight, It change your Characteristics.");
         System.out.println("1. Yes \n2. No, continue without Locations");
-        LocationMain l = new LocationMain();
+        MainLocation l = new MainLocation();
         switch (scanner.nextInt()) {
             case 1:
                 l.main();
@@ -26,7 +26,6 @@ public class LocationMain {
 
         System.out.println("Select location for the game:\n");
         Scanner s = new Scanner(System.in);
-
 
         Azeroth azeroth = new Azeroth("Azeroth", -9, -5, -3, +15);
         Kalimdor kalimdor = new Kalimdor("Kalimdor", +2, +9, +14, -16);
@@ -75,13 +74,13 @@ public class LocationMain {
 class Value {
 
     private String nameLocation;
-    private int hpLocation;
-    private int spellDamageLocation;
-    private int damageLocation;
-    private int restoreHealthLocation;
+    int hpLocation;
+    int spellDamageLocation;
+    int damageLocation;
+    int restoreHealthLocation;
 
 
-    public Value(String nameLocation, int hpLocation, int spellDamageLocation, int damageLocation, int restoreHealthLocation) {
+    Value(String nameLocation, int hpLocation, int spellDamageLocation, int damageLocation, int restoreHealthLocation) {
         this.nameLocation = nameLocation;
         this.hpLocation = hpLocation;
         this.spellDamageLocation = spellDamageLocation;
@@ -90,7 +89,7 @@ class Value {
     }
 
 
-    public static String format(int number) {
+    private static String format(int number) {
         if (number > 0)
             return "+" + number;
         else return "" + number;
@@ -98,47 +97,10 @@ class Value {
 
     @Override
     public String toString() {
-
-        return nameLocation + " - " + " HP: " + format(hpLocation) + " Spell Damage: " + format(spellDamageLocation) + " Damage: " + format(damageLocation) + " Restore Health: " + format(restoreHealthLocation) + ".";
+        return nameLocation + " - " + " HP: " + format(hpLocation) +
+                " Spell Damage: " + format(spellDamageLocation) +
+                " Damage: " + format(damageLocation) +
+                " Restore Health: " + format(restoreHealthLocation) + ".";
     }
 
-    public String getNameLocation() {
-        return nameLocation;
-    }
-
-    public void setNameLocation(String nameLocation) {
-        this.nameLocation = nameLocation;
-    }
-
-    public int getHpLocation() {
-        return hpLocation;
-    }
-
-    public void setHpLocation(int hpLocation) {
-        this.hpLocation = hpLocation;
-    }
-
-    public int getSpellDamageLocation() {
-        return spellDamageLocation;
-    }
-
-    public void setSpellDamageLocation(int spellDamageLocation) {
-        this.spellDamageLocation = spellDamageLocation;
-    }
-
-    public int getDamageLocation() {
-        return damageLocation;
-    }
-
-    public void setDamageLocation(int damageLocation) {
-        this.damageLocation = damageLocation;
-    }
-
-    public int getRestoreHealthLocation() {
-        return restoreHealthLocation;
-    }
-
-    public void setRestoreHealthLocation(int restoreHealthLocation) {
-        this.restoreHealthLocation = restoreHealthLocation;
-    }
 }

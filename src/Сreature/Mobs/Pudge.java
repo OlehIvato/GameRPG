@@ -2,8 +2,7 @@ package Сreature.Mobs;
 
 import Fight.Fight;
 import Сreature.MainMobs;
-import Сreature.Mobs.Main_Mob_Hero;
-
+import Сreature.Main_Mob_Hero;
 
 public class Pudge extends MainMobs {
     public Pudge(String nameMOb, int healthpointMOb, int min_DamageMOb, int max_DamageMob, int chanceToSuperDamageMob) {
@@ -20,5 +19,6 @@ public class Pudge extends MainMobs {
 
         Fight fight = new Fight();
         fight.main();
+
     }
 }

@@ -1,8 +1,7 @@
 package Armor;
 
 import Main.Menu;
-import Сreature.Mobs.Main_Mob_Hero;
-
+import Сreature.Main_Mob_Hero;
 import java.util.Scanner;
 
 public class Shield extends Main_Mob_Hero {

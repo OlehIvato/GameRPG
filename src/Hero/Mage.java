@@ -1,6 +1,6 @@
 package Hero;
 import Main.TheGame;
-import Сreature.Mobs.Main_Mob_Hero;
+import Сreature.Main_Mob_Hero;
 
 public class Mage extends HeroMain {
     public Mage(String name, int hp, int defaultDamage, int minSpellDamage, int maxSpellDamage, int increasesDamage, int restoresHealthPoint, int chance, int mana) {
