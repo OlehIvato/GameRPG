@@ -2,6 +2,7 @@ package Armor;
 
 import Main.Menu;
 import Сreature.Main_Mob_Hero;
+
 import java.util.Scanner;
 
 public class Weapon extends Main_Mob_Hero {
@@ -9,8 +10,8 @@ public class Weapon extends Main_Mob_Hero {
     private static int a;
     private static int RET;
 
-    public Weapon(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    public Weapon(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
     }
 
     public static int getRET() {
@@ -21,10 +22,11 @@ public class Weapon extends Main_Mob_Hero {
         Weapon.RET = RET;
     }
 
+    private int checkPoint = 0;
+
     public int main_WEAPON() {
-        int checkPoint = 0;
         while (checkPoint == 0) {
-            if (defaultDamage < 10) {
+            if (heroName.equals("Mage") || heroName.equals("Paladin")) {
                 break;
             } else {
                 int result = createWeapon();

@@ -5,22 +5,23 @@ import Armor.Stick;
 import Armor.Weapon;
 import Main.*;
 import Сreature.Main_Mob_Hero;
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class Fight extends Main_Mob_Hero implements Text, Levels {
 
     private int hero_HP = Equipment.getRess();
-    private int herohp_wout = getHeroHP();
-    private int manafinal = Stick.getResult();
-    private int manafinal_wout = getMana();
+    private int heroHP_wOut = getHeroHP();
+    private int manaFinal = Stick.getResult();
+    private int manaFinal_wOut = getMana();
 
-    public Fight(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    public Fight(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
     }
 
-    public Fight(String name, int healthpoint, int max_Damage, int min_Damage, int chanseToSuperDamageMob) {
-        super(name, healthpoint, max_Damage, min_Damage, chanseToSuperDamageMob);
+    public Fight(String name, int healthPoint, int max_Damage, int min_Damage, int chanceToSuperDamageMob) {
+        super(name, healthPoint, max_Damage, min_Damage, chanceToSuperDamageMob);
     }
 
     public Fight() {
@@ -41,11 +42,11 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
         if (TheGame.getInfo() == 1) {
             String cases = "\nYour Turn \n" +
                     "1. Hit " + name + " on " + Weapon.getRET() + " health point \n2. Strike with magic on " + randomDamage + " health point " +
-                    "\n3. Restore " + res + " health point, Need " + Main_Mob_Hero.getHealcast() + " Mana, You Have " + manafinal + " Mana" +
+                    "\n3. Restore " + res + " health point, Need " + Main_Mob_Hero.getHealCast() + " Mana, You Have " + manaFinal + " Mana" +
                     "\n4. Get defeat and back to Main Menu ";
             System.out.println(cases);
             Scanner scan = new Scanner(System.in);
-            while (healthpoint > 0 && hero_HP > 0) {
+            while (healthPoint > 0 && hero_HP > 0) {
                 switch (scan.nextInt()) {
                     case 1: {
                         heromove();
@@ -70,11 +71,11 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
         if (TheGame.getInfo() == 2) {
             String cases = "\nYour Turn \n" +
                     "1. Hit " + name + " on " + defaultDamage + hp + "\n2. Strike with magic on " + randomDamage + " health point " +
-                    "\n3. Restore " + res + " health point, Need " + Main_Mob_Hero.getHealcast() + " Mana, You Have " + manafinal_wout + " Mana" +
+                    "\n3. Restore " + res + " health point, Need " + Main_Mob_Hero.getHealCast() + " Mana, You Have " + manaFinal_wOut + " Mana" +
                     "\n4. To get defeat and back to Main Menu ";
             System.out.println(cases);
             Scanner scan = new Scanner(System.in);
-            while (healthpoint > 0 && herohp_wout > 0) {
+            while (healthPoint > 0 && heroHP_wOut > 0) {
                 switch (scan.nextInt()) {
                     case 1: {
                         heromove();
@@ -100,12 +101,12 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
 
     private void heromove() {
         if (TheGame.getInfo() == 1) {
-            while (healthpoint > 0 && hero_HP > 0) {
+            while (healthPoint > 0 && hero_HP > 0) {
                 System.out.println(youHitNameOnWeaponHp);
                 System.out.print(nowNameHave);
-                System.out.println(healthpoint - Weapon.getRET() + hp);
-                healthpoint -= Weapon.getRET();
-                if (healthpoint <= 0) {
+                System.out.println(healthPoint - Weapon.getRET() + hp);
+                healthPoint -= Weapon.getRET();
+                if (healthPoint <= 0) {
                     System.out.println(youHaveWonOverThe + name);
                     break;
                 } else mobmove();
@@ -113,12 +114,12 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
             }
         }
         if (TheGame.getInfo() == 2) {
-            while (healthpoint > 0 && herohp_wout > 0) {
+            while (healthPoint > 0 && heroHP_wOut > 0) {
                 System.out.println(youHitNameOnDefaultDamageHp);
                 System.out.print(nowNameHave);
-                System.out.println(healthpoint - defaultDamage + hp);
-                healthpoint -= defaultDamage;
-                if (healthpoint <= 0) {
+                System.out.println(healthPoint - defaultDamage + hp);
+                healthPoint -= defaultDamage;
+                if (healthPoint <= 0) {
                     System.out.println(youHaveWonOverThe + name);
                     break;
                 } else mobmove();
@@ -130,7 +131,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
 
     private void mobmove() {
         if (TheGame.getInfo() == 1) {
-            while (hero_HP > 0 && healthpoint > 0) {
+            while (hero_HP > 0 && healthPoint > 0) {
                 System.out.println(nameTurn);
                 int EqualRandom = random();
                 System.out.print(nameHitYouOn + EqualRandom + hp);
@@ -145,13 +146,13 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
             }
         }
         if (TheGame.getInfo() == 2) {
-            while (herohp_wout > 0 && healthpoint > 0) {
+            while (heroHP_wOut > 0 && healthPoint > 0) {
                 System.out.println(nameTurn);
                 int EqualRandom = random();
                 System.out.print(nameHitYouOn + EqualRandom + hp);
-                herohp_wout -= EqualRandom;
-                System.out.println(nowYouHaveHp + herohp_wout + hp);
-                if (herohp_wout <= 0) {
+                heroHP_wOut -= EqualRandom;
+                System.out.println(nowYouHaveHp + heroHP_wOut + hp);
+                if (heroHP_wOut <= 0) {
                     System.out.println(youWereDefeatedBy + name);
                     again();
                     break;
@@ -164,14 +165,14 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
 
     private void heal() {
         if (TheGame.getInfo() == 1) {
-            while (healthpoint > 0 && hero_HP > 0) {
-                if (manafinal >= Main_Mob_Hero.getHealcast()) {
+            while (healthPoint > 0 && hero_HP > 0) {
+                if (manaFinal >= Main_Mob_Hero.getHealCast()) {
                     hero_HP += res;
                     System.out.println(youChoseHealingYourself);
-                    manafinal -= Main_Mob_Hero.getHealcast();
+                    manaFinal -= Main_Mob_Hero.getHealCast();
                     System.out.println(youHaveBeenRecovered);
                     System.out.println(nowYourHealthPointEqual + hero_HP);
-                    System.out.println("Now you have left " + manafinal + " Mana ");
+                    System.out.println("Now you have left " + manaFinal + " Mana ");
                     Scanner scan = new Scanner(System.in);
                     System.out.println(chooseNewOptions_Mana_Menu);
                     switch (scan.nextInt()) {
@@ -190,7 +191,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
                         }
                     }
                 }
-                if (manafinal < Main_Mob_Hero.getHealcast()) {
+                if (manaFinal < Main_Mob_Hero.getHealCast()) {
                     System.out.println(noMoreMana);
                     move();
                     break;
@@ -198,14 +199,14 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
             }
         }
         if (TheGame.getInfo() == 2) {
-            while (healthpoint > 0 && herohp_wout > 0) {
-                if (manafinal_wout >= Main_Mob_Hero.getHealcast()) {
-                    herohp_wout += res;
+            while (healthPoint > 0 && heroHP_wOut > 0) {
+                if (manaFinal_wOut >= Main_Mob_Hero.getHealCast()) {
+                    heroHP_wOut += res;
                     System.out.println(youChoseHealingYourself);
-                    manafinal_wout -= Main_Mob_Hero.getHealcast();
+                    manaFinal_wOut -= Main_Mob_Hero.getHealCast();
                     System.out.println(youHaveBeenRecovered);
-                    System.out.println(nowYourHealthPointEqual + herohp_wout);
-                    System.out.println("Now you have left " + manafinal_wout + " Mana ");
+                    System.out.println(nowYourHealthPointEqual + heroHP_wOut);
+                    System.out.println("Now you have left " + manaFinal_wOut + " Mana ");
                     Scanner scan = new Scanner(System.in);
                     System.out.println(chooseNewOptions_Mana_Menu_wout);
                     switch (scan.nextInt()) {
@@ -223,7 +224,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
                             break;
                     }
                 }
-                if (manafinal_wout < Main_Mob_Hero.getHealcast()) {
+                if (manaFinal_wOut < Main_Mob_Hero.getHealCast()) {
                     System.out.println(noMoreMana);
                     move();
                     break;
@@ -233,8 +234,8 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
     }
 
     private int random_Spell_damage() {
-        int max = maxspellDamageHero;
-        int min = minspelldamageHERO;
+        int max = maxSpellDamageHero;
+        int min = minSpellDamageHERO;
         int range = max - min;
         int finalresult = (int) ((Math.random() * range) + min);
         return finalresult;
@@ -249,7 +250,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
         int max = max_Damage;
         int min = min_Damage;
         int range = max - min;
-        if (num < chanseToSuperDamageMob) {
+        if (num < chanceToSuperDamageMob) {
             result = max_Damage + increasesDamage;
             System.out.println(name + " uses Super Damage ");
         } else
@@ -259,17 +260,17 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
 
 
     private void spell() {
-        while (healthpoint > 0 && hero_HP > 0 || healthpoint > 0 && herohp_wout > 0) {
+        while (healthPoint > 0 && hero_HP > 0 || healthPoint > 0 && heroHP_wOut > 0) {
             int result = random_Spell_damage();
             System.out.println(youHitNameUsingSpellOn + result + hp);
             System.out.print(nowNameHave);
-            System.out.println(healthpoint - result + hp);
-            healthpoint -= result;
-            if (minspelldamageHERO <= 0 && maxspellDamageHero <= 0) {
+            System.out.println(healthPoint - result + hp);
+            healthPoint -= result;
+            if (minSpellDamageHERO <= 0 && maxSpellDamageHero <= 0) {
                 System.out.println(sorryButYouCantDoThat);
                 move();
                 break;
-            } else if (healthpoint <= 0) {
+            } else if (healthPoint <= 0) {
                 System.out.println(youHaveWonOverThe + name);
                 break;
             } else mobmove();
@@ -308,9 +309,12 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
         if (defaultDamage <= 0) {
             Main_Mob_Hero.setDefaultDamage(0);
         }
-        if (minspelldamageHERO <= 0 && maxspellDamageHero <= 0) {
-            Main_Mob_Hero.setMinspelldamageHERO(0);
-            Main_Mob_Hero.setMaxspellDamageHero(0);
+        if (minSpellDamageHERO <= 0 && maxSpellDamageHero <= 0) {
+            Main_Mob_Hero.setMinSpellDamageHERO(0);
+            Main_Mob_Hero.setMaxSpellDamageHero(0);
+        }
+        if (restoreHealth <= 0) {
+            Main_Mob_Hero.setRestoreHealth(0);
         }
     }
 

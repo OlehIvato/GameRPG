@@ -11,9 +11,9 @@ public class ChoseNewHero {
 
     public static void main() {
 
-        Mage mage = new Mage("Mage", 90, 4, 35, 55, 0, 19, 0, 87);
-        Warrior warrior = new Warrior("Warrior", 167, 21, 0, 0, 0, 0, 0, 0);
-        Paladin paladin = new Paladin("Paladin", 110, 15, 17, 40, 0, 35, 0, 105);
+        Mage mage = new Mage("Mage", 90, 4, 35, 55,  19, 0, 87);
+        Warrior warrior = new Warrior("Warrior", 167, 21, 0, 0,  0, 0, 0);
+        Paladin paladin = new Paladin("Paladin", 110, 15, 17, 40,  35, 0, 105);
 
         System.out.println("\nChoose new Hero:");
         Map <Integer, Object> n = new HashMap <>();

@@ -11,8 +11,8 @@ import Сreature.Main_Mob_Hero;
 import java.util.Scanner;
 
 public class TheGame extends Main_Mob_Hero implements Levels {
-    public TheGame(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    public TheGame(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
     }
 
     public TheGame() {
@@ -29,16 +29,16 @@ public class TheGame extends Main_Mob_Hero implements Levels {
     }
 
     public void createNewHero() {
-        Equipment e = new Equipment(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-        Weapon w = new Weapon(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-        Stick s = new Stick(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
-        Shield sh = new Shield(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+        Equipment e = new Equipment(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
+        Weapon w = new Weapon(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
+        Stick s = new Stick(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
+        Shield sh = new Shield(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
 
         Scanner scan = new Scanner(System.in);
         System.out.println("\n" + UserName.getUserNameIs() + " do you wanna choose Armor and Weapon for " + heroName + " ?");
         String cases = "\n1. Yes \n" +
                 "2. No, Play with Standard Characteristics:"
-                + "\n3. Turn Back  \n";
+                + "\n3. Turn Back";
         System.out.println(cases);
         switch (scan.nextInt()) {
             case 1: {

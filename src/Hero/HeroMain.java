@@ -6,18 +6,16 @@ public class HeroMain {
     private int defaultDamage;
     private int minSpellDamage;
     private int maxSpellDamage;
-    private int increasesDamage;
     private int restoresHealthPoint;
     private int chance;
     private int mana;
 
-    public HeroMain(String name, int hp, int defaultDamage, int minSpellDamage, int maxSpellDamage, int increasesDamage, int restoresHealthPoint, int chance, int mana) {
+    public HeroMain(String name, int hp, int defaultDamage, int minSpellDamage, int maxSpellDamage, int restoresHealthPoint, int chance, int mana) {
         this.name = name;
         this.hp = hp;
         this.defaultDamage = defaultDamage;
         this.minSpellDamage = minSpellDamage;
         this.maxSpellDamage = maxSpellDamage;
-        this.increasesDamage = increasesDamage;
         this.restoresHealthPoint = restoresHealthPoint;
         this.chance = chance;
         this.mana = mana;
@@ -29,14 +27,14 @@ public class HeroMain {
 
     @Override
     public String toString() {
-        return name + " | HP: " +
-                hp + " | Damage: " +
-                defaultDamage + " | Min Spell Damage: " +
-                minSpellDamage + " | Max Spell Damage: " +
-                maxSpellDamage + " | Increase Damage: " +
-                increasesDamage + " | Restore Health point: " +
-                restoresHealthPoint;
-
+        String getFormat = "%1$-8s|%2$-9s|%3$-12s|%4$-22s|%5$-22s|%6$-26s|%7$-11s|";
+        String value = String.format(getFormat, name, " HP: " +
+                hp, " Damage: " +
+                defaultDamage, " Min Spell Damage: " +
+                minSpellDamage, " Max Spell Damage: " +
+                maxSpellDamage, " Restore Health point: " +
+                restoresHealthPoint, " Mana: "+mana);
+        return value;
     }
 
     public String getName() {
@@ -77,14 +75,6 @@ public class HeroMain {
 
     public void setMaxSpellDamage(int maxSpellDamage) {
         this.maxSpellDamage = maxSpellDamage;
-    }
-
-    public int getIncreasesDamage() {
-        return increasesDamage;
-    }
-
-    public void setIncreasesDamage(int increasesDamage) {
-        this.increasesDamage = increasesDamage;
     }
 
     public int getRestoresHealthPoint() {

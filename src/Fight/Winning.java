@@ -18,7 +18,7 @@ public class Winning {
     }
 
     private static void backToMain() {
-        String cases = "\n\n\n Select option :" +
+        String cases = "\n\n\n Select option: " +
                 "\n   1. Create new Hero and play Again ?  " +
                 "\n   2. EXIT ";
         System.out.println(cases);

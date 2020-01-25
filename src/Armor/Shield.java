@@ -2,15 +2,16 @@ package Armor;
 
 import Main.Menu;
 import Сreature.Main_Mob_Hero;
+
 import java.util.Scanner;
 
 public class Shield extends Main_Mob_Hero {
 
-    private static int a;
-
-    public Shield(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    public Shield(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
     }
+
+    private static int a;
 
     public void main_Shield() {
         int check = 0;

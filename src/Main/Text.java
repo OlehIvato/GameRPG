@@ -7,8 +7,8 @@ import Сreature.Main_Mob_Hero;
 
 public interface Text {
 
-    int res = Main_Mob_Hero.getIndex() + Main_Mob_Hero.getRestoreshealth();
-    String randomDamage = " (Random damage from " + Main_Mob_Hero.getMinspelldamageHERO() + " to " + Main_Mob_Hero.getMaxspellDamageHero() + ")";
+    int res = Main_Mob_Hero.getIndex() + Main_Mob_Hero.getRestoreHealth();
+    String randomDamage = " (Random damage from " + Main_Mob_Hero.getMinSpellDamageHERO() + " to " + Main_Mob_Hero.getMaxSpellDamageHero() + ")";
 
     String youHaveBeenRecovered = "\nYou have been recovered " + res + " health point";
     String hp = " health point ";
@@ -45,36 +45,36 @@ public interface Text {
     static void description_vs_mob() {
         System.out.println("\n \n ====================== GAME ======================");
         String inf = "\n You fight against " + Main_Mob_Hero.getName() + "," +
-                "\n He Have " + Main_Mob_Hero.getHealthpoint() + " hp" +
+                "\n He Have " + Main_Mob_Hero.getHealthPoint() + " hp" +
                 "\n His Max Damage = " + Main_Mob_Hero.getMax_Damage() +
                 "\n And Min Damage = " + Main_Mob_Hero.getMin_Damage() +
-                "\n He also have " + Main_Mob_Hero.getChanseToSuperDamageMob() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
+                "\n He also have " + Main_Mob_Hero.getChanceToSuperDamageMob() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
 
         System.out.println(inf);
         String info = "\n\n " + Main_Mob_Hero.getHeroName() + ", \n Your HP = " + +Equipment.getRess() +
                 "\n Your Damage = " + Weapon.getRET() +
-                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
-                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
-                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreshealth() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
-                "\n You Have " + Stick.getResult() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
+                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxSpellDamageHero() +
+                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinSpellDamageHERO() +
+                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreHealth() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
+                "\n You Have " + Stick.getResult() + " Mana, one heal spell = " + Main_Mob_Hero.getHealCast() + " Mana";
         System.out.println(info);
     }
 
     static void description_vs_mob_wout() {
         System.out.println("\n \n ====================== GAME ======================");
         String inf = "\n You fight against " + Main_Mob_Hero.getName() + "," +
-                "\n He Have " + Main_Mob_Hero.getHealthpoint() + " hp" +
+                "\n He Have " + Main_Mob_Hero.getHealthPoint() + " hp" +
                 "\n His Max Damage = " + Main_Mob_Hero.getMax_Damage() +
                 "\n And Min Damage = " + Main_Mob_Hero.getMin_Damage() +
-                "\n He also have " + Main_Mob_Hero.getChanseToSuperDamageMob() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
+                "\n He also have " + Main_Mob_Hero.getChanceToSuperDamageMob() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
 
         System.out.println(inf);
         String info = "\n\n " + Main_Mob_Hero.getHeroName() + ", \n Your HP = " + Main_Mob_Hero.getHeroHP() +
                 "\n Your Damage = " + Main_Mob_Hero.getDefaultDamage() +
-                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
-                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
-                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreshealth() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
-                "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
+                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxSpellDamageHero() +
+                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinSpellDamageHERO() +
+                "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreHealth() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
+                "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealCast() + " Mana";
         System.out.println(info);
     }
 
@@ -82,40 +82,40 @@ public interface Text {
     static void description_vs_boss() {
         System.out.println("\n \n ====================== GAME ======================");
         String inf = "\n You fight against " + Main_Mob_Hero.getName() + "," +
-                "\n He Have " + Main_Mob_Hero.getHealthpoint() + hp +
+                "\n He Have " + Main_Mob_Hero.getHealthPoint() + hp +
                 "\n His Max Damage = " + Main_Mob_Hero.getMax_Damage() +
                 "\n And Min Damage = " + Main_Mob_Hero.getMin_Damage() +
                 "\n He restoring " + Main_Mob_Hero.getRestoreBoss() + hp + "every move" +
                 "\n When his health point will be less than 20, his damage will be increased on " + Main_Mob_Hero.getIncreaseBoss() + ", Increased Damage = " + (Main_Mob_Hero.getMax_Damage() + Main_Mob_Hero.getIncreaseBoss()) +
-                "\n He also have " + Main_Mob_Hero.getChanseToSuperDamageBOSS() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
+                "\n He also have " + Main_Mob_Hero.getChanceToSuperDamageBOSS() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
 
         System.out.println(inf);
         String info = "\n\n " + Main_Mob_Hero.getHeroName() + ", \n Your HP = " + +Equipment.getRess() +
                 "\n Your Damage = " + Weapon.getRET() +
-                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
-                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
+                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxSpellDamageHero() +
+                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinSpellDamageHERO() +
                 "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreBoss() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
-                "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
+                "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealCast() + " Mana";
         System.out.println(info);
     }
 
     static void description_vs_boss_wout() {
         System.out.println("\n \n ====================== GAME ======================");
         String inf = "\n You fight against " + Main_Mob_Hero.getName() + "," +
-                "\n He Have " + Main_Mob_Hero.getHealthpoint() + hp +
+                "\n He Have " + Main_Mob_Hero.getHealthPoint() + hp +
                 "\n His Max Damage = " + Main_Mob_Hero.getMax_Damage() +
                 "\n And Min Damage = " + Main_Mob_Hero.getMin_Damage() +
                 "\n He restoring " + Main_Mob_Hero.getRestoreBoss() + hp + "every move" +
                 "\n When his health point will be less than 20, his damage will be increased on " + Main_Mob_Hero.getIncreaseBoss() + ", Increased Damage = " + (Main_Mob_Hero.getMax_Damage() + Main_Mob_Hero.getIncreaseBoss()) +
-                "\n He also have " + Main_Mob_Hero.getChanseToSuperDamageBOSS() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
+                "\n He also have " + Main_Mob_Hero.getChanceToSuperDamageBOSS() + "% chance on super Damage, Super Damage = " + ((Main_Mob_Hero.getMax_Damage() / 2) + Main_Mob_Hero.getMax_Damage());
 
         System.out.println(inf);
         String info = "\n\n " + Main_Mob_Hero.getHeroName() + ", \n Your HP = " + Main_Mob_Hero.getHeroHP() +
                 "\n Your Damage = " + Main_Mob_Hero.getDefaultDamage() +
-                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxspellDamageHero() +
-                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinspelldamageHERO() +
+                "\n Your Max Spell Damage = " + Main_Mob_Hero.getMaxSpellDamageHero() +
+                "\n Your Min Spell Damage = " + Main_Mob_Hero.getMinSpellDamageHERO() +
                 "\n Your plus to restore Health point = " + Main_Mob_Hero.getRestoreBoss() + "    (default restore index = " + Main_Mob_Hero.getIndex() + ")" +
-                "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealcast() + " Mana";
+                "\n You Have " + Main_Mob_Hero.getMana() + " Mana, one heal spell = " + Main_Mob_Hero.getHealCast() + " Mana";
         System.out.println(info);
 
     }

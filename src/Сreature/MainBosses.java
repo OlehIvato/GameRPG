@@ -3,16 +3,16 @@ package Сreature;
 public class MainBosses {
 
     private String nameBoss;
-    private int healthpointBoss;
+    private int healthPointBoss;
     private int min_DamageBoss;
     private int max_DamageBoss;
     private int increaseDamageBoss;
     private int restoreHealthPointBoss;
     private int chanceToSuperDamageBoss;
 
-    public MainBosses(String nameBoss, int healthpointBoss, int min_DamageBoss, int max_DamageBoss, int increaseDamageBoss, int restoreHealthPointBoss, int chanceToSuperDamageBoss) {
+    public MainBosses(String nameBoss, int healthPointBoss, int min_DamageBoss, int max_DamageBoss, int increaseDamageBoss, int restoreHealthPointBoss, int chanceToSuperDamageBoss) {
         this.nameBoss = nameBoss;
-        this.healthpointBoss = healthpointBoss;
+        this.healthPointBoss = healthPointBoss;
         this.min_DamageBoss = min_DamageBoss;
         this.max_DamageBoss = max_DamageBoss;
         this.increaseDamageBoss = increaseDamageBoss;
@@ -28,12 +28,12 @@ public class MainBosses {
         this.nameBoss = nameBoss;
     }
 
-    public int getHealthpointBoss() {
-        return healthpointBoss;
+    public int getHealthPointBoss() {
+        return healthPointBoss;
     }
 
-    public void setHealthpointBoss(int healthpointBoss) {
-        this.healthpointBoss = healthpointBoss;
+    public void setHealthPointBoss(int healthPointBoss) {
+        this.healthPointBoss = healthPointBoss;
     }
 
     public int getMin_DamageBoss() {

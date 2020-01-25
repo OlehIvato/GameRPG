@@ -2,6 +2,7 @@ package Armor;
 
 import Main.Menu;
 import Сreature.Main_Mob_Hero;
+
 import java.util.Scanner;
 
 public class Stick extends Main_Mob_Hero {
@@ -9,8 +10,8 @@ public class Stick extends Main_Mob_Hero {
     private static int a;
     private static int result;
 
-    public Stick(String heroName, int heroHP, int defaultDamage, int minspelldamageHERO, int maxspellDamageHero, int increasesDamage, int restoreshealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minspelldamageHERO, maxspellDamageHero, increasesDamage, restoreshealth, chance, mana);
+    public Stick(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
+        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
     }
 
     public static int getResult() {
@@ -24,7 +25,7 @@ public class Stick extends Main_Mob_Hero {
             if (heroName.equals("Mage") || heroName.equals("Paladin")) {
                 int info = createStick();
                 System.out.println("You chose +" + info + " to Mana ");
-                System.out.print("Your Final Mana equal ");
+                System.out.print("Your Final Mana equal");
                 System.out.print(mana + info);
                 result = (mana + info);
                 break;
