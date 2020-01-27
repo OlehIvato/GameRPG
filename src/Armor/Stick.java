@@ -1,11 +1,10 @@
 package Armor;
 
-import Main.Menu;
-import Сreature.Main_Mob_Hero;
-
+import Main.Main;
+import Сreature.Main_All;
 import java.util.Scanner;
 
-public class Stick extends Main_Mob_Hero {
+public class Stick extends Main_All {
 
     private static int a;
     private static int result;
@@ -25,7 +24,7 @@ public class Stick extends Main_Mob_Hero {
             if (heroName.equals("Mage") || heroName.equals("Paladin")) {
                 int info = createStick();
                 System.out.println("You chose +" + info + " to Mana ");
-                System.out.print("Your Final Mana equal");
+                System.out.print("Your Final Mana equal ");
                 System.out.print(mana + info);
                 result = (mana + info);
                 break;
@@ -64,7 +63,7 @@ public class Stick extends Main_Mob_Hero {
                 break;
             }
             case 5: {
-                Menu.mainMenu();
+                Main.menu();
                 break;
             }
         }

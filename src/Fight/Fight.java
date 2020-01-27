@@ -4,25 +4,17 @@ import Armor.Equipment;
 import Armor.Stick;
 import Armor.Weapon;
 import Main.*;
-import Сreature.Main_Mob_Hero;
+import Сreature.Main_All;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Fight extends Main_Mob_Hero implements Text, Levels {
+public class Fight extends Main_All implements Text, Levels {
 
     private int hero_HP = Equipment.getRess();
     private int heroHP_wOut = getHeroHP();
     private int manaFinal = Stick.getResult();
     private int manaFinal_wOut = getMana();
-
-    public Fight(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-    }
-
-    public Fight(String name, int healthPoint, int max_Damage, int min_Damage, int chanceToSuperDamageMob) {
-        super(name, healthPoint, max_Damage, min_Damage, chanceToSuperDamageMob);
-    }
 
     public Fight() {
     }
@@ -42,7 +34,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
         if (TheGame.getInfo() == 1) {
             String cases = "\nYour Turn \n" +
                     "1. Hit " + name + " on " + Weapon.getRET() + " health point \n2. Strike with magic on " + randomDamage + " health point " +
-                    "\n3. Restore " + res + " health point, Need " + Main_Mob_Hero.getHealCast() + " Mana, You Have " + manaFinal + " Mana" +
+                    "\n3. Restore " + res + " health point, Need " + Main_All.getHealCast() + " Mana, You Have " + manaFinal + " Mana" +
                     "\n4. Get defeat and back to Main Menu ";
             System.out.println(cases);
             Scanner scan = new Scanner(System.in);
@@ -62,7 +54,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
                     }
                     case 4: {
                         System.err.println(getLOSS);
-                        Menu.mainMenu();
+                        Main.menu();
                         break;
                     }
                 }
@@ -71,7 +63,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
         if (TheGame.getInfo() == 2) {
             String cases = "\nYour Turn \n" +
                     "1. Hit " + name + " on " + defaultDamage + hp + "\n2. Strike with magic on " + randomDamage + " health point " +
-                    "\n3. Restore " + res + " health point, Need " + Main_Mob_Hero.getHealCast() + " Mana, You Have " + manaFinal_wOut + " Mana" +
+                    "\n3. Restore " + res + " health point, Need " + Main_All.getHealCast() + " Mana, You Have " + manaFinal_wOut + " Mana" +
                     "\n4. To get defeat and back to Main Menu ";
             System.out.println(cases);
             Scanner scan = new Scanner(System.in);
@@ -91,7 +83,7 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
                     }
                     case 4: {
                         System.err.println(getLOSS);
-                        Menu.mainMenu();
+                        Main.menu();
                         break;
                     }
                 }
@@ -166,10 +158,10 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
     private void heal() {
         if (TheGame.getInfo() == 1) {
             while (healthPoint > 0 && hero_HP > 0) {
-                if (manaFinal >= Main_Mob_Hero.getHealCast()) {
+                if (manaFinal >= Main_All.getHealCast()) {
                     hero_HP += res;
                     System.out.println(youChoseHealingYourself);
-                    manaFinal -= Main_Mob_Hero.getHealCast();
+                    manaFinal -= Main_All.getHealCast();
                     System.out.println(youHaveBeenRecovered);
                     System.out.println(nowYourHealthPointEqual + hero_HP);
                     System.out.println("Now you have left " + manaFinal + " Mana ");
@@ -186,12 +178,12 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
                         }
                         case 3: {
                             System.err.println(getLOSS);
-                            Menu.mainMenu();
+                            Main.menu();
                             break;
                         }
                     }
                 }
-                if (manaFinal < Main_Mob_Hero.getHealCast()) {
+                if (manaFinal < Main_All.getHealCast()) {
                     System.out.println(noMoreMana);
                     move();
                     break;
@@ -200,10 +192,10 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
         }
         if (TheGame.getInfo() == 2) {
             while (healthPoint > 0 && heroHP_wOut > 0) {
-                if (manaFinal_wOut >= Main_Mob_Hero.getHealCast()) {
+                if (manaFinal_wOut >= Main_All.getHealCast()) {
                     heroHP_wOut += res;
                     System.out.println(youChoseHealingYourself);
-                    manaFinal_wOut -= Main_Mob_Hero.getHealCast();
+                    manaFinal_wOut -= Main_All.getHealCast();
                     System.out.println(youHaveBeenRecovered);
                     System.out.println(nowYourHealthPointEqual + heroHP_wOut);
                     System.out.println("Now you have left " + manaFinal_wOut + " Mana ");
@@ -220,11 +212,11 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
                         }
                         case 3:
                             System.err.print(getLOSS);
-                            Menu.mainMenu();
+                            Main.menu();
                             break;
                     }
                 }
-                if (manaFinal_wOut < Main_Mob_Hero.getHealCast()) {
+                if (manaFinal_wOut < Main_All.getHealCast()) {
                     System.out.println(noMoreMana);
                     move();
                     break;
@@ -244,14 +236,13 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
 
     public int random() {
         int result = 0;
-        int increasesDamage = max_Damage / 2;
         Random random = new Random();
         int num = random.nextInt(100);
         int max = max_Damage;
         int min = min_Damage;
         int range = max - min;
-        if (num < chanceToSuperDamageMob) {
-            result = max_Damage + increasesDamage;
+        if (num < chanceToSuperDamage) {
+            result = max_Damage + Main_All.getIncreaseDamage();
             System.out.println(name + " uses Super Damage ");
         } else
             result = (int) (Math.random() * range) + min;
@@ -307,14 +298,14 @@ public class Fight extends Main_Mob_Hero implements Text, Levels {
             Weapon.setRET(0);
         }
         if (defaultDamage <= 0) {
-            Main_Mob_Hero.setDefaultDamage(0);
+            Main_All.setDefaultDamage(0);
         }
         if (minSpellDamageHERO <= 0 && maxSpellDamageHero <= 0) {
-            Main_Mob_Hero.setMinSpellDamageHERO(0);
-            Main_Mob_Hero.setMaxSpellDamageHero(0);
+            Main_All.setMinSpellDamageHERO(0);
+            Main_All.setMaxSpellDamageHero(0);
         }
         if (restoreHealth <= 0) {
-            Main_Mob_Hero.setRestoreHealth(0);
+            Main_All.setRestoreHealth(0);
         }
     }
 

@@ -1,11 +1,10 @@
 package Armor;
 
-import Main.Menu;
-import Сreature.Main_Mob_Hero;
-
+import Main.Main;
+import Сreature.Main_All;
 import java.util.Scanner;
 
-public class Shield extends Main_Mob_Hero {
+public class Shield extends Main_All {
 
     public Shield(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
         super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
@@ -53,7 +52,7 @@ public class Shield extends Main_Mob_Hero {
                 break;
             }
             case 4: {
-                Menu.mainMenu();
+                Main.menu();
                 break;
             }
         }

@@ -27,17 +27,17 @@ public class ChoseNewHero {
         switch (s.nextInt()) {
             case 1: {
                 System.out.println("You chose: " + n.get(1));
-                mage.Main();
+                mage.setValue();
                 break;
             }
             case 2: {
                 System.out.println("You chose: " + n.get(2));
-                warrior.Main();
+                warrior.setValue();
                 break;
             }
             case 3: {
                 System.out.println("You chose: " + n.get(3));
-                paladin.Main();
+                paladin.setValue();
                 break;
             }
         }

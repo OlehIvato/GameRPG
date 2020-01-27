@@ -3,19 +3,17 @@ package Main;
 import java.util.Scanner;
 
 public class UserName {
-    private static String UserNameIs;
+    private static String userName;
 
-    public static String getUserNameIs() {
-        return UserNameIs;
+    public static String getUserName() {
+        return userName;
     }
 
-    protected static String NameOfUser() {
+    protected static String getName() {
         System.out.println("What is your name ? ");
         Scanner scan = new Scanner(System.in);
-        UserNameIs = scan.nextLine();
-        System.out.println("Your name is " + UserNameIs + ".");
-
-        return UserNameIs;
+        userName = scan.nextLine();
+        return userName;
     }
 }
 

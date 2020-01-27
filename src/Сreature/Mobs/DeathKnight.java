@@ -1,24 +1,14 @@
 package Сreature.Mobs;
 
-import Fight.Fight;
-import Сreature.MainMobs;
-import Сreature.Main_Mob_Hero;
+import Сreature.MainCreature;
 
-public class DeathKnight extends MainMobs {
-    public DeathKnight(String nameMOb, int healthPointMOb, int min_DamageMOb, int max_DamageMob, int chanceToSuperDamageMob) {
-        super(nameMOb, healthPointMOb, min_DamageMOb, max_DamageMob, chanceToSuperDamageMob);
+public class DeathKnight extends MainCreature {
+    public DeathKnight(String nameCreature, int healthPointCreature, int min_DamageCreature, int max_DamageCreature, int chanceToSuperDamageCreature) {
+        super(nameCreature, healthPointCreature, min_DamageCreature, max_DamageCreature, chanceToSuperDamageCreature);
     }
 
-    public void fight() {
-
-        Main_Mob_Hero.setName(getNameMOb());
-        Main_Mob_Hero.setHealthPoint(Main_Mob_Hero.getHealthPoint() + getHealthPointMOb());
-        Main_Mob_Hero.setMin_Damage(Main_Mob_Hero.getMin_Damage() + getMin_DamageMOb());
-        Main_Mob_Hero.setMax_Damage(Main_Mob_Hero.getMax_Damage() + getMax_DamageMob());
-        Main_Mob_Hero.setChanceToSuperDamageMob(Main_Mob_Hero.getChanceToSuperDamageMob() + getChanceToSuperDamageMob());
-
-        Fight fight = new Fight();
-        fight.main();
-
+    @Override
+    public void fightMob() {
+        super.fightMob();
     }
 }

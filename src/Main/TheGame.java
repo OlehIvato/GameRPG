@@ -7,22 +7,15 @@ import Armor.Weapon;
 import Fight.Levels;
 import Fight.Winning;
 import Location.MainLocation;
-import Сreature.Main_Mob_Hero;
+import Сreature.Main_All;
+
 import java.util.Scanner;
 
-public class TheGame extends Main_Mob_Hero implements Levels {
-    public TheGame(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-    }
-
+public class TheGame extends Main_All implements Levels {
     public TheGame() {
     }
 
-    private static int info;
-
-    public static void setInfo(int info) {
-        TheGame.info = info;
-    }
+    private static int info;         // info about game with equipment, or without
 
     public static int getInfo() {
         return info;
@@ -35,11 +28,12 @@ public class TheGame extends Main_Mob_Hero implements Levels {
         Shield sh = new Shield(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("\n" + UserName.getUserNameIs() + " do you wanna choose Armor and Weapon for " + heroName + " ?");
-        String cases = "\n1. Yes \n" +
-                "2. No, Play with Standard Characteristics:"
+        System.out.println("\n" + UserName.getUserName() + " do you wanna choose Armor and Weapon for " + heroName + " ?");
+        String cases = "1. Yes \n" +
+                "2. No, play with standard characteristics.     (Creatures characteristics minus " + Main_All.getDefaultPercent() + "% power)."
                 + "\n3. Turn Back";
         System.out.println(cases);
+        MainLocation mainLocation = new MainLocation();
         switch (scan.nextInt()) {
             case 1: {
 
@@ -50,7 +44,7 @@ public class TheGame extends Main_Mob_Hero implements Levels {
                 s.main_Stick();
                 sh.main_Shield();
 
-                MainLocation.location();
+                mainLocation.main();
 
                 Levels.level_1_1();
                 Levels.level_1_2();
@@ -79,7 +73,7 @@ public class TheGame extends Main_Mob_Hero implements Levels {
 
                 info = 2;
 
-                MainLocation.location();
+                // MainLocation.location();
 
                 Levels.level_1_1();
                 Levels.level_1_2();

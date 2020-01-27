@@ -8,39 +8,46 @@ import java.util.Random;
 
 public class GetRandom {
 
+    public static int changer(int a) {
+        int value = a;
+        int subtract = (a * Main_All.getDefaultPercent()) / 100;
+        value -= subtract;
+        return value;
+    }
+
     public static void random() {
         Random random = new Random();
 
-        Pudge pudge = new Pudge("Pudge", 120, 34, 27, 56);
-        Alien alien = new Alien( "Alien", 105, 60, 28,34);
-        Druid druid = new Druid("Druid", 115, 54, 37, 37);
-        DeathKnight deathKnight = new DeathKnight( "Death King", 130, 25, 18,51);
-        Pig pig = new Pig( "Pig", 110, 29, 20,43);
-        Ork ork = new Ork("Ork", 114, 28, 27, 38);
+        Pudge pudge = new Pudge("Pudge", 120, 27, 34, 56);
+        Alien alien = new Alien("Alien", 105, 28, 60, 34);
+        Druid druid = new Druid("Druid", 115, 37, 54, 37);
+        DeathKnight deathKnight = new DeathKnight("Death King", 130, 18, 25, 51);
+        Pig pig = new Pig("Pig", 110, 20, 29, 43);
+        Ork ork = new Ork("Ork", 114, 29, 29, 38);
 
         switch (random.nextInt(6)) {
             case 0: {
-                pudge.fight();
+                pudge.fightMob();
                 break;
             }
             case 1: {
-                pig.fight();
+                pig.fightMob();
                 break;
             }
             case 2: {
-                ork.fight();
+                ork.fightMob();
                 break;
             }
             case 3: {
-                druid.fight();
+                druid.fightMob();
                 break;
             }
             case 4: {
-                alien.fight();
+                alien.fightMob();
                 break;
             }
             case 5: {
-                deathKnight.fight();
+                deathKnight.fightMob();
                 break;
             }
         }
@@ -49,20 +56,22 @@ public class GetRandom {
     public static void random_Boss() {
         Random random = new Random();
 
-        CaptainPrice captainPrice = new CaptainPrice("Captain Price", 137, 45, 35, 14, 9, 44);
-        LichKing lichKing = new LichKing("Lich King", 170, 34, 29, 0, 6, 24);
-        Ragnar_Lodbrok ragnar_lodbrok = new Ragnar_Lodbrok("Ragnar Lodbrok", 124, 67, 35, 7, 14, 35);
+        CaptainPrice captainPrice = new CaptainPrice("Captain Price", 137, 35, 45, 14,  44);
+        LichKing lichKing = new LichKing("Lich King", 170, 30, 35, 0,  24);
+        Ragnar_Lodbrok ragnar_lodbrok = new Ragnar_Lodbrok("Ragnar Lodbrok", 124, 35, 68, 7,  35);
 
         switch (random.nextInt(3)) {
             case 0:
-                captainPrice.fight();
+                captainPrice.fightBoss();
                 break;
             case 1:
-                lichKing.fight();
+                lichKing.fightBoss();
                 break;
             case 2:
-                ragnar_lodbrok.fight();
+                ragnar_lodbrok.fightBoss();
                 break;
         }
     }
+
+
 }

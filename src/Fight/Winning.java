@@ -10,7 +10,7 @@ public class Winning {
     public static void win() {
         String win = "\n\n\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
-                "\ncongratulations " + UserName.getUserNameIs() + " you went through three levels and won    " +
+                "\ncongratulations " + UserName.getUserName() + " you went through three levels and won    " +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
         System.out.println(win.toUpperCase());
