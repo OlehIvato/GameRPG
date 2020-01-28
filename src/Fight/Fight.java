@@ -41,7 +41,7 @@ public class Fight extends Main_All implements Text, Levels {
             while (healthPoint > 0 && hero_HP > 0) {
                 switch (scan.nextInt()) {
                     case 1: {
-                        heromove();
+                        heroMove();
                         break;
                     }
                     case 2: {
@@ -70,7 +70,7 @@ public class Fight extends Main_All implements Text, Levels {
             while (healthPoint > 0 && heroHP_wOut > 0) {
                 switch (scan.nextInt()) {
                     case 1: {
-                        heromove();
+                        heroMove();
                         break;
                     }
                     case 2: {
@@ -91,7 +91,7 @@ public class Fight extends Main_All implements Text, Levels {
         }
     }
 
-    private void heromove() {
+    private void heroMove() {
         if (TheGame.getInfo() == 1) {
             while (healthPoint > 0 && hero_HP > 0) {
                 System.out.println(youHitNameOnWeaponHp);
@@ -101,7 +101,7 @@ public class Fight extends Main_All implements Text, Levels {
                 if (healthPoint <= 0) {
                     System.out.println(youHaveWonOverThe + name);
                     break;
-                } else mobmove();
+                } else mobMove();
                 break;
             }
         }
@@ -114,14 +114,14 @@ public class Fight extends Main_All implements Text, Levels {
                 if (healthPoint <= 0) {
                     System.out.println(youHaveWonOverThe + name);
                     break;
-                } else mobmove();
+                } else mobMove();
                 break;
             }
         }
 
     }
 
-    private void mobmove() {
+    private void mobMove() {
         if (TheGame.getInfo() == 1) {
             while (hero_HP > 0 && healthPoint > 0) {
                 System.out.println(nameTurn);
@@ -169,7 +169,7 @@ public class Fight extends Main_All implements Text, Levels {
                     System.out.println(chooseNewOptions_Mana_Menu);
                     switch (scan.nextInt()) {
                         case 1: {
-                            heromove();
+                            heroMove();
                             break;
                         }
                         case 2: {
@@ -203,7 +203,7 @@ public class Fight extends Main_All implements Text, Levels {
                     System.out.println(chooseNewOptions_Mana_Menu_wout);
                     switch (scan.nextInt()) {
                         case 1: {
-                            heromove();
+                            heroMove();
                             break;
                         }
                         case 2: {
@@ -264,7 +264,7 @@ public class Fight extends Main_All implements Text, Levels {
             } else if (healthPoint <= 0) {
                 System.out.println(youHaveWonOverThe + name);
                 break;
-            } else mobmove();
+            } else mobMove();
             break;
         }
     }
@@ -308,7 +308,6 @@ public class Fight extends Main_All implements Text, Levels {
             Main_All.setRestoreHealth(0);
         }
     }
-
 }
 
 
