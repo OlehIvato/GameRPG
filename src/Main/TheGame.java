@@ -5,7 +5,6 @@ import Armor.Shield;
 import Armor.Stick;
 import Armor.Weapon;
 import Fight.Levels;
-import Fight.Winning;
 import Location.MainLocation;
 import Сreature.Main_All;
 
@@ -64,7 +63,7 @@ public class TheGame extends Main_All implements Levels {
 
                 Levels.final_vs_boss();
 
-                Winning.win();
+                Levels.win();
 
                 break;
 
@@ -93,7 +92,7 @@ public class TheGame extends Main_All implements Levels {
 
                 Levels.final_vs_boss();
 
-                Winning.win();
+                Levels.win();
                 break;
             }
             case 3: {

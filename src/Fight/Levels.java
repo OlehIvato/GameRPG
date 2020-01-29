@@ -1,6 +1,12 @@
 package Fight;
 
+import Main.ChoseNewHero;
+import Main.Enum_Case;
+import Main.NewGame;
+import Main.UserName;
 import Сreature.GetRandom;
+
+import java.util.Scanner;
 
 public interface Levels {
 
@@ -112,5 +118,15 @@ public interface Levels {
         System.out.println(cases);
         GetRandom.random_Boss();
 
+    }
+
+    static void win() {
+        String win = "\n\n\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
+                "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
+                "\ncongratulations " + UserName.getUserName() + " you went through three levels and won    " +
+                "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
+                "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
+        System.out.println(win.toUpperCase());
+        NewGame.backToMain();
     }
 }
