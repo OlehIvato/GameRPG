@@ -17,44 +17,10 @@ public class Main_All {
     protected static int restoreCreature;             // how many hp boss can restore
     protected static int chanceToSuperDamage;         // chance to super damage for MOB AND Boss
 
-    protected static int index = 6;                                   // default index to restore Health point
-    protected static int healCast = 33;                               // hum much need mana to healed yourself
-    private static int defaultPercent = 25;                         // default index fight without equipment minus POWER
+    protected static int index = 6;                   // default index to restore Health point
+    protected static int healCast = 33;               // hum much need mana to healed yourself
+    private static int defaultPercent = 25;           // default index fight without equipment minus POWER
 
-
-
-    public Main_All(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {       //FOR HERO
-        this.heroName = heroName;
-        this.heroHP = heroHP;
-        this.defaultDamage = defaultDamage;
-        this.minSpellDamageHERO = minSpellDamageHERO;
-        this.maxSpellDamageHero = maxSpellDamageHero;
-        this.restoreHealth = restoreHealth;
-        this.chance = chance;
-        this.mana = mana;
-    }
-
-    public Main_All(String name, int healthPoint, int max_Damage, int min_Damage, int chanceToSuperDamage) {           // FOR MOB
-        this.name = name;
-        this.healthPoint = healthPoint;
-        this.max_Damage = max_Damage;
-        this.min_Damage = min_Damage;
-        this.chanceToSuperDamage = chanceToSuperDamage;
-
-    }
-
-    public Main_All(String name, int healthPoint, int max_Damage, int min_Damage, int restoreCreature, int chanceToSuperDamage) {         //FOR BOSS
-        this.name = name;
-        this.healthPoint = healthPoint;
-        this.max_Damage = max_Damage;
-        this.min_Damage = min_Damage;
-        this.restoreCreature = restoreCreature;
-        this.chanceToSuperDamage = chanceToSuperDamage;
-    }
-
-    public Main_All() {
-
-    }
 
     public static String getHeroName() {
         return heroName;

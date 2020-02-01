@@ -1,12 +1,9 @@
 package Fight;
 
-import Main.ChoseNewHero;
-import Main.Enum_Case;
+import Main.NewHero;
 import Main.NewGame;
 import Main.UserName;
 import Сreature.GetRandom;
-
-import java.util.Scanner;
 
 public interface Levels {
 

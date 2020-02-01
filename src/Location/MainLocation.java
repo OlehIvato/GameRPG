@@ -1,7 +1,5 @@
 package Location;
 
-import Armor.Equipment;
-import Armor.Weapon;
 import Сreature.Main_All;
 
 import java.util.*;
@@ -45,26 +43,22 @@ public class MainLocation {
             System.out.println(show.getKey() + " | " + show.getValue());
         }
         switch (s.nextInt()) {
-            case 1: {
+            case 1:
                 System.out.println("You chose " + map.get(1));
                 northrend.setValues();
                 break;
-            }
-            case 2: {
+            case 2:
                 System.out.println("You chose " + map.get(2));
                 kalimdor.setValues();
                 break;
-            }
-            case 3: {
+            case 3:
                 System.out.println("You chose " + map.get(3));
                 azeroth.setValues();
                 break;
-            }
-            case 4: {
+            case 4:
                 System.out.println("You chose " + map.get(4));
                 isleofDread.setValues();
                 break;
-            }
         }
     }
 }

@@ -3,6 +3,7 @@ package Main;
 import java.util.Scanner;
 
 public class NewGame {
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void createHero() {
         System.out.println();
@@ -10,10 +11,9 @@ public class NewGame {
                 "1. Yes \n " +
                 "2. No (exit) ";
         System.out.println(create);
-        Scanner scan = new Scanner(System.in);
-        switch (scan.nextInt()) {
+        switch (scanner.nextInt()) {
             case 1: {
-                ChoseNewHero.main();
+                NewHero.main();
                 break;
             }
             case 2: {
@@ -29,14 +29,12 @@ public class NewGame {
                 "\n   1. Create new Hero and play Again ?  " +
                 "\n   2. EXIT ";
         System.out.println(cases);
-        Scanner scanner = new Scanner(System.in);
         switch (scanner.nextInt()) {
             case 1: {
-                ChoseNewHero.main();
+                NewHero.main();
                 break;
             }
             case 2: {
-                Enum_Case.TestEnum(Enum_Case.ENUM.FINISHED);
                 System.err.println(" EXIT ");
                 System.exit(0);
                 break;

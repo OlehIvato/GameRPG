@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Equipment {
 
-    static Scanner scan = new Scanner(System.in);
+    private static Scanner scan = new Scanner(System.in);
     private static int result;
 
     public static void main() {

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ChoseNewHero {
+public class NewHero {
 
     public static void main() {
 

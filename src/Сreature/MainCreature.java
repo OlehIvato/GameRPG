@@ -1,7 +1,8 @@
 package Сreature;
 
 import Fight.Fight;
-import Main.TheGame;
+import Main.Game;
+
 
 public class MainCreature {
 
@@ -36,15 +37,15 @@ public class MainCreature {
     }
 
     public void fightMob() {
-        TheGame.isBoss = false;
-        if (TheGame.isEquip) {
+        Game.isBoss = false;
+        if (Game.isEquip) {
             Main_All.setName(nameCreature);
             Main_All.setHealthPoint(finalHp + healthPointCreature);
             Main_All.setMin_Damage(finalMinDamage + min_DamageCreature);
             Main_All.setMax_Damage(finalMaxDamage + max_DamageCreature);
             Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamageCreature);
         }
-        if (!TheGame.isEquip) {
+        if (!Game.isEquip) {
             Main_All.setName(nameCreature);
             Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPointCreature));
             Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_DamageCreature));
@@ -56,8 +57,8 @@ public class MainCreature {
     }
 
     public void fightBoss() {
-        TheGame.isBoss = true;
-        if (TheGame.isEquip) {
+        Game.isBoss = true;
+        if (Game.isEquip) {
             Main_All.setName(nameCreature);
             Main_All.setHealthPoint(finalHp + healthPointCreature);
             Main_All.setMin_Damage(finalMinDamage + min_DamageCreature);
@@ -66,7 +67,7 @@ public class MainCreature {
             Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamageCreature);
 
         }
-        if (!TheGame.isEquip) {
+        if (!Game.isEquip) {
             Main_All.setName(nameCreature);
             Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPointCreature));
             Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_DamageCreature));
@@ -76,7 +77,5 @@ public class MainCreature {
         }
         Fight f = new Fight();
         f.main();
-        //        FightBoss f = new FightBoss();
-//        f.main();
     }
 }

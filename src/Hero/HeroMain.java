@@ -1,6 +1,6 @@
 package Hero;
 
-import Main.TheGame;
+import Main.Game;
 import Сreature.Main_All;
 
 public class HeroMain {
@@ -34,7 +34,7 @@ public class HeroMain {
         Main_All.setChance(chance);
         Main_All.setMana(mana);
 
-        TheGame game = new TheGame();
+        Game game = new Game();
         game.createNewHero();
     }
 

@@ -4,9 +4,11 @@ import Сreature.Bosses.CaptainPrice;
 import Сreature.Bosses.LichKing;
 import Сreature.Bosses.Ragnar_Lodbrok;
 import Сreature.Mobs.*;
+
 import java.util.Random;
 
 public class GetRandom {
+    private static Random random = new Random();
 
     public static int changer(int a) {
         int value = a;
@@ -16,50 +18,38 @@ public class GetRandom {
     }
 
     public static void random() {
-        Random random = new Random();
-
         Pudge pudge = new Pudge("Pudge", 120, 27, 34, 56);
         Alien alien = new Alien("Alien", 105, 28, 60, 34);
         Druid druid = new Druid("Druid", 115, 37, 54, 37);
         DeathKnight deathKnight = new DeathKnight("Death King", 130, 18, 25, 51);
         Pig pig = new Pig("Pig", 110, 20, 29, 43);
         Ork ork = new Ork("Ork", 114, 29, 29, 38);
-
         switch (random.nextInt(6)) {
-            case 0: {
+            case 0:
                 pudge.fightMob();
                 break;
-            }
-            case 1: {
+            case 1:
                 pig.fightMob();
                 break;
-            }
-            case 2: {
+            case 2:
                 ork.fightMob();
                 break;
-            }
-            case 3: {
+            case 3:
                 druid.fightMob();
                 break;
-            }
-            case 4: {
+            case 4:
                 alien.fightMob();
                 break;
-            }
-            case 5: {
+            case 5:
                 deathKnight.fightMob();
                 break;
-            }
         }
     }
 
     public static void random_Boss() {
-        Random random = new Random();
-
-        CaptainPrice captainPrice = new CaptainPrice("Captain Price", 137, 35, 45, 14,  44);
-        LichKing lichKing = new LichKing("Lich King", 170, 30, 35, 0,  24);
-        Ragnar_Lodbrok ragnar_lodbrok = new Ragnar_Lodbrok("Ragnar Lodbrok", 124, 35, 68, 7,  35);
-
+        CaptainPrice captainPrice = new CaptainPrice("Captain Price", 137, 35, 45, 14, 44);
+        LichKing lichKing = new LichKing("Lich King", 170, 30, 35, 4, 24);
+        Ragnar_Lodbrok ragnar_lodbrok = new Ragnar_Lodbrok("Ragnar Lodbrok", 124, 35, 68, 7, 35);
         switch (random.nextInt(3)) {
             case 0:
                 captainPrice.fightBoss();
@@ -72,6 +62,4 @@ public class GetRandom {
                 break;
         }
     }
-
-
 }
