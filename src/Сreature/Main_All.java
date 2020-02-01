@@ -7,20 +7,20 @@ public class Main_All {
     protected static int minSpellDamageHERO;          // min spell damage HERO
     protected static int maxSpellDamageHero;          // max spell damage HERO
     protected static int chance;                      // test  [ do not realizations ]
+    protected static int restoreHealth;               // how much hp can restore HERO
     protected static int mana;                        // mana for Heal Hero
 
     protected static String name;                     // MOB and Boss name
     protected static int healthPoint;                 // MOB and Boss HP
     protected static int max_Damage;                  // max damage MOB and Boss
     protected static int min_Damage;                  // min damage MOB and Boss
-    protected static int restoreHealth;               // how much hp can restore HERO
     protected static int restoreCreature;             // how many hp boss can restore
     protected static int chanceToSuperDamage;         // chance to super damage for MOB AND Boss
 
-    private static int index = 6;                                   // default index to restore Health point
-    private static int healCast = 33;                               // hum much need mana to healed yourself
+    protected static int index = 6;                                   // default index to restore Health point
+    protected static int healCast = 33;                               // hum much need mana to healed yourself
     private static int defaultPercent = 25;                         // default index fight without equipment minus POWER
-    private static int increaseDamage = (int) (max_Damage * 1.5);   // super damage for Mob and Boss
+
 
 
     public Main_All(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {       //FOR HERO
@@ -192,11 +192,4 @@ public class Main_All {
         Main_All.defaultPercent = defaultPercent;
     }
 
-    public static int getIncreaseDamage() {
-        return increaseDamage;
-    }
-
-    public static void setIncreaseDamage(int increaseDamage) {
-        Main_All.increaseDamage = increaseDamage;
-    }
 }

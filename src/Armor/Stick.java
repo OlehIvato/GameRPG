@@ -2,37 +2,23 @@ package Armor;
 
 import Main.Main;
 import Сreature.Main_All;
+
 import java.util.Scanner;
 
-public class Stick extends Main_All {
+public class Stick {
 
-    private static int a;
-    private static int result;
-
-    public Stick(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-    }
-
-    public static int getResult() {
-        return result;
-    }
-
-    public int main_Stick() {
-        int check = 0;
-
-        while (check == 0) {
-            if (heroName.equals("Mage") || heroName.equals("Paladin")) {
-                int info = createStick();
-                System.out.println("You chose +" + info + " to Mana ");
+    public static void main() {
+        while (true) {
+            if (Main_All.getHeroName().equals("Mage") || Main_All.getHeroName().equals("Paladin")) {
+                int getMana = createStick();
+                System.out.println("You chose +" + getMana + " to Mana ");
                 System.out.print("Your Final Mana equal ");
-                System.out.print(mana + info);
-                result = (mana + info);
+                System.out.print(Main_All.getMana() + getMana);
+                Main_All.setMana(Main_All.getMana() + getMana);
                 break;
-            } else {
+            } else
                 break;
-            }
         }
-        return result;
     }
 
     private static int createStick() {
@@ -44,29 +30,24 @@ public class Stick extends Main_All {
                 + "\n    5. Back to  Main Menu";
         System.out.println(weap);
         Scanner scan = new Scanner(System.in);
-        a = scan.nextInt();
-        switch (a) {
-            case 1: {
-                a = 13;
+        int result;
+        switch (result = scan.nextInt()) {
+            case 1:
+                result = 13;
                 break;
-            }
-            case 2: {
-                a = 21;
+            case 2:
+                result = 21;
                 break;
-            }
-            case 3: {
-                a = 35;
+            case 3:
+                result = 35;
                 break;
-            }
-            case 4: {
-                a = 0;
+            case 4:
+                result = 0;
                 break;
-            }
-            case 5: {
+            case 5:
                 Main.menu();
                 break;
-            }
         }
-        return a;
+        return result;
     }
 }

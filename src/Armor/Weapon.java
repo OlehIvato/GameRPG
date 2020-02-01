@@ -2,75 +2,53 @@ package Armor;
 
 import Main.Main;
 import Сreature.Main_All;
+
 import java.util.Scanner;
 
-public class Weapon extends Main_All {
+public class Weapon {
 
-    private static int a;
-    private static int RET;
-
-    public Weapon(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-    }
-
-    public static int getRET() {
-        return RET;
-    }
-
-    public static void setRET(int RET) {
-        Weapon.RET = RET;
-    }
-
-    private int checkPoint = 0;
-
-    public int main_WEAPON() {
-        while (checkPoint == 0) {
-            if (heroName.equals("Mage") || heroName.equals("Paladin")) {
+    public static void main() {
+        while (true) {
+            if (Main_All.getHeroName().equals("Mage") || Main_All.getHeroName().equals("Paladin")) {
                 break;
             } else {
                 int result = createWeapon();
                 System.out.println("You chose +" + result + " to Damage ");
                 System.out.print("Your Final damage equal ");
-                System.out.print(defaultDamage + result);
-                RET = (defaultDamage + result);
+                System.out.print(Main_All.getDefaultDamage() + result);
+                Main_All.setDefaultDamage(Main_All.getDefaultDamage() + result);
                 break;
             }
         }
-        return RET;
     }
 
     private static int createWeapon() {
-        String weap = "\nChoose your Weapon"
+        String weapon = "\nChoose your Weapon"
                 + "\n    1. Daggers  (+7  to Damage)"
                 + "\n    2. Crossbows  (+13  to Damage)"
                 + "\n    3. Sword (+21 to Damage)"
                 + "\n    4. Not to choose this thing (+0 to Health Point)"
-                + "\n    5. Back to  Main Menu";
-        System.out.println(weap + "\n");
+                + "\n    5. Back to Main Menu";
+        System.out.println(weapon + "\n");
         Scanner scan = new Scanner(System.in);
-        a = scan.nextInt();
-        switch (a) {
-            case 1: {
-                a = 7;
+        int result;
+        switch (result = scan.nextInt()) {
+            case 1:
+                result = 7;
                 break;
-            }
-            case 2: {
-                a = 13;
+            case 2:
+                result = 13;
                 break;
-            }
-            case 3: {
-                a = 21;
+            case 3:
+                result = 21;
                 break;
-            }
-            case 4: {
-                a = 0;
+            case 4:
+                result = 0;
                 break;
-            }
-            case 5: {
+            case 5:
                 Main.menu();
                 break;
-            }
         }
-        return a;
+        return result;
     }
 }

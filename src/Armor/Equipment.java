@@ -2,43 +2,33 @@ package Armor;
 
 import Main.Main;
 import Сreature.Main_All;
+
 import java.util.Scanner;
 
-public class Equipment extends Main_All {
-    public Equipment(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-    }
+public class Equipment {
 
-    private static int ress;
+    static Scanner scan = new Scanner(System.in);
+    private static int result;
 
-    public static int getRess() {
-        return ress;
-    }
+    public static void main() {
 
-    public static void setRess(int ress) {
-        Equipment.ress = ress;
-    }
+        int armor;
+        int feet;
+        int head;
+        int boots;
 
-    public int mainEquip() {
-
-        int result1;
-        int result2;
-        int result3;
-        int result4;
-
-        result1 = createArmor();
-        System.out.println("You chose +" + result1 + " to Health Point ");
-        result2 = creatFeetArmor();
-        System.out.println("You chose +" + result2 + " to Health Point ");
-        result3 = creatHeadArmor();
-        System.out.println("You chose +" + result3 + " to Health Point ");
-        result4 = creatBootsArmor();
-        System.out.println("You chose +" + result4 + " to Health Point ");
+        armor = createArmor();
+        System.out.println("You chose +" + armor + " to Health Point ");
+        feet = createFeetArmor();
+        System.out.println("You chose +" + feet + " to Health Point ");
+        head = createHeadArmor();
+        System.out.println("You chose +" + head + " to Health Point ");
+        boots = createBootsArmor();
+        System.out.println("You chose +" + boots + " to Health Point ");
         System.out.print("\nYour final Health Point equal ");
-        System.out.print(result1 + result2 + result3 + result4 + heroHP);
-        ress = (result1 + result2 + result3 + result4 + heroHP);
+        System.out.print(armor + feet + head + boots + Main_All.getHeroHP());
+        Main_All.setHeroHP(armor + feet + head + boots + Main_All.getHeroHP());
         System.out.println();
-        return ress;
     }
 
     private static int createArmor() {
@@ -49,35 +39,27 @@ public class Equipment extends Main_All {
                 "\n   4. Not to choose this thing (+0 to Health Point)" +
                 "\n   5. Back to  Main Menu";
         System.out.println(cases);
-        Scanner scan = new Scanner(System.in);
-        int a;
-        a = scan.nextInt();
-        switch (a) {
-            case 1: {
-                a = 7;
+        switch (result = scan.nextInt()) {
+            case 1:
+                result = 7;
                 break;
-            }
-            case 2: {
-                a = 15;
+            case 2:
+                result = 15;
                 break;
-            }
-            case 3: {
-                a = 22;
+            case 3:
+                result = 22;
                 break;
-            }
-            case 4: {
-                a = 0;
+            case 4:
+                result = 0;
                 break;
-            }
-            case 5: {
+            case 5:
                 Main.menu();
                 break;
-            }
         }
-        return a;
+        return result;
     }
 
-    private static int creatFeetArmor() {
+    private static int createFeetArmor() {
         String cases = "\nChoose Feet Armor: " +
                 "\n   1. Boots  (+6  to Health Point) " +
                 "\n   2. Cloth Slippers  (+11  to Health Point)" +
@@ -85,35 +67,27 @@ public class Equipment extends Main_All {
                 "\n   4. Not to choose this thing (+0 to Health Point)" +
                 "\n   5. Back to  Main Menu";
         System.out.println(cases);
-        Scanner scan = new Scanner(System.in);
-        int a = 0;
-        a = scan.nextInt();
-        switch (a) {
-            case 1: {
-                a = 6;
+        switch (result = scan.nextInt()) {
+            case 1:
+                result = 6;
                 break;
-            }
-            case 2: {
-                a = 11;
+            case 2:
+                result = 11;
                 break;
-            }
-            case 3: {
-                a = 17;
+            case 3:
+                result = 17;
                 break;
-            }
-            case 4: {
-                a = 0;
+            case 4:
+                result = 0;
                 break;
-            }
-            case 5: {
+            case 5:
                 Main.menu();
                 break;
-            }
         }
-        return a;
+        return result;
     }
 
-    private static int creatHeadArmor() {
+    private static int createHeadArmor() {
         String cases = "\nChoose Head Armor: " +
                 "\n   1. Farseer's Mask (+2  to Health Point) " +
                 "\n   2. Mail Helm  (+5  to Health Point)" +
@@ -121,35 +95,27 @@ public class Equipment extends Main_All {
                 "\n   4. Not to choose this thing (+0 to Health Point)" +
                 "\n   5. Back to  Main Menu";
         System.out.println(cases);
-        Scanner scan = new Scanner(System.in);
-        int a = 0;
-        a = scan.nextInt();
-        switch (a) {
-            case 1: {
-                a = 2;
+        switch (result = scan.nextInt()) {
+            case 1:
+                result = 2;
                 break;
-            }
-            case 2: {
-                a = 5;
+            case 2:
+                result = 5;
                 break;
-            }
-            case 3: {
-                a = 11;
+            case 3:
+                result = 11;
                 break;
-            }
-            case 4: {
-                a = 0;
+            case 4:
+                result = 0;
                 break;
-            }
-            case 5: {
+            case 5:
                 Main.menu();
                 break;
-            }
         }
-        return a;
+        return result;
     }
 
-    private static int creatBootsArmor() {
+    private static int createBootsArmor() {
         String cases = "\nChoose Boots: " +
                 "\n   1. Albino Crocscale Boots (+2  to Health Point) " +
                 "\n   2. Veteran's Leather Boots  (+4  to Health Point)" +
@@ -157,31 +123,23 @@ public class Equipment extends Main_All {
                 "\n   4. Not to choose this thing (+0 to Health Point)" +
                 "\n   5. Back to  Main Menu";
         System.out.println(cases);
-        Scanner scan = new Scanner(System.in);
-        int a = 0;
-        a = scan.nextInt();
-        switch (a) {
-            case 1: {
-                a = 2;
+        switch (result = scan.nextInt()) {
+            case 1:
+                result = 2;
                 break;
-            }
-            case 2: {
-                a = 4;
+            case 2:
+                result = 4;
                 break;
-            }
-            case 3: {
-                a = 6;
+            case 3:
+                result = 6;
                 break;
-            }
-            case 4: {
-                a = 0;
+            case 4:
+                result = 0;
                 break;
-            }
-            case 5: {
+            case 5:
                 Main.menu();
                 break;
-            }
         }
-        return a;
+        return result;
     }
 }

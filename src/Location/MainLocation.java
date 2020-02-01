@@ -3,6 +3,7 @@ package Location;
 import Armor.Equipment;
 import Armor.Weapon;
 import Сreature.Main_All;
+
 import java.util.*;
 
 public class MainLocation {
@@ -19,7 +20,7 @@ public class MainLocation {
                 break;
             default: {
                 System.out.println("Something went wrong");
-                location();
+                main();
             }
         }
     }
@@ -32,11 +33,11 @@ public class MainLocation {
         Kalimdor kalimdor = new Kalimdor("Kalimdor", +2, +9, +14, -16, -9, +25, -5);
         IsleofDread isleofDread = new IsleofDread("Isle of Dread", -13, +20, +9, -9, 0, +11, +6);
 
-        Map <Integer, Value> map = new HashMap <>();
-        map.put(4, isleofDread);
-        map.put(3, azeroth);
-        map.put(2, kalimdor);
+        Map<Integer, Value> map = new HashMap<>();
         map.put(1, northrend);
+        map.put(2, kalimdor);
+        map.put(3, azeroth);
+        map.put(4, isleofDread);
 
         //  map.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
 
@@ -115,10 +116,10 @@ class Value {
     }
 
     public void setValues() {
-        Equipment.setRess(Equipment.getRess() + heroHP_l);
+        Main_All.setHeroHP(Main_All.getHeroHP() + heroHP_l);
         Main_All.setMaxSpellDamageHero(Main_All.getMaxSpellDamageHero() + heroSpellDamage_l);
         Main_All.setMinSpellDamageHERO(Main_All.getMinSpellDamageHERO() + heroSpellDamage_l);
-        Weapon.setRET(Weapon.getRET() + heroDamage_l);
+        Main_All.setDefaultDamage(Main_All.getDefaultDamage() + heroDamage_l);
         Main_All.setRestoreHealth(Main_All.getRestoreHealth() + heroRestoreHealth_l);
 
         Main_All.setHeroHP(Main_All.getHeroHP() + heroHP_l);

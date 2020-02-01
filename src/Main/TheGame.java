@@ -14,17 +14,12 @@ public class TheGame extends Main_All implements Levels {
     public TheGame() {
     }
 
-    private static int info;         // info about game with equipment, or without
+    public static boolean isEquip;         // info about game with equipment, or without
+    public static boolean isBoss;
 
-    public static int getInfo() {
-        return info;
-    }
 
     public void createNewHero() {
-        Equipment e = new Equipment(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-        Weapon w = new Weapon(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-        Stick s = new Stick(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-        Shield sh = new Shield(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
+
 
         Scanner scan = new Scanner(System.in);
         System.out.println("\n" + UserName.getUserName() + " do you wanna choose Armor and Weapon for " + heroName + " ?");
@@ -36,12 +31,12 @@ public class TheGame extends Main_All implements Levels {
         switch (scan.nextInt()) {
             case 1: {
 
-                info = 1;
+                isEquip = true;
 
-                e.mainEquip();
-                w.main_WEAPON();
-                s.main_Stick();
-                sh.main_Shield();
+                Equipment.main();
+                Weapon.main();
+                Stick.main();
+                Shield.main();
 
                 mainLocation.main();
 
@@ -70,7 +65,7 @@ public class TheGame extends Main_All implements Levels {
             }
             case 2: {
 
-                info = 2;
+                isEquip = false;
 
                 // MainLocation.location();
 

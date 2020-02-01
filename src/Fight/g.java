@@ -9,14 +9,14 @@ import Сreature.Main_All;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Fight extends Main_All implements Text, Levels {
+public class g extends Main_All implements Text, Levels {
+    private int superDamage = (int) (Main_All.getMax_Damage() * 1.5);
     private static Scanner scan = new Scanner(System.in);
-    private int superDamage = (int) (max_Damage * 1.5);
     private int hero_HP = getHeroHP();
     private int manaFinal = getMana();
 
 
-    public Fight() {
+    public g() {
     }
 
     public void main() {
@@ -54,16 +54,9 @@ public class Fight extends Main_All implements Text, Levels {
     private void heroMove() {
         while (healthPoint > 0 && hero_HP > 0) {
             System.out.println("You hit " + name + " on " + defaultDamage + " Health point");
-            if (!TheGame.isBoss) {
-                System.out.print("Now " + name + " have ");
-                System.out.println(healthPoint - defaultDamage + " Health point");
-                healthPoint -= defaultDamage;
-            }
-            if (TheGame.isBoss) {
-                System.out.print("After Recovering " + restoreCreature + " health point " + name + " have " + ((healthPoint + restoreCreature) - defaultDamage) + " Health point ");
-                healthPoint = (healthPoint + restoreCreature) - defaultDamage;
-
-            }
+            System.out.print("Now " + name + " have ");
+            System.out.println(healthPoint - defaultDamage + " Health point");
+            healthPoint -= defaultDamage;
             if (healthPoint <= 0) {
                 System.out.println(youHaveWonOverThe + name);
                 break;
@@ -90,30 +83,35 @@ public class Fight extends Main_All implements Text, Levels {
     }
 
 
+
     private void heal() {
         while (healthPoint > 0 && hero_HP > 0) {
-            if (manaFinal >= healCast) {
-                hero_HP += (index + restoreHealth);
+            if (manaFinal >= Main_All.getHealCast()) {
+                hero_HP += recoverHP;
                 System.out.println("\nYou chose Healing yourself ");
                 manaFinal -= healCast;
                 System.out.println("\nYou have been recovered " + (index + restoreHealth) + " health point");
                 System.out.println("Now your health point equal " + hero_HP);
                 System.out.println("Now you have left " + manaFinal + " Mana ");
+                Scanner scan = new Scanner(System.in);
                 System.out.println(chooseNewOptions_Mana_Menu);
                 switch (scan.nextInt()) {
-                    case 1:
+                    case 1: {
                         heroMove();
                         break;
-                    case 2:
+                    }
+                    case 2: {
                         spell();
                         break;
-                    case 3:
+                    }
+                    case 3: {
                         System.err.println("\nYou gave up \n And turn back to Main Menu");
                         Main.menu();
                         break;
+                    }
                 }
             }
-            if (manaFinal < healCast) {
+            if (manaFinal < Main_All.getHealCast()) {
                 System.out.println("\nSorry, but you haven't Mana\nPlease Select Something else");
                 move();
                 break;
@@ -138,9 +136,6 @@ public class Fight extends Main_All implements Text, Levels {
         if (num < chanceToSuperDamage) {
             result = superDamage;
             System.out.println(name + " uses Super Damage ");
-        } else if (TheGame.isBoss && healthPoint < 30) {
-            result =  superDamage;
-            System.out.println(name + " Have less than 30 hp, his damage will be increased.");
         } else
             result = (int) (Math.random() * range) + min;
         return result;
@@ -150,15 +145,9 @@ public class Fight extends Main_All implements Text, Levels {
         while (healthPoint > 0 && hero_HP > 0) {
             int result = random_Spell_damage();
             System.out.println("You Hit " + name + " using spell on " + result + hp);
-            if (!TheGame.isBoss) {
-                System.out.print("Now " + name + " have ");
-                System.out.println(healthPoint - result + hp);
-                healthPoint -= result;
-            }
-            if (TheGame.isBoss){
-                System.out.println("After Recovering " + restoreCreature + " health point " + name + " have " + ((healthPoint + restoreCreature) - result) + " Health point ");
-                healthPoint = (healthPoint + restoreCreature) - result;
-            }
+            System.out.print("Now " + name + " have ");
+            System.out.println(healthPoint - result + hp);
+            healthPoint -= result;
             if (minSpellDamageHERO <= 0 && maxSpellDamageHero <= 0) {
                 System.out.println("\nSorry but you can't do that, Try something else");
                 move();

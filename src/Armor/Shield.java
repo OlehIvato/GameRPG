@@ -2,27 +2,21 @@ package Armor;
 
 import Main.Main;
 import Сreature.Main_All;
+
 import java.util.Scanner;
 
-public class Shield extends Main_All {
+public class Shield {
 
-    public Shield(String heroName, int heroHP, int defaultDamage, int minSpellDamageHERO, int maxSpellDamageHero, int restoreHealth, int chance, int mana) {
-        super(heroName, heroHP, defaultDamage, minSpellDamageHERO, maxSpellDamageHero, restoreHealth, chance, mana);
-    }
-
-    private static int a;
-
-    public void main_Shield() {
-        int check = 0;
-        while (check == 0) {
-            if (heroName.equals("Mage")) {
+    public static void main() {
+        while (true) {
+            if (Main_All.getHeroName().equals("Mage")) {
                 break;
-            } else if (Equipment.getRess() >= 100 && Equipment.getRess() <= 140) {
+            } else if (Main_All.getHeroHP() >= 100 && Main_All.getHeroHP() <= 140) {
                 int info = createShield();
                 System.out.println("You chose your Shield, that is + " + info + " to Health point ");
                 System.out.print("Your Final Health point equal ");
-                System.out.print(Equipment.getRess() + info);
-                Equipment.setRess(Equipment.getRess() + info);
+                System.out.print(Main_All.getHeroHP() + info);
+                Main_All.setHeroHP(Main_All.getHeroHP() + info);
                 break;
             } else
                 break;
@@ -37,25 +31,21 @@ public class Shield extends Main_All {
                 + "\n    4. Back to  Main Menu";
         System.out.println(str);
         Scanner scan = new Scanner(System.in);
-        a = scan.nextInt();
-        switch (a) {
-            case 1: {
-                a = 11;
+        int result;
+        switch (result = scan.nextInt()) {
+            case 1:
+                result = 11;
                 break;
-            }
-            case 2: {
-                a = 23;
+            case 2:
+                result = 23;
                 break;
-            }
-            case 3: {
-                a = 0;
+            case 3:
+                result = 0;
                 break;
-            }
-            case 4: {
+            case 4:
                 Main.menu();
                 break;
-            }
         }
-        return a;
+        return result;
     }
 }
