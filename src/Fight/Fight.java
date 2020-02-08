@@ -1,4 +1,4 @@
-package Fight;
+﻿package Fight;
 
 import Main.*;
 import Сreature.Main_All;
@@ -30,8 +30,7 @@ public class Fight extends Main_All implements Text, Levels {
                     heroMove();
                     break;
                 case 2:
-                    spell();
-                    break;
+                    spell(); 
                 case 3:
                     heal();
                     break;
