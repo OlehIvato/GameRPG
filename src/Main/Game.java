@@ -12,7 +12,7 @@ import Location.CreateLocation;
 
 import java.util.Scanner;
 
-public class Game  implements Levels {
+public class Game implements Levels {
 
     public static boolean isEquip;         // info about game with equipment, or without
     public static boolean isBoss;          // info about boss or no

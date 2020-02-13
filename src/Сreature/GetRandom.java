@@ -24,7 +24,8 @@ public class GetRandom {
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             preparedStatement = connection.prepareStatement("SELECT * FROM mobs WHERE id = ?");
-            preparedStatement.setInt(1, random.nextInt(7));
+
+            preparedStatement.setInt(1, random.nextInt(7 - 1 + 1) + 1);        // random.nextInt(max - min +1) +1
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 mainCreature.setId(resultSet.getLong("id"));
@@ -44,7 +45,7 @@ public class GetRandom {
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             preparedStatement = connection.prepareStatement("SELECT * FROM bosses WHERE id = ?");
-            preparedStatement.setInt(1, random.nextInt(3));
+            preparedStatement.setInt(1, random.nextInt(3 - 1 + 1) + 1);      // random.nextInt(max - min +1) +1
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 mainCreature.setId(resultSet.getLong("id"));

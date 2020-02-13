@@ -1,9 +1,14 @@
 package Main;
 
 public class Main_All {
-    private static final String userName = "root";
-    private static final String password = "root";
-    private static final String url = "jdbc:mysql://localhost:3306/main";
+//    private static final String userName = "root";
+//    private static final String password = "root";
+//    private static final String url = "jdbc:mysql://localhost:3306/main";
+
+    private static final String userName = "sql7322584";
+    private static final String password = "96J7uIWHsa";
+    private static final String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7322584";
+
 
     protected static String heroName;                 // HERO NAME
     protected static int heroHP;                      // HP of HERO
