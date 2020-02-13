@@ -1,4 +1,4 @@
-package Сreature;
+package Main;
 
 public class Main_All {
     protected static String heroName;                 // HERO NAME

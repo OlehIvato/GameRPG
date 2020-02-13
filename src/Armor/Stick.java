@@ -1,8 +1,7 @@
 package Armor;
 
 import Main.Main;
-import Сreature.Main_All;
-
+import Main.Main_All;
 import java.util.Scanner;
 
 public class Stick {

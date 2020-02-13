@@ -1,8 +1,8 @@
 package Location;
 
-import Сreature.Main_All;
+import Main.Main_All;
 
-public class LocationMain {
+public class MainLocation {
 
     private Long id;
     private String name;

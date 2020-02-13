@@ -1,7 +1,7 @@
 package Location;
 
 
-import Сreature.Main_All;
+import Main.Main_All;
 
 import java.sql.*;
 import java.util.*;
@@ -12,7 +12,7 @@ public class CreateLocation {
     private static final String url = "jdbc:mysql://localhost:3306/main";
     private static Connection connection;
     private static ResultSet resultSet;
-    private static LocationMain locationMain = new LocationMain();
+    private static MainLocation locationMain = new MainLocation();
     private static Scanner scanner = new Scanner(System.in);
 
 

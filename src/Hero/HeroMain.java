@@ -1,6 +1,6 @@
 package Hero;
 
-import Сreature.Main_All;
+import Main.Main_All;
 
 public class HeroMain {
     private Long id;

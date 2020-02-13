@@ -1,6 +1,6 @@
 package Fight;
 
-import Сreature.Main_All;
+import Main.Main_All;
 
 
 public interface Text {

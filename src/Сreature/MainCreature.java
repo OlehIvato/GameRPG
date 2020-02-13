@@ -2,6 +2,7 @@ package Сreature;
 
 import Fight.Fight;
 import Main.Game;
+import Main.Main_All;
 
 
 public class MainCreature {

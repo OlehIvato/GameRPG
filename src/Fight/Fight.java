@@ -2,7 +2,7 @@ package Fight;
 
 import Hero.NewHero;
 import Main.*;
-import Сreature.Main_All;
+import Main.Main_All;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -12,7 +12,6 @@ public class Fight extends Main_All implements Text, Levels {
     private int superDamage = (int) (max_Damage * 1.5);
     private int hero_HP = heroHP;
     private int manaFinal = mana;
-
 
     public void main() {
         setZero();
@@ -54,7 +53,6 @@ public class Fight extends Main_All implements Text, Levels {
             if (Game.isBoss) {
                 System.out.print("After Recovering " + restoreCreature + " health point " + name + " have " + ((healthPoint + restoreCreature) - defaultDamage) + " Health point ");
                 healthPoint = (healthPoint + restoreCreature) - defaultDamage;
-
             }
             if (healthPoint <= 0) {
                 System.out.println(youHaveWonOverThe + name);
@@ -63,7 +61,6 @@ public class Fight extends Main_All implements Text, Levels {
             break;
         }
     }
-
 
     private void mobMove() {
         while (hero_HP > 0 && healthPoint > 0) {
@@ -80,7 +77,6 @@ public class Fight extends Main_All implements Text, Levels {
             break;
         }
     }
-
 
     private void heal() {
         while (healthPoint > 0 && hero_HP > 0) {

@@ -1,5 +1,7 @@
 package Сreature;
 
+import Main.Main_All;
+
 import java.sql.*;
 import java.util.Random;
 
@@ -26,7 +28,7 @@ public class GetRandom {
         try {
             connection = DriverManager.getConnection(url, userName, password);
             preparedStatement = connection.prepareStatement("SELECT * FROM mobs WHERE id = ?");
-            preparedStatement.setInt(1, random.nextInt(6));
+            preparedStatement.setInt(1, random.nextInt(7));
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 mainCreature.setId(resultSet.getLong("id"));
