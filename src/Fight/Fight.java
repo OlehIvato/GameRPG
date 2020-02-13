@@ -1,8 +1,9 @@
-﻿package Fight;
+package Fight;
 
 import Main.*;
 import Сreature.Main_All;
 
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class Fight extends Main_All implements Text, Levels {
                     heroMove();
                     break;
                 case 2:
-                    spell(); 
+                    spell();
                 case 3:
                     heal();
                     break;

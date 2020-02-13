@@ -5,12 +5,13 @@ import Armor.Shield;
 import Armor.Stick;
 import Armor.Weapon;
 import Fight.Levels;
-import Location.MainLocation;
+
+import Location.CreateLocation;
 import Сreature.Main_All;
 
 import java.util.Scanner;
 
-public class Game extends Main_All implements Levels {
+public class Game  implements Levels {
 
     public static boolean isEquip;         // info about game with equipment, or without
     public static boolean isBoss;          // info about boss or no
@@ -18,12 +19,12 @@ public class Game extends Main_All implements Levels {
 
     public void createNewHero() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("\n" + UserName.getUserName() + " do you wanna choose Armor and Weapon for " + heroName + " ?");
+        System.out.println("\n" + UserName.getUserName() + " do you wanna choose Armor and Weapon for " + Main_All.getHeroName() + " ?");
         String cases = "1. Yes \n" +
                 "2. No, play with standard characteristics.     (Creatures characteristics minus " + Main_All.getDefaultPercent() + "% power)."
                 + "\n3. Turn Back";
         System.out.println(cases);
-        MainLocation mainLocation = new MainLocation();
+        CreateLocation mainLocation = new CreateLocation();
         switch (scan.nextInt()) {
             case 1: {
                 isEquip = true;

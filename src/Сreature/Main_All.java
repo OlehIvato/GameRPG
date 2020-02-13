@@ -21,7 +21,6 @@ public class Main_All {
     protected static int healCast = 33;               // hum much need mana to healed yourself
     private static int defaultPercent = 25;           // default index fight without equipment minus POWER
 
-
     public static String getHeroName() {
         return heroName;
     }
@@ -70,6 +69,14 @@ public class Main_All {
         Main_All.chance = chance;
     }
 
+    public static int getRestoreHealth() {
+        return restoreHealth;
+    }
+
+    public static void setRestoreHealth(int restoreHealth) {
+        Main_All.restoreHealth = restoreHealth;
+    }
+
     public static int getMana() {
         return mana;
     }
@@ -108,14 +115,6 @@ public class Main_All {
 
     public static void setMin_Damage(int min_Damage) {
         Main_All.min_Damage = min_Damage;
-    }
-
-    public static int getRestoreHealth() {
-        return restoreHealth;
-    }
-
-    public static void setRestoreHealth(int restoreHealth) {
-        Main_All.restoreHealth = restoreHealth;
     }
 
     public static int getRestoreCreature() {
@@ -157,5 +156,4 @@ public class Main_All {
     public static void setDefaultPercent(int defaultPercent) {
         Main_All.defaultPercent = defaultPercent;
     }
-
 }

@@ -1,45 +1,66 @@
 package Main;
 
-import Hero.Mage;
-import Hero.Paladin;
-import Hero.Warrior;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.*;
 import java.util.Scanner;
 
 public class NewHero {
+    private static final String userName = "root";
+    private static final String password = "root";
+    private static final String url = "jdbc:mysql://localhost:3306/main";
+    private static Connection connection;
+    private static ResultSet resultSet;
+    private static HeroMain m = new HeroMain();
+    private static Scanner scanner = new Scanner(System.in);
+
 
     public static void main() {
+        showDataBase();
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hero WHERE id = ?");
+            preparedStatement.setInt(1, scanner.nextInt());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                m.setId(resultSet.getLong("id"));
+                m.setName(resultSet.getString("name"));
+                m.setHp(resultSet.getInt("hp"));
+                m.setDefaultDamage(resultSet.getInt("damage"));
+                m.setMinSpellDamage(resultSet.getInt("MinSpellDamage"));
+                m.setMaxSpellDamage(resultSet.getInt("MaxSpellDamage"));
+                m.setRestoresHealthPoint(resultSet.getInt("restoreHealthPoint"));
+                m.setChance(resultSet.getInt("chance"));
+                m.setMana(resultSet.getInt("mana"));
+                System.out.println("You selected "+ m.getName());
+            }
+            m.setValue();
+            Game game = new Game();
+            game.createNewHero();
 
-        Mage mage = new Mage("Mage", 90, 4, 35, 55,  19, 0, 87);
-        Warrior warrior = new Warrior("Warrior", 167, 21, 0, 0,  0, 0, 0);
-        Paladin paladin = new Paladin("Paladin", 110, 15, 17, 40,  35, 0, 105);
-
-        System.out.println("\nChoose new Hero:");
-        Map <Integer, Object> n = new HashMap <>();
-        n.put(1, mage);
-        n.put(2, warrior);
-        n.put(3, paladin);
-        for (Integer key : n.keySet()) {
-            System.out.println(key + " | " + n.get(key));
-        }
-        Scanner s = new Scanner(System.in);
-        switch (s.nextInt()) {
-            case 1: {
-                System.out.println("You chose: " + n.get(1));
-                mage.setValue();
-                break;
-            }
-            case 2: {
-                System.out.println("You chose: " + n.get(2));
-                warrior.setValue();
-                break;
-            }
-            case 3: {
-                System.out.println("You chose: " + n.get(3));
-                paladin.setValue();
-                break;
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
+    public static void showDataBase() {
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM hero");
+            while (resultSet.next()) {
+                m.setId(resultSet.getLong("id"));
+                m.setName(resultSet.getString("name"));
+                m.setHp(resultSet.getInt("hp"));
+                m.setDefaultDamage(resultSet.getInt("damage"));
+                m.setMinSpellDamage(resultSet.getInt("MinSpellDamage"));
+                m.setMaxSpellDamage(resultSet.getInt("MaxSpellDamage"));
+                m.setRestoresHealthPoint(resultSet.getInt("restoreHealthPoint"));
+                m.setChance(resultSet.getInt("chance"));
+                m.setMana(resultSet.getInt("mana"));
+                System.out.println(m);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
