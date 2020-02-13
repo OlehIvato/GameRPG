@@ -1,24 +1,21 @@
 package Hero;
 
 import Main.Game;
+import Main.Main_All;
 
 import java.sql.*;
 import java.util.Scanner;
 
 public class NewHero {
-    private static final String userName = "root";
-    private static final String password = "root";
-    private static final String url = "jdbc:mysql://localhost:3306/main";
     private static Connection connection;
     private static ResultSet resultSet;
     private static HeroMain m = new HeroMain();
     private static Scanner scanner = new Scanner(System.in);
 
-
     public static void main() {
         showHeroes();
         try {
-            connection = DriverManager.getConnection(url, userName, password);
+            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hero WHERE id = ?");
             preparedStatement.setInt(1, scanner.nextInt());
             resultSet = preparedStatement.executeQuery();
@@ -45,7 +42,7 @@ public class NewHero {
 
     public static void showHeroes() {
         try {
-            connection = DriverManager.getConnection(url, userName, password);
+            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM hero");
             while (resultSet.next()) {

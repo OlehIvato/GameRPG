@@ -6,10 +6,6 @@ import java.sql.*;
 import java.util.Random;
 
 public class GetRandom {
-
-    private static final String userName = "root";
-    private static final String password = "root";
-    private static final String url = "jdbc:mysql://localhost:3306/main";
     private static Connection connection;
     private static ResultSet resultSet;
     private static PreparedStatement preparedStatement;
@@ -26,7 +22,7 @@ public class GetRandom {
 
     public static void random() {
         try {
-            connection = DriverManager.getConnection(url, userName, password);
+            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             preparedStatement = connection.prepareStatement("SELECT * FROM mobs WHERE id = ?");
             preparedStatement.setInt(1, random.nextInt(7));
             resultSet = preparedStatement.executeQuery();
@@ -46,7 +42,7 @@ public class GetRandom {
 
     public static void random_Boss() {
         try {
-            connection = DriverManager.getConnection(url, userName, password);
+            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             preparedStatement = connection.prepareStatement("SELECT * FROM bosses WHERE id = ?");
             preparedStatement.setInt(1, random.nextInt(3));
             resultSet = preparedStatement.executeQuery();

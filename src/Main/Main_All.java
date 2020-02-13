@@ -1,6 +1,10 @@
 package Main;
 
 public class Main_All {
+    private static final String userName = "root";
+    private static final String password = "root";
+    private static final String url = "jdbc:mysql://localhost:3306/main";
+
     protected static String heroName;                 // HERO NAME
     protected static int heroHP;                      // HP of HERO
     protected static int defaultDamage;               // default damage HERO
@@ -17,9 +21,21 @@ public class Main_All {
     protected static int restoreCreature;             // how many hp boss can restore
     protected static int chanceToSuperDamage;         // chance to super damage for MOB AND Boss
 
-    protected static int index = 6;                   // default index to restore Health point
-    protected static int healCast = 33;               // hum much need mana to healed yourself
-    private static int defaultPercent = 25;           // default index fight without equipment minus POWER
+    protected static final int index = 6;                   // default index to restore Health point
+    protected static final int healCast = 33;               // hum much need mana to healed yourself
+    private static final int defaultPercent = 25;           // default index fight without equipment minus POWER
+
+    public static String getUserName() {
+        return userName;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static String getUrl() {
+        return url;
+    }
 
     public static String getHeroName() {
         return heroName;
@@ -137,23 +153,11 @@ public class Main_All {
         return index;
     }
 
-    public static void setIndex(int index) {
-        Main_All.index = index;
-    }
-
     public static int getHealCast() {
         return healCast;
     }
 
-    public static void setHealCast(int healCast) {
-        Main_All.healCast = healCast;
-    }
-
     public static int getDefaultPercent() {
         return defaultPercent;
-    }
-
-    public static void setDefaultPercent(int defaultPercent) {
-        Main_All.defaultPercent = defaultPercent;
     }
 }
