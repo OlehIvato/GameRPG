@@ -1,14 +1,19 @@
 package Сreature;
 
-import Сreature.Bosses.CaptainPrice;
-import Сreature.Bosses.LichKing;
-import Сreature.Bosses.Ragnar_Lodbrok;
-import Сreature.Mobs.*;
-
+import java.sql.*;
 import java.util.Random;
 
 public class GetRandom {
+
+    private static final String userName = "root";
+    private static final String password = "root";
+    private static final String url = "jdbc:mysql://localhost:3306/main";
+    private static Connection connection;
+    private static ResultSet resultSet;
+    private static PreparedStatement preparedStatement;
     private static Random random = new Random();
+    private static MainCreature mainCreature = new MainCreature();
+
 
     public static int changer(int a) {
         int value = a;
@@ -18,48 +23,44 @@ public class GetRandom {
     }
 
     public static void random() {
-        Pudge pudge = new Pudge("Pudge", 120, 27, 34, 56);
-        Alien alien = new Alien("Alien", 105, 28, 60, 34);
-        Druid druid = new Druid("Druid", 115, 37, 54, 37);
-        DeathKnight deathKnight = new DeathKnight("Death King", 130, 18, 25, 51);
-        Pig pig = new Pig("Pig", 110, 20, 29, 43);
-        Ork ork = new Ork("Ork", 114, 29, 29, 38);
-        switch (random.nextInt(6)) {
-            case 0:
-                pudge.fightMob();
-                break;
-            case 1:
-                pig.fightMob();
-                break;
-            case 2:
-                ork.fightMob();
-                break;
-            case 3:
-                druid.fightMob();
-                break;
-            case 4:
-                alien.fightMob();
-                break;
-            case 5:
-                deathKnight.fightMob();
-                break;
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            preparedStatement = connection.prepareStatement("SELECT * FROM mobs WHERE id = ?");
+            preparedStatement.setInt(1, random.nextInt(6));
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                mainCreature.setId(resultSet.getLong("id"));
+                mainCreature.setName(resultSet.getString("name"));
+                mainCreature.setHealthPoint(resultSet.getInt("hp"));
+                mainCreature.setMin_Damage(resultSet.getInt("minDamage"));
+                mainCreature.setMax_Damage(resultSet.getInt("maxDamage"));
+                mainCreature.setChanceToSuperDamage(resultSet.getInt("chanceToSuperDamage"));
+            }
+            mainCreature.fightMob();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     public static void random_Boss() {
-        CaptainPrice captainPrice = new CaptainPrice("Captain Price", 137, 35, 45, 14, 44);
-        LichKing lichKing = new LichKing("Lich King", 170, 30, 35, 4, 24);
-        Ragnar_Lodbrok ragnar_lodbrok = new Ragnar_Lodbrok("Ragnar Lodbrok", 124, 35, 68, 7, 35);
-        switch (random.nextInt(3)) {
-            case 0:
-                captainPrice.fightBoss();
-                break;
-            case 1:
-                lichKing.fightBoss();
-                break;
-            case 2:
-                ragnar_lodbrok.fightBoss();
-                break;
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            preparedStatement = connection.prepareStatement("SELECT * FROM bosses WHERE id = ?");
+            preparedStatement.setInt(1, random.nextInt(3));
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                mainCreature.setId(resultSet.getLong("id"));
+                mainCreature.setName(resultSet.getString("name"));
+                mainCreature.setHealthPoint(resultSet.getInt("hp"));
+                mainCreature.setMin_Damage(resultSet.getInt("minDamage"));
+                mainCreature.setMax_Damage(resultSet.getInt("maxDamage"));
+                mainCreature.setRestoreHealth(resultSet.getInt("restoreHealth"));
+                mainCreature.setChanceToSuperDamage(resultSet.getInt("chanceToSuperDamage"));
+            }
+            mainCreature.fightBoss();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
+

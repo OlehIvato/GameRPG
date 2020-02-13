@@ -1,4 +1,4 @@
-package Main;
+package Hero;
 
 import Сreature.Main_All;
 

@@ -6,6 +6,7 @@ import Armor.Stick;
 import Armor.Weapon;
 import Fight.Levels;
 
+import Hero.NewHero;
 import Location.CreateLocation;
 import Сreature.Main_All;
 
@@ -24,7 +25,6 @@ public class Game  implements Levels {
                 "2. No, play with standard characteristics.     (Creatures characteristics minus " + Main_All.getDefaultPercent() + "% power)."
                 + "\n3. Turn Back";
         System.out.println(cases);
-        CreateLocation mainLocation = new CreateLocation();
         switch (scan.nextInt()) {
             case 1: {
                 isEquip = true;
@@ -32,7 +32,7 @@ public class Game  implements Levels {
                 Weapon.main();
                 Stick.main();
                 Shield.main();
-                mainLocation.main();
+                CreateLocation.main();
                 break;
             }
             case 2:

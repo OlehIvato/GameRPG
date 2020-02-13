@@ -1,5 +1,7 @@
 package Main;
 
+import Hero.NewHero;
+
 import java.util.Scanner;
 
 public class NewGame {

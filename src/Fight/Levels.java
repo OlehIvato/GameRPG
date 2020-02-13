@@ -1,6 +1,5 @@
 package Fight;
 
-import Main.NewHero;
 import Main.NewGame;
 import Main.UserName;
 import Сreature.GetRandom;

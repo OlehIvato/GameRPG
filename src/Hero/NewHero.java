@@ -1,4 +1,6 @@
-package Main;
+package Hero;
+
+import Main.Game;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -14,7 +16,7 @@ public class NewHero {
 
 
     public static void main() {
-        showDataBase();
+        showHeroes();
         try {
             connection = DriverManager.getConnection(url, userName, password);
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hero WHERE id = ?");
@@ -41,7 +43,7 @@ public class NewHero {
         }
     }
 
-    public static void showDataBase() {
+    public static void showHeroes() {
         try {
             connection = DriverManager.getConnection(url, userName, password);
             Statement statement = connection.createStatement();

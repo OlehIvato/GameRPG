@@ -1,9 +1,9 @@
 package Fight;
 
+import Hero.NewHero;
 import Main.*;
 import Сreature.Main_All;
 
-import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 

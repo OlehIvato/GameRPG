@@ -23,9 +23,9 @@ public class LocationMain {
 
     @Override
     public String toString() {
-        String getFormat = "%1$-14s -  %2$-6s %3$-8s|%4$-19s|%5$-12s|%6$-21s  ||| %7$-15s %8$-9s|%9$-13s|%10$-27s";
-
+        String getFormat = "%1$-3s|%2$-14s -  %3$-6s %4$-8s|%5$-19s|%6$-12s|%7$-21s  ||| %8$-15s %9$-9s|%10$-13s|%11$-27s";
         String result = String.format(getFormat,
+                id,
                 name,
                 "FOR HERO: ",
                 "HP: " + formatPlus(heroHp),

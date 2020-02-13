@@ -16,13 +16,15 @@ public class CreateLocation {
     private static Scanner scanner = new Scanner(System.in);
 
 
-    public void main() {
+    public static void main() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n\nWould you like to select Location for Fight?  (it will change " + Main_All.getHeroName() + " and creatures characteristics)");
         System.out.println("1. Yes \n2. No, continue without Locations");
         switch (scanner.nextInt()) {
             case 1:
-                location();
+                showLocations();
+                selectLocation();
+                locationMain.setValues();
                 break;
             case 2:
                 break;
@@ -33,53 +35,30 @@ public class CreateLocation {
         }
     }
 
-    private void location() {
-
-
-        //        System.out.println("Select location for the game:\n");
-//        Scanner s = new Scanner(System.in);
-//        Northrend northrend = new Northrend("Northrend", +11, +16, -5, +5, +28, -13, +15);
-//
-//        Azeroth azeroth = new Azeroth("Azeroth", -9, -5, -3, +15, +18, +12, -29);
-//
-//        Kalimdor kalimdor = new Kalimdor("Kalimdor", +2, +9, +14, -16, -9, +25, -5);
-//
-//        IsleofDread isleofDread = new IsleofDread("Isle of Dread", -13, +20, +9, -9, 0, +11, +6);
-//
-//        Map<Integer, Value> map = new HashMap<>();
-//        map.put(1, northrend);
-//        map.put(2, kalimdor);
-//        map.put(3, azeroth);
-//        map.put(4, isleofDread);
-//
-//        //  map.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(System.out::println);
-//
-//        for (Map.Entry show : map.entrySet()) {
-//            System.out.println(show.getKey() + " | " + show.getValue());
-//        }
-//        switch (s.nextInt()) {
-//            case 1:
-//                System.out.println("You chose " + map.get(1));
-//                northrend.setValues();
-//                break;
-//            case 2:
-//                System.out.println("You chose " + map.get(2));
-//                kalimdor.setValues();
-//                break;
-//            case 3:
-//                System.out.println("You chose " + map.get(3));
-//                azeroth.setValues();
-//                break;
-//            case 4:
-//                System.out.println("You chose " + map.get(4));
-//                isleofDread.setValues();
-//                break;
-//        }
-
+    private static void selectLocation() {
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM location WHERE id = ?");
+            preparedStatement.setInt(1, scanner.nextInt());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                locationMain.setId(resultSet.getLong("id"));
+                locationMain.setName(resultSet.getString("name"));
+                locationMain.setHeroHp(resultSet.getInt("heroHp"));
+                locationMain.setHeroDamage(resultSet.getInt("heroDamage"));
+                locationMain.setHeroSpellDamage(resultSet.getInt("heroSpellDamage"));
+                locationMain.setHeroRestoreHealth(resultSet.getInt("heroRestoreHealth"));
+                locationMain.setCreatureHp(resultSet.getInt("creatureHp"));
+                locationMain.setCreatureDamage(resultSet.getInt("creatureDamage"));
+                locationMain.setCreatureChance(resultSet.getInt("creatureChance"));
+            }
+            System.out.println("You selected " + locationMain.getName());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-
-    public static void showLocation() {
+    private static void showLocations() {
         try {
             connection = DriverManager.getConnection(url, userName, password);
             Statement statement = connection.createStatement();
@@ -96,15 +75,9 @@ public class CreateLocation {
                 locationMain.setCreatureChance(resultSet.getInt("creatureChance"));
                 System.out.println(locationMain);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
 }
 
