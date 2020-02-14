@@ -119,7 +119,7 @@ public interface Levels {
     static void win() {
         String win = "\n\n\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
-                "\ncongratulations " + UserName.getUserName() + " you went through three levels and won    " +
+                "\n" + UserName.getUserName() + " you went through three levels and won    " +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
         System.out.println(win.toUpperCase());

@@ -21,48 +21,47 @@ public class MainCreature {
     private static int finalChance = Main_All.getChanceToSuperDamage();
 
 
-    public void fightMob() {
-        Game.isBoss = false;
-        if (Game.isEquip) {
-            Main_All.setName(name);
-            Main_All.setHealthPoint(finalHp + healthPoint);
-            Main_All.setMin_Damage(finalMinDamage + min_Damage);
-            Main_All.setMax_Damage(finalMaxDamage + max_Damage);
-            Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamage);
+    public void fight() {
+        if (!Game.isBoss) {
+            if (Game.isEquip) {
+                Main_All.setName(name);
+                Main_All.setHealthPoint(finalHp + healthPoint);
+                Main_All.setMin_Damage(finalMinDamage + min_Damage);
+                Main_All.setMax_Damage(finalMaxDamage + max_Damage);
+                Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamage);
+            }
+
+            if (!Game.isEquip) {
+                Main_All.setName(name);
+                Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPoint));
+                Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_Damage));
+                Main_All.setMax_Damage(finalMaxDamage + GetRandom.changer(max_Damage));
+                Main_All.setChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
+            }
         }
-        if (!Game.isEquip) {
-            Main_All.setName(name);
-            Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPoint));
-            Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_Damage));
-            Main_All.setMax_Damage(finalMaxDamage + GetRandom.changer(max_Damage));
-            Main_All.setChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
+        if (Game.isBoss) {
+            if (Game.isEquip) {
+                Main_All.setName(name);
+                Main_All.setHealthPoint(finalHp + healthPoint);
+                Main_All.setMin_Damage(finalMinDamage + min_Damage);
+                Main_All.setMax_Damage(finalMaxDamage + max_Damage);
+                Main_All.setRestoreCreature(finalRestoreHealthPoint + restoreHealth);
+                Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamage);
+
+            }
+            if (!Game.isEquip) {
+                Main_All.setName(name);
+                Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPoint));
+                Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_Damage));
+                Main_All.setMax_Damage(finalMaxDamage + GetRandom.changer(max_Damage));
+                Main_All.setRestoreCreature(finalRestoreHealthPoint + GetRandom.changer(restoreHealth));
+                Main_All.setChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
+            }
         }
         Fight f = new Fight();
         f.main();
     }
 
-    public void fightBoss() {
-        Game.isBoss = true;
-        if (Game.isEquip) {
-            Main_All.setName(name);
-            Main_All.setHealthPoint(finalHp + healthPoint);
-            Main_All.setMin_Damage(finalMinDamage + min_Damage);
-            Main_All.setMax_Damage(finalMaxDamage + max_Damage);
-            Main_All.setRestoreCreature(finalRestoreHealthPoint + restoreHealth);
-            Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamage);
-
-        }
-        if (!Game.isEquip) {
-            Main_All.setName(name);
-            Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPoint));
-            Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_Damage));
-            Main_All.setMax_Damage(finalMaxDamage + GetRandom.changer(max_Damage));
-            Main_All.setRestoreCreature(finalRestoreHealthPoint + GetRandom.changer(restoreHealth));
-            Main_All.setChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
-        }
-        Fight f = new Fight();
-        f.main();
-    }
 
     public Long getId() {
         return id;

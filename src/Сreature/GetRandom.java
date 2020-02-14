@@ -1,5 +1,6 @@
 package Сreature;
 
+import Main.Game;
 import Main.Main_All;
 
 import java.sql.*;
@@ -21,6 +22,7 @@ public class GetRandom {
     }
 
     public static void random() {
+        Game.isBoss = false;
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             preparedStatement = connection.prepareStatement("SELECT * FROM mobs WHERE id = ?");
@@ -35,13 +37,14 @@ public class GetRandom {
                 mainCreature.setMax_Damage(resultSet.getInt("maxDamage"));
                 mainCreature.setChanceToSuperDamage(resultSet.getInt("chanceToSuperDamage"));
             }
-            mainCreature.fightMob();
+            mainCreature.fight();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public static void random_Boss() {
+        Game.isBoss = true;
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             preparedStatement = connection.prepareStatement("SELECT * FROM bosses WHERE id = ?");
@@ -56,7 +59,7 @@ public class GetRandom {
                 mainCreature.setRestoreHealth(resultSet.getInt("restoreHealth"));
                 mainCreature.setChanceToSuperDamage(resultSet.getInt("chanceToSuperDamage"));
             }
-            mainCreature.fightBoss();
+            mainCreature.fight();
         } catch (SQLException e) {
             e.printStackTrace();
         }

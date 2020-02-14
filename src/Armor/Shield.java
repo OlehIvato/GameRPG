@@ -10,7 +10,7 @@ public class Shield {
         while (true) {
             if (Main_All.getHeroName().equals("Mage")) {
                 break;
-            } else if (Main_All.getHeroHP() >= 100 && Main_All.getHeroHP() <= 140) {
+            } else if (Main_All.getHeroHP() >= 100 && Main_All.getHeroHP() <= 152) {
                 int info = createShield();
                 System.out.println("You chose your Shield, that is + " + info + " to Health point ");
                 System.out.print("Your Final Health point equal ");
