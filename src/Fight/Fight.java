@@ -36,7 +36,7 @@ public class Fight extends Main_All implements Text, Levels {
                     break;
                 case 4:
                     System.err.println("\nYou gave up \n And turn back to Main Menu");
-                    Main.menu();
+                    Menu.menu();
                     break;
             }
         }
@@ -97,7 +97,7 @@ public class Fight extends Main_All implements Text, Levels {
                         break;
                     case 3:
                         System.err.println("\nYou gave up \n And turn back to Main Menu");
-                        Main.menu();
+                        Menu.menu();
                         break;
                 }
             }

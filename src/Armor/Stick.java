@@ -1,6 +1,6 @@
 package Armor;
 
-import Main.Main;
+import Main.Menu;
 import Main.Main_All;
 import java.util.Scanner;
 
@@ -44,7 +44,7 @@ public class Stick {
                 result = 0;
                 break;
             case 5:
-                Main.menu();
+                Menu.menu();
                 break;
         }
         return result;

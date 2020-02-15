@@ -1,6 +1,6 @@
 package Armor;
 
-import Main.Main;
+import Main.Menu;
 import Main.Main_All;
 import java.util.Scanner;
 
@@ -52,7 +52,7 @@ public class Equipment {
                 result = 0;
                 break;
             case 5:
-                Main.menu();
+                Menu.menu();
                 break;
         }
         return result;
@@ -80,7 +80,7 @@ public class Equipment {
                 result = 0;
                 break;
             case 5:
-                Main.menu();
+                Menu.menu();
                 break;
         }
         return result;
@@ -108,7 +108,7 @@ public class Equipment {
                 result = 0;
                 break;
             case 5:
-                Main.menu();
+                Menu.menu();
                 break;
         }
         return result;
@@ -136,7 +136,7 @@ public class Equipment {
                 result = 0;
                 break;
             case 5:
-                Main.menu();
+                Menu.menu();
                 break;
         }
         return result;

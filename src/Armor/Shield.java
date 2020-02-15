@@ -1,6 +1,6 @@
 package Armor;
 
-import Main.Main;
+import Main.Menu;
 import Main.Main_All;
 import java.util.Scanner;
 
@@ -42,7 +42,7 @@ public class Shield {
                 result = 0;
                 break;
             case 4:
-                Main.menu();
+                Menu.menu();
                 break;
         }
         return result;
