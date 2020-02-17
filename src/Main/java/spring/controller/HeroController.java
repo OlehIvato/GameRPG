@@ -1,9 +1,6 @@
 package spring.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spring.model.HeroModel;
 import spring.service.HeroService;
 
@@ -14,20 +11,20 @@ import java.util.Optional;
 @RequestMapping("hero/")
 public class HeroController {
 
-  private final HeroService heroService;
+    private final HeroService heroService;
 
     public HeroController(HeroService heroService) {
         this.heroService = heroService;
     }
 
-
     @GetMapping("all")
-    public List <HeroModel> findAll() {
+    public List<HeroModel> findAll() {
         return heroService.findAll();
     }
 
+
     @GetMapping("id/{id}")
-    public Optional <HeroModel> findOneById(@PathVariable("id") Long id) {
+    public Optional<HeroModel> findOneById(@PathVariable("id") Long id) {
         return heroService.findOneById(id);
     }
 
@@ -51,14 +48,10 @@ public class HeroController {
     }
 
     @GetMapping("name/{name}")
-    public List <HeroModel> getName(@PathVariable("name") String name) {
+    public List<HeroModel> getName(@PathVariable("name") String name) {
         return heroService.getName(name);
     }
-    @GetMapping("names")
-    public   void  readAllBy() {
-        List<HeroModel> heroModels = heroService.readAllBy("name");
 
-    }
 
 }
 

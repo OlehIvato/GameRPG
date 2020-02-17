@@ -1,5 +1,6 @@
 package spring.service;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import spring.model.HeroModel;
 import spring.repository.HeroRepository;
@@ -16,11 +17,11 @@ public class HeroService {
         this.heroRepository = heroRepository;
     }
 
-    public List <HeroModel> findAll() {
+    public List<HeroModel> findAll() {
         return heroRepository.findAll();
     }
 
-    public Optional <HeroModel> findOneById(Long id) {
+    public Optional<HeroModel> findOneById(Long id) {
         return heroRepository.findById(id);
     }
 
@@ -32,13 +33,8 @@ public class HeroService {
         heroRepository.deleteById(id);
     }
 
-    public List <HeroModel> getName(String name) {
+    public List<HeroModel> getName(String name) {
         return heroRepository.findAllByName(name);
     }
 
-    public List <HeroModel> readAllBy(String name) {
-      List<HeroModel> heroModels = heroRepository.readAllBy("name");
-
-        return heroModels;
-    }
 }
