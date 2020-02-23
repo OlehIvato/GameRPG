@@ -1,12 +1,10 @@
 package spring.service;
 
-
 import org.springframework.stereotype.Service;
 import spring.model.BossesModel;
 import spring.repository.BossesRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BossesService {
@@ -17,17 +15,16 @@ public class BossesService {
         this.bossesRepository = bossesRepository;
     }
 
-
     public List<BossesModel> findAll() {
         return bossesRepository.findAll();
     }
 
-    public Optional<BossesModel> findOneById(Long id) {
-        return bossesRepository.findById(id);
+    public BossesModel findOneById(Long id) {
+        return bossesRepository.getOne(id);
     }
 
-    public BossesModel save(BossesModel bossesModel) {
-        return bossesRepository.save(bossesModel);
+    public BossesModel save(BossesModel heroModel) {
+        return bossesRepository.save(heroModel);
     }
 
     public void delete(Long id) {

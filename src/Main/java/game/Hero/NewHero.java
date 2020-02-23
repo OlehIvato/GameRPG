@@ -14,6 +14,13 @@ public class NewHero {
 
     public static void main() {
         showHeroes();
+        setValues();
+        m.setValue();
+        Game game = new Game();
+        game.createNewHero();
+    }
+
+    private static void setValues() {
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hero WHERE id = ?");
@@ -24,22 +31,18 @@ public class NewHero {
                 m.setName(resultSet.getString("name"));
                 m.setHp(resultSet.getInt("hp"));
                 m.setDefaultDamage(resultSet.getInt("damage"));
-                m.setMinSpellDamage(resultSet.getInt("MinSpellDamage"));
-                m.setMaxSpellDamage(resultSet.getInt("MaxSpellDamage"));
-                m.setRestoresHealthPoint(resultSet.getInt("restoreHealthPoint"));
+                m.setMinSpellDamage(resultSet.getInt("minSpellDamage"));
+                m.setMaxSpellDamage(resultSet.getInt("maxSpellDamage"));
+                m.setRestoresHealthPoint(resultSet.getInt("restoreHealth"));
                 m.setMana(resultSet.getInt("mana"));
-                System.out.println("You selected "+ m.getName());
+                System.out.println("You selected " + m.getName());
             }
-            m.setValue();
-            Game game = new Game();
-            game.createNewHero();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void showHeroes() {
+    private static void showHeroes() {
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             Statement statement = connection.createStatement();
@@ -49,9 +52,9 @@ public class NewHero {
                 m.setName(resultSet.getString("name"));
                 m.setHp(resultSet.getInt("hp"));
                 m.setDefaultDamage(resultSet.getInt("damage"));
-                m.setMinSpellDamage(resultSet.getInt("MinSpellDamage"));
-                m.setMaxSpellDamage(resultSet.getInt("MaxSpellDamage"));
-                m.setRestoresHealthPoint(resultSet.getInt("restoreHealthPoint"));
+                m.setMinSpellDamage(resultSet.getInt("minSpellDamage"));
+                m.setMaxSpellDamage(resultSet.getInt("maxSpellDamage"));
+                m.setRestoresHealthPoint(resultSet.getInt("restoreHealth"));
                 m.setMana(resultSet.getInt("mana"));
                 System.out.println(m);
             }
@@ -59,5 +62,4 @@ public class NewHero {
             e.printStackTrace();
         }
     }
-
 }

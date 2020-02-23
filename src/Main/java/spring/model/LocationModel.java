@@ -20,25 +20,25 @@ public class LocationModel {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "heroHp")
+    @Column(name = "herohp")
     private int heroHp;
 
-    @Column(name = "heroDamage")
+    @Column(name = "herodamage")
     private int heroDamage;
 
-    @Column(name = "heroSpellDamage")
+    @Column(name = "herospelldamage")
     private int heroSpellDamage;
 
-    @Column(name = "heroRestoreHealth")
+    @Column(name = "herorestorehealth")
     private int heroRestoreHealth;
 
-    @Column(name = "creatureHp")
+    @Column(name = "creaturehp")
     private int creatureHp;
 
-    @Column(name = "creatureDamage")
+    @Column(name = "creaturedamage")
     private int creatureDamage;
 
-    @Column(name = "creatureChance")
+    @Column(name = "creaturechance")
     private int creatureChance;
 
 

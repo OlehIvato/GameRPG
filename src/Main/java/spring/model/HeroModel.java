@@ -1,10 +1,8 @@
 package spring.model;
 
-
 import lombok.Data;
 
 import javax.persistence.*;
-
 
 @Data
 @Entity
@@ -38,5 +36,6 @@ public class HeroModel {
     @Column(name = "mana")
     private int mana;
 
-
 }
+
+

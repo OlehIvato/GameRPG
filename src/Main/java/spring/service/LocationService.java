@@ -12,8 +12,7 @@ import java.util.Optional;
 @Service
 public class LocationService {
 
-private final LocationRepository locationRepository;
-
+    private final LocationRepository locationRepository;
 
     public LocationService(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
@@ -24,12 +23,12 @@ private final LocationRepository locationRepository;
         return locationRepository.findAll();
     }
 
-    public Optional<LocationModel> findOneById(Long id) {
-        return locationRepository.findById(id);
+    public LocationModel findOneById(Long id) {
+        return locationRepository.getOne(id);
     }
 
-    public LocationModel save(LocationModel locationModel) {
-        return locationRepository.save(locationModel);
+    public LocationModel save(LocationModel heroModel) {
+        return locationRepository.save(heroModel);
     }
 
     public void delete(Long id) {

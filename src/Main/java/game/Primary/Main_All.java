@@ -29,6 +29,7 @@ public class Main_All {
     protected static final int healCast = 33;               // hum much need mana to healed yourself
     private static final int defaultPercent = 25;           // default index fight without equipment minus POWER
 
+
     public static String getUserName() {
         return userName;
     }
@@ -80,8 +81,6 @@ public class Main_All {
     public static void setMaxSpellDamageHero(int maxSpellDamageHero) {
         Main_All.maxSpellDamageHero = maxSpellDamageHero;
     }
-
-
 
     public static int getRestoreHealth() {
         return restoreHealth;

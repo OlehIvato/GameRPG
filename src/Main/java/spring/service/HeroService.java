@@ -1,12 +1,10 @@
 package spring.service;
 
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.stereotype.Service;
 import spring.model.HeroModel;
 import spring.repository.HeroRepository;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class HeroService {
@@ -21,8 +19,8 @@ public class HeroService {
         return heroRepository.findAll();
     }
 
-    public Optional<HeroModel> findOneById(Long id) {
-        return heroRepository.findById(id);
+    public HeroModel findOneById(Long id) {
+        return heroRepository.getOne(id);
     }
 
     public HeroModel save(HeroModel heroModel) {

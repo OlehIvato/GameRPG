@@ -6,8 +6,15 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class Main {
 
-    @GetMapping("main")
+    @GetMapping("entry")
     public String help() {
-        return "main";
+        return "Entry";
     }
+
+    @GetMapping("info")
+    public String info() {
+        return "AboutGame";
+    }
+
+
 }

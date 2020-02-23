@@ -22,12 +22,12 @@ public class MobsService {
         return mobsRepository.findAll();
     }
 
-    public Optional<MobsModel> findOneById(Long id) {
-        return mobsRepository.findById(id);
+    public MobsModel findOneById(Long id) {
+        return mobsRepository.getOne(id);
     }
 
-    public MobsModel save(MobsModel mobsModel) {
-        return mobsRepository.save(mobsModel);
+    public MobsModel save(MobsModel heroModel) {
+        return mobsRepository.save(heroModel);
     }
 
     public void delete(Long id) {

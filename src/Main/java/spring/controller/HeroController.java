@@ -1,13 +1,14 @@
 package spring.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.model.HeroModel;
 import spring.service.HeroService;
 
 import java.util.List;
-import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("hero/")
 public class HeroController {
 
@@ -18,40 +19,40 @@ public class HeroController {
     }
 
     @GetMapping("all")
-    public List<HeroModel> findAll() {
-        return heroService.findAll();
+    public String findAll(Model model) {
+        List<HeroModel> heroModels = heroService.findAll();
+        model.addAttribute("heroes", heroModels);
+        return "Hero/HeroList";
     }
 
-
-    @GetMapping("id/{id}")
-    public Optional<HeroModel> findOneById(@PathVariable("id") Long id) {
-        return heroService.findOneById(id);
+    @GetMapping("create")
+    public String createHeroForm() {
+        return "Hero/HeroUpdate";
     }
 
-    @GetMapping("save/{id}/{name}/{hp}/{damage}/{minSpell}/{maxSpell}/{restore}/{mana}")
-    public HeroModel save(@PathVariable("id") Long id, @PathVariable("name") String name, @PathVariable("hp") int hp, @PathVariable("damage") int damage, @PathVariable("minSpell") int minSpell, @PathVariable("maxSpell") int maxSpell, @PathVariable("restore") int restore, @PathVariable("mana") int mana) {
-        HeroModel heroModel = new HeroModel();
-        heroModel.setId(id);
-        heroModel.setName(name);
-        heroModel.setHp(hp);
-        heroModel.setDamage(damage);
-        heroModel.setMinSpell(minSpell);
-        heroModel.setMaxSpell(maxSpell);
-        heroModel.setRestore(restore);
-        heroModel.setMana(mana);
-        return heroService.save(heroModel);
+    @PostMapping("create")
+    public String create(HeroModel heroModel) {
+        heroService.save(heroModel);
+        return "redirect:/hero/all";
+    }
+
+    @GetMapping("update/{id}")
+    public String updateForm(@PathVariable("id") Long id, Model model) {
+        HeroModel heroModel = heroService.findOneById(id);
+        model.addAttribute("heroes", heroModel);
+        return "Hero/HeroUpdate";
+    }
+
+    @PostMapping("update")
+    public String update(HeroModel heroModel) {
+        heroService.save(heroModel);
+        return "redirect:/hero/all";
     }
 
     @GetMapping("delete/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public String delete(@PathVariable("id") Long id) {
         heroService.delete(id);
+        return "redirect:/hero/all";
     }
-
-    @GetMapping("name/{name}")
-    public List<HeroModel> getName(@PathVariable("name") String name) {
-        return heroService.getName(name);
-    }
-
-
 }
 

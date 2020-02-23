@@ -1,18 +1,17 @@
 package spring.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import spring.model.BossesModel;
 import spring.service.BossesService;
 
 import java.util.List;
-import java.util.Optional;
 
 
-@RestController
-@RequestMapping("bosses/")
+
+@Controller
+@RequestMapping("boss/")
 public class BossesController {
 
     private final BossesService bossesService;
@@ -22,38 +21,39 @@ public class BossesController {
     }
 
     @GetMapping("all")
-    public List<BossesModel> findAll() {
-        return bossesService.findAll();
+    public String findAll(Model model) {
+        List<BossesModel> bossesModels = bossesService.findAll();
+        model.addAttribute("bosses", bossesModels);
+        return "Boss/BossList";
     }
 
-
-    @GetMapping("id/{id}")
-    public Optional<BossesModel> findOneById(@PathVariable("id") Long id) {
-        return bossesService.findOneById(id);
+    @GetMapping("create")
+    public String createHeroForm() {
+        return "Boss/BossUpdate";
     }
 
-    @GetMapping("save/{id}/{name}/{hp}/{minDamage}/{maxDamage}/{restoreHealth}/{chanceToSuperDamage}")
-    public BossesModel save(@PathVariable("id") Long id, @PathVariable("name") String name, @PathVariable("hp") int hp, @PathVariable("minDamage") int minDamage, @PathVariable("maxDamage") int maxDamage, @PathVariable("restoreHealth") int restoreHealth, @PathVariable("chanceToSuperDamage") int chanceToSuperDamage) {
-        BossesModel bossesModel = new BossesModel();
-        bossesModel.setId(id);
-        bossesModel.setName(name);
-        bossesModel.setHp(hp);
-        bossesModel.setMinDamage(minDamage);
-        bossesModel.setMaxDamage(maxDamage);
-        bossesModel.setRestoreHealth(restoreHealth);
-        bossesModel.setChanceToSuperDamage(chanceToSuperDamage);
-        return bossesService.save(bossesModel);
+    @PostMapping("create")
+    public String create(BossesModel bossesModels) {
+        bossesService.save(bossesModels);
+        return "redirect:/boss/all";
+    }
+
+    @GetMapping("update/{id}")
+    public String updateForm(@PathVariable("id") Long id, Model model) {
+        BossesModel bossesModels = bossesService.findOneById(id);
+        model.addAttribute("bosses", bossesModels);
+        return "Boss/BossUpdate";
+    }
+
+    @PostMapping("update")
+    public String update(BossesModel bossesModels) {
+        bossesService.save(bossesModels);
+        return "redirect:/boss/all";
     }
 
     @GetMapping("delete/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public String delete(@PathVariable("id") Long id) {
         bossesService.delete(id);
+        return "redirect:/boss/all";
     }
-
-    @GetMapping("name/{name}")
-    public List<BossesModel> getName(@PathVariable("name") String name) {
-        return bossesService.getName(name);
-    }
-
-
 }

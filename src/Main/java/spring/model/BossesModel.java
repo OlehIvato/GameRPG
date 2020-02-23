@@ -21,16 +21,16 @@ public class BossesModel {
     @Column(name = "hp")
     private int hp;
 
-    @Column(name = "minDamage")
+    @Column(name = "mindamage")
     private int minDamage;
 
-    @Column(name = "maxDamage")
+    @Column(name = "maxdamage")
     private int maxDamage;
 
-    @Column(name = "restoreHealth")
+    @Column(name = "restorehealth")
     private int restoreHealth;
 
-    @Column(name = "chanceToSuperDamage")
+    @Column(name = "chancetosuperdamage")
     private int chanceToSuperDamage;
 
 }

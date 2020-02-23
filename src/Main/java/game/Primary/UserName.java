@@ -9,7 +9,7 @@ public class UserName {
         return userName;
     }
 
-    protected static String getName() {
+    public static String getName() {
         System.out.println("What is your name ? ");
         Scanner scan = new Scanner(System.in);
         userName = scan.nextLine();
