@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
-<style>
-    .bs-example{
-        margin: 0px;
-    }
-    hr.redLine {
-        border: 4px solid red;
-    }
-</style>
+    <title>Info</title>
+    <style>
+        .bs-example{
+            margin: 0px;
+        }
+        hr.redLine {
+            border: 4px solid red;
+        }
+    </style>
 
 
 </head>
@@ -27,17 +28,19 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="/entry" class="nav-item nav-link active">Home</a>
+                <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
-
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                </sec:authorize>
             </div>
-        </div>
+            </div>
     </nav>
     <hr class="redLine" style="margin-top:0px">
 </div>
 
 
-<h1>Sup Big Boys </h1>
+<h1>soon...  </h1>
 
 
 
