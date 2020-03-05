@@ -30,24 +30,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Boss Updating</title>
+    <title>Hero Updating</title>
 </head>
 <body>
-<div style="text-align: center"><h1>Boss Updating</h1></div>
+<div style="text-align: center"><h1>Hero Updating</h1></div>
 <hr class="redLine">
 
 <div align="center">
-    <form action="${pageContext.request.contextPath}/boss/update/" method="post">
+    <form action="${pageContext.request.contextPath}/hero/update/" method="post">
         <table border="1" cellpadding="5">
-            <c:if test="${bosses != null}">
-                <input type="hidden" name="id" value="<c:out value='${bosses.id}' />"/>
+            <c:if test="${heroes != null}">
+                <input type="hidden" name="id" value="<c:out value='${heroes.id}' />"/>
             </c:if>
             <tr>
                 <th>ID:</th>
                 <td>
                     <label>
                         <input readonly type="number" name="id" maxlength="3" size="3"
-                               value="<c:out value='${bosses.id}' />"
+                               value="<c:out value='${heroes.id}' />"
                         />
                     </label>
                 </td>
@@ -58,7 +58,7 @@
                 <td>
                     <label>
                         <input type="text" name="name" maxlength="30" size="15"
-                               value="<c:out value='${bosses.name}' />"
+                               value="<c:out value='${heroes.name}' />"
                         />
                     </label>
                 </td>
@@ -69,51 +69,62 @@
                 <td>
                     <label>
                         <input type="text" name="hp" maxlength="3" size="3"
-                               value="<c:out value='${bosses.hp}' />"
+                               value="<c:out value='${heroes.hp}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Min Damage:</th>
+                <th>Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="minDamage" maxlength="3" size="3"
-                               value="<c:out value='${bosses.minDamage}' />"
+                        <input type="text" name="damage" maxlength="3" size="3"
+                               value="<c:out value='${heroes.damage}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Max Damage:</th>
+                <th>Min Spell Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="maxDamage" maxlength="3" size="3"
-                               value="<c:out value='${bosses.maxDamage}' />"
+                        <input type="text" name="minSpell" maxlength="3" size="3"
+                               value="<c:out value='${heroes.minSpell}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Restore HP:</th>
+                <th>Max Spell Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="restoreHealth" maxlength="3" size="3"
-                               value="<c:out value='${bosses.restoreHealth}' />"
+                        <input type="text" name="maxSpell" maxlength="3" size="3"
+                               value="<c:out value='${heroes.maxSpell}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Chance To Super Damage:</th>
+                <th>Restore Health Point:</th>
                 <td>
                     <label>
-                        <input type="text" name="chanceToSuperDamage" maxlength="3" size="3"
-                               value="<c:out value='${bosses.chanceToSuperDamage}' />"
+                        <input type="text" name="restore" maxlength="3" size="3"
+                               value="<c:out value='${heroes.restore}' />"
+                        />
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Mana:</th>
+                <td>
+                    <label>
+                        <input type="text" name="Mana" maxlength="3" size="3"
+                               value="<c:out value='${heroes.mana}' />"
                         />
                     </label>
                 </td>
@@ -122,6 +133,7 @@
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
+                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="/hero/all">Back</a></button>
                 </td>
             </tr>
         </table>

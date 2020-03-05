@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -45,7 +46,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Hero Database</title>
+    <title>Boss Database</title>
 </head>
 <body>
 <div class="bs-example">
@@ -57,53 +58,65 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="${pageContext.request.contextPath}/entry" class="nav-item nav-link active">Home</a>
-                <a href="${pageContext.request.contextPath}/info" class="nav-item nav-link">About Game</a>
+                <a href="/welcome" class="nav-item nav-link active">Home</a>
+                <a href="/info" class="nav-item nav-link">About Game</a>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                </sec:authorize>
             </div>
+        </div>
+        <div style="margin-right: 50px">
+
+            <sec:authorize access="isAuthenticated()">
+                <h4>
+                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
+                    <a style="color: #ff3030" href="/logout">Logout</a>
+                </h4>
+            </sec:authorize>
         </div>
     </nav>
     <hr class="redLine" style="margin-top:0px">
 </div>
 
-<div style="text-align: center"><h1>Hero Database</h1></div>
-
-
+<div style="text-align: center"><h1>Boss Database</h1></div>
+<button style="margin-left: 100px"><a href="/welcome">Back</a></button>
 <div align="center">
     <table class=" table-sm table-striped" border="1" cellpadding="5">
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Health Point</th>
-            <th>Damage</th>
-            <th>Min Spell Damage</th>
-            <th>Max Spell Damage</th>
-            <th>Restore Hp</th>
-            <th>Mana</th>
+            <th>Min Damage</th>
+            <th>Max Damage</th>
+            <th>Restore HP</th>
+            <th>Change To Super Damage</th>
         </tr>
-        <c:forEach var="hero" items="${heroes}">
-            <tr>
-                <td>${hero.id}</td>
-                <td>${hero.name}</td>
-                <td>${hero.hp}</td>
-                <td>${hero.damage}</td>
-                <td>${hero.minSpell}</td>
-                <td>${hero.maxSpell}</td>
-                <td>${hero.restore}</td>
-                <td>${hero.mana}</td
-                <td>
-                <td><a href="${pageContext.request.contextPath}/hero/update/<c:out value='${hero.id}'/>">
+        <c:forEach var="boss" items="${bosses}">
+            <sec>
+                <td>${boss.id}</td>
+                <td>${boss.name}</td>
+                <td>${boss.hp}</td>
+                <td>${boss.minDamage}</td>
+                <td>${boss.maxDamage}</td>
+                <td>${boss.restoreHealth}</td>
+                <td>${boss.chanceToSuperDamage}</td>
+
+                        <sec:authorize access="hasRole('ADMIN')">
+                <td><a href="${pageContext.request.contextPath}/boss/update/<c:out value='${boss.id}'/>">
                     <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                 </a></td>
-                <td><a href="${pageContext.request.contextPath}/hero/delete/<c:out value='${hero.id}'/>">
+                <td><a href="${pageContext.request.contextPath}/boss/delete/<c:out value='${boss.id}'/>">
                     <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                 </a></td>
+                </sec:authorize>
             </tr>
         </c:forEach>
     </table>
 </div>
-<button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/hero/create">Create new
-    Hero</a></button>
-
+<sec:authorize access="hasRole('ADMIN')">
+<button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/boss/create">Create new
+    Boss</a></button>
+</sec:authorize>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

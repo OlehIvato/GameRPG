@@ -111,6 +111,7 @@
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
+                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="/mob/all">Back</a></button>
                 </td>
             </tr>
         </table>

@@ -30,123 +30,99 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Location Updating</title>
+    <title>Boss Updating</title>
 </head>
 <body>
-<div style="text-align: center"><h1>Location Updating</h1></div>
+<div style="text-align: center"><h1>Boss Updating</h1></div>
 <hr class="redLine">
 
 <div align="center">
-    <form action="${pageContext.request.contextPath}/location/update/" method="post">
+    <form action="${pageContext.request.contextPath}/boss/update/" method="post">
         <table border="1" cellpadding="5">
-            <c:if test="${locations != null}">
-                <input type="hidden" name="id" value="<c:out value='${locations.id}' />"/>
+            <c:if test="${bosses != null}">
+                <input type="hidden" name="id" value="<c:out value='${bosses.id}' />"/>
             </c:if>
             <tr>
                 <th>ID:</th>
                 <td>
                     <label>
                         <input readonly type="number" name="id" maxlength="3" size="3"
-                               value="<c:out value='${locations.id}' />"
+                               value="<c:out value='${bosses.id}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Location Name:</th>
+                <th>Name:</th>
                 <td>
                     <label>
-                        <input type="text" name="heroHp" maxlength="30" size="15"
-                               value="<c:out value='${locations.name}' />"
+                        <input type="text" name="name" maxlength="30" size="15"
+                               value="<c:out value='${bosses.name}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Hero HP:</th>
+                <th>Health Point:</th>
                 <td>
                     <label>
-                        <input type="text" name="heroHp" maxlength="3" size="3"
-                               value="<c:out value='${locations.heroHp}' />"
+                        <input type="text" name="hp" maxlength="3" size="3"
+                               value="<c:out value='${bosses.hp}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Hero Damage</th>
+                <th>Min Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="heroDamage" maxlength="3" size="3"
-                               value="<c:out value='${locations.heroDamage}' />"
+                        <input type="text" name="minDamage" maxlength="3" size="3"
+                               value="<c:out value='${bosses.minDamage}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Hero Spell Damage:</th>
+                <th>Max Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="heroSpellDamage" maxlength="3" size="3"
-                               value="<c:out value='${locations.heroSpellDamage}' />"
+                        <input type="text" name="maxDamage" maxlength="3" size="3"
+                               value="<c:out value='${bosses.maxDamage}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Hero Restore HP:</th>
+                <th>Restore HP:</th>
                 <td>
                     <label>
-                        <input type="text" name="heroRestoreHealth" maxlength="3" size="3"
-                               value="<c:out value='${locations.heroRestoreHealth}' />"
+                        <input type="text" name="restoreHealth" maxlength="3" size="3"
+                               value="<c:out value='${bosses.restoreHealth}' />"
                         />
                     </label>
                 </td>
             </tr>
 
             <tr>
-                <th>Creature HP:</th>
+                <th>Chance To Super Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="creatureHp" maxlength="3" size="3"
-                               value="<c:out value='${locations.creatureHp}' />"
+                        <input type="text" name="chanceToSuperDamage" maxlength="3" size="3"
+                               value="<c:out value='${bosses.chanceToSuperDamage}' />"
                         />
                     </label>
                 </td>
             </tr>
-
-            <tr>
-                <th>Creature Damage:</th>
-                <td>
-                    <label>
-                        <input type="text" name="creatureDamage" maxlength="3" size="3"
-                               value="<c:out value='${locations.creatureDamage}' />"
-                        />
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <th>Creature Chance to Super Damage:</th>
-                <td>
-                    <label>
-                        <input type="text" name="creatureChance" maxlength="3" size="3"
-                               value="<c:out value='${locations.creatureChance}' />"
-                        />
-                    </label>
-                </td>
-            </tr>
-
-
-
 
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
+                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="/boss/all">Back</a></button>
                 </td>
             </tr>
         </table>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
             color: white;
             box-shadow: 0 0 20px #eee;
             border-radius: 10px;
-            background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+            background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, rgba(0, 0, 0, 1) 100%);
         }
 
         .bs-example {
@@ -39,6 +40,9 @@
             border: 4px solid red;
         }
 
+        .vl {
+            border-left: 6px solid black;
+        }
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,10 +60,21 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="${pageContext.request.contextPath}/entry" class="nav-item nav-link active">Home</a>
-                <a href="${pageContext.request.contextPath}/info" class="nav-item nav-link">About Game</a>
-
+                <a href="/welcome" class="nav-item nav-link active">Home</a>
+                <a href="/info" class="nav-item nav-link">About Game</a>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                </sec:authorize>
             </div>
+        </div>
+        <div style="margin-right: 50px">
+
+            <sec:authorize access="isAuthenticated()">
+                <h4>
+                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
+                    <a style="color: #ff3030" href="/logout">Logout</a>
+                </h4>
+            </sec:authorize>
         </div>
     </nav>
     <hr class="redLine" style="margin-top:0px">
@@ -69,7 +84,7 @@
 <div th:switch="${locations}">
 
     <div style="text-align: center"><h1>Location Database</h1></div>
-
+    <button style="margin-left: 100px"><a href="/welcome">Back</a></button>
     <div align="center">
         <table class=" table-sm table-striped" border="1" cellpadding="5">
             <tr>
@@ -79,39 +94,43 @@
                 <th>Hero Damage</th>
                 <th>Hero Spell Damage</th>
                 <th>Hero Restore HP</th>
-                <th>Creature HP</th>
+                <th class="vl">Creature HP</th>
                 <th>Creature Damage</th>
                 <th>Creature Chance</th>
             </tr>
+
             <c:forEach var="location" items="${locations}">
-                <tr>
-                    <td>${location.id}</td>
-                    <td>${location.name}</td>
-                    <td>${location.heroHp}</td>
-                    <td>${location.heroDamage}</td>
-                    <td>${location.heroSpellDamage}</td>
-                    <td>${location.heroRestoreHealth}</td>
-                    <td>${location.creatureHp}</td>
-                    <td>${location.creatureDamage}</td
-                    <td>
-                    <td>${location.creatureChance}</td
-                    </td>
-                    <td>
-                    <td><a href="${pageContext.request.contextPath}/location/update/<c:out value='${location.id}'/>">
-                        <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
-                    </a></td>
-                    <td><a href="${pageContext.request.contextPath}/location/delete/<c:out value='${location.id}'/>">
-                        <button class="buttonStyle" style="background-color: darkred"> Delete</button>
-                    </a></td>
+            <sec>
+                <td>${location.id}</td>
+                <td>${location.name}</td>
+                <td>${location.heroHp}</td>
+                <td>${location.heroDamage}</td>
+                <td>${location.heroSpellDamage}</td>
+                <td>${location.heroRestoreHealth}</td>
+                <td class="vl">${location.creatureHp}</td>
+                <td>${location.creatureDamage}</td
+                <td>
+                <td>${location.creatureChance}</td
+
+                <td>
+                    <sec:authorize access="hasRole('ADMIN')">
+                <td><a href="${pageContext.request.contextPath}/location/update/<c:out value='${location.id}'/>">
+                    <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
+                </a></td>
+                <td><a href="${pageContext.request.contextPath}/location/delete/<c:out value='${location.id}'/>">
+                    <button class="buttonStyle" style="background-color: darkred"> Delete</button>
+                </a></td>
+                </sec:authorize>
                 </tr>
-            </c:forEach>
+                </c:forEach>
         </table>
 
 
     </div>
-
-    <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/location/create">Create new Location</a></button>
-
+    <sec:authorize access="hasRole('ADMIN')">
+    <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/location/create">Create
+        new Location</a></button>
+    </sec:authorize>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

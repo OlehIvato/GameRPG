@@ -8,8 +8,6 @@ import spring.service.BossesService;
 
 import java.util.List;
 
-
-
 @Controller
 @RequestMapping("boss/")
 public class BossesController {
@@ -24,12 +22,12 @@ public class BossesController {
     public String findAll(Model model) {
         List<BossesModel> bossesModels = bossesService.findAll();
         model.addAttribute("bosses", bossesModels);
-        return "Boss/BossList";
+        return "Database/Boss/BossList";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Boss/BossUpdate";
+        return "Database/Boss/BossUpdate";
     }
 
     @PostMapping("create")
@@ -42,7 +40,7 @@ public class BossesController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         BossesModel bossesModels = bossesService.findOneById(id);
         model.addAttribute("bosses", bossesModels);
-        return "Boss/BossUpdate";
+        return "Database/Boss/BossUpdate";
     }
 
     @PostMapping("update")
