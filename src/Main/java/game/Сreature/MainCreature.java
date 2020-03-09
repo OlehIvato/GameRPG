@@ -25,7 +25,7 @@ public class MainCreature {
         if (!Game.isBoss) {
             if (Game.isEquip) {
                 Main_All.setName(name);
-                Main_All.setHealthPoint(finalHp + healthPoint);
+                Main_All. setHealthPoint(finalHp + healthPoint);
                 Main_All.setMin_Damage(finalMinDamage + min_Damage);
                 Main_All.setMax_Damage(finalMaxDamage + max_Damage);
                 Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamage);

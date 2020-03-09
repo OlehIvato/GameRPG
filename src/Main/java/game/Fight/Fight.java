@@ -1,6 +1,6 @@
 package game.Fight;
 
-import game.Hero.NewHero;
+import game.sql.HeroDatabase;
 import game.Primary.*;
 import game.Primary.Main_All;
 
@@ -166,7 +166,7 @@ public class Fight extends Main_All implements Text, Levels {
         System.out.println(cases);
         switch (scan.nextInt()) {
             case 1:
-                NewHero.main();
+                HeroDatabase.main();
                 break;
             case 2:
                 System.exit(1);

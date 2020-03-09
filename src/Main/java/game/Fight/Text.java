@@ -12,9 +12,9 @@ public interface Text {
             "\n2. Strike with magic on (Random damage from " + Main_All.getMinSpellDamageHERO() + " to " + Main_All.getMaxSpellDamageHero() + ")" + " health point " +
             "\n3. Get defeat and back to Main Menu";
 
-    String youHaveWonOverThe = " ------------------------------ YOU WON ------------------------------" +
+    String youHaveWonOverThe = "\n ------------------------------ YOU WON ------------------------------" +
             "\n                   You have won over the ";
-    String youWereDefeatedBy = " ------------------------------ YOU LOST ------------------------------ " +
+    String youWereDefeatedBy = "\n ------------------------------ YOU LOST ------------------------------ " +
             "\n                   You were defeated by ";
 
 
