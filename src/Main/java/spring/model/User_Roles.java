@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "t_user_roles")
+@Table(name = "t_user_roles", schema = "minirpggame")
 public class User_Roles {
 
     @Id

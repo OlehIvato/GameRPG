@@ -92,6 +92,7 @@
             <th>Max Spell Damage</th>
             <th>Restore Hp</th>
             <th>Mana</th>
+            <th>Armor type</th>
         </tr>
         <c:forEach var="hero" items="${heroes}">
             <tr>
@@ -103,6 +104,7 @@
                 <td>${hero.maxSpell}</td>
                 <td>${hero.restore}</td>
                 <td>${hero.mana}</td
+                </td>
                 <td>
                     <sec:authorize access="hasRole('ADMIN')">
                 <td><a href="${pageContext.request.contextPath}/hero/update/<c:out value='${hero.id}'/>">
@@ -117,8 +119,8 @@
     </table>
 </div>
 <sec:authorize access="hasRole('ADMIN')">
-<button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/hero/create">Create new
-    Hero</a></button>
+    <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/hero/create">Create new
+        Hero</a></button>
 </sec:authorize>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -133,4 +135,3 @@
 
 
 </body>
-</html>

@@ -1,12 +1,9 @@
 package game.Primary;
 
-import game.Armor.Equipment;
-import game.Armor.Shield;
-import game.Armor.Stick;
-import game.Armor.Weapon;
+import game.sql.EquipmentDatabase;
 import game.Fight.Levels;
-import game.Hero.NewHero;
-import game.Location.CreateLocation;
+import game.sql.HeroDatabase;
+import game.sql.LocationDatabase;
 
 
 import java.util.Scanner;
@@ -27,18 +24,15 @@ public class Game implements Levels {
         switch (scan.nextInt()) {
             case 1: {
                 isEquip = true;
-                Equipment.main();
-                Weapon.main();
-                Stick.main();
-                Shield.main();
-                CreateLocation.main();
+                EquipmentDatabase.equipmentMain();
+                LocationDatabase.main();
                 break;
             }
             case 2:
                 isEquip = false;
                 break;
             case 3:
-                NewHero.main();
+                HeroDatabase.main();
                 break;
         }
         Levels.level_1_1();

@@ -15,9 +15,9 @@ public class AdminController {
 
     @Autowired
     private User_RolesRepository userRolesRepository;
-
     @Autowired
     private UserService userService;
+
 
     @GetMapping("/admin")
     public String userList(Model model) {
@@ -34,16 +34,16 @@ public class AdminController {
     }
 
 
-    @GetMapping("/setRole/{user_id}")
+    @GetMapping("/set_role/{user_id}")
     public String setRole(@PathVariable("user_id") Long user_id, Model model) {
         User_Roles userRoles = userRolesRepository.getOne(user_id);
         model.addAttribute("roles", userRoles);
-        return "setRole";
+        return "set_role";
     }
 
-    @PostMapping("setRole")
+    @PostMapping("/set_role")
     public String setRole(User_Roles userRoles) {
-   userRolesRepository.save(userRoles);
+        userRolesRepository.save(userRoles);
         return "redirect:/admin";
     }
 }

@@ -22,7 +22,6 @@
             margin-bottom: 1em;
         }
 
-
     </style>
 
     <meta charset="utf-8">
@@ -43,7 +42,7 @@
 
 
 <div class="container">
-<form:form class="form-horizontal" method="POST" modelAttribute="userForm" action="/registration">
+<form:form class="form-horizontal" method="POST" modelAttribute="userForm" action="/registration" style="margin: auto;">
         <h2>Registration Form</h2>
         <div class="form-group">
             <label for="username" class="col-sm-3 control-label">Username</label>

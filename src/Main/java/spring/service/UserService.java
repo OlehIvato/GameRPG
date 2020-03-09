@@ -11,6 +11,7 @@ import spring.model.Role;
 import spring.model.User;
 import spring.repository.RoleRepository;
 import spring.repository.UserRepository;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -28,8 +29,7 @@ public class UserService implements UserDetailsService {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+        return new BCryptPasswordEncoder();
     }
 
     @Override

@@ -123,7 +123,7 @@
                 <th>Mana:</th>
                 <td>
                     <label>
-                        <input type="text" name="Mana" maxlength="3" size="3"
+                        <input type="text" name="mana" maxlength="3" size="3"
                                value="<c:out value='${heroes.mana}' />"
                         />
                     </label>
@@ -131,9 +131,26 @@
             </tr>
 
             <tr>
+                <th>Armor Type:</th>
+                <td>
+                    <input type="radio" id="${heroes.type_armor}" name="type_armor" value="cloth">
+                    <label for="${heroes.type_armor}">Cloth</label><br>
+
+                    <input type="radio" id="${heroes.type_armor}" name="type_armor" value="leather">
+                    <label for="${heroes.type_armor}">Leather</label><br>
+
+                    <input type="radio" id="${heroes.type_armor}" name="type_armor" value="plate">
+                    <label for="${heroes.type_armor}">Plate</label><br>
+                </td>
+            </tr>
+
+
+            <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="/hero/all">Back</a></button>
+                    <button class="button" type="submit" style="background-color: crimson"><a style="color: #ffffff"
+                                                                                              href="/hero/all">Back</a>
+                    </button>
                 </td>
             </tr>
         </table>

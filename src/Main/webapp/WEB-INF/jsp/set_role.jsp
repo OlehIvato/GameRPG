@@ -36,7 +36,7 @@
 <hr class="redLine">
 
 <div align="center">
-    <form action="${pageContext.request.contextPath}/setRole/" method="post">
+    <form action="${pageContext.request.contextPath}/set_role/" method="post">
         <table border="1" cellpadding="5">
             <c:if test="${roles != null}">
                 <input type="hidden" name="id" value="<c:out value='${roles.user_id}' />"/>
@@ -44,7 +44,7 @@
 
 
             <tr>
-                <th>User ID: User Name:</th>
+                <th>User ID:</th>
                 <td>
                     <label>
                         <input readonly type="number" name="user_id" maxlength="3" size="3"
@@ -67,7 +67,7 @@
 
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="/admin">Back</a></button>
+                    <button  class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="${pageContext.request.contextPath}/admin">Back</a></button>
                 </td>
             </tr>
         </table>

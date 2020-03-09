@@ -76,7 +76,7 @@
                 <td>${user.address}</td>
                 <td>${user.gender}</td>
                 <td>
-                    <c:forEach items="${user.roles}" var="role">${role.name}; </c:forEach>
+                    <c:forEach items="${user.roles}" var="role">${role.name} </c:forEach>
                 </td>
                 <td>
                     <form action="${pageContext.request.contextPath}/admin" method="post">
@@ -84,7 +84,7 @@
                         <input type="hidden" name="action" value="delete"/>
                         <button style="background-color: darkred" type="submit">Delete</button>
                     </form>
-                    <a href="${pageContext.request.contextPath}/setRole/<c:out value='${user.id}'/>">
+                    <a href="${pageContext.request.contextPath}/set_role/<c:out value='${user.id}'/>">
                         <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                     </a>
 

@@ -1,41 +1,16 @@
 package spring.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import spring.model.User;
-import spring.service.UserService;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class LoginController {
 
-
-    @Autowired
-    UserService userService;
-
-
     @GetMapping("/login")
-    public String getLogin() {
+    public String login(Model model, String error) {
+        if (error != null)
+            model.addAttribute("error", "Your username or password is invalid.");
         return "login";
     }
-
-    @PostMapping("/login")
-    public String login(@RequestParam(value = "error", required = false) String error, @Valid User user, BindingResult bindingResult, Model model) {
-        String errorMessage = null;
-
-        if (error != null) {
-            errorMessage = "Username of Password is Incorrect !!!";
-        }
-        model.addAttribute("errorMessage", errorMessage);
-        return "/login";
-    }
-
-
 }

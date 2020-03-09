@@ -24,12 +24,12 @@ public class MobsController {
     public String findAll(Model model) {
         List<MobsModel> mobsModel = mobsService.findAll();
         model.addAttribute("mobs", mobsModel);
-        return "Database/Mob/MobList";
+        return "Database/Mob/mob_list";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Database/Mob/MobUpdate";
+        return "Database/Mob/mob_update";
     }
 
     @PostMapping("create")
@@ -42,7 +42,7 @@ public class MobsController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         MobsModel mobsModel = mobsService.findOneById(id);
         model.addAttribute("mobs", mobsModel);
-        return "Database/Mob/MobUpdate";
+        return "Database/Mob/mob_update";
     }
 
     @PostMapping("update")

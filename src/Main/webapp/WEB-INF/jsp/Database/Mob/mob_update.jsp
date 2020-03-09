@@ -10,7 +10,7 @@
         }
 
         .button {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
             border: none;
             color: white;
             padding: 15px 32px;

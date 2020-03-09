@@ -22,12 +22,12 @@ public class BossesController {
     public String findAll(Model model) {
         List<BossesModel> bossesModels = bossesService.findAll();
         model.addAttribute("bosses", bossesModels);
-        return "Database/Boss/BossList";
+        return "Database/Boss/boss_list";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Database/Boss/BossUpdate";
+        return "Database/Boss/boss_update";
     }
 
     @PostMapping("create")
@@ -40,7 +40,7 @@ public class BossesController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         BossesModel bossesModels = bossesService.findOneById(id);
         model.addAttribute("bosses", bossesModels);
-        return "Database/Boss/BossUpdate";
+        return "Database/Boss/boss_update";
     }
 
     @PostMapping("update")

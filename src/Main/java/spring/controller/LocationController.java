@@ -22,12 +22,12 @@ public class LocationController {
     public String findAll(Model model) {
         List<LocationModel> locationModel = locationService.findAll();
         model.addAttribute("locations", locationModel);
-        return "Database/Location/LocationList";
+        return "Database/Location/location_list";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Database/Location/LocationUpdate";
+        return "Database/Location/location_update";
     }
 
     @PostMapping("create")
@@ -40,7 +40,7 @@ public class LocationController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         LocationModel locationModel = locationService.findOneById(id);
         model.addAttribute("locations", locationModel);
-        return "Database/Location/LocationUpdate";
+        return "Database/Location/location_update";
     }
 
     @PostMapping("update")

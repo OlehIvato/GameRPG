@@ -1,15 +1,13 @@
 package game.Primary;
 
 public class Main_All {
-//    private static final String userName = "root";
-//    private static final String password = "root";
-//    private static final String url = "jdbc:mysql://localhost:3306/main";
-
-    private static final String userName = "sql7322584";
-    private static final String password = "96J7uIWHsa";
-    private static final String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7322584";
+    private static final String userName = "root";
+    private static final String password = "root";
+    private static final String url = "jdbc:mysql://localhost:3306/minirpggame";
 
 
+    private static String heroArmorType;
+    private static String heroClass;
     protected static String heroName;                 // HERO NAME
     protected static int heroHP;                      // HP of HERO
     protected static int defaultDamage;               // default damage HERO
@@ -46,6 +44,14 @@ public class Main_All {
         return heroName;
     }
 
+    public static String getHeroClass() {
+        return heroClass;
+    }
+
+    public static void setHeroClass(String heroClass) {
+        Main_All.heroClass = heroClass;
+    }
+
     public static void setHeroName(String heroName) {
         Main_All.heroName = heroName;
     }
@@ -62,12 +68,21 @@ public class Main_All {
         return defaultDamage;
     }
 
+
     public static void setDefaultDamage(int defaultDamage) {
         Main_All.defaultDamage = defaultDamage;
     }
 
     public static int getMinSpellDamageHERO() {
         return minSpellDamageHERO;
+    }
+
+    public static String getHeroArmorType() {
+        return heroArmorType;
+    }
+
+    public static void setHeroArmorType(String heroArmorType) {
+        Main_All.heroArmorType = heroArmorType;
     }
 
     public static void setMinSpellDamageHERO(int minSpellDamageHERO) {

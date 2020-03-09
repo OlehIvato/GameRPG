@@ -1,5 +1,6 @@
 package spring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,22 +13,19 @@ import java.util.List;
 @RequestMapping("hero/")
 public class HeroController {
 
-    private final HeroService heroService;
-
-    public HeroController(HeroService heroService) {
-        this.heroService = heroService;
-    }
+    @Autowired
+    private HeroService heroService;
 
     @GetMapping("all")
     public String findAll(Model model) {
         List<HeroModel> heroModels = heroService.findAll();
         model.addAttribute("heroes", heroModels);
-        return "Database/Hero/HeroList";
+        return "Database/Hero/hero_list";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Database/Hero/HeroUpdate";
+        return "Database/Hero/hero_update";
     }
 
     @PostMapping("create")
@@ -40,8 +38,9 @@ public class HeroController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         HeroModel heroModel = heroService.findOneById(id);
         model.addAttribute("heroes", heroModel);
-        return "Database/Hero/HeroUpdate";
+        return "Database/Hero/hero_update";
     }
+
 
     @PostMapping("update")
     public String update(HeroModel heroModel) {
@@ -54,5 +53,11 @@ public class HeroController {
         heroService.delete(id);
         return "redirect:/hero/all";
     }
+
+
+
+
+
 }
+
 

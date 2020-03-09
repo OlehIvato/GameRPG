@@ -1,13 +1,13 @@
 package game.Primary;
 
-import game.Hero.NewHero;
+import game.sql.HeroDatabase;
 
 import java.util.Scanner;
 
 public class NewGame {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void createHero() {
+    static void createHero() {
         System.out.println();
         String create = UserName.getUserName() + " would you like to create new Hero and play game ? \n " +
                 "1. Yes \n " +
@@ -15,7 +15,7 @@ public class NewGame {
         System.out.println(create);
         switch (scanner.nextInt()) {
             case 1: {
-                NewHero.main();
+                HeroDatabase.main();
                 break;
             }
             case 2: {
@@ -33,7 +33,7 @@ public class NewGame {
         System.out.println(cases);
         switch (scanner.nextInt()) {
             case 1: {
-                NewHero.main();
+                HeroDatabase.main();
                 break;
             }
             case 2: {

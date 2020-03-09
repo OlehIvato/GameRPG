@@ -36,13 +36,11 @@
                     <a href="/admin" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
-            </div>
-       <div>
+        </div>
+        <div>
 
 
-
-
-       </div>
+        </div>
         <div style="margin-right: 50px">
             <sec:authorize access="isAuthenticated()">
                 <h4>
@@ -51,6 +49,7 @@
                 </h4>
             </sec:authorize>
         </div>
+
     </nav>
     <hr class="redLine" style="margin-top:0px">
 </div>
@@ -72,6 +71,9 @@
 
         <a style="padding-bottom: 4px;padding-top: 6px;border-bottom-width: 0px;border-top-width: 0px;height: 40px;"
            href="${pageContext.request.contextPath}/boss/all" class="btn btn-primary">Boss</a>
+
+        <a style="padding-bottom: 4px;padding-top: 6px;border-bottom-width: 0px;border-top-width: 0px;height: 40px;"
+           href="${pageContext.request.contextPath}/equipment/all" class="btn btn-primary">Equipment</a>
     </div>
 </div>
 
