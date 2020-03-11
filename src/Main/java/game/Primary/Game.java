@@ -1,18 +1,28 @@
 package game.Primary;
 
 import game.sql.EquipmentDatabase;
-import game.Fight.Levels;
+import game.Fight.Level;
 import game.sql.HeroDatabase;
 import game.sql.LocationDatabase;
 
 
 import java.util.Scanner;
 
-public class Game implements Levels {
+public class Game implements Level {
 
     public static boolean isEquip;         // info about game with equipment, or without
     public static boolean isBoss;          // info about boss or no
 
+    private static int lvl1;
+    private static int lvl2 = 10;
+    private static int lvl3 = 15;
+    private static int lvl4 = 20;
+    private static int lvl5 = 25;
+    private static int lvl6 = 30;
+    private static int lvl7 = 35;
+    private static int lvl8 = 40;
+    private static int lvl9 = 45;
+    private static int lvl10 = 50;
 
     public void createNewHero() {
         Scanner scan = new Scanner(System.in);
@@ -35,24 +45,24 @@ public class Game implements Levels {
                 HeroDatabase.main();
                 break;
         }
-        Levels.level_1_1();
-        Levels.level_1_2();
-        Levels.level_1_3();
 
-        Levels.vs_boss();
+        Level.mob(lvl1, level1, gameFirst);
+        Level.mob(lvl1, level1, gameSecond);
+        Level.mob(lvl1, level1, gameThird);
+        Level.boss(lvl1, fightVsBoss, gameVsBoss);
 
-        Levels.level_2_1();
-        Levels.level_2_2();
-        Levels.level_2_3();
+        Level.mob(lvl2, level2, gameFirst);
+        Level.mob(lvl2, level2, gameSecond);
+        Level.mob(lvl2, level2, gameThird);
+        Level.boss(lvl2, fightVsBoss, gameVsBoss);
 
-        Levels.vs_boss();
+        Level.mob(lvl3, level3, gameFirst);
+        Level.mob(lvl3, level3, gameSecond);
+        Level.mob(lvl3, level3, gameThird);
+        Level.boss(lvl3, fightVsBoss, gameVsBoss);
 
-        Levels.level_3_1();
-        Levels.level_3_2();
-        Levels.level_3_3();
+        Level.boss(lvl3, fightFinalVsBoss, gameVsBoss);
 
-        Levels.final_vs_boss();
-
-        Levels.win();
+        Level.win();
     }
 }

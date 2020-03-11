@@ -1,6 +1,7 @@
 package spring.controller;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class EquipmentController {
         return "Database/Equipment/equipment_list";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("create")
     public String createHeroForm() {
         return "Database/Equipment/equipment_update";
@@ -37,6 +39,7 @@ public class EquipmentController {
         return "redirect:/equipment/all";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
         EquipmentModel equipmentModel = equipmentService.findOneById(id);
@@ -50,6 +53,7 @@ public class EquipmentController {
         return "redirect:/equipment/all";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         equipmentService.delete(id);

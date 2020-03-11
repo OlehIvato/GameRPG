@@ -121,7 +121,7 @@
 </div>
 <sec:authorize access="hasRole('ADMIN')">
     <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/equipment/create">Create new
-        Hero</a></button>
+        Equipment</a></button>
 </sec:authorize>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

@@ -49,7 +49,7 @@ public class HeroDatabase {
             while (resultSet.next()) {
                 String getFormat = "%1$-3s|%2$-16s|%3$-13s|%4$-9s|%5$-12s|%6$-22s|%7$-22s|%8$-16s|%9$-11s|%10$-21s|";
                 String result = String.format(getFormat,
-                       resultSet.getInt("id"),
+                        resultSet.getInt("id"),
                         " Class: " + resultSet.getString("class"),
                         " Name: " + resultSet.getString("name"),
                         " HP: " + resultSet.getInt("hp"),

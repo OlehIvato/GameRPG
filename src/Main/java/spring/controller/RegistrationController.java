@@ -22,22 +22,22 @@ public class RegistrationController {
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
-        return "registration";
+        return "Security/registration";
     }
 
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "Security/registration";
         }
         if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
             model.addAttribute( "passwordError", "Password don't match");
-            return "registration";
+            return "Security/registration";
         }
         if (!userService.saveUser(userForm)) {
             model.addAttribute("usernameError", "Someone already have that username");
-            return "registration";
+            return "Security/registration";
         }
 
         return "redirect:/login";

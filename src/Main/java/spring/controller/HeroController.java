@@ -1,6 +1,7 @@
 package spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("hero/")
+
 public class HeroController {
 
     @Autowired
@@ -23,16 +25,19 @@ public class HeroController {
         return "Database/Hero/hero_list";
     }
 
+
     @GetMapping("create")
     public String createHeroForm() {
         return "Database/Hero/hero_update";
     }
+
 
     @PostMapping("create")
     public String create(HeroModel heroModel) {
         heroService.save(heroModel);
         return "redirect:/hero/all";
     }
+
 
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
@@ -47,6 +52,7 @@ public class HeroController {
         heroService.save(heroModel);
         return "redirect:/hero/all";
     }
+
 
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") Long id) {

@@ -3,7 +3,7 @@ package game.Primary;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Menu{
+public class Menu {
 
     public static void menu() {
         try {

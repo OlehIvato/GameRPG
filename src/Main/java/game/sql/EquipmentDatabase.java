@@ -39,7 +39,6 @@ public class EquipmentDatabase {
     private static String weapon_shield = "SELECT * FROM equipment WHERE type = 'shield'";
 
     public static void equipmentMain() {
-    //    System.out.println("              5                 "+Main_All.getHeroArmorType());
         if (Main_All.getHeroArmorType().equals("cloth")) {
             System.out.println(head);
             show(cloth_head);

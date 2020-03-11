@@ -11,6 +11,6 @@ public class LoginController {
     public String login(Model model, String error) {
         if (error != null)
             model.addAttribute("error", "Your username or password is invalid.");
-        return "login";
+        return "Security/login";
     }
 }

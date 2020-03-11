@@ -7,7 +7,7 @@ import game.Primary.Main_All;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Fight extends Main_All implements Text, Levels {
+public class Fight extends Main_All implements Text, Level {
     private static Scanner scan = new Scanner(System.in);
     private int superDamage = (int) (max_Damage * 1.5);
     private int hero_HP = heroHP;

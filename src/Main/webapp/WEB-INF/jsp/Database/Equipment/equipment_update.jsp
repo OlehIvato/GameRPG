@@ -132,6 +132,10 @@
 
                     <input type="radio" id="${equipment.type}" name="type" value="shield">
                     <label for="${equipment.type}">Shield</label><br>
+
+                    <input type="radio" id="${equipment.type}" name="type" value="amulets">
+                    <label for="${equipment.type}">Amulets</label><br>
+
                 </td>
             </tr>
 

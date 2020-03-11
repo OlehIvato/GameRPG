@@ -27,7 +27,7 @@ public interface Text {
                 "\n He also have " + Main_All.getChanceToSuperDamage() + "% chance on super Damage, Super Damage = " + (int) (Main_All.getMax_Damage() * 1.5);
 
         System.out.println(inf);
-        String info = "\n\n " + Main_All.getHeroName() + ", \n Your HP = " + Main_All.getHeroHP() +
+        String info = "\n\n " + Main_All.getHeroName() + ", Class: " + Main_All.getHeroClass() + "\n Your HP = " + Main_All.getHeroHP() +
                 "\n Your Damage = " + Main_All.getDefaultDamage() +
                 "\n Your Max Spell Damage = " + Main_All.getMaxSpellDamageHero() +
                 "\n Your Min Spell Damage = " + Main_All.getMinSpellDamageHERO() +
@@ -48,7 +48,7 @@ public interface Text {
                 "\n When his Health point will be less than 30, his damage will be as super Damage ";
 
         System.out.println(inf);
-        String info = "\n\n " + Main_All.getHeroName() + ", \n Your HP = " + Main_All.getHeroHP() +
+        String info = "\n\n " + Main_All.getHeroName() + ", Class: " + Main_All.getHeroClass() + "\n Your HP = " + Main_All.getHeroHP() +
                 "\n Your Damage = " + Main_All.getDefaultDamage() +
                 "\n Your Max Spell Damage = " + Main_All.getMaxSpellDamageHero() +
                 "\n Your Min Spell Damage = " + Main_All.getMinSpellDamageHERO() +

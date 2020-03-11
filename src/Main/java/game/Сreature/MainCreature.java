@@ -21,7 +21,7 @@ public class MainCreature {
     private static int finalChance = Main_All.getChanceToSuperDamage();
 
 
-    public void fight() {
+    void fight() {
         if (!Game.isBoss) {
             if (Game.isEquip) {
                 Main_All.setName(name);
@@ -91,14 +91,6 @@ public class MainCreature {
         return min_Damage;
     }
 
-    public int getRestoreHealth() {
-        return restoreHealth;
-    }
-
-    public void setRestoreHealth(int restoreHealth) {
-        this.restoreHealth = restoreHealth;
-    }
-
     public void setMin_Damage(int min_Damage) {
         this.min_Damage = min_Damage;
     }
@@ -111,6 +103,13 @@ public class MainCreature {
         this.max_Damage = max_Damage;
     }
 
+    public int getRestoreHealth() {
+        return restoreHealth;
+    }
+
+    public void setRestoreHealth(int restoreHealth) {
+        this.restoreHealth = restoreHealth;
+    }
 
     public int getChanceToSuperDamage() {
         return chanceToSuperDamage;
