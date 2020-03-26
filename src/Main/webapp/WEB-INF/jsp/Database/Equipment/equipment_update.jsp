@@ -108,63 +108,44 @@
                 </td>
             </tr>
 
-
             <tr>
                 <th>Type:</th>
                 <td>
-                    <input type="radio" id="${equipment.type}" name="type" value="head">
-                    <label for="${equipment.type}">Head</label><br>
-
-                    <input type="radio" id="${equipment.type}" name="type" value="shoulder">
-                    <label for="${equipment.type}">Shoulder</label><br>
-
-                    <input type="radio" id="${equipment.type}" name="type" value="chest">
-                    <label for="${equipment.type}">chest</label><br>
-
-                    <input type="radio" id="${equipment.type}" name="type" value="legs">
-                    <label for="${equipment.type}">Legs</label><br>
-
-                    <input type="radio" id="${equipment.type}" name="type" value="sword">
-                    <label for="${equipment.type}">Sword</label><br>
-
-                    <input type="radio" id="${equipment.type}" name="type" value="wind">
-                    <label for="${equipment.type}">Wind</label><br>
-
-                    <input type="radio" id="${equipment.type}" name="type" value="shield">
-                    <label for="${equipment.type}">Shield</label><br>
-
-                    <input type="radio" id="${equipment.type}" name="type" value="amulets">
-                    <label for="${equipment.type}">Amulets</label><br>
-
+                    <label>
+                        <select size="1" name="types_id">
+                            <option id="${type.types_id}" value='1'>Head</option>
+                            <option id="${type.types_id}" value='2'>Shoulder</option>
+                            <option id="${type.types_id}" value='3'>Chest</option>
+                            <option id="${type.types_id}" value='4'>Legs</option>
+                            <option id="${type.types_id}" value='5'>Wand</option>
+                            <option id="${type.types_id}" value='6'>Sword</option>
+                            <option id="${type.types_id}" value='7'>Shield</option>
+                            <option id="${type.types_id}" value='8'>Amulets</option>
+                        </select>
+                    </label>
                 </td>
             </tr>
-
 
             <tr>
                 <th>Armor Type:</th>
                 <td>
-                <input type="radio" id="${equipment.type_armor}" name="type_armor" value="cloth">
-                <label for="${equipment.type_armor}">Cloth</label><br>
-
-                <input type="radio" id="${equipment.type_armor}" name="type_armor" value="leather">
-                <label for="${equipment.type_armor}">Leather</label><br>
-
-                <input type="radio" id="${equipment.type_armor}" name="type_armor" value="plate">
-                <label for="${equipment.type_armor}">Plate</label><br>
-
+                    <label>
+                        <select size="1" name="armors_id">
+                            <option id="${armors.armors_id}" value='4'>Weapon</option>
+                            <option id="${armors.armors_id}" value='1'>Cloth</option>
+                            <option id="${armors.armors_id}" value='2'>Leather</option>
+                            <option id="${armors.armors_id}" value='3'>Plate</option>
+                        </select>
+                    </label>
                 </td>
             </tr>
-
-
-
-
-
-
 
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="${pageContext.request.contextPath}/equipment/all">Back</a></button>
+                    <button class="button" type="submit" style="background-color: crimson"><a style="color: #ffffff"
+                                                                                              href="${pageContext.request.contextPath}/equipment/all">Back</a>
+                    </button>
                 </td>
             </tr>
         </table>

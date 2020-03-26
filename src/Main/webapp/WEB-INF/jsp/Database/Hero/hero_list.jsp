@@ -1,3 +1,4 @@
+<%@ page import="spring.model.HeroModel" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -39,6 +40,12 @@
 
         hr.redLine {
             border: 4px solid red;
+        }
+         .scale {
+             transition: 0s; /* ??? ?????? */
+         }
+        .scale:hover {
+            transform: scale(4);
         }
 
     </style>
@@ -85,6 +92,7 @@
     <table class=" table-sm table-striped" border="1" cellpadding="5">
         <tr>
             <th>Id</th>
+            <th>Class</th>
             <th>Name</th>
             <th>Health Point</th>
             <th>Damage</th>
@@ -93,10 +101,12 @@
             <th>Restore Hp</th>
             <th>Mana</th>
             <th>Armor type</th>
+            <th>Image</th>
         </tr>
         <c:forEach var="hero" items="${heroes}">
             <tr>
                 <td>${hero.id}</td>
+                <td><c:forEach items="${hero.classes}" var="className">${className.className}</c:forEach>
                 <td>${hero.name}</td>
                 <td>${hero.hp}</td>
                 <td>${hero.damage}</td>
@@ -105,11 +115,16 @@
                 <td>${hero.restore}</td>
                 <td>${hero.mana}</td
                 </td>
+                <td><c:forEach items="${hero.armors}" var="armor">${armor.armorName}</c:forEach>
+                <td><img style="width: 35px" class="scale" alt="Hero image" src="/images/${hero.image}"></td>
                 <td>
                     <sec:authorize access="hasRole('ADMIN')">
                 <td><a href="${pageContext.request.contextPath}/hero/update/<c:out value='${hero.id}'/>">
                     <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                 </a></td>
+
+
+
                 <td><a href="${pageContext.request.contextPath}/hero/delete/<c:out value='${hero.id}'/>">
                     <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                 </a></td>

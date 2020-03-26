@@ -1,11 +1,15 @@
 package spring.controller;
 
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.model.EquipmentModel;
+import spring.model.Equipment_Armors;
+import spring.model.Equipment_Types;
+import spring.repository.Equipment_ArmorsRepository;
+import spring.repository.Equipment_TypesRepository;
 import spring.service.EquipmentService;
 
 import java.util.List;
@@ -14,11 +18,12 @@ import java.util.List;
 @RequestMapping("equipment/")
 public class EquipmentController {
 
-    private final EquipmentService equipmentService;
-
-    public EquipmentController(EquipmentService equipmentService) {
-        this.equipmentService = equipmentService;
-    }
+    @Autowired
+    private EquipmentService equipmentService;
+    @Autowired
+    private Equipment_TypesRepository equipmentTypesRepository;
+    @Autowired
+    private Equipment_ArmorsRepository equipment_armorsRepository;
 
     @GetMapping("all")
     public String findAll(Model model) {
@@ -27,7 +32,6 @@ public class EquipmentController {
         return "Database/Equipment/equipment_list";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("create")
     public String createHeroForm() {
         return "Database/Equipment/equipment_update";
@@ -39,21 +43,25 @@ public class EquipmentController {
         return "redirect:/equipment/all";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
         EquipmentModel equipmentModel = equipmentService.findOneById(id);
         model.addAttribute("equipment", equipmentModel);
+        model.addAttribute("type", new Equipment_Types());
+        model.addAttribute("armors", new Equipment_Armors());
         return "Database/Equipment/equipment_update";
     }
 
     @PostMapping("update")
-    public String update(EquipmentModel equipmentModel) {
+    public String update(EquipmentModel equipmentModel, Equipment_Types equipment_types, Equipment_Armors equipment_armors) {
         equipmentService.save(equipmentModel);
+        equipment_types.setEquipment_id(equipmentModel.getId());
+        equipmentTypesRepository.save(equipment_types);
+        equipment_armors.setEquipment_model_id(equipmentModel.getId());
+        equipment_armorsRepository.save(equipment_armors);
         return "redirect:/equipment/all";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         equipmentService.delete(id);

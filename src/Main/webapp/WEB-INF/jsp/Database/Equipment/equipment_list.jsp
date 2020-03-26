@@ -102,9 +102,8 @@
                 <td>${equip.damage}</td>
                 <td>${equip.spell_damage}</td>
                 <td>${equip.mana}</td>
-                <td>${equip.type}</td>
-                <td>${equip.type_armor}</td
-
+                <td><c:forEach items="${equip.types}" var="type">${type.type}</c:forEach>
+                <td><c:forEach items="${equip.armors}" var="armor">${armor.armorName}</c:forEach>
                 </td>
                 <td>
                     <sec:authorize access="hasRole('ADMIN')">

@@ -37,7 +37,7 @@
 <hr class="redLine">
 
 <div align="center">
-    <form action="${pageContext.request.contextPath}/hero/update/" method="post">
+    <form action="${pageContext.request.contextPath}/hero/update/" method="post" enctype="multipart/form-data">
         <table border="1" cellpadding="5">
             <c:if test="${heroes != null}">
                 <input type="hidden" name="id" value="<c:out value='${heroes.id}' />"/>
@@ -49,6 +49,25 @@
                         <input readonly type="number" name="id" maxlength="3" size="3"
                                value="<c:out value='${heroes.id}' />"
                         />
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Set Class:</th>
+                <td>
+                    <label>
+                        <select size="1" name="class_id">
+                            <option id="${hero_class.class_id}" value='1'>Mage</option>
+                            <option id="${hero_class.class_id}" value='2'>Warrior</option>
+                            <option id="${hero_class.class_id}" value='3'>Druid</option>
+                            <option id="${hero_class.class_id}" value='4'>Rogue</option>
+                            <option id="${hero_class.class_id}" value='5'>Monk</option>
+                            <option id="${hero_class.class_id}" value='6'>Shaman</option>
+                            <option id="${hero_class.class_id}" value='7'>Priest</option>
+                            <option id="${hero_class.class_id}" value='8'>Hunter</option>
+                            <option id="${hero_class.class_id}" value='9'>Paladin</option>
+                        </select>
                     </label>
                 </td>
             </tr>
@@ -131,16 +150,24 @@
             </tr>
 
             <tr>
-                <th>Armor Type:</th>
+                <th>Armor type:</th>
                 <td>
-                    <input type="radio" id="${heroes.type_armor}" name="type_armor" value="cloth">
-                    <label for="${heroes.type_armor}">Cloth</label><br>
+                    <label>
+                        <select size="1" name="armor_id">
+                            <option id="${armors.armor_id}" value='1'>Cloth</option>
+                            <option id="${armors.armor_id}" value='2'>Leather</option>
+                            <option id="${armors.armor_id}" value='3'>Plate</option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
 
-                    <input type="radio" id="${heroes.type_armor}" name="type_armor" value="leather">
-                    <label for="${heroes.type_armor}">Leather</label><br>
-
-                    <input type="radio" id="${heroes.type_armor}" name="type_armor" value="plate">
-                    <label for="${heroes.type_armor}">Plate</label><br>
+            <tr>
+                <th>Hero Image:</th>
+                <td>
+                    <label>
+                        <input name="img" id="img" type="file">
+                    </label>
                 </td>
             </tr>
 
@@ -148,9 +175,8 @@
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" type="submit" style="background-color: crimson"><a style="color: #ffffff"
-                                                                                              href="/hero/all">Back</a>
-                    </button>
+                    <button class="button" type="submit" style="background-color: crimson"><a
+                            style="color: #ffffff" href="/hero/all">Back</a></button>
                 </td>
             </tr>
         </table>

@@ -26,7 +26,6 @@ public class LocationController {
         return "Database/Location/location_list";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("create")
     public String createHeroForm() {
         return "Database/Location/location_update";
@@ -38,7 +37,6 @@ public class LocationController {
         return "redirect:/location/all";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
         LocationModel locationModel = locationService.findOneById(id);
@@ -52,7 +50,6 @@ public class LocationController {
         return "redirect:/location/all";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         locationService.delete(id);

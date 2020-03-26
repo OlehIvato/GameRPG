@@ -27,12 +27,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-              .csrf().disable()
+                .csrf().disable()
                 .authorizeRequests()
 
                 .antMatchers("/registration").not().fullyAuthenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/**/update/**").hasRole("ADMIN")
+                .antMatchers("/**/create/**").hasRole("ADMIN")
+                .antMatchers("/**/delete/**").hasRole("ADMIN")
+                .antMatchers("/**/image/**").hasRole("ADMIN")
                 .antMatchers("/login").permitAll()
+
                 //все інше треба authenticated
                 .anyRequest().authenticated()
                 .and()

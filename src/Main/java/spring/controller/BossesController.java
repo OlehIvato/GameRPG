@@ -26,7 +26,6 @@ public class BossesController {
         return "Database/Boss/boss_list";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("create")
     public String createHeroForm() {
         return "Database/Boss/boss_update";
@@ -38,7 +37,6 @@ public class BossesController {
         return "redirect:/boss/all";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
         BossesModel bossesModels = bossesService.findOneById(id);
@@ -52,7 +50,6 @@ public class BossesController {
         return "redirect:/boss/all";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         bossesService.delete(id);

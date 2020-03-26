@@ -19,7 +19,6 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin")
     public String userList(Model model) {
         model.addAttribute("allUsers", userService.allUsers());

@@ -3,6 +3,7 @@ package spring.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -31,12 +32,11 @@ public class EquipmentModel {
     @Column(name = "mana")
     private int mana;
 
-    @Column(name = "type")
-    private String type;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Type> types;
 
-    @Column(name = "type_armor")
-    private String type_armor;
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Armor> armors;
 
 }
 
