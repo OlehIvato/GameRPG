@@ -21,10 +21,9 @@ public class Menu {
                 default:
                     throw new IllegalArgumentException();
             }
-//        } catch (NullPointerException | InputMismatchException | IllegalArgumentException e) {
-//            System.out.println("Something went wrong\n");
+        } catch (NullPointerException | InputMismatchException | IllegalArgumentException e) {
+            System.out.println("Something went wrong\n");
             menu();
-    } catch (IllegalArgumentException e) {
-            e.printStackTrace();
         }
-    }}
+    }
+}

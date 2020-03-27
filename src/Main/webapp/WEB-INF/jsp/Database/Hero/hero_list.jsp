@@ -123,8 +123,6 @@
                     <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                 </a></td>
 
-
-
                 <td><a href="${pageContext.request.contextPath}/hero/delete/<c:out value='${hero.id}'/>">
                     <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                 </a></td>
