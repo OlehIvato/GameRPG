@@ -120,7 +120,7 @@
                             <option id="${type.types_id}" value='5'>Wand</option>
                             <option id="${type.types_id}" value='6'>Sword</option>
                             <option id="${type.types_id}" value='7'>Shield</option>
-                            <option id="${type.types_id}" value='8'>Amulets</option>
+                            <option id="${type.types_id}" value='8'>Amulet</option>
                         </select>
                     </label>
                 </td>

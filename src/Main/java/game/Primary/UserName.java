@@ -1,4 +1,4 @@
-package game.Primary;
+package game.primary;
 
 import java.util.Scanner;
 
@@ -7,6 +7,10 @@ public class UserName {
 
     public static String getUserName() {
         return userName;
+    }
+
+    public static void setUserName(String userName) {
+        UserName.userName = userName;
     }
 
     public static String getName() {

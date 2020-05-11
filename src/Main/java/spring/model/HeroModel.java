@@ -47,7 +47,7 @@ public class HeroModel {
     private String image;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<ClassType> classes;
+    private Set<Class> classes;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Armor> armors;

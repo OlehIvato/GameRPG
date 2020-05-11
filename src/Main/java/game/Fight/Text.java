@@ -1,6 +1,6 @@
-package game.Fight;
+package game.fight;
 
-import game.Primary.Main_All;
+import game.primary.Main_All;
 
 
 public interface Text {

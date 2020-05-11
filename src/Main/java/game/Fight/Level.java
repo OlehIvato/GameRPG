@@ -1,54 +1,57 @@
-package game.Fight;
+package game.fight;
 
-import game.Primary.NewGame;
-import game.Primary.UserName;
-import game.Сreature.GetRandom;
+import game.primary.GetGame;
 
-public interface Level {
-    String level1 = "Level 1";
-    String level2 = "Level 2";
-    String level3 = "Level 3";
-    String level4 = "Level 4";
-    String level5 = "Level 5";
-    String level6 = "Level 6";
-    String level7 = "Level 7";
-    String level8 = "Level 8";
-    String level9 = "Level 9";
-    String level10 = "Level 10";
-    String fightVsBoss = "FINAL";
-    String fightFinalVsBoss = "FINAL FIGHT";
+import game.primary.UserName;
+import game.creature.GetRandom;
 
-    String gameFirst = "FIRST GAME";
-    String gameSecond = "SECOND GAME";
-    String gameThird = "THIRD GAME";
-    String gameVsBoss = "VS BOSS";
+public class Level {
 
-    static void mob(Integer lvl, String levelDescription, String game) {
-        String cases = "\n\n===========================================================" +
-                " \n===========================" + levelDescription + "=========================" +
-                " \n==================" + " DIFFICULT +" + lvl + " PERCENT " + "===================" +
-                "\n=========================" + game + "========================" +
-                "\n===========================================================";
-        System.out.println(cases);
-        GetRandom.random(lvl);
+    private static int levelCount = 10;
+    private static int[] lvlDifficult = {0, 10, 15, 20, 25, 30, 35, 40, 45, 50};
+    private static String[] gameCount = {"FIRST GAME", "SECOND GAME", "THIRD GAME", "VS BOSS"};
+
+
+    public static void getLevel() {
+        for (int x = 0, y = 1; x <= lvlDifficult.length && y <= levelCount; x++, y++) {
+            for (String z : gameCount) {
+                if (!z.equals("VS BOSS")) {
+                    mob(lvlDifficult[x], y, z);
+                } else
+                    boss(lvlDifficult[x], y, z);
+            }
+        }
+        boss(70, null, "FINAL GAME");
+        win();
     }
 
 
-    static void boss(int lvl, String levelDescription, String game) {
+    private static void mob(int lvlDifficult, int levelNumber, String gameCount) {
         String cases = "\n\n===========================================================" +
-                " \n===========================" + levelDescription + "=========================" +
-                " \n==================" + " DIFFICULT +" + lvl + " PERCENT " + "===================" +
-                "\n=========================" + game + "========================" +
+                " \n========================= Level " + levelNumber + " =========================" +
+                " \n==================" + " DIFFICULT +" + lvlDifficult + " PERCENT " + "===================" +
+                "\n======================== " + gameCount + " =======================" +
                 "\n===========================================================";
         System.out.println(cases);
-        GetRandom.random_Boss(lvl);
+        GetRandom.random(lvlDifficult);
     }
 
-    static void win() {
+
+    private static void boss(int lvlDifficult, Integer levelNumber, String gameCount) {
+        String cases = "\n\n===========================================================" +
+                " \n========================= Level " + levelNumber + " =========================" +
+                " \n==================" + " DIFFICULT +" + lvlDifficult + " PERCENT " + "===================" +
+                "\n======================== " + gameCount + " =======================" +
+                "\n===========================================================";
+        System.out.println(cases);
+        GetRandom.random_Boss(lvlDifficult);
+    }
+
+    private static void win() {
         String win = "\n\n\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
-                "\n" + UserName.getUserName() + " you went through three levels and won    " +
+                "\n" + UserName.getUserName() + " you went through" + levelCount + " levels and won    " +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
         System.out.println(win.toUpperCase());
-        NewGame.backToMain();
+        GetGame.backToMain();
     }
 }

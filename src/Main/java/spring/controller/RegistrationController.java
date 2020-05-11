@@ -11,6 +11,7 @@ import spring.model.User;
 import spring.service.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class RegistrationController {
@@ -22,22 +23,22 @@ public class RegistrationController {
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
-        return "Security/registration";
+        return "security/registration";
     }
 
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "Security/registration";
+            return "security/registration";
         }
         if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
             model.addAttribute( "passwordError", "Password don't match");
-            return "Security/registration";
+            return "security/registration";
         }
-        if (!userService.saveUser(userForm)) {
+        if (!userService.createUser(userForm)) {
             model.addAttribute("usernameError", "Someone already have that username");
-            return "Security/registration";
+            return "security/registration";
         }
 
         return "redirect:/login";

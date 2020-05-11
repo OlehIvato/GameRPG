@@ -29,12 +29,12 @@ public class EquipmentController {
     public String findAll(Model model) {
         List<EquipmentModel> equipmentModels = equipmentService.findAll();
         model.addAttribute("equipment", equipmentModels);
-        return "Database/Equipment/equipment_list";
+        return "database/equipment/equipment_list";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Database/Equipment/equipment_update";
+        return "database/equipment/equipment_update";
     }
 
     @PostMapping("create")
@@ -49,7 +49,7 @@ public class EquipmentController {
         model.addAttribute("equipment", equipmentModel);
         model.addAttribute("type", new Equipment_Types());
         model.addAttribute("armors", new Equipment_Armors());
-        return "Database/Equipment/equipment_update";
+        return "database/equipment/equipment_update";
     }
 
     @PostMapping("update")

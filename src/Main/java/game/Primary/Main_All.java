@@ -1,14 +1,13 @@
-package game.Primary;
+package game.primary;
 
-public class Main_All {
+public class Main_All   {
     private static final String userName = "root";
     private static final String password = "root";
     private static final String url = "jdbc:mysql://localhost:3306/minirpggame";
 
-
-    private static String heroArmorType;
-    private static String heroClass;
-    protected static String heroName;                 // HERO NAME
+    private static String heroArmorType;              // HERO Armor Type
+    private static String heroClass;                  // HERO Class
+    private static String heroName;                   // HERO NAME
     protected static int heroHP;                      // HP of HERO
     protected static int defaultDamage;               // default damage HERO
     protected static int minSpellDamageHERO;          // min spell damage HERO
@@ -24,8 +23,9 @@ public class Main_All {
     protected static int chanceToSuperDamage;         // chance to super damage for MOB AND Boss
 
     protected static final int index = 6;                   // default index to restore Health point
-    protected static final int healCast = 33;               // hum much need mana to healed yourself
-    private static final int defaultPercent = 25;           // default index fight without equipment minus POWER
+    protected static final int healCast = 33;               // how much need mana to heal yourself
+    private static final int defaultPercent = 25;           // default index fight without equipment minus all characteristics
+
 
 
     public static String getUserName() {
@@ -40,8 +40,12 @@ public class Main_All {
         return url;
     }
 
-    public static String getHeroName() {
-        return heroName;
+    public static String getHeroArmorType() {
+        return heroArmorType;
+    }
+
+    public static void setHeroArmorType(String heroArmorType) {
+        Main_All.heroArmorType = heroArmorType;
     }
 
     public static String getHeroClass() {
@@ -50,6 +54,10 @@ public class Main_All {
 
     public static void setHeroClass(String heroClass) {
         Main_All.heroClass = heroClass;
+    }
+
+    public static String getHeroName() {
+        return heroName;
     }
 
     public static void setHeroName(String heroName) {
@@ -68,21 +76,12 @@ public class Main_All {
         return defaultDamage;
     }
 
-
     public static void setDefaultDamage(int defaultDamage) {
         Main_All.defaultDamage = defaultDamage;
     }
 
     public static int getMinSpellDamageHERO() {
         return minSpellDamageHERO;
-    }
-
-    public static String getHeroArmorType() {
-        return heroArmorType;
-    }
-
-    public static void setHeroArmorType(String heroArmorType) {
-        Main_All.heroArmorType = heroArmorType;
     }
 
     public static void setMinSpellDamageHERO(int minSpellDamageHERO) {
@@ -172,4 +171,5 @@ public class Main_All {
     public static int getDefaultPercent() {
         return defaultPercent;
     }
+
 }

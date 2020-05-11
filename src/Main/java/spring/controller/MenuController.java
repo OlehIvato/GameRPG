@@ -1,6 +1,6 @@
 package spring.controller;
 
-import game.Primary.Menu;
+import game.primary.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

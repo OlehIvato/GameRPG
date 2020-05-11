@@ -17,7 +17,7 @@ import java.util.UUID;
 public class HeroService {
 
 
-    @Value("D:/image/")
+    @Value("D:/")
     private String path;
 
 

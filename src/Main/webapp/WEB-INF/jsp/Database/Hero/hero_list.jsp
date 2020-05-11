@@ -68,7 +68,7 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/users_list" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
         </div>
@@ -117,7 +117,6 @@
                 </td>
                 <td><c:forEach items="${hero.armors}" var="armor">${armor.armorName}</c:forEach>
                 <td><img style="width: 35px" class="scale" alt="Hero image" src="/images/${hero.image}"></td>
-                <td>
                     <sec:authorize access="hasRole('ADMIN')">
                 <td><a href="${pageContext.request.contextPath}/hero/update/<c:out value='${hero.id}'/>">
                     <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>

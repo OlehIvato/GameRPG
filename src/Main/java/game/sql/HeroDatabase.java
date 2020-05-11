@@ -1,7 +1,7 @@
 package game.sql;
 
-import game.Primary.Game;
-import game.Primary.Main_All;
+import game.primary.Game;
+import game.primary.Main_All;
 
 
 import java.sql.*;

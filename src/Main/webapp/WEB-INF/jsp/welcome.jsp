@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
 <body>
 <div class="bs-example">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">RPG Mini Game</a>
+        <a href="#" class="navbar-brand">L O G O</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,23 +34,21 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/users_list" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
         </div>
-        <div>
 
+        <div class="navbar-nav" style="align-content: end">
+            <a class="nav-item nav-link"
+               href="${pageContext.request.contextPath}/account/user/<c:out value='${user.id}'/>">Profile</a>
 
-        </div>
-        <div style="margin-right: 50px">
+            <a class="nav-item nav-link active" style="color: gold">${user.username}</a>
             <sec:authorize access="isAuthenticated()">
-                <h4>
-                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
-                    <a style="color: #ff3030" href="/logout">Logout</a>
-                </h4>
+                <a class="nav-item nav-link" style="color: #ff3030"
+                   href="${pageContext.request.contextPath}/logout">Log out</a>
             </sec:authorize>
         </div>
-
     </nav>
     <hr class="redLine" style="margin-top:0px">
 </div>
@@ -77,6 +76,23 @@
     </div>
 </div>
 
+
+<div class="container">
+    <p>
+    <h2>New Game</h2>
+    <div class="btn-group">
+        <a style=" font-size: 30px"
+           href="${pageContext.request.contextPath}/game/new-game" class="btn btn-primary">Play</a>
+    </div>
+</div>
+
+<div class="container">
+    <p>
+    <div class="btn-group">
+        <a style=" font-size: 10px"
+           href="${pageContext.request.contextPath}/calculator" class="btn btn-primary">Calculator</a>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

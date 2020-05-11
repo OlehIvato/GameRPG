@@ -4,8 +4,11 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import java.util.Collection;
 import java.util.Set;
 
@@ -31,21 +34,16 @@ public class User implements UserDetails {
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Please provide a valid email address")
     private String email;
 
-    @Pattern(regexp = "^\\(?(\\d{3})\\)?[- ]?(\\d{2})[- ]?(\\d{3})[- ]?(\\d{2})[- ]?(\\d{2})$", message = "Format XXX XXX XX XX XX")
-    private String phone;
-
-    @NotEmpty(message = "Address is required")
-    private String address;
-
-    @NotEmpty(message = "Gender is required")
-    private String gender;
-
 
     @Transient
     private String passwordConfirm;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Profile> profile;
+
 
     public User() {
     }

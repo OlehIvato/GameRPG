@@ -1,4 +1,4 @@
-package game.Primary;
+package game.primary;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class Menu {
             switch (scan.nextInt()) {
                 case 1:
                     UserName.getName();
-                    NewGame.createHero();
+                    GetGame.getOptions();
                     break;
                 case 2:
                     System.err.println("Exit");

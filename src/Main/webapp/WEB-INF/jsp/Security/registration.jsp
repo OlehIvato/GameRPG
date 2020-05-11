@@ -84,34 +84,6 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">Phone Number</label>
-        <div class="col-sm-9">
-            <form:input type="tel" path="phone" placeholder="Phone"></form:input>
-            <form:errors path="phone" cssClass="error"/>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">Address</label>
-        <div class="col-sm-9">
-            <form:input type="text" path="address" placeholder="Address"></form:input>
-            <form:errors path="address" cssClass="error"/>
-        </div>
-    </div>
-
-
-
-
-        <div class="form-group">
-            <label class="control-label col-sm-3">Gender</label>
-            <div class="col-sm-6">
-                <form:radiobutton path="gender" value="Male" label="Male"/>
-                <form:radiobutton path="gender" value="Female" label="Female"/>
-                <form:errors path="gender" cssClass="error"/>
-            </div>
-        </div>
-
         <%--        <div class="form-group">--%>
         <%--            <div class="col-sm-9 col-sm-offset-3">--%>
         <%--                <div class="checkbox">--%>

@@ -1,10 +1,3 @@
-<%@ page import="spring.model.HeroModel" %>
-<%@ page import="spring.model.User" %>
-<%@ page import="spring.service.UserService" %>
-<%@ page import="java.util.Scanner" %>
-<%@ page import="game.Primary.Game" %>
-<%@ page import="game.Primary.Main_All" %>
-<%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -44,7 +37,7 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/users_list" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
         </div>
@@ -67,11 +60,49 @@
 <div style="text-align: center;"><h1 id="main">${pageContext.request.userPrincipal.name} select your Hero</h1></div>
 
 
+<button style="margin-left: 100px"><a href="/welcome">Back</a></button>
+<div align="center">
+    <table class=" table-sm table-striped" border="1" cellpadding="5">
+        <tr>
+            <th>Id</th>
+            <th>Class</th>
+            <th>Name</th>
+            <th>Health Point</th>
+            <th>Damage</th>
+            <th>Min Spell Damage</th>
+            <th>Max Spell Damage</th>
+            <th>Restore Hp</th>
+            <th>Mana</th>
+            <th>Armor type</th>
+            <th>Image</th>
+        </tr>
+
+        <c:forEach var="hero" items="${heroes}">
+        <tr>
+            <td>${hero.id}</td>
+            <td><c:forEach items="${hero.classes}" var="className">${className.className}</c:forEach>
+            <td>${hero.name}</td>
+            <td>${hero.hp}</td>
+            <td>${hero.damage}</td>
+            <td>${hero.minSpell}</td>
+            <td>${hero.maxSpell}</td>
+            <td>${hero.restore}</td>
+            <td>${hero.mana}</td
+            </td>
+            <td><c:forEach items="${hero.armors}" var="armor">${armor.armorName}</c:forEach>
+            <td><img style="width: 35px" class="scale" alt="Hero image" src="/images/${hero.image}"></td>
+
+            <td><a href="${pageContext.request.contextPath}/game/equipment-select/<c:out value='${hero.id}'/>">
+                <button type="submit"  value="Save" class="buttonStyle" style="background-color: green"> Choose</button>
+            </a>
+            </td>
+        </tr>
+</div>
+</c:forEach>
 
 
-
-
-
+</table>
+</div>
 
 
 <script crossorigin="anonymous"

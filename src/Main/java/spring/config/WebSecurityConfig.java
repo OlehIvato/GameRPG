@@ -27,25 +27,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
+                .csrf().disable() // це якогось роду захист
 
-                .antMatchers("/registration").not().fullyAuthenticated()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/**/update/**").hasRole("ADMIN")
-                .antMatchers("/**/create/**").hasRole("ADMIN")
-                .antMatchers("/**/delete/**").hasRole("ADMIN")
-                .antMatchers("/**/image/**").hasRole("ADMIN")
+                .authorizeRequests()
+                .antMatchers("/registration").not().fullyAuthenticated()   // дозвіл тільки коли не авторизований
+
+                .antMatchers("/admin/set_role/1", "/admin/deleteUser/1", "/admin/all_users_information/1").denyAll()   // це заборонити зміну ролі адміну і видаляти
+                .antMatchers("/admin/**",
+                        "/**/update/**",
+                        "/**/create/**",
+                        "/**/delete/**",
+                        "/**/image/**").hasRole("ADMIN")                              // всі перечислені операції тільки для адміна
+
+
                 .antMatchers("/login").permitAll()
 
                 //все інше треба authenticated
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
-                .defaultSuccessUrl("/welcome",true).permitAll()
-
+                .defaultSuccessUrl("/welcome", true).permitAll()
                 .and()
-
                 .logout().permitAll().logoutSuccessUrl("/login");
     }
 

@@ -1,10 +1,9 @@
-package game.Сreature;
+package game.creature;
 
-import game.Primary.Game;
-import game.Primary.Main_All;
+import game.primary.Game;
+import game.primary.Main_All;
 
 import java.sql.*;
-import java.util.Random;
 
 public class GetRandom {
     private static Connection connection;
@@ -27,7 +26,7 @@ public class GetRandom {
         return value;
     }
 
-    public static void random(int lvl) {
+    public static void random(int lvlDifficult) {
         Game.isBoss = false;
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
@@ -36,10 +35,10 @@ public class GetRandom {
             while (resultSet.next()) {
                 mainCreature.setId(resultSet.getLong("id"));
                 mainCreature.setName(resultSet.getString("name"));
-                mainCreature.setHealthPoint(levelChange(resultSet.getInt("hp"), lvl));
-                mainCreature.setMin_Damage(levelChange(resultSet.getInt("minDamage"), lvl));
-                mainCreature.setMax_Damage(levelChange(resultSet.getInt("maxDamage"), lvl));
-                mainCreature.setChanceToSuperDamage(levelChange(resultSet.getInt("chanceToSuperDamage"), lvl));
+                mainCreature.setHealthPoint(levelChange(resultSet.getInt("hp"), lvlDifficult));
+                mainCreature.setMin_Damage(levelChange(resultSet.getInt("minDamage"), lvlDifficult));
+                mainCreature.setMax_Damage(levelChange(resultSet.getInt("maxDamage"), lvlDifficult));
+                mainCreature.setChanceToSuperDamage(levelChange(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
             }
             mainCreature.fight();
         } catch (SQLException e) {
@@ -47,7 +46,7 @@ public class GetRandom {
         }
     }
 
-    public static void random_Boss(int lvl) {
+    public static void random_Boss(int lvlDifficult) {
         Game.isBoss = true;
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
@@ -56,11 +55,11 @@ public class GetRandom {
             while (resultSet.next()) {
                 mainCreature.setId(resultSet.getLong("id"));
                 mainCreature.setName(resultSet.getString("name"));
-                mainCreature.setHealthPoint(levelChange(resultSet.getInt("hp"), lvl));
-                mainCreature.setMin_Damage(levelChange(resultSet.getInt("minDamage"), lvl));
-                mainCreature.setMax_Damage(levelChange(resultSet.getInt("maxDamage"), lvl));
-                mainCreature.setRestoreHealth(levelChange(resultSet.getInt("restoreHealth"), lvl));
-                mainCreature.setChanceToSuperDamage(levelChange(resultSet.getInt("chanceToSuperDamage"), lvl));
+                mainCreature.setHealthPoint(levelChange(resultSet.getInt("hp"), lvlDifficult));
+                mainCreature.setMin_Damage(levelChange(resultSet.getInt("minDamage"), lvlDifficult));
+                mainCreature.setMax_Damage(levelChange(resultSet.getInt("maxDamage"), lvlDifficult));
+                mainCreature.setRestoreHealth(levelChange(resultSet.getInt("restoreHealth"), lvlDifficult));
+                mainCreature.setChanceToSuperDamage(levelChange(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
             }
             mainCreature.fight();
         } catch (SQLException e) {

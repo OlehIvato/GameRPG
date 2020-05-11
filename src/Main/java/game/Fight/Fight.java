@@ -1,13 +1,13 @@
-package game.Fight;
+package game.fight;
 
 import game.sql.HeroDatabase;
-import game.Primary.*;
-import game.Primary.Main_All;
+import game.primary.*;
+import game.primary.Main_All;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Fight extends Main_All implements Text, Level {
+public class Fight extends Main_All implements Text {
     private static Scanner scan = new Scanner(System.in);
     private int superDamage = (int) (max_Damage * 1.5);
     private int hero_HP = heroHP;
@@ -116,7 +116,7 @@ public class Fight extends Main_All implements Text, Level {
         return (int) ((Math.random() * range) + min);
     }
 
-    public int random() {
+    private int random() {
         int result = 0;
         Random random = new Random();
         int num = random.nextInt(100);
@@ -159,7 +159,7 @@ public class Fight extends Main_All implements Text, Level {
         }
     }
 
-    public static void again() {
+    private static void again() {
         String cases = "\nSelect option :" +
                 "\n1. Create new Hero and play Again" +
                 "\n2 Exit ";

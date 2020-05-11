@@ -61,7 +61,7 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/users_list" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
         </div>
@@ -92,7 +92,6 @@
             <th>Mana</th>
             <th>Type</th>
             <th>Armor Type</th>
-            <th></th>
         </tr>
         <c:forEach var="equip" items="${equipment}">
             <tr>

@@ -1,6 +1,5 @@
 package spring.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +22,12 @@ public class BossesController {
     public String findAll(Model model) {
         List<BossesModel> bossesModels = bossesService.findAll();
         model.addAttribute("bosses", bossesModels);
-        return "Database/Boss/boss_list";
+        return "database/boss/boss_list";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Database/Boss/boss_update";
+        return "database/boss/boss_update";
     }
 
     @PostMapping("create")
@@ -41,7 +40,7 @@ public class BossesController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         BossesModel bossesModels = bossesService.findOneById(id);
         model.addAttribute("bosses", bossesModels);
-        return "Database/Boss/boss_update";
+        return "database/boss/boss_update";
     }
 
     @PostMapping("update")

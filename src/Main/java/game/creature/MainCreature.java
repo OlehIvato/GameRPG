@@ -1,8 +1,8 @@
-package game.Сreature;
+package game.creature;
 
-import game.Fight.Fight;
-import game.Primary.Game;
-import game.Primary.Main_All;
+import game.fight.Fight;
+import game.primary.Game;
+import game.primary.Main_All;
 
 
 public class MainCreature {

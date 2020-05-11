@@ -29,12 +29,12 @@ public class HeroController {
     public String findAll(Model model) {
         List<HeroModel> heroModels = heroService.findAll();
         model.addAttribute("heroes", heroModels);
-        return "Database/Hero/hero_list";
+        return "database/hero/hero_list";
     }
 
     @GetMapping("create")
     public String createHeroForm() {
-        return "Database/Hero/hero_update";
+        return "database/hero/hero_update";
     }
 
     @PostMapping("create")
@@ -49,7 +49,7 @@ public class HeroController {
         model.addAttribute("heroes", heroModel);
         model.addAttribute("hero_class", new Hero_Classes());
         model.addAttribute("armors", new Hero_Armors());
-        return "Database/Hero/hero_update";
+        return "database/hero/hero_update";
     }
 
     @PostMapping("update")

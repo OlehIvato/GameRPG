@@ -1,7 +1,7 @@
 package game.sql;
 
 
-import game.Primary.Main_All;
+import game.primary.Main_All;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -19,8 +19,7 @@ public class EquipmentDatabase {
         String wandSelect = "Select Wand\n";
         String swordSelect = "Select Sword\n";
         String shieldSelect = "Select Shield\n";
-        String amuletsSelect = "Select Amulets\n";
-
+        String amuletsSelect = "Select Amulet\n";
 
         String type_Head = "Head";
         String type_Shoulder = "Shoulder";
@@ -29,7 +28,7 @@ public class EquipmentDatabase {
         String type_Wand = "Wand";
         String type_Sword = "Sword";
         String type_Shield = "Shield";
-        String type_Amulets = "Amulets";
+        String type_Amulets = "Amulet";
 
 
         String armor_Cloth = "Cloth";
@@ -89,14 +88,14 @@ public class EquipmentDatabase {
             System.out.println(shieldSelect);
             show(armor_Weapon, type_Shield);
         }
-        if (Main_All.getHeroClass().equals("Mage") || Main_All.getHeroClass().equals("Druid") || Main_All.getHeroClass().equals("Priest") && Main_All.getMana() < 115) {
+        if (Main_All.getHeroClass().equals("Mage") || Main_All.getHeroClass().equals("Druid") || Main_All.getHeroClass().equals("Priest") && Main_All.getMana() < 110) {
             System.out.println(amuletsSelect);
             show(armor_Weapon, type_Amulets);
         }
 
     }
 
-    private static void show(String getArmor, String getType) {
+    public static void show(String getArmor, String getType) {
         try {
             connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
             Statement statementMain = connection.createStatement();
