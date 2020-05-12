@@ -6,7 +6,6 @@ import spring.model.MobsModel;
 import spring.repository.MobsRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MobsService {

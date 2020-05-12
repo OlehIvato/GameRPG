@@ -3,11 +3,10 @@ package spring.service;
 
 import org.springframework.stereotype.Service;
 import spring.model.LocationModel;
-import spring.repository.HeroRepository;
 import spring.repository.LocationRepository;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class LocationService {

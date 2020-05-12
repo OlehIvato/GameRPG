@@ -2,7 +2,6 @@ package spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -75,6 +74,17 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+    public boolean editPassword(User user) {
+        if (!bCryptPasswordEncoder.matches(user.getCurrentPassword(), user.getPassword())
+                ||
+                !user.getNewPassword().equals(user.getPasswordConfirm())) {
+            return false;
+        }
+        user.setPassword(bCryptPasswordEncoder.encode(user.getNewPassword()));
+        userRepository.save(user);
+        return true;
+    }
+
     public boolean editUsername(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if (userFromDB != null) {
@@ -85,15 +95,6 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean editEmail(User user) {
-        userRepository.save(user);
-        return true;
-    }
-
-    public boolean editPassword(User user) {
-        if (!bCryptPasswordEncoder.matches(user.getCurrentPassword(), user.getPassword()) || !user.getNewPassword().equals(user.getPasswordConfirm())) {
-            return false;
-        }
-        user.setPassword(bCryptPasswordEncoder.encode(user.getNewPassword()));
         userRepository.save(user);
         return true;
     }

@@ -1,13 +1,8 @@
 package spring.service;
 
-import game.sql.EquipmentDatabase;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.model.EquipmentModel;
-import spring.model.HeroModel;
 import spring.repository.EquipmentRepository;
-import spring.repository.HeroRepository;
-
 import java.util.List;
 
 @Service

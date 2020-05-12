@@ -47,7 +47,7 @@ public class AccountController {
     }
 
     @PostMapping("edit-info")
-    public String saveInformationInfo(Profile profile,Model model, BindingResult bindingResult ,@RequestBody @Valid User user, User_Roles user_roles, User_Profile user_profile) {
+    public String saveInformationInfo(Profile profile, Model model, BindingResult bindingResult, User user, User_Roles user_roles, User_Profile user_profile) {
         if (bindingResult.hasErrors()) {
             return "account/edit-info";
         }

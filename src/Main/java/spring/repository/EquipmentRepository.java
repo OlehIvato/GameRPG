@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface EquipmentRepository extends JpaRepository<EquipmentModel, Long> {
-
     List<EquipmentModel> findAllByName(String name);
-
 }

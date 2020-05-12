@@ -1,7 +1,6 @@
 package spring.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Data
@@ -10,8 +9,6 @@ import javax.persistence.*;
 public class User_Roles {
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "user_id")
     private Long user_id;
 

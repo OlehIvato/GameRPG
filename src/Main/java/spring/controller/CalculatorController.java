@@ -10,7 +10,7 @@ import spring.model.CalculatorModel;
 import spring.service.CalculatorService;
 
 @Controller
-public class CalculatorController {
+public class  CalculatorController {
 
     private CalculatorModel calculatorModel = new CalculatorModel();
 

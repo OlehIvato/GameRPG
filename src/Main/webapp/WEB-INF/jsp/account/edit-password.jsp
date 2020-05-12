@@ -100,19 +100,18 @@
 
         <label ><strong> Current password: </strong>
             <input style="margin-left: 5px" type="text" name="currentPassword" value="<c:out value='${user.currentPassword}'/>"/>
-        </label>
+        </label><br><br>
 
         <label ><strong> New password: </strong>
             <input style="margin-left: 5px" type="text" name="newPassword"
                    value="<c:out value='${user.newPassword}'/>"/>
-        </label>
+        </label><br>
 
         <label ><strong> Confirm password: </strong>
             <input style="margin-left: 5px" type="text" name="passwordConfirm"
                    value="<c:out value='${user.passwordConfirm}'/>"/>
-                ${passwordError}
+            ${passwordError}
         </label>
-
         <label hidden><strong> Email: </strong>
             <input style="margin-left: 5px" type="text" name="email" placeholder="Email Address..."
                    value="<c:out value='${user.email}'/>"/>
