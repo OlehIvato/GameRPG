@@ -2,7 +2,7 @@ package spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +13,7 @@ import spring.model.Role;
 import spring.model.User;
 import spring.model.User_Profile;
 import spring.repository.*;
+
 
 import java.util.Collections;
 import java.util.List;
@@ -40,18 +41,17 @@ public class UserService implements UserDetailsService {
         return new BCryptPasswordEncoder();
     }
 
+    public List<User> allUsers() {
+        return userRepository.findAll();
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User not Found!!!");
+            throw new UsernameNotFoundException("User not found!!!");
         }
         return user;
-    }
-
-
-    public List<User> allUsers() {
-        return userRepository.findAll();
     }
 
     public boolean createUser(User user) {
@@ -75,26 +75,37 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public User updateUser(User user) {
-        return userRepository.save(user);
-     }
+    public boolean editUsername(User user) {
+        User userFromDB = userRepository.findByUsername(user.getUsername());
+        if (userFromDB != null) {
+            return false;
+        }
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean editEmail(User user) {
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean editPassword(User user) {
+        if (!bCryptPasswordEncoder.matches(user.getCurrentPassword(), user.getPassword()) || !user.getNewPassword().equals(user.getPasswordConfirm())) {
+            return false;
+        }
+        user.setPassword(bCryptPasswordEncoder.encode(user.getNewPassword()));
+        userRepository.save(user);
+        return true;
+    }
+
 
     public void deleteUser(Long userId) {
 
         userRepository.deleteById(userId);
     }
 
-
     public User getOneById(Long id) {
         return userRepository.getOneById(id);
-    }
-
-    public User findByName(String userName) {
-        return userRepository.findByUsername(userName);
-    }
-
-    public User saveUserInfo_Id(User user) {
-        return userRepository.save(user);
     }
 
 }

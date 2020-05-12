@@ -36,6 +36,10 @@ public class User implements UserDetails {
 
 
     @Transient
+    private String currentPassword;
+    @Transient
+    private String newPassword;
+    @Transient
     private String passwordConfirm;
 
     @ManyToMany(fetch = FetchType.EAGER)

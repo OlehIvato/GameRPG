@@ -1,5 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -75,7 +76,8 @@
 
 <div style="margin-left:80px">
     <h1>Edit profile</h1><br>
-    <form action="${pageContext.request.contextPath}/account/editsecurity/" method="post">
+    <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/account/edit-password/">
+
 
         <c:if test="${user != null}">
             <input type="hidden" name="id" value="<c:out value='${user.id}' />"/>
@@ -87,19 +89,31 @@
                    value="<c:out value='${user.id}'/>"/>
         </label>
 
-        <label><strong> Username: </strong>
+        <label hidden><strong> Username: </strong>
             <input style="margin-left: 5px" type="text" name="username" placeholder="Username..."
                    value="<c:out value='${user.username}'/>"/>
-        </label><br>
-
-
-        <label hidden><strong> Password: </strong>
-            <input style="margin-left: 5px" type="text" name="password" placeholder="Password..."
-                   value="<c:out value='${user.password}'/>"/>
         </label>
 
+        <label hidden><strong>  password: </strong>
+            <input style="margin-left: 5px" type="text" name="password" value="<c:out value='${user.password}'/>"/>
+        </label>
 
-        <label><strong> Email: </strong>
+        <label ><strong> Current password: </strong>
+            <input style="margin-left: 5px" type="text" name="currentPassword" value="<c:out value='${user.currentPassword}'/>"/>
+        </label>
+
+        <label ><strong> New password: </strong>
+            <input style="margin-left: 5px" type="text" name="newPassword"
+                   value="<c:out value='${user.newPassword}'/>"/>
+        </label>
+
+        <label ><strong> Confirm password: </strong>
+            <input style="margin-left: 5px" type="text" name="passwordConfirm"
+                   value="<c:out value='${user.passwordConfirm}'/>"/>
+                ${passwordError}
+        </label>
+
+        <label hidden><strong> Email: </strong>
             <input style="margin-left: 5px" type="text" name="email" placeholder="Email Address..."
                    value="<c:out value='${user.email}'/>"/>
         </label><br>

@@ -12,10 +12,12 @@
         hr.redLine {
             border: 4px solid red;
         }
+
         textarea {
             font-size: .8rem;
             letter-spacing: 1px;
         }
+
         textarea {
             padding: 10px;
             line-height: 1.5;
@@ -23,6 +25,7 @@
             border: 1px solid #ccc;
             box-shadow: 1px 1px 1px #999;
         }
+
         label {
             display: block;
             margin-bottom: 10px;
@@ -81,12 +84,12 @@
 
         <label hidden><strong> ID: </strong>
             <input style="margin-left: 5px; border: 0;" type="text" name="id"
-                    value="<c:out value='${profile.id}'/>"/>
+                   value="<c:out value='${profile.id}'/>"/>
         </label>
 
 
         <label><strong> Name: </strong>
-            <input  style="margin-left: 5px" type="text" name="name" placeholder="Your name..."
+            <input style="margin-left: 5px" type="text" name="name" placeholder="Your name..."
                    value="<c:out value='${profile.name}'/>"/>
         </label><br>
 
@@ -96,6 +99,12 @@
                    value="<c:out value='${profile.surname}'/>"/>
         </label><br>
 
+        <label><strong> Email: </strong>
+            <input style="margin-left: 5px" type="email" name="email" placeholder="Email Address..."
+                   value="<c:out value='${user.email}'/>"/>
+    ${emailError}
+
+        </label><br>
 
         <label><strong> Birthday: </strong>
             <input style="margin-left: 5px" name="birthday" type="date"
@@ -104,9 +113,9 @@
 
 
         <label><strong> Gender: </strong>
-                <input type="radio" name="gender" value="Male">
+            <input type="radio" name="gender" value="Male">
             <label>Male</label>
-                <input type="radio" name="gender" value="Female">
+            <input type="radio" name="gender" value="Female">
             <label>Female</label>
         </label><br>
 
@@ -386,9 +395,40 @@
         </label><br>
 
 
+        <label hidden><strong> id: </strong>
+            <input style="margin-left: 5px" type="text" name="id"
+                   value="<c:out value='${user.id}'/>"/>
+        </label>
+        <label hidden><strong> username: </strong>
+            <input style="margin-left: 5px" type="text" name="username"
+                   value="<c:out value='${user.username}'/>"/>
+        </label>
+        <label hidden><strong> passs: </strong>
+            <input style="margin-left: 5px" type="text" name="password"
+                   value="<c:out value='${user.password}'/>"/>
+        </label>
+        <label hidden><strong> user_roles.user_id: </strong>
+            <input style="margin-left: 5px" type="text" name="user_id"
+                   value="<c:out value='${user_roles.user_id}'/>"/>
+        </label>
+        <label hidden><strong> user_roles.roles_id: </strong>
+            <input style="margin-left: 5px" type="text" name="roles_id"
+                   value="<c:out value='${user_roles.roles_id}'/>"/>
+        </label>
+        <label hidden><strong> user_profile.user_id </strong>
+            <input style="margin-left: 5px" type="text" name="user_id"
+                   value="<c:out value='${user_profile.user_id}'/>"/>
+        </label>
+        <label hidden><strong> user_profile.profile_id </strong>
+            <input style="margin-left: 5px" type="text" name="profile_id"
+                   value="<c:out value='${user_profile.profile_id}'/>"/>
+        </label>
+
+
         <div class="btn-group">
             <button class="btn btn-primary" type="submit" value="Save">Save</button>
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/account/user/<c:out value='${profile.id}'/>">Back</a>
+            <a class="btn btn-primary"
+               href="${pageContext.request.contextPath}/account/user/<c:out value='${profile.id}'/>">Back</a>
         </div>
 
     </form>
