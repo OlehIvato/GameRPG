@@ -43,21 +43,16 @@
                 <input type="hidden" name="id" value="<c:out value='${bosses.id}' />"/>
             </c:if>
             <tr>
-                <th>ID:</th>
-                <td>
-                    <label>
-                        <input readonly type="number" name="id" maxlength="3" size="3"
-                               value="<c:out value='${bosses.id}' />"
-                        />
-                    </label>
-                </td>
+                <label>
+                    <input hidden readonly type="number" name="id" value="<c:out value='${bosses.id}' />"/>
+                </label>
             </tr>
 
             <tr>
                 <th>Name:</th>
                 <td>
                     <label>
-                        <input type="text" name="name" maxlength="30" size="15"
+                        <input required type="text" name="name" maxlength="30" size="15"
                                value="<c:out value='${bosses.name}' />"
                         />
                     </label>
@@ -68,7 +63,7 @@
                 <th>Health Point:</th>
                 <td>
                     <label>
-                        <input type="text" name="hp" maxlength="3" size="3"
+                        <input required type="text" name="hp" maxlength="3" size="3"
                                value="<c:out value='${bosses.hp}' />"
                         />
                     </label>
@@ -79,7 +74,7 @@
                 <th>Min Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="minDamage" maxlength="3" size="3"
+                        <input required type="text" name="minDamage" maxlength="3" size="3"
                                value="<c:out value='${bosses.minDamage}' />"
                         />
                     </label>
@@ -90,7 +85,7 @@
                 <th>Max Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="maxDamage" maxlength="3" size="3"
+                        <input required type="text" name="maxDamage" maxlength="3" size="3"
                                value="<c:out value='${bosses.maxDamage}' />"
                         />
                     </label>
@@ -101,7 +96,7 @@
                 <th>Restore HP:</th>
                 <td>
                     <label>
-                        <input type="text" name="restoreHealth" maxlength="3" size="3"
+                        <input required type="text" name="restoreHealth" maxlength="3" size="3"
                                value="<c:out value='${bosses.restoreHealth}' />"
                         />
                     </label>
@@ -112,7 +107,7 @@
                 <th>Chance To Super Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="chanceToSuperDamage" maxlength="3" size="3"
+                        <input required type="text" name="chanceToSuperDamage" maxlength="3" size="3"
                                value="<c:out value='${bosses.chanceToSuperDamage}' />"
                         />
                     </label>
@@ -122,7 +117,9 @@
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="/boss/all">Back</a></button>
+                    <button class="button" type="submit" style="background-color: crimson"><a style="color: #ffffff"
+                                                                                              href="/boss/all">Back</a>
+                    </button>
                 </td>
             </tr>
         </table>

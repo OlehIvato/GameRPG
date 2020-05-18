@@ -53,7 +53,7 @@
 <body>
 <div class="bs-example">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">RPG Mini Game</a>
+        <a href="#" class="navbar-brand">L O G O</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,22 +63,14 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin/users_list" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/userlist" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
-        </div>
-        <div style="margin-right: 50px">
-
-            <sec:authorize access="isAuthenticated()">
-                <h4>
-                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
-                    <a style="color: #ff3030" href="/logout">Logout</a>
-                </h4>
-            </sec:authorize>
         </div>
     </nav>
     <hr class="redLine" style="margin-top:0px">
 </div>
+
 
 
 <div th:switch="${locations}">

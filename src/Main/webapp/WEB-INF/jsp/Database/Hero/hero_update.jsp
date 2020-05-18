@@ -43,30 +43,29 @@
                 <input type="hidden" name="id" value="<c:out value='${heroes.id}' />"/>
             </c:if>
             <tr>
-                <th>ID:</th>
-                <td>
-                    <label>
-                        <input readonly type="number" name="id" maxlength="3" size="3"
-                               value="<c:out value='${heroes.id}' />"
-                        />
-                    </label>
-                </td>
+                <label>
+                    <input readonly hidden type="number" name="id"
+                           value="<c:out value='${heroes.id}' />"/>
+                </label>
             </tr>
 
             <tr>
-                <th>Set Class:</th>
+                <th>Class:</th>
                 <td>
                     <label>
-                        <select size="1" name="class_id">
-                            <option id="${hero_class.class_id}" value='1'>Mage</option>
-                            <option id="${hero_class.class_id}" value='2'>Warrior</option>
-                            <option id="${hero_class.class_id}" value='3'>Druid</option>
-                            <option id="${hero_class.class_id}" value='4'>Rogue</option>
-                            <option id="${hero_class.class_id}" value='5'>Monk</option>
-                            <option id="${hero_class.class_id}" value='6'>Shaman</option>
-                            <option id="${hero_class.class_id}" value='7'>Priest</option>
-                            <option id="${hero_class.class_id}" value='8'>Hunter</option>
-                            <option id="${hero_class.class_id}" value='9'>Paladin</option>
+                        <select name="class_id">
+                            <option selected hidden value='${hero_class.class_id}'>
+                                <c:forEach items="${heroes.classes}" var="classes">${classes.className}</c:forEach>
+                            </option>
+                            <option value='1'>Mage</option>
+                            <option value='2'>Warrior</option>
+                            <option value='3'>Druid</option>
+                            <option value='4'>Rogue</option>
+                            <option value='5'>Monk</option>
+                            <option value='6'>Shaman</option>
+                            <option value='7'>Priest</option>
+                            <option value='8'>Hunter</option>
+                            <option value='9'>Paladin</option>
                         </select>
                     </label>
                 </td>
@@ -76,7 +75,7 @@
                 <th>Name:</th>
                 <td>
                     <label>
-                        <input type="text" name="name" maxlength="30" size="15"
+                        <input required type="text" name="name" maxlength="30" size="15"
                                value="<c:out value='${heroes.name}' />"
                         />
                     </label>
@@ -87,7 +86,7 @@
                 <th>Health Point:</th>
                 <td>
                     <label>
-                        <input type="text" name="hp" maxlength="3" size="3"
+                        <input required type="text" name="hp" maxlength="3" size="3"
                                value="<c:out value='${heroes.hp}' />"
                         />
                     </label>
@@ -98,7 +97,7 @@
                 <th>Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="damage" maxlength="3" size="3"
+                        <input required type="text" name="damage" maxlength="3" size="3"
                                value="<c:out value='${heroes.damage}' />"
                         />
                     </label>
@@ -109,7 +108,7 @@
                 <th>Min Spell Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="minSpell" maxlength="3" size="3"
+                        <input required type="text" name="minSpell" maxlength="3" size="3"
                                value="<c:out value='${heroes.minSpell}' />"
                         />
                     </label>
@@ -120,7 +119,7 @@
                 <th>Max Spell Damage:</th>
                 <td>
                     <label>
-                        <input type="text" name="maxSpell" maxlength="3" size="3"
+                        <input required type="text" name="maxSpell" maxlength="3" size="3"
                                value="<c:out value='${heroes.maxSpell}' />"
                         />
                     </label>
@@ -131,7 +130,7 @@
                 <th>Restore Health Point:</th>
                 <td>
                     <label>
-                        <input type="text" name="restore" maxlength="3" size="3"
+                        <input required type="text" name="restore" maxlength="3" size="3"
                                value="<c:out value='${heroes.restore}' />"
                         />
                     </label>
@@ -142,7 +141,7 @@
                 <th>Mana:</th>
                 <td>
                     <label>
-                        <input type="text" name="mana" maxlength="3" size="3"
+                        <input required type="text" name="mana" maxlength="3" size="3"
                                value="<c:out value='${heroes.mana}' />"
                         />
                     </label>
@@ -153,10 +152,12 @@
                 <th>Armor type:</th>
                 <td>
                     <label>
-                        <select size="1" name="armor_id">
-                            <option id="${armors.armor_id}" value='1'>Cloth</option>
-                            <option id="${armors.armor_id}" value='2'>Leather</option>
-                            <option id="${armors.armor_id}" value='3'>Plate</option>
+                        <select name="armor_id">
+                            <option selected hidden value='${armors.armor_id}'><c:forEach items="${heroes.armors}"
+                                                                                          var="armor">${armor.armorName}</c:forEach></option>
+                            <option value='1'>Cloth</option>
+                            <option value='2'>Leather</option>
+                            <option value='3'>Plate</option>
                         </select>
                     </label>
                 </td>
@@ -166,7 +167,7 @@
                 <th>Hero Image:</th>
                 <td>
                     <label>
-                        <input name="img" id="img" type="file">
+                        <input name="img" id="img" type="file" value="<c:out value='${heroes.image}'/>">
                     </label>
                 </td>
             </tr>
@@ -175,8 +176,7 @@
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" type="submit" style="background-color: crimson"><a
-                            style="color: #ffffff" href="/hero/all">Back</a></button>
+                    <button class="button" style="background-color: crimson"><a style="color: #ffffff" href="${pageContext.request.contextPath}/hero/all">Back</a></button>
                 </td>
             </tr>
         </table>

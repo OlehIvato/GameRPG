@@ -21,4 +21,6 @@ public class WelcomePage {
         model.addAttribute("user", userService.getOneById(id));
         return "welcome";
     }
+
+
 }
