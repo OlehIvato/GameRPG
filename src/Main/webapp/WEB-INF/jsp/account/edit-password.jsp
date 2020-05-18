@@ -6,14 +6,6 @@
 <head>
 
     <style>
-        .bs-example {
-            margin: 0px;
-        }
-
-        hr.redLine {
-            border: 4px solid red;
-        }
-
         textarea {
             font-size: .8rem;
             letter-spacing: 1px;
@@ -32,6 +24,9 @@
             margin-bottom: 10px;
         }
 
+        div {
+            margin-left: 5px;
+        }
     </style>
 
     <meta charset="utf-8">
@@ -43,99 +38,45 @@
 
 </head>
 <body>
-<div class="bs-example">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">RPG Mini Game</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
-                <a href="/welcome" class="nav-item nav-link active">Home</a>
-                <a href="/info" class="nav-item nav-link">About Game</a>
-                <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin" class="nav-item nav-link">List of Users</a>
-                </sec:authorize>
-            </div>
-        </div>
-
-        <div style="margin-right: 50px">
-            <sec:authorize access="isAuthenticated()">
-                <h4>
-                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
-                    <a style="color: #ff3030" href="/logout">Logout</a>
-                </h4>
-            </sec:authorize>
-        </div>
-
-    </nav>
-    <hr class="redLine" style="margin-top:0px">
-</div>
 
 
 <div style="margin-left:80px">
-    <h1>Edit profile</h1><br>
+    <h1 style="margin-top: 10px">Change password</h1><br>
     <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/account/edit-password/">
-
 
         <c:if test="${user != null}">
             <input type="hidden" name="id" value="<c:out value='${user.id}' />"/>
         </c:if>
 
+        <div>
+            <label><strong> Current password: </strong>
+                <input required type="password" name="currentPassword"
+                       value="<c:out value='${user.currentPassword}'/>"/>
+            </label><br><br>
+        </div>
 
-        <label hidden><strong> ID: </strong>
-            <input readonly style="margin-left: 5px; border: 0;" type="text" name="id"
-                   value="<c:out value='${user.id}'/>"/>
-        </label>
+        <div>
+            <label><strong> New password: </strong>
+                <input required type="password" name="newPassword"
+                       value="<c:out value='${user.newPassword}'/>"/>
+            </label><br>
 
-        <label hidden><strong> Username: </strong>
-            <input style="margin-left: 5px" type="text" name="username" placeholder="Username..."
-                   value="<c:out value='${user.username}'/>"/>
-        </label>
+            <label><strong> Confirm password: </strong>
+                <input required type="password" name="passwordConfirm"
+                       value="<c:out value='${user.passwordConfirm}'/>"/>
+                ${passwordError}
+            </label>
+        </div>
 
-        <label hidden><strong>  password: </strong>
-            <input style="margin-left: 5px" type="text" name="password" value="<c:out value='${user.password}'/>"/>
-        </label>
 
-        <label ><strong> Current password: </strong>
-            <input style="margin-left: 5px" type="text" name="currentPassword" value="<c:out value='${user.currentPassword}'/>"/>
-        </label><br><br>
+        <input type="hidden" name="username" value="<c:out value='${user.username}'/>"/>
+        <input type="hidden" name="password" value="<c:out value='${user.password}'/>"/>
+        <input type="hidden" name="email" value="<c:out value='${user.email}'/>"/>
 
-        <label ><strong> New password: </strong>
-            <input style="margin-left: 5px" type="text" name="newPassword"
-                   value="<c:out value='${user.newPassword}'/>"/>
-        </label><br>
-
-        <label ><strong> Confirm password: </strong>
-            <input style="margin-left: 5px" type="text" name="passwordConfirm"
-                   value="<c:out value='${user.passwordConfirm}'/>"/>
-            ${passwordError}
-        </label>
-        <label hidden><strong> Email: </strong>
-            <input style="margin-left: 5px" type="text" name="email" placeholder="Email Address..."
-                   value="<c:out value='${user.email}'/>"/>
-        </label><br>
-
-        <label hidden><strong> user_roles.user_id: </strong>
-            <input style="margin-left: 5px" type="text" name="user_id"
-                   value="<c:out value='${user_roles.user_id}'/>"/>
-        </label>
-
-        <label hidden><strong> user_roles.roles_id: </strong>
-            <input style="margin-left: 5px" type="text" name="roles_id"
-                   value="<c:out value='${user_roles.roles_id}'/>"/>
-        </label>
-
-        <label hidden><strong> user_profile.user_id </strong>
-            <input style="margin-left: 5px" type="text" name="user_id"
-                   value="<c:out value='${user_profile.user_id}'/>"/>
-        </label>
-
-        <label hidden><strong> user_profile.profile_id </strong>
-            <input style="margin-left: 5px" type="text" name="profile_id"
-                   value="<c:out value='${user_profile.profile_id}'/>"/>
-        </label>
+        <input type="hidden" name="user_id" value="<c:out value='${user_roles.user_id}'/>"/>
+        <input type="hidden" name="roles_id" value="<c:out value='${user_roles.roles_id}'/>"/>
+        <input type="hidden" name="user_id" value="<c:out value='${user_profile.user_id}'/>"/>
+        <input type="hidden" name="profile_id" value="<c:out value='${user_profile.profile_id}'/>"/>
 
 
         <div class="btn-group">

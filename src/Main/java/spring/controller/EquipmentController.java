@@ -25,6 +25,7 @@ public class EquipmentController {
     @Autowired
     private Equipment_ArmorsRepository equipment_armorsRepository;
 
+
     @GetMapping("all")
     public String findAll(Model model) {
         List<EquipmentModel> equipmentModels = equipmentService.findAll();
@@ -47,8 +48,8 @@ public class EquipmentController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         EquipmentModel equipmentModel = equipmentService.findOneById(id);
         model.addAttribute("equipment", equipmentModel);
-        model.addAttribute("type", new Equipment_Types());
-        model.addAttribute("armors", new Equipment_Armors());
+        model.addAttribute("equipment_type", equipmentTypesRepository.getOne(id));
+        model.addAttribute("equipment_armor", equipment_armorsRepository.getOne(id));
         return "database/equipment/equipment_update";
     }
 

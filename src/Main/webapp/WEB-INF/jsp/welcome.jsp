@@ -22,6 +22,7 @@
     <title>Main</title>
 </head>
 <body>
+
 <div class="bs-example">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a href="#" class="navbar-brand">L O G O</a>
@@ -34,7 +35,7 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin/users_list" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/userlist" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
         </div>
@@ -42,7 +43,6 @@
         <div class="navbar-nav" style="align-content: end">
             <a class="nav-item nav-link"
                href="${pageContext.request.contextPath}/account/user/<c:out value='${user.id}'/>">Profile</a>
-
             <a class="nav-item nav-link active" style="color: gold">${user.username}</a>
             <sec:authorize access="isAuthenticated()">
                 <a class="nav-item nav-link" style="color: #ff3030"
@@ -57,7 +57,7 @@
 
 <div class="container">
     <h2>Databases</h2>
-    <p>see all list / delete / update / create</p>
+    <p>list / delete / update / create</p>
     <div class="btn-group">
         <a style="padding-bottom: 4px;padding-top: 6px;border-bottom-width: 0px;border-top-width: 0px;height: 40px;"
            href="${pageContext.request.contextPath}/hero/all" class="btn btn-primary">Hero</a>
@@ -79,10 +79,10 @@
 
 <div class="container">
     <p>
-    <h2>New Game</h2>
+    <h2> game</h2>
     <div class="btn-group">
-        <a style=" font-size: 30px"
-           href="${pageContext.request.contextPath}/game/new-game" class="btn btn-primary">Play</a>
+        <a style=" font-size: 20px"
+           href="${pageContext.request.contextPath}/game/new-game" class="btn btn-primary">start</a>
     </div>
 </div>
 

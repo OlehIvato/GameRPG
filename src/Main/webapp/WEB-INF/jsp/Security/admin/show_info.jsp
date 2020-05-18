@@ -9,34 +9,22 @@
             border: 3px solid red;
         }
 
-        .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            padding-bottom: 7px;
-            padding-top: 7px
+        textarea {
+            font-size: .8rem;
+            letter-spacing: 1px;
         }
 
-        div.container4 {
-            height: 10em;
-            position: relative
+        textarea {
+            padding: 10px;
+            line-height: 1.5;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 1px #999;
         }
 
-        div.container4 p {
-            margin: 0;
-            background: yellow;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-50%, -50%)
+        label {
+            display: block;
+            margin-bottom: 10px;
         }
 
     </style>
@@ -53,44 +41,50 @@
 <hr class="redLine">
 
 <div align="center">
-    <form action="${pageContext.request.contextPath}/admin/all_users_information/" method="post">
-        <table border="1" cellpadding="5">
-            <thead>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Birthday</th>
-            <th>Gender</th>
-            <th>Phone</th>
-            <th>Country</th>
-            <th>City</th>
-            <th>Zip</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td>${all_users_info.userInformation.name}</td>
-                <td>${all_users_info.userInformation.surname}</td>
-                <td>${all_users_info.userInformation.birthday}</td>
-                <td>${all_users_info.userInformation.gender}</td>
-                <td>${all_users_info.userInformation.phone}</td>
-                <td>${all_users_info.userInformation.country}</td>
-                <td>${all_users_info.userInformation.city}</td>
-                <td>${all_users_info.userInformation.zip}</td>
-            </tr>
-            </tbody>
-        </table>
+    <form action="${pageContext.request.contextPath}/admin/userinfo/" method="post">
+        <c:forEach items="${all_users_info.profile}" var="profile">
+            <table border="1" cellpadding="5">
+                <thead>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Zip</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${profile.name}</td>
+                    <td>${profile.surname}</td>
+                    <td>${all_users_info.email}</td>
+                    <td>${profile.birthday}</td>
+                    <td>${profile.gender}</td>
+                    <td>${profile.phone}</td>
+                    <td>${profile.country}</td>
+                    <td>${profile.city}</td>
+                    <td>${profile.zip}</td>
 
-        <div class="container4">
-            <h2>Bio</h2>
-            <a> ${all_users_info.userInformation.bio} </a>
-        </div>
+                </tr>
+                </tbody>
+            </table>
 
-
+            <div>
+                <h2 style="margin-top: 10px">Bio</h2>
+                <label for='test'></label>
+                <textarea readonly rows="5" cols="110" name='bio' id='test'><c:out
+                        value="${profile.bio}"/></textarea>
+            </div>
+        </c:forEach>
     </form>
 </div>
 
 <div align="center">
-    <button  class="button" type="submit" style="background-color: #4CAF50"><a style="color: #ffffff" href="${pageContext.request.contextPath}/admin/users_list">Back to List</a>
-    </button>
+    <a href="/admin/userlist">
+        <button class="buttonStyle" style="background-color: forestgreen">Back to List</button>
+    </a>
 </div>
 
 

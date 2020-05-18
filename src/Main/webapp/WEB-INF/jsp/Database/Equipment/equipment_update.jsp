@@ -43,14 +43,10 @@
                 <input type="hidden" name="id" value="<c:out value='${equipment.id}' />"/>
             </c:if>
             <tr>
-                <th>ID:</th>
-                <td>
-                    <label>
-                        <input readonly type="number" name="id" maxlength="3" size="3"
-                               value="<c:out value='${equipment.id}' />"
-                        />
-                    </label>
-                </td>
+                <label>
+                    <input hidden type="number" name="id"
+                           value="<c:out value='${equipment.id}' />"/>
+                </label>
             </tr>
 
             <tr>
@@ -112,15 +108,19 @@
                 <th>Type:</th>
                 <td>
                     <label>
-                        <select size="1" name="types_id">
-                            <option id="${type.types_id}" value='1'>Head</option>
-                            <option id="${type.types_id}" value='2'>Shoulder</option>
-                            <option id="${type.types_id}" value='3'>Chest</option>
-                            <option id="${type.types_id}" value='4'>Legs</option>
-                            <option id="${type.types_id}" value='5'>Wand</option>
-                            <option id="${type.types_id}" value='6'>Sword</option>
-                            <option id="${type.types_id}" value='7'>Shield</option>
-                            <option id="${type.types_id}" value='8'>Amulet</option>
+                        <select name="types_id">
+                            <option hidden selected value='${equipment_type.types_id}'><c:forEach items="${equipment.types}" var="type">
+                                ${type.type}
+                            </c:forEach>
+                            </option>
+                            <option value='1'>Head</option>
+                            <option value='2'>Shoulder</option>
+                            <option value='3'>Chest</option>
+                            <option value='4'>Legs</option>
+                            <option value='5'>Wand</option>
+                            <option value='6'>Sword</option>
+                            <option value='7'>Shield</option>
+                            <option value='8'>Amulet</option>
                         </select>
                     </label>
                 </td>
@@ -131,10 +131,11 @@
                 <td>
                     <label>
                         <select size="1" name="armors_id">
-                            <option id="${armors.armors_id}" value='4'>Weapon</option>
-                            <option id="${armors.armors_id}" value='1'>Cloth</option>
-                            <option id="${armors.armors_id}" value='2'>Leather</option>
-                            <option id="${armors.armors_id}" value='3'>Plate</option>
+                            <option hidden selected value='${equipment_armor.armors_id}'><c:forEach items="${equipment.armors}" var="armor">${armor.armorName}</c:forEach></option>
+                            <option value='4'>Weapon</option>
+                            <option value='1'>Cloth</option>
+                            <option value='2'>Leather</option>
+                            <option value='3'>Plate</option>
                         </select>
                     </label>
                 </td>

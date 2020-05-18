@@ -8,8 +8,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import spring.model.User;
 import spring.service.UserService;
+
+import java.util.UUID;
 
 @Configuration
 @EnableWebSecurity
@@ -32,18 +36,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/registration").not().fullyAuthenticated()   // дозвіл тільки коли не авторизований
 
-                .antMatchers("/admin/set_role/1", "/admin/deleteUser/1", "/admin/all_users_information/1").denyAll()   // це заборонити зміну ролі адміну і видаляти
+                // це заборонити зміну ролі, видаляти, міняти пароль, ім'я, і особисту інформацію користовачу "admin"
+                .antMatchers("/admin/setrole/1", "/admin/removeuser/1", "/admin/userinfo/1",
+                        "/account/edit-password/1", "/account/edit-username/1","/account/edit-info/1").denyAll()
+
+
                 .antMatchers("/admin/**",
                         "/**/update/**",
                         "/**/create/**",
                         "/**/delete/**",
-                        "/**/image/**").hasRole("ADMIN")                              // всі перечислені операції тільки для адміна
+                        "/**/image/**").hasRole("ADMIN")                             // всі перечислені операції тільки для адміна
 
 
                 .antMatchers("/login").permitAll()
 
                 //все інше треба authenticated
                 .anyRequest().authenticated()
+
                 .and()
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/welcome", true).permitAll()
@@ -52,8 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+    protected void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
-
 }

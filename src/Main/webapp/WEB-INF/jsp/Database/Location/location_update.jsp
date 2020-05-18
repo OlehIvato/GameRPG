@@ -43,14 +43,9 @@
                 <input type="hidden" name="id" value="<c:out value='${locations.id}' />"/>
             </c:if>
             <tr>
-                <th>ID:</th>
-                <td>
-                    <label>
-                        <input readonly type="number" name="id" maxlength="3" size="3"
-                               value="<c:out value='${locations.id}' />"
-                        />
-                    </label>
-                </td>
+                <label>
+                    <input hidden type="number" name="id" value="<c:out value='${locations.id}' />"/>
+                </label>
             </tr>
 
             <tr>
@@ -145,7 +140,9 @@
 
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" type="submit" style="background-color: crimson" ><a style="color: #ffffff" href="/location/all">Back</a></button>
+                    <button class="button" type="submit" style="background-color: crimson"><a style="color: #ffffff"
+                                                                                              href="/location/all">Back</a>
+                    </button>
                 </td>
             </tr>
         </table>

@@ -12,8 +12,5 @@ public interface HeroRepository extends JpaRepository<HeroModel, Long> {
 
     List<HeroModel> findAllByName(String name);
 
-    HeroModel findByImage(byte[] image);
-
-
 }
 

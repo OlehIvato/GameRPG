@@ -23,9 +23,12 @@
 </head>
 <body>
 
+
+
+
 <div class="bs-example">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">RPG Mini Game</a>
+        <a href="#" class="navbar-brand">L O G O</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,51 +38,44 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin/users_list" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/userlist" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
-        </div>
-        <div>
-
-        </div>
-        <div style="margin-right: 50px">
-            <sec:authorize access="isAuthenticated()">
-                <h4>
-                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
-                    <a style="color: #ff3030" href="/logout">Logout</a>
-                </h4>
-            </sec:authorize>
         </div>
     </nav>
     <hr class="redLine" style="margin-top:0px">
 </div>
 
+
+
+
+
 <div align="center">
     <table class=" table-sm table-striped" border="1" cellpadding="5">
         <thead>
         <th>ID</th>
-        <th>UserName</th>
-        <th>Password</th>
-        <th>Email</th>
-        <th>Phone</th>
+        <th>USERNAME</th>
+        <th>PASSWORD</th>
+        <th>EMAIL</th>
+        <th>ROLE</th>
         </thead>
         <c:forEach items="${allUsers}" var="user">
         <tr>
             <td>${user.id}</td>
             <td>${user.username}</td>
-            <td width="23px">${user.password}</td>
+            <td>${user.password}</td>
             <td>${user.email}</td>
             <td>
                 <c:forEach items="${user.roles}" var="role">${role.name} </c:forEach>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/admin/deleteUser/<c:out value='${user.id}'/>">
+                <a href="/admin/removeuser/<c:out value='${user.id}'/>">
                     <button class="buttonStyle" style="background-color: darkred"> Delete</button>
-                    <a href="${pageContext.request.contextPath}/admin/set_role/<c:out value='${user.id}'/>">
+                    <a href="/admin/setrole/<c:out value='${user.id}'/>">
                         <button class="buttonStyle" style="background-color: forestgreen">Edit Role</button>
                     </a>
                 </a>
-                <a href="${pageContext.request.contextPath}/admin/all_users_information/<c:out value='${user.id}'/>">
+                <a href="/admin/userinfo/<c:out value='${user.id}'/>">
                     <button class="buttonStyle" style="background-color: forestgreen">Show all info</button>
                 </a>
             </td>

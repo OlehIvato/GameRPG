@@ -15,7 +15,7 @@
         }
 
         .button {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -37,7 +37,7 @@
 <hr class="redLine">
 
 <div align="center">
-    <form action="${pageContext.request.contextPath}/admin/set_role/" method="post">
+    <form action="${pageContext.request.contextPath}/admin/setrole" method="post">
         <table border="1" cellpadding="5">
             <c:if test="${roles != null}">
                 <input type="hidden" name="id" value="<c:out value='${roles.user_id}' />"/>
@@ -68,7 +68,7 @@
 
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button"  style="background-color: crimson"><a style="color: #ffffff" href="${pageContext.request.contextPath}/admin/users_list">Back</a>
+                    <button class="button"  style="background-color: crimson"><a style="color: #ffffff" href="${pageContext.request.contextPath}/admin/userlist">Back</a>
                     </button>
                 </td>
             </tr>

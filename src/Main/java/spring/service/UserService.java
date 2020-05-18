@@ -94,7 +94,7 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public boolean editEmail(User user) {
+    public boolean updateEmail(User user) {
         userRepository.save(user);
         return true;
     }

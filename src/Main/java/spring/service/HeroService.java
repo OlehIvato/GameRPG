@@ -20,7 +20,6 @@ public class HeroService {
     @Value("D:/")
     private String path;
 
-
     private final HeroRepository heroRepository;
 
     public HeroService(HeroRepository heroRepository) {

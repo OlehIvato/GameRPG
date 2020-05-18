@@ -33,7 +33,7 @@ public class RegistrationController {
             return "security/registration";
         }
         if (!user.getPassword().equals(user.getPasswordConfirm())) {
-            model.addAttribute( "passwordError", "Password don't match");
+            model.addAttribute("passwordError", "Password don't match");
             return "security/registration";
         }
         if (!userService.createUser(user)) {

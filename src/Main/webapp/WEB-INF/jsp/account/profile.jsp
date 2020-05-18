@@ -1,6 +1,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,6 +30,20 @@
         display: block;
         margin-bottom: 10px;
     }
+
+    .image {
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        border: 5px solid red;
+    }
+
+    .imagePosition {
+        position: absolute;
+        top: 80px;
+        left: 600px;
+    }
+
     </style>
 
 
@@ -43,7 +58,7 @@
 <body>
 <div class="bs-example">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">RPG Mini Game</a>
+        <a href="#" class="navbar-brand">L O G O</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,81 +68,89 @@
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin" class="nav-item nav-link">List of Users</a>
+                    <a href="/admin/userlist" class="nav-item nav-link">List of Users</a>
                 </sec:authorize>
             </div>
         </div>
 
-        <div style="margin-right: 50px">
+        <div class="navbar-nav" style="align-content: end">
+            <a class="nav-item nav-link"
+               href="${pageContext.request.contextPath}/account/user/<c:out value='${user.id}'/>">Profile</a>
+            <a class="nav-item nav-link active" style="color: gold">${user.username}</a>
             <sec:authorize access="isAuthenticated()">
-                <h4>
-                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
-                    <a style="color: #ff3030" href="/logout">Logout</a>
-                </h4>
+                <a class="nav-item nav-link" style="color: #ff3030"
+                   href="${pageContext.request.contextPath}/logout">Log out</a>
             </sec:authorize>
         </div>
-
     </nav>
     <hr class="redLine" style="margin-top:0px">
 </div>
 
 
 <div style="margin-left: 50px">
+    <c:forEach items="${user.profile}" var="profile">
+        <form>
+            <fieldset>
 
+                <h1>Account</h1>
+                <th><strong> Username:</strong> ${user.username}</th>
+                <br>
+                <div class="btn-group">
+                    <a style="width: 250px" class="btn btn-primary"
+                       href="${pageContext.request.contextPath}/account/edit-username/<c:out value='${user.id}'/>">Change
+                        username</a>
+                    <a style="width: 250px" class="btn btn-primary"
+                       href="${pageContext.request.contextPath}/account/edit-password/<c:out value='${user.id}'/>">Change
+                        password</a>
+                </div>
 
-    <form>
-        <fieldset>
-            <h1>Account</h1>
-            <c:forEach items="${user.profile}" var="profile">
-            <th><strong> Username:</strong> ${user.username}</th>
-            <br>
+                <h1 style="margin-top: 30px">Contact Information</h1>
+                <th><strong> Name:</strong> ${profile.name}</th>
+                <br>
+                <th><strong> Surname:</strong> ${profile.surname}</th>
+                <br>
+                <th><strong> Email:</strong> ${user.email}</th>
+                <br>
+                <th><strong> Birthday:</strong> ${profile.birthday}</th>
+                <br>
+                <th><strong> Gender:</strong> ${profile.gender}</th>
+                <br>
+                <th><strong> Phone:</strong> ${profile.phone}</th>
+                <br>
+                <th><strong> Country:</strong> ${profile.country}</th>
+                <br>
+                <th><strong> City:</strong> ${profile.city}</th>
+                <br>
+                <th><strong> Zip:</strong> ${profile.zip}</th>
+                <br>
+            </fieldset>
 
-            <div class="btn-group">
-            <a style="width: 250px" class="btn btn-primary"
-               href="${pageContext.request.contextPath}/account/edit-username/<c:out value='${user.id}'/>">Change
-                username</a>
-            <a style="width: 250px" class="btn btn-primary"
-               href="${pageContext.request.contextPath}/account/edit-password/<c:out value='${user.id}'/>">Change
-                password</a>
+            <fieldset>
+                <th><strong>Bio:</strong>
+                    <label>
+                        <textarea readonly rows="5" cols="60"> ${profile.bio} </textarea>
+                    </label>
+                </th>
+            </fieldset>
+
+            <div class="imagePosition">
+                <h1> Avatar</h1>
+                <div class="image">
+                    <img style="width: 350px" alt="Avatar" src="<c:url value="/images/${profile.avatar}"/>"/>
+                </div>
+                <a style="width: 250px" class="btn btn-primary" href="/account/edit-avatar/<c:out value='${user.id}'/>">Edit
+                    Avatar</a>
             </div>
 
-            <h1>Contact Information</h1>
-            <th><strong> Name:</strong> ${profile.name}</th>
-            <br>
-            <th><strong> Surname:</strong> ${profile.surname}</th>
-            <br>
-            <th><strong> Email:</strong> ${user.email}</th>
-            <br>
-            <th><strong> Birthday:</strong> ${profile.birthday}</th>
-            <br>
-            <th><strong> Gender:</strong> ${profile.gender}</th>
-            <br>
-            <th><strong> Phone:</strong> ${profile.phone}</th>
-            <br>
-            <th><strong> Country:</strong> ${profile.country}</th>
-            <br>
-            <th><strong> City:</strong> ${profile.city}</th>
-            <br>
-            <th><strong> Zip:</strong> ${profile.zip}</th>
-            <br>
-        </fieldset>
+        </form>
 
-        <fieldset>
-            <th><strong>Bio:</strong>
-                <label>
-                    <textarea rows="5" cols="60"> ${profile.bio} </textarea>
-                </label>
-            </th>
-            <br>
-
-        </fieldset>
-        </c:forEach>
-    </form>
+    </c:forEach>
     <a style="width: 250px" class="btn btn-primary"
-       href="${pageContext.request.contextPath}/account/editinfo/<c:out value='${user.id}'/>">Edit Contact
-        Information</a>
+       href="/account/edit-info/<c:out value='${user.id}'/>">Edit Contact Information</a>
+
 
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

@@ -5,14 +5,6 @@
 <head>
 
     <style>
-        .bs-example {
-            margin: 0px;
-        }
-
-        hr.redLine {
-            border: 4px solid red;
-        }
-
         textarea {
             font-size: .8rem;
             letter-spacing: 1px;
@@ -42,40 +34,10 @@
 
 </head>
 <body>
-<div class="bs-example">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">RPG Mini Game</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
-                <a href="/welcome" class="nav-item nav-link active">Home</a>
-                <a href="/info" class="nav-item nav-link">About Game</a>
-                <sec:authorize access="hasRole('ADMIN')">
-                    <a href="/admin" class="nav-item nav-link">List of Users</a>
-                </sec:authorize>
-            </div>
-        </div>
-
-        <div style="margin-right: 50px">
-            <sec:authorize access="isAuthenticated()">
-                <h4>
-                    <a style="color: #fffbfb">${pageContext.request.userPrincipal.name}</a>
-                    <a style="color: #ff3030" href="/logout">Logout</a>
-                </h4>
-            </sec:authorize>
-        </div>
-
-    </nav>
-    <hr class="redLine" style="margin-top:0px">
-</div>
-
 
 <div style="margin-left:80px">
-    <h1>Edit profile</h1><br>
-    <form action="${pageContext.request.contextPath}/account/editinfo/" method="post">
+    <h1 style="margin-top: 10px">Edit profile</h1><br>
+    <form action="${pageContext.request.contextPath}/account/edit-info/" method="post">
 
         <c:if test="${profile != null}">
             <input type="hidden" name="id" value="<c:out value='${profile.id}' />"/>
@@ -90,45 +52,47 @@
 
         <label><strong> Name: </strong>
             <input style="margin-left: 5px" type="text" name="name" placeholder="Your name..."
-                   value="<c:out value='${profile.name}'/>"/>
+                   value="<c:out value='${profile.name}'/>" pattern="[A-Z][a-z]{0,12}" title="Please provide a valid Name."/>
         </label><br>
 
 
         <label><strong> Surname: </strong>
             <input style="margin-left: 5px" type="text" name="surname" placeholder="Your surname..."
-                   value="<c:out value='${profile.surname}'/>"/>
+                   value="<c:out value='${profile.surname}'/>" pattern="[A-Z][a-z]{2,}" title="Please provide a valid Surname."/>
         </label><br>
 
-        <label><strong> Email: </strong>
+        <label> <strong> Email: </strong>
             <input style="margin-left: 5px" type="email" name="email" placeholder="Email Address..."
                    value="<c:out value='${user.email}'/>"/>
-    ${emailError}
+            ${emailError}
 
         </label><br>
 
         <label><strong> Birthday: </strong>
-            <input style="margin-left: 5px" name="birthday" type="date"
+            <input  style="margin-left: 5px" name="birthday" type="date"
                    value="<c:out value='${profile.birthday}'/>"/>
         </label><br>
 
 
         <label><strong> Gender: </strong>
-            <input type="radio" name="gender" value="Male">
-            <label>Male</label>
-            <input type="radio" name="gender" value="Female">
-            <label>Female</label>
+            <select name="gender">
+                <option hidden selected value="<c:out value='${profile.gender}'/>">${profile.gender} </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
         </label><br>
 
 
+
         <label><strong> Phone: </strong>
-            <input style="margin-left: 5px" type="tel" name="phone" placeholder="Your phone number..." maxlength="12"
-                   size="12"
+            <input style="margin-left: 5px" type="tel" name="phone" placeholder="Your phone number..." maxlength="12" size="12"  pattern="[0-9]{0,}"
                    value="<c:out value='${profile.phone}'/>"/>
         </label><br>
 
 
         <label><strong> Country: </strong>
             <select name="country">
+                <option hidden selected value="<c:out value='${profile.country}'/>">${profile.country} </option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -379,50 +343,32 @@
         </label><br>
 
         <label><strong> City: </strong>
-            <input style="margin-left: 5px" type="text" name="city" placeholder="City..." maxlength="25" size="15"
+            <input style="margin-left: 5px" type="text" name="city" placeholder="City..."
                    value="<c:out value='${profile.city}'/>"/>
         </label><br>
 
 
         <label><strong> Zip: </strong>
             <input style="margin-left: 5px" type="tel" name="zip" size="9" maxlength="9"
-                   value="<c:out value='${profile.zip}'/>"/>
+                   value="<c:out value='${profile.zip}'/>" pattern="[0-9]{0,}"/>
         </label><br>
 
 
         <label><strong> Bio: </strong>
-            <textarea rows="5" cols="60" name='bio' id='test' placeholder="About you..."><c:out value="${profile.bio}"/></textarea>
+            <textarea rows="5" cols="60" name='bio' id='test' placeholder="About you..." ><c:out
+                    value="${profile.bio}"/></textarea>
         </label><br>
 
 
-        <label hidden><strong> id: </strong>
-            <input style="margin-left: 5px" type="text" name="id"
-                   value="<c:out value='${user.id}'/>"/>
-        </label>
-        <label hidden><strong> username: </strong>
-            <input style="margin-left: 5px" type="text" name="username"
-                   value="<c:out value='${user.username}'/>"/>
-        </label>
-        <label hidden><strong> passs: </strong>
-            <input style="margin-left: 5px" type="text" name="password"
-                   value="<c:out value='${user.password}'/>"/>
-        </label>
-        <label hidden><strong> user_roles.user_id: </strong>
-            <input style="margin-left: 5px" type="text" name="user_id"
-                   value="<c:out value='${user_roles.user_id}'/>"/>
-        </label>
-        <label hidden><strong> user_roles.roles_id: </strong>
-            <input style="margin-left: 5px" type="text" name="roles_id"
-                   value="<c:out value='${user_roles.roles_id}'/>"/>
-        </label>
-        <label hidden><strong> user_profile.user_id </strong>
-            <input style="margin-left: 5px" type="text" name="user_id"
-                   value="<c:out value='${user_profile.user_id}'/>"/>
-        </label>
-        <label hidden><strong> user_profile.profile_id </strong>
-            <input style="margin-left: 5px" type="text" name="profile_id"
-                   value="<c:out value='${user_profile.profile_id}'/>"/>
-        </label>
+        <input type="hidden" name="avatar" value="<c:out value='${profile.avatar}'/>"/>
+
+        <input type="hidden" name="username" value="<c:out value='${user.username}'/>"/>
+        <input type="hidden" name="password" value="<c:out value='${user.password}'/>"/>
+
+        <input type="hidden" name="user_id" value="<c:out value='${user_roles.user_id}'/>"/>
+        <input type="hidden" name="roles_id" value="<c:out value='${user_roles.roles_id}'/>"/>
+        <input type="hidden" name="user_id" value="<c:out value='${user_profile.user_id}'/>"/>
+        <input type="hidden" name="profile_id" value="<c:out value='${user_profile.profile_id}'/>"/>
 
 
         <div class="btn-group">
