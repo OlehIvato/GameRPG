@@ -1,7 +1,7 @@
 package game.sql;
 
 
-import game.primary.Main_All;
+import game.primary.TheMain;
 
 import java.sql.*;
 import java.util.*;
@@ -9,43 +9,42 @@ import java.util.*;
 public class LocationDatabase {
     private static Connection connection;
     private static ResultSet resultSet;
-    private static Scanner scanner = new Scanner(System.in);
 
-    public static void main() {
+    public static void createLocation() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n\nWould you like to select Location for Fight?  (it will change " + Main_All.getHeroName() + " and creatures characteristics)");
+        System.out.println("\n\nWould you like to select Location for Fight?  (it will change " + TheMain.getHeroName() + " and creatures characteristics)");
         System.out.println("1. Yes \n2. No, continue without Locations");
         switch (scanner.nextInt()) {
             case 1:
                 showLocations();
-                selectLocation();
+                setLocationToMain();
                 break;
             case 2:
                 break;
             default: {
                 System.out.println("Something went wrong");
-                main();
+                createLocation();
             }
         }
     }
 
-    private static void selectLocation() {
+    private static void setLocationToMain() {
         try {
-            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
+            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM location WHERE id = ?");
-            preparedStatement.setInt(1, scanner.nextInt());
+            preparedStatement.setInt(1, new Scanner(System.in).nextInt());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Main_All.setHeroHP(Main_All.getHeroHP() + resultSet.getInt("heroHp"));
-                Main_All.setDefaultDamage(Main_All.getDefaultDamage() + resultSet.getInt("heroDamage"));
-                Main_All.setMinSpellDamageHERO(Main_All.getMinSpellDamageHERO() + resultSet.getInt("heroSpellDamage"));
-                Main_All.setMaxSpellDamageHero(Main_All.getMaxSpellDamageHero() + resultSet.getInt("heroSpellDamage"));
-                Main_All.setRestoreHealth(Main_All.getRestoreHealth() + resultSet.getInt("heroRestoreHealth"));
-                Main_All.setHealthPoint(Main_All.getHealthPoint() + resultSet.getInt("creatureHp"));
-                Main_All.setMin_Damage(Main_All.getMin_Damage() + resultSet.getInt("creatureDamage"));
-                Main_All.setMax_Damage(Main_All.getMax_Damage() + resultSet.getInt("creatureDamage"));
-                Main_All.setChanceToSuperDamage(Main_All.getChanceToSuperDamage() + resultSet.getInt("creatureChance"));
-                System.out.println("You selected " + resultSet.getString("name"));
+                TheMain.setHeroHp(TheMain.getHeroHp() + resultSet.getInt("heroHp"));
+                TheMain.setHeroDamage(TheMain.getHeroDamage() + resultSet.getInt("heroDamage"));
+                TheMain.setHeroMinSpell(TheMain.getHeroMinSpell() + resultSet.getInt("heroSpellDamage"));
+                TheMain.setHeroMaxSpell(TheMain.getHeroMaxSpell() + resultSet.getInt("heroSpellDamage"));
+                TheMain.setHeroRestoreHp(TheMain.getHeroRestoreHp() + resultSet.getInt("heroRestoreHealth"));
+                TheMain.setMobHp(TheMain.getMobHp() + resultSet.getInt("creatureHp"));
+                TheMain.setMobMinDamage(TheMain.getMobMinDamage() + resultSet.getInt("creatureDamage"));
+                TheMain.setMobMaxDamage(TheMain.getMobMaxDamage() + resultSet.getInt("creatureDamage"));
+                TheMain.setMobChanceToSuperDamage(TheMain.getMobChanceToSuperDamage() + resultSet.getInt("creatureChance"));
+                System.out.println("You selected " + resultSet.getString("name") + "\n");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,7 +53,7 @@ public class LocationDatabase {
 
     private static void showLocations() {
         try {
-            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
+            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM location");
             while (resultSet.next()) {

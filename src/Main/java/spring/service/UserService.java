@@ -44,6 +44,14 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    public User getOneById(Long id) {
+        return userRepository.getOneById(id);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -53,7 +61,7 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public boolean createUser(User user) {
+    public boolean createAccount(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
         User_Profile user_profile = new User_Profile();
         Profile profile = new Profile();
@@ -74,6 +82,16 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+    public boolean checkUsername(User user) {
+        User userFromDB = userRepository.findByUsername(user.getUsername());
+        return userFromDB == null;
+    }
+
+    public boolean checkEmail(User user) {
+        User userFromDB = userRepository.findByEmail(user.getEmail());
+        return userFromDB == null;
+    }
+
     public boolean editPassword(User user) {
         if (!bCryptPasswordEncoder.matches(user.getCurrentPassword(), user.getPassword())
                 ||
@@ -85,28 +103,9 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public boolean editUsername(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
-        if (userFromDB != null) {
-            return false;
-        }
-        userRepository.save(user);
-        return true;
-    }
-
-    public boolean updateEmail(User user) {
-        userRepository.save(user);
-        return true;
-    }
-
-
     public void deleteUser(Long userId) {
 
         userRepository.deleteById(userId);
-    }
-
-    public User getOneById(Long id) {
-        return userRepository.getOneById(id);
     }
 
 }

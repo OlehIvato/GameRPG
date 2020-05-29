@@ -27,8 +27,7 @@ public class HeroController {
 
     @GetMapping("all")
     public String findAll(Model model) {
-        List<HeroModel> heroModels = heroService.findAll();
-        model.addAttribute("heroes", heroModels);
+        model.addAttribute("heroes", heroService.findAll());
         return "database/hero/hero_list";
     }
 
@@ -45,10 +44,9 @@ public class HeroController {
 
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        HeroModel heroModel = heroService.findOneById(id);
-        model.addAttribute("heroes", heroModel);
-        model.addAttribute("hero_class", new Hero_Classes());
-        model.addAttribute("armors", new Hero_Armors());
+        model.addAttribute("heroes", heroService.findOneById(id));
+        model.addAttribute("hero_class", heroClassesRepository.getOne(id));
+        model.addAttribute("hero_armors", heroArmorsRepository.getOne(id));
         return "database/hero/hero_update";
     }
 

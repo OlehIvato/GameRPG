@@ -72,7 +72,7 @@
 
 <div style="text-align: center"><h1>Mob Database</h1></div>
 
-<button style="margin-left: 100px"><a href="/welcome">Back</a></button>
+<a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome"><button> Back</button></a>
 <div align="center">
     <table class=" table-sm table-striped" border="1" cellpadding="5">
         <tr>

@@ -1,57 +1,58 @@
 package game.fight;
 
-import game.primary.GetGame;
-
-import game.primary.UserName;
+import game.primary.Game;
 import game.creature.GetRandom;
+import game.primary.TheMain;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Level {
 
-    private static int levelCount = 10;
-    private static int[] lvlDifficult = {0, 10, 15, 20, 25, 30, 35, 40, 45, 50};
-    private static String[] gameCount = {"FIRST GAME", "SECOND GAME", "THIRD GAME", "VS BOSS"};
+    private static final int levelCountFinal = 10;
+    private static final List<Integer> lvlDifficultFinal = Arrays.asList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90);
+    private static final List<String> gameCount = Arrays.asList("FIRST GAME", "SECOND GAME", "THIRD GAME", "VS BOSS");
 
-
-    public static void getLevel() {
-        for (int x = 0, y = 1; x <= lvlDifficult.length && y <= levelCount; x++, y++) {
-            for (String z : gameCount) {
-                if (!z.equals("VS BOSS")) {
-                    mob(lvlDifficult[x], y, z);
-                } else
-                    boss(lvlDifficult[x], y, z);
+    public static void getLevel(int getLvlCount, int getLvlDifficult) {
+        int lvlD = 0;
+        int lvlC = 1;
+        if (getLvlCount != 0 && getLvlDifficult != 0) {
+            lvlC = getLvlCount;
+            lvlD = lvlDifficultFinal.indexOf(getLvlDifficult);
+        }
+        for (int a = lvlD, b = lvlC; a <= lvlDifficultFinal.size() && b <= levelCountFinal; a++, b++) {
+            for (String c : gameCount) {
+                launchGame(lvlDifficultFinal.get(a), b, c);
             }
         }
-        boss(70, null, "FINAL GAME");
+        launchGame(110, 11, "FINAL GAME");
         win();
     }
 
 
-    private static void mob(int lvlDifficult, int levelNumber, String gameCount) {
-        String cases = "\n\n===========================================================" +
-                " \n========================= Level " + levelNumber + " =========================" +
+    private static void launchGame(int lvlDifficult, int levelCount, String gameCount) {
+        System.out.println("\n\n===========================================================" +
+                " \n========================= Level " + levelCount + " =========================" +
                 " \n==================" + " DIFFICULT +" + lvlDifficult + " PERCENT " + "===================" +
                 "\n======================== " + gameCount + " =======================" +
-                "\n===========================================================";
-        System.out.println(cases);
-        GetRandom.random(lvlDifficult);
+                "\n===========================================================");
+        TheMain.setLevelDifficult(lvlDifficult);
+        TheMain.setLevelCount(levelCount);
+
+        if (gameCount.equals("VS BOSS") || gameCount.equals("FINAL GAME")) {
+            GetRandom.random_Boss(lvlDifficult);
+        } else {
+            GetRandom.random(lvlDifficult);
+        }
+        new Fight().launch();
     }
 
-
-    private static void boss(int lvlDifficult, Integer levelNumber, String gameCount) {
-        String cases = "\n\n===========================================================" +
-                " \n========================= Level " + levelNumber + " =========================" +
-                " \n==================" + " DIFFICULT +" + lvlDifficult + " PERCENT " + "===================" +
-                "\n======================== " + gameCount + " =======================" +
-                "\n===========================================================";
-        System.out.println(cases);
-        GetRandom.random_Boss(lvlDifficult);
-    }
 
     private static void win() {
         String win = "\n\n\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
-                "\n" + UserName.getUserName() + " you went through" + levelCount + " levels and won    " +
+                "\n" + Game.getUserName() + " you went through" + levelCountFinal + " levels and won    " +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
         System.out.println(win.toUpperCase());
-        GetGame.backToMain();
+        Game.menu();
     }
 }

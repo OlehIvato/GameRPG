@@ -109,10 +109,7 @@
                 <td>
                     <label>
                         <select name="types_id">
-                            <option hidden selected value='${equipment_type.types_id}'><c:forEach items="${equipment.types}" var="type">
-                                ${type.type}
-                            </c:forEach>
-                            </option>
+                            <option hidden selected value='${equipment_type.types_id}'><c:forEach items="${equipment.types}" var="type">${type.type}</c:forEach></option>
                             <option value='1'>Head</option>
                             <option value='2'>Shoulder</option>
                             <option value='3'>Chest</option>

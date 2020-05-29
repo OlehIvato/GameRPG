@@ -51,7 +51,7 @@
             <label for="password" class="col-sm-3 control-label">Email</label>
             <div class="col-sm-9">
                 <form:input type="email" path="email" placeholder="Email"/>
-                <form:errors path="email" cssClass="error"/>
+                <form:errors path="email"/>${emailError}
             </div>
         </div>
 

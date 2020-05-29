@@ -1,65 +1,66 @@
 package game.creature;
 
-import game.fight.Fight;
 import game.primary.Game;
-import game.primary.Main_All;
+import game.primary.TheMain;
 
 
 public class MainCreature {
     private Long id;
     private String name;
-    private int healthPoint;
-    private int min_Damage;
-    private int max_Damage;
+    private int hp;
+    private int minDamage;
+    private int maxDamage;
     private int restoreHealth;
     private int chanceToSuperDamage;
 
-    private static int finalHp = Main_All.getHealthPoint();
-    private static int finalMinDamage = Main_All.getMin_Damage();
-    private static int finalMaxDamage = Main_All.getMax_Damage();
-    private static int finalRestoreHealthPoint = Main_All.getRestoreCreature();
-    private static int finalChance = Main_All.getChanceToSuperDamage();
+    чекнгути сет прямо в мейн
 
 
-    void fight() {
+
+    // без статичних полів дані будуть залишатися змінені а не оновлюватися
+    private static int finalHp = TheMain.getMobHp();
+    private static int finalMinDamage = TheMain.getMobMinDamage();
+    private static int finalMaxDamage = TheMain.getMobMaxDamage();
+    private static int finalRestoreHealth = TheMain.getMobRestoreHp();
+    private static int finalChance = TheMain.getMobChanceToSuperDamage();
+
+    public void setValuesToMain() {
         if (!Game.isBoss) {
             if (Game.isEquip) {
-                Main_All.setName(name);
-                Main_All. setHealthPoint(finalHp + healthPoint);
-                Main_All.setMin_Damage(finalMinDamage + min_Damage);
-                Main_All.setMax_Damage(finalMaxDamage + max_Damage);
-                Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamage);
+                TheMain.setMobName(name);
+                TheMain.setMobHp(finalHp + hp);
+                TheMain.setMobMinDamage(finalMinDamage + minDamage);
+                TheMain.setMobMaxDamage(finalMaxDamage + maxDamage);
+                TheMain.setMobChanceToSuperDamage(finalChance + chanceToSuperDamage);
             }
 
             if (!Game.isEquip) {
-                Main_All.setName(name);
-                Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPoint));
-                Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_Damage));
-                Main_All.setMax_Damage(finalMaxDamage + GetRandom.changer(max_Damage));
-                Main_All.setChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
+                TheMain.setMobName(name);
+                TheMain.setMobHp(finalHp + GetRandom.changer(hp));
+                TheMain.setMobMinDamage(finalMinDamage + GetRandom.changer(minDamage));
+                TheMain.setMobMaxDamage(finalMaxDamage + GetRandom.changer(maxDamage));
+                TheMain.setMobChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
             }
         }
         if (Game.isBoss) {
             if (Game.isEquip) {
-                Main_All.setName(name);
-                Main_All.setHealthPoint(finalHp + healthPoint);
-                Main_All.setMin_Damage(finalMinDamage + min_Damage);
-                Main_All.setMax_Damage(finalMaxDamage + max_Damage);
-                Main_All.setRestoreCreature(finalRestoreHealthPoint + restoreHealth);
-                Main_All.setChanceToSuperDamage(finalChance + chanceToSuperDamage);
+                TheMain.setMobName(name);
+                TheMain.setMobHp(finalHp + hp);
+                TheMain.setMobMinDamage(finalMinDamage + minDamage);
+                TheMain.setMobMaxDamage(finalMaxDamage + maxDamage);
+                TheMain.setMobRestoreHp(finalRestoreHealth + restoreHealth);
+                TheMain.setMobChanceToSuperDamage(finalChance + chanceToSuperDamage);
 
             }
             if (!Game.isEquip) {
-                Main_All.setName(name);
-                Main_All.setHealthPoint(finalHp + GetRandom.changer(healthPoint));
-                Main_All.setMin_Damage(finalMinDamage + GetRandom.changer(min_Damage));
-                Main_All.setMax_Damage(finalMaxDamage + GetRandom.changer(max_Damage));
-                Main_All.setRestoreCreature(finalRestoreHealthPoint + GetRandom.changer(restoreHealth));
-                Main_All.setChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
+                TheMain.setMobName(name);
+                TheMain.setMobHp(finalHp + GetRandom.changer(hp));
+                TheMain.setMobMinDamage(finalMinDamage + GetRandom.changer(minDamage));
+                TheMain.setMobMaxDamage(finalMaxDamage + GetRandom.changer(maxDamage));
+                TheMain.setMobRestoreHp(finalRestoreHealth + GetRandom.changer(restoreHealth));
+                TheMain.setMobChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
             }
         }
-        Fight f = new Fight();
-        f.main();
     }
 
 
@@ -79,28 +80,28 @@ public class MainCreature {
         this.name = name;
     }
 
-    public int getHealthPoint() {
-        return healthPoint;
+    public int getHp() {
+        return hp;
     }
 
-    public void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
-    public int getMin_Damage() {
-        return min_Damage;
+    public int getMinDamage() {
+        return minDamage;
     }
 
-    public void setMin_Damage(int min_Damage) {
-        this.min_Damage = min_Damage;
+    public void setMinDamage(int minDamage) {
+        this.minDamage = minDamage;
     }
 
-    public int getMax_Damage() {
-        return max_Damage;
+    public int getMaxDamage() {
+        return maxDamage;
     }
 
-    public void setMax_Damage(int max_Damage) {
-        this.max_Damage = max_Damage;
+    public void setMaxDamage(int maxDamage) {
+        this.maxDamage = maxDamage;
     }
 
     public int getRestoreHealth() {
@@ -143,12 +144,12 @@ public class MainCreature {
         MainCreature.finalMaxDamage = finalMaxDamage;
     }
 
-    public static int getFinalRestoreHealthPoint() {
-        return finalRestoreHealthPoint;
+    public static int getFinalRestoreHealth() {
+        return finalRestoreHealth;
     }
 
-    public static void setFinalRestoreHealthPoint(int finalRestoreHealthPoint) {
-        MainCreature.finalRestoreHealthPoint = finalRestoreHealthPoint;
+    public static void setFinalRestoreHealth(int finalRestoreHealth) {
+        MainCreature.finalRestoreHealth = finalRestoreHealth;
     }
 
     public static int getFinalChance() {

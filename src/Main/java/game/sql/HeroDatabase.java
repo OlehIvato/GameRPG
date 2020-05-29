@@ -1,7 +1,7 @@
 package game.sql;
 
 import game.primary.Game;
-import game.primary.Main_All;
+import game.primary.TheMain;
 
 
 import java.sql.*;
@@ -9,26 +9,22 @@ import java.util.Scanner;
 
 public class HeroDatabase {
     private static Connection connection;
-    private static Scanner scanner = new Scanner(System.in);
 
-
-    public static void main() {
-        showHeroes();
-        setValues();
-
-        Game game = new Game();
-        game.createNewHero();
+    public static void createHero() {
+        showHeroesFromDatabase();
+        setHeroToMain();
+        new Game().createNewHero();
     }
 
 
-    private static void setValues() {
+    private static void setHeroToMain() {
         try {
-            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
+            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
             PreparedStatement preparedStatementHero = connection.prepareStatement("SELECT * FROM hero WHERE id = ?");
             PreparedStatement preparedStatementClass = connection.prepareStatement("select classtype1_.class as class  from hero_classes classes0_ inner join class classtype1_ on classes0_.classes_id=classtype1_.id where hero_model_id = ? order by hero_model_id");
             PreparedStatement preparedStatementArmor = connection.prepareStatement("select armor1_.armor as armor from hero_armors armors0_ inner join armor armor1_ on armors0_.armors_id = armor1_.id  where hero_model_id = ? order by hero_model_id");
 
-            int resultScan = scanner.nextInt();
+            int resultScan = new Scanner(System.in).nextInt();
 
             preparedStatementHero.setInt(1, resultScan);
             preparedStatementClass.setInt(1, resultScan);
@@ -39,15 +35,15 @@ public class HeroDatabase {
             ResultSet resultSetArmor = preparedStatementArmor.executeQuery();
 
             while (resultSetHero.next() && resultSetClass.next() && resultSetArmor.next()) {
-                Main_All.setHeroClass(resultSetClass.getString("class"));
-                Main_All.setHeroName(resultSetHero.getString("name"));
-                Main_All.setHeroHP(Main_All.getHeroHP() + resultSetHero.getInt("hp"));
-                Main_All.setDefaultDamage(Main_All.getDefaultDamage() + resultSetHero.getInt("damage"));
-                Main_All.setMinSpellDamageHERO(Main_All.getMinSpellDamageHERO() + resultSetHero.getInt("minSpellDamage"));
-                Main_All.setMaxSpellDamageHero(Main_All.getMaxSpellDamageHero() + resultSetHero.getInt("maxSpellDamage"));
-                Main_All.setRestoreHealth(Main_All.getRestoreHealth() + resultSetHero.getInt("restoreHealth"));
-                Main_All.setMana(Main_All.getMana() + resultSetHero.getInt("mana"));
-                Main_All.setHeroArmorType(resultSetArmor.getString("armor"));
+                TheMain.setHeroClass(resultSetClass.getString("class"));
+                TheMain.setHeroName(resultSetHero.getString("name"));
+                TheMain.setHeroHp(TheMain.getHeroHp() + resultSetHero.getInt("hp"));
+                TheMain.setHeroDamage(TheMain.getHeroDamage() + resultSetHero.getInt("damage"));
+                TheMain.setHeroMinSpell(TheMain.getHeroMinSpell() + resultSetHero.getInt("minSpellDamage"));
+                TheMain.setHeroMaxSpell(TheMain.getHeroMaxSpell() + resultSetHero.getInt("maxSpellDamage"));
+                TheMain.setHeroRestoreHp(TheMain.getHeroRestoreHp() + resultSetHero.getInt("restoreHealth"));
+                TheMain.setHeroMana(TheMain.getHeroMana() + resultSetHero.getInt("mana"));
+                TheMain.setHeroArmor(resultSetArmor.getString("armor"));
                 System.out.println("You selected " + resultSetHero.getString("name"));
             }
         } catch (SQLException e) {
@@ -55,9 +51,9 @@ public class HeroDatabase {
         }
     }
 
-    private static void showHeroes() {
+    private static void showHeroesFromDatabase() {
         try {
-            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
+            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
             Statement statementHero = connection.createStatement();
             Statement statementArmor = connection.createStatement();
             Statement statementClass = connection.createStatement();
@@ -66,6 +62,7 @@ public class HeroDatabase {
             ResultSet resultSetArmor = statementArmor.executeQuery("select armor1_.armor as armor from hero_armors armors0_ inner join armor armor1_ on armors0_.armors_id = armor1_.id order by hero_model_id");
             ResultSet resultSetClass = statementClass.executeQuery("select classtype1_.class as class from hero_classes classes0_ inner join class classtype1_ on classes0_.classes_id=classtype1_.id order by hero_model_id");
 
+            System.out.println("\nSelect one:");
             while (resultSetHero.next() && resultSetArmor.next() && resultSetClass.next()) {
                 String getFormat = "%1$-3s|%2$-16s|%3$-18s|%4$-9s|%5$-12s|%6$-22s|%7$-22s|%8$-16s|%9$-11s|%10$-21s|";
                 String result = String.format(getFormat,

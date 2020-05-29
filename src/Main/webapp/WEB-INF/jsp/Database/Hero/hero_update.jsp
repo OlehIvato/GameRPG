@@ -55,7 +55,9 @@
                     <label>
                         <select name="class_id">
                             <option selected hidden value='${hero_class.class_id}'>
-                                <c:forEach items="${heroes.classes}" var="classes">${classes.className}</c:forEach>
+                                <c:forEach items="${heroes.classes}" var="classes">
+                                    ${classes.className}
+                                </c:forEach>
                             </option>
                             <option value='1'>Mage</option>
                             <option value='2'>Warrior</option>
@@ -153,8 +155,11 @@
                 <td>
                     <label>
                         <select name="armor_id">
-                            <option selected hidden value='${armors.armor_id}'><c:forEach items="${heroes.armors}"
-                                                                                          var="armor">${armor.armorName}</c:forEach></option>
+                            <option hidden selected value='${hero_armors.armor_id}'>
+                                <c:forEach items="${heroes.armors}" var="armor">
+                                    ${armor.armorName}
+                                </c:forEach>
+                            </option>
                             <option value='1'>Cloth</option>
                             <option value='2'>Leather</option>
                             <option value='3'>Plate</option>
@@ -176,7 +181,9 @@
             <tr>
                 <td colspan="2" align="center">
                     <button class="button" type="submit" value="Save">Save</button>
-                    <button class="button" style="background-color: crimson"><a style="color: #ffffff" href="${pageContext.request.contextPath}/hero/all">Back</a></button>
+                    <button class="button" style="background-color: crimson"><a style="color: #ffffff"
+                                                                                href="${pageContext.request.contextPath}/hero/all">Back</a>
+                    </button>
                 </td>
             </tr>
         </table>

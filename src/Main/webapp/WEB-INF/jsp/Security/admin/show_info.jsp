@@ -27,6 +27,23 @@
             margin-bottom: 10px;
         }
 
+        #avatar {
+            width: 300px;
+            background-color: #999999;
+            border: #999999;
+            margin-left: 25px;
+
+            display: none;
+            position: absolute;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+
+        }
+
+        #avatar:target {
+            display: block;
+        }
     </style>
 
     <meta charset="utf-8">
@@ -54,6 +71,7 @@
                 <th>Country</th>
                 <th>City</th>
                 <th>Zip</th>
+                <th>Avatar</th>
                 </thead>
                 <tbody>
                 <tr>
@@ -66,10 +84,15 @@
                     <td>${profile.country}</td>
                     <td>${profile.city}</td>
                     <td>${profile.zip}</td>
-
+                    <td><a href="#avatar">show</a></td>
                 </tr>
                 </tbody>
             </table>
+
+            <div id="avatar">
+                <img alt="User Avatar" src="<c:url value="/ava/${profile.avatar}"/>"/>
+                <a href="#" class="close">close</a>
+            </div>
 
             <div>
                 <h2 style="margin-top: 10px">Bio</h2>

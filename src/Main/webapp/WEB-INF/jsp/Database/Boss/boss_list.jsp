@@ -71,7 +71,9 @@
 
 
 <div style="text-align: center"><h1>Boss Database</h1></div>
-<button style="margin-left: 100px"><a href="/welcome">Back</a></button>
+<a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome"><button> Back</button></a>
+
+
 <div align="center">
     <table class=" table-sm table-striped" border="1" cellpadding="5">
         <tr>
@@ -84,30 +86,28 @@
             <th>Change To Super Damage</th>
         </tr>
         <c:forEach var="boss" items="${bosses}">
-            <sec>
-                <td>${boss.id}</td>
-                <td>${boss.name}</td>
-                <td>${boss.hp}</td>
-                <td>${boss.minDamage}</td>
-                <td>${boss.maxDamage}</td>
-                <td>${boss.restoreHealth}</td>
-                <td>${boss.chanceToSuperDamage}</td>
-
-                        <sec:authorize access="hasRole('ADMIN')">
+            <td>${boss.id}</td>
+            <td>${boss.name}</td>
+            <td>${boss.hp}</td>
+            <td>${boss.minDamage}</td>
+            <td>${boss.maxDamage}</td>
+            <td>${boss.restoreHealth}</td>
+            <td>${boss.chanceToSuperDamage}</td>
+            <sec:authorize access="hasRole('ADMIN')">
                 <td><a href="${pageContext.request.contextPath}/boss/update/<c:out value='${boss.id}'/>">
                     <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                 </a></td>
                 <td><a href="${pageContext.request.contextPath}/boss/delete/<c:out value='${boss.id}'/>">
                     <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                 </a></td>
-                </sec:authorize>
+            </sec:authorize>
             </tr>
         </c:forEach>
     </table>
 </div>
 <sec:authorize access="hasRole('ADMIN')">
-<button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/boss/create">Create new
-    Boss</a></button>
+    <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/boss/create">Create new
+        Boss</a></button>
 </sec:authorize>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

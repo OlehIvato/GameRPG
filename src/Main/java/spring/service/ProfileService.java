@@ -2,7 +2,6 @@ package spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import spring.model.Profile;
@@ -10,7 +9,6 @@ import spring.repository.ProfileRepository;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.UUID;
 
 @Service
@@ -18,8 +16,8 @@ public class ProfileService {
     @Autowired
     ProfileRepository profileRepository;
 
-    @Value("D:/")
-    private String path;
+    @Value("C:\\Users\\doc\\Desktop\\rpg MiniGame\\src\\main\\resources\\avatars\\")
+    private String avatarPath;
 
     public Profile findOneById(Long id) {
         return profileRepository.getOne(id);
@@ -33,21 +31,19 @@ public class ProfileService {
         profileRepository.deleteById(id);
     }
 
-    public boolean checkAvatar(Profile profile, MultipartFile file) {
+    public void saveAvatar(Profile profile, MultipartFile file) {
         if (file != null && !file.isEmpty()) {
             String getAvatarName = file.getOriginalFilename();
             String fileName = UUID.randomUUID().toString() + getAvatarName;
             try {
-                file.transferTo(new File(path + fileName));
+                file.transferTo(new File(avatarPath + fileName));
                 profile.setAvatar((fileName));
             } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();
             }
-            return true;
+            save(profile);
         }
-        return false;
     }
-
 
 }
 

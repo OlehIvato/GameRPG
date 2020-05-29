@@ -1,7 +1,7 @@
 package spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +19,11 @@ import spring.service.UserService;
 public class AdminController {
 
     @Autowired
-    private User_RolesRepository userRolesRepository;
-    @Autowired
     private UserService userService;
     @Autowired
     private ProfileService profileService;
+    @Autowired
+    private User_RolesRepository userRolesRepository;
 
     @GetMapping("userlist")
     public String userList(Model model) {
@@ -47,8 +47,7 @@ public class AdminController {
 
     @GetMapping("setrole/{id}")
     public String setRole(@PathVariable("id") Long user_id, Model model) {
-        User_Roles userRoles = userRolesRepository.getOne(user_id);
-        model.addAttribute("roles", userRoles);
+        model.addAttribute("roles", userRolesRepository.getOne(user_id));
         return "security/admin/set_role";
     }
 

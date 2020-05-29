@@ -1,6 +1,6 @@
 package spring.controller.game;
 
-import game.primary.Main_All;
+import game.primary.TheMain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,13 +32,13 @@ public class Select_HeroController {
     public String create(HeroModel heroModel, @PathVariable("id") Long id) {
         heroService.findOneById(id);
         heroService.save(heroModel);
-        Main_All.setHeroName(heroModel.getName());
-        Main_All.setHeroHP(heroModel.getHp());
-        Main_All.setDefaultDamage(heroModel.getDamage());
-        Main_All.setMinSpellDamageHERO(heroModel.getMinSpell());
-        Main_All.setMaxSpellDamageHero(heroModel.getMaxSpell());
-        Main_All.setRestoreHealth(heroModel.getRestore());
-        Main_All.setMana(heroModel.getMana());
+        TheMain.setHeroName(heroModel.getName());
+        TheMain.setHeroHp(heroModel.getHp());
+        TheMain.setHeroDamage(heroModel.getDamage());
+        TheMain.setHeroMinSpell(heroModel.getMinSpell());
+        TheMain.setHeroMaxSpell(heroModel.getMaxSpell());
+        TheMain.setHeroRestoreHp(heroModel.getRestore());
+        TheMain.setHeroMana(heroModel.getMana());
         return "redirect:/game/equipment-select";
     }
 

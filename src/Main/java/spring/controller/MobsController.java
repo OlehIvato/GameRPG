@@ -22,8 +22,7 @@ public class MobsController {
 
     @GetMapping("all")
     public String findAll(Model model) {
-        List<MobsModel> mobsModel = mobsService.findAll();
-        model.addAttribute("mobs", mobsModel);
+        model.addAttribute("mobs", mobsService.findAll());
         return "database/mob/mob_list";
     }
 
@@ -40,8 +39,7 @@ public class MobsController {
 
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        MobsModel mobsModel = mobsService.findOneById(id);
-        model.addAttribute("mobs", mobsModel);
+        model.addAttribute("mobs", mobsService.findOneById(id));
         return "database/mob/mob_update";
     }
 

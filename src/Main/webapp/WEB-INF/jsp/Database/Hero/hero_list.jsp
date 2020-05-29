@@ -79,7 +79,7 @@
 
 <div style="text-align: center"><h1>Hero Database</h1></div>
 
-<button style="margin-left: 100px"><a href="/welcome">Back</a></button>
+<a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome"><button> Back</button></a>
 <div align="center">
     <table class=" table-sm table-striped" border="1" cellpadding="5">
         <tr>
@@ -108,7 +108,7 @@
                 <td>${hero.mana}</td
                 </td>
                 <td><c:forEach items="${hero.armors}" var="armor">${armor.armorName}</c:forEach>
-                <td><img style="width: 35px" class="scale" alt="Hero image" src="/images/${hero.image}"></td>
+                <td><img style="width: 35px" class="scale" alt="Hero image" src="/heroImg/${hero.image}"></td>
                     <sec:authorize access="hasRole('ADMIN')">
                 <td><a href="${pageContext.request.contextPath}/hero/update/<c:out value='${hero.id}'/>">
                     <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>

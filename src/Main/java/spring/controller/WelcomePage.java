@@ -17,8 +17,7 @@ public class WelcomePage {
     @GetMapping("/welcome")
     public String mainPage(Model model, Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        Long id = user.getId();
-        model.addAttribute("user", userService.getOneById(id));
+        model.addAttribute("user", userService.getOneById(user.getId()));
         return "welcome";
     }
 

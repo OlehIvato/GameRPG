@@ -6,7 +6,6 @@
 <html lang="en">
 <head>
     <style>
-
         .buttonStyle {
             background-color: darkred;
             padding-left: 4px;
@@ -72,7 +71,9 @@
 
 <div style="text-align: center"><h1>Equipment Database</h1></div>
 
-<button style="margin-left: 100px"><a href="/welcome">Back</a></button>
+<a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome">
+    <button> Back</button>
+</a>
 <div align="center">
     <table class=" table-sm table-striped" border="1" cellpadding="5">
         <tr>
@@ -93,24 +94,25 @@
                 <td>${equip.damage}</td>
                 <td>${equip.spell_damage}</td>
                 <td>${equip.mana}</td>
-                <td><c:forEach items="${equip.types}" var="type">${type.type}</c:forEach>
-                <td><c:forEach items="${equip.armors}" var="armor">${armor.armorName}</c:forEach>
-                </td>
-                <td>
-                    <sec:authorize access="hasRole('ADMIN')">
-                <td><a href="${pageContext.request.contextPath}/equipment/update/<c:out value='${equip.id}'/>">
-                    <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
-                </a></td>
-                <td><a href="${pageContext.request.contextPath}/equipment/delete/<c:out value='${equip.id}'/>">
-                    <button class="buttonStyle" style="background-color: darkred"> Delete</button>
-                </a></td>
+                <td><c:forEach items="${equip.types}" var="type">${type.type}</c:forEach></td>
+                <td><c:forEach items="${equip.armors}" var="armor">${armor.armorName}</c:forEach></td>
+
+                <sec:authorize access="hasRole('ADMIN')">
+                    <td><a href="${pageContext.request.contextPath}/equipment/update/<c:out value='${equip.id}'/>">
+                        <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
+                    </a></td>
+                    <td><a href="${pageContext.request.contextPath}/equipment/delete/<c:out value='${equip.id}'/>">
+                        <button class="buttonStyle" style="background-color: darkred"> Delete</button>
+                    </a></td>
                 </sec:authorize>
+
             </tr>
         </c:forEach>
     </table>
 </div>
 <sec:authorize access="hasRole('ADMIN')">
-    <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/equipment/create">Create new
+    <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/equipment/create">Create
+        new
         Equipment</a></button>
 </sec:authorize>
 

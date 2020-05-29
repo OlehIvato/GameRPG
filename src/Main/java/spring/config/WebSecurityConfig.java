@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // це заборонити зміну ролі, видаляти, міняти пароль, ім'я, і особисту інформацію користовачу "admin"
                 .antMatchers("/admin/setrole/1", "/admin/removeuser/1", "/admin/userinfo/1",
-                        "/account/edit-password/1", "/account/edit-username/1","/account/edit-info/1").denyAll()
+                        "/account/edit-password/1", "/account/edit-username/1","/account/edit-info/1","/account/edit-avatar/1").denyAll()
 
 
                 .antMatchers("/admin/**",

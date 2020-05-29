@@ -10,8 +10,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-    @Value("D:/")
-    private String path;
+    @Value("C:\\Users\\doc\\Desktop\\rpg MiniGame\\src\\main\\resources\\heroImages\\")
+    private String pathHeroImage;
+
+    @Value("C:\\Users\\doc\\Desktop\\rpg MiniGame\\src\\main\\resources\\avatars\\")
+    private String pathAvatars;
 
 
     @Override
@@ -24,6 +27,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**").addResourceLocations("file:"+path).setCachePeriod(Integer.MAX_VALUE);
+        registry.addResourceHandler("/heroImg/**").addResourceLocations("file:"+pathHeroImage).setCachePeriod(Integer.MAX_VALUE);
+        registry.addResourceHandler("/ava/**").addResourceLocations("file:"+pathAvatars).setCachePeriod(Integer.MAX_VALUE);
     }
 }

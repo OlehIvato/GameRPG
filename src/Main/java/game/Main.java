@@ -1,14 +1,13 @@
 package game;
 
-import game.fight.Level;
-import game.fight.Saving;
-import game.primary.Menu;
+import game.primary.Game;
 
 public class Main {
-    public static void main(String[] args) {
-      //  Saving.getSavedGame();
-    //    Level.getLevel();
-          Menu.menu();
 
+    public static void main(String[] args) {
+
+
+
+        Game.menu();
     }
 }

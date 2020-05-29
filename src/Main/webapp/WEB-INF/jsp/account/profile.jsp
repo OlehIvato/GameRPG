@@ -31,6 +31,7 @@
         margin-bottom: 10px;
     }
 
+
     .image {
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -89,7 +90,7 @@
 
 <div style="margin-left: 50px">
     <c:forEach items="${user.profile}" var="profile">
-        <form>
+        <form method="post">
             <fieldset>
 
                 <h1>Account</h1>
@@ -136,7 +137,7 @@
             <div class="imagePosition">
                 <h1> Avatar</h1>
                 <div class="image">
-                    <img style="width: 350px" alt="Avatar" src="<c:url value="/images/${profile.avatar}"/>"/>
+                    <img style="width: 350px" alt="User Avatar" src="<c:url value="/ava/${profile.avatar}"/>"/>
                 </div>
                 <a style="width: 250px" class="btn btn-primary" href="/account/edit-avatar/<c:out value='${user.id}'/>">Edit
                     Avatar</a>

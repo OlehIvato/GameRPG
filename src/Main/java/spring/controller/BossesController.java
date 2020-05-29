@@ -20,8 +20,7 @@ public class BossesController {
 
     @GetMapping("all")
     public String findAll(Model model) {
-        List<BossesModel> bossesModels = bossesService.findAll();
-        model.addAttribute("bosses", bossesModels);
+        model.addAttribute("bosses", bossesService.findAll());
         return "database/boss/boss_list";
     }
 
@@ -38,8 +37,7 @@ public class BossesController {
 
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        BossesModel bossesModels = bossesService.findOneById(id);
-        model.addAttribute("bosses", bossesModels);
+        model.addAttribute("bosses", bossesService.findOneById(id));
         return "database/boss/boss_update";
     }
 

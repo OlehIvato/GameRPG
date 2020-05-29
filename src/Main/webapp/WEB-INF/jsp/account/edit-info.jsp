@@ -64,12 +64,10 @@
         <label> <strong> Email: </strong>
             <input style="margin-left: 5px" type="email" name="email" placeholder="Email Address..."
                    value="<c:out value='${user.email}'/>"/>
-            ${emailError}
-
         </label><br>
 
         <label><strong> Birthday: </strong>
-            <input  style="margin-left: 5px" name="birthday" type="date"
+            <input required style="margin-left: 5px" name="birthday" type="date"
                    value="<c:out value='${profile.birthday}'/>"/>
         </label><br>
 

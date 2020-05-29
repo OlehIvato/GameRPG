@@ -4,6 +4,7 @@ package spring.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import spring.config.MvcConfig;
 import spring.model.HeroModel;
 
 import spring.repository.HeroRepository;
@@ -16,9 +17,8 @@ import java.util.UUID;
 @Service
 public class HeroService {
 
-
-    @Value("D:/")
-    private String path;
+    @Value("C:\\Users\\doc\\Desktop\\rpg MiniGame\\src\\main\\resources\\heroImages\\")
+    private String pathHeroImage;
 
     private final HeroRepository heroRepository;
 
@@ -48,10 +48,10 @@ public class HeroService {
 
     public void saveWithImage(HeroModel hero, MultipartFile file) {
         if (file != null && !file.isEmpty()) {
-            String getName = file.getOriginalFilename();
-            String fileName = UUID.randomUUID().toString() + getName;
+            String getOriginalName = file.getOriginalFilename();
+            String fileName = UUID.randomUUID().toString() + getOriginalName;
             try {
-                file.transferTo(new File(path + fileName));
+                file.transferTo(new File(pathHeroImage + fileName));
                 hero.setImage(fileName);
             } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();

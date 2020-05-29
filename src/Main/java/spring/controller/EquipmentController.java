@@ -28,8 +28,7 @@ public class EquipmentController {
 
     @GetMapping("all")
     public String findAll(Model model) {
-        List<EquipmentModel> equipmentModels = equipmentService.findAll();
-        model.addAttribute("equipment", equipmentModels);
+        model.addAttribute("equipment", equipmentService.findAll());
         return "database/equipment/equipment_list";
     }
 
@@ -46,8 +45,7 @@ public class EquipmentController {
 
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        EquipmentModel equipmentModel = equipmentService.findOneById(id);
-        model.addAttribute("equipment", equipmentModel);
+        model.addAttribute("equipment", equipmentService.findOneById(id));
         model.addAttribute("equipment_type", equipmentTypesRepository.getOne(id));
         model.addAttribute("equipment_armor", equipment_armorsRepository.getOne(id));
         return "database/equipment/equipment_update";

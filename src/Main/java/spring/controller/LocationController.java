@@ -20,8 +20,7 @@ public class LocationController {
 
     @GetMapping("all")
     public String findAll(Model model) {
-        List<LocationModel> locationModel = locationService.findAll();
-        model.addAttribute("locations", locationModel);
+        model.addAttribute("locations", locationService.findAll());
         return "database/location/location_list";
     }
 
@@ -38,8 +37,7 @@ public class LocationController {
 
     @GetMapping("update/{id}")
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        LocationModel locationModel = locationService.findOneById(id);
-        model.addAttribute("locations", locationModel);
+        model.addAttribute("locations", locationService.findOneById(id));
         return "database/location/location_update";
     }
 

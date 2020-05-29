@@ -19,7 +19,6 @@ import spring.service.UserService;
 @RequestMapping("account/")
 public class AccountController {
 
-
     @Autowired
     UserService userService;
     @Autowired
@@ -32,10 +31,10 @@ public class AccountController {
 
     @GetMapping("user/{id}")
     public String getUserInfo(Model model, @PathVariable("id") Long id) {
-
         model.addAttribute("user", userService.getOneById(id));
         return "account/profile";
     }
+
 
     @GetMapping("edit-info/{id}")
     public String openEditorInfo(Model model, @PathVariable("id") Long id) {
@@ -47,10 +46,11 @@ public class AccountController {
         return "account/edit-info";
     }
 
+
     @PostMapping("edit-info")
     public String saveInformationInfo(Profile profile, User user, User_Roles user_roles, User_Profile user_profile) {
         profileService.save(profile);
-        userService.updateEmail(user);
+        userService.save(user);
         user_profileRepository.save(user_profile);
         user_rolesRepository.save(user_roles);
         return "redirect:/account/user/" + user.getId();
@@ -70,11 +70,11 @@ public class AccountController {
         if (bindingResult.hasErrors()) {
             return "account/edit-username";
         }
-        if (!userService.editUsername(user)) {
+        if (!userService.checkUsername(user)) {
             model.addAttribute("userError", "Someone already have that username");
             return "account/edit-username";
         }
-
+        userService.save(user);
         user_profileRepository.save(user_profile);
         user_rolesRepository.save(user_roles);
         return "redirect:/account/user/" + user.getId();
@@ -103,28 +103,25 @@ public class AccountController {
         return "redirect:/account/user/" + user.getId();
     }
 
-
     @GetMapping("edit-avatar/{id}")
     public String openEditorAvatar(Model model, @PathVariable("id") Long id) {
-        Profile profile = profileService.findOneById(id);
-        model.addAttribute("profile", profile);
+        model.addAttribute("profile", profileService.findOneById(id));
         model.addAttribute("user", userService.getOneById(id));
         return "account/edit-avatar";
     }
 
     @PostMapping("edit-avatar")
-    public String saveAvatar(Profile profile, BindingResult bindingResult, Model model, MultipartFile file, User user) {
-        if (bindingResult.hasErrors()) {
-            return "account/edit-avatar";
-        }
-        if (profileService.checkAvatar(profile, file)) {
-            model.addAttribute("avatarError", "Empty file");
-            return "account/edit-avatar";
-        }
+    public String saveAvatar(Profile profile, User user, @RequestParam("ava") MultipartFile file) {
+        profileService.saveAvatar(profile, file);
+        return "redirect:/account/user/" + user.getId();
+    }
+
+    @GetMapping("delete-avatar/{id}")
+    public String deleteAvatar(User user, @PathVariable("id") Long id) {
+        Profile profile = profileService.findOneById(id);
+        profile.setAvatar(null);
         profileService.save(profile);
         return "redirect:/account/user/" + user.getId();
     }
 
-
 }
-

@@ -1,103 +1,86 @@
 package game.sql;
 
 
-import game.primary.Main_All;
+import game.primary.TheMain;
 
 import java.sql.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class EquipmentDatabase {
 
     private static Connection connection;
+    private static final List<String> typeList = Arrays.asList("Head", "Shoulder", "Chest", "Legs");
+    private static final List<String> descriptionList = Arrays.asList("Select Head Armor:\n", "Select Shoulder Armor:\n", "Select Chest Armor:\n", "Select Leg Armor:\n");
 
-    public static void equipmentMain() {
+    private static final Iterator<String> type = typeList.iterator();
+    private static final Iterator<String> description = descriptionList.iterator();
 
-        String headSelect = "Select Head Armor:\n";
-        String shoulderSelect = "Select Shoulder Armor:\n";
-        String chestSelect = "Select Chest Armor:\n";
-        String legSelect = "Select Leg Armor\n";
-        String wandSelect = "Select Wand\n";
-        String swordSelect = "Select Sword\n";
-        String shieldSelect = "Select Shield\n";
-        String amuletsSelect = "Select Amulet\n";
+    public static void createEquipment(String getArmor, String getClass) {
 
-        String type_Head = "Head";
-        String type_Shoulder = "Shoulder";
-        String type_Chest = "Chest";
-        String type_Legs = "Legs";
+        String selectWand = "Select Wand\n";
+        String selectSword = "Select Sword\n";
+        String selectShield = "Select Shield\n";
+        String selectAmulet = "Select Amulet\n";
+
         String type_Wand = "Wand";
         String type_Sword = "Sword";
         String type_Shield = "Shield";
         String type_Amulets = "Amulet";
 
 
-        String armor_Cloth = "Cloth";
-        String armor_leather = "Leather";
-        String armor_Plate = "Plate";
-        String armor_Weapon = "Weapon";
+        String cloth = "Cloth";
+        String leather = "Leather";
+        String plate = "Plate";
+        String weapon = "Weapon";
 
 
-        if (Main_All.getHeroArmorType().equals("Cloth")) {
-            System.out.println(headSelect);
-            show(armor_Cloth, type_Head);
-
-            System.out.println(shoulderSelect);
-            show(armor_Cloth, type_Shoulder);
-
-            System.out.println(chestSelect);
-            show(armor_Cloth, type_Chest);
-
-            System.out.println(legSelect);
-            show(armor_Cloth, type_Legs);
+        if (getArmor.equals(cloth)) {
+            while (type.hasNext() && description.hasNext()) {
+                System.out.println(description.next());
+                show(cloth, type.next());
+            }
         }
-        if (Main_All.getHeroArmorType().equals("Leather")) {
-            System.out.println(headSelect);
-            show(armor_leather, type_Head);
 
-            System.out.println(shoulderSelect);
-            show(armor_leather, type_Shoulder);
-
-            System.out.println(chestSelect);
-            show(armor_leather, type_Chest);
-
-            System.out.println(legSelect);
-            show(armor_leather, type_Legs);
+        if (getArmor.equals(leather)) {
+            while (type.hasNext() && description.hasNext()) {
+                System.out.println(description.next());
+                show(leather, type.next());
+            }
         }
-        if (Main_All.getHeroArmorType().equals("Plate")) {
-            System.out.println(headSelect);
-            show(armor_Plate, type_Head);
 
-            System.out.println(shoulderSelect);
-            show(armor_Plate, type_Shoulder);
+        if (getArmor.equals(plate)) {
+            while (type.hasNext() && description.hasNext()) {
+                System.out.println(description.next());
+                show(plate, type.next());
+            }
+        }
 
-            System.out.println(chestSelect);
-            show(armor_Plate, type_Chest);
 
-            System.out.println(legSelect);
-            show(armor_Plate, type_Legs);
+        if (getClass.equals("Mage") || getClass.equals("Paladin")) {
+            System.out.println(selectWand);
+            show(weapon, type_Wand);
         }
-        if (Main_All.getHeroClass().equals("Mage") || Main_All.getHeroClass().equals("Paladin")) {
-            System.out.println(wandSelect);
-            show(armor_Weapon, type_Wand);
+        if (getClass.equals("Warrior") || getClass.equals("Paladin") || getClass.equals("Monk")) {
+            System.out.println(selectSword);
+            show(weapon, type_Sword);
         }
-        if (Main_All.getHeroClass().equals("Warrior") || Main_All.getHeroClass().equals("Paladin") || Main_All.getHeroClass().equals("Monk")) {
-            System.out.println(swordSelect);
-            show(armor_Weapon, type_Sword);
+        if (getClass.equals("Mage") || getClass.equals("Druid") || getClass.equals("Priest") && TheMain.getHeroMana() < 110) {
+            System.out.println(selectAmulet);
+            show(weapon, type_Amulets);
         }
-        if (Main_All.getHeroHP() < 150) {
-            System.out.println(shieldSelect);
-            show(armor_Weapon, type_Shield);
-        }
-        if (Main_All.getHeroClass().equals("Mage") || Main_All.getHeroClass().equals("Druid") || Main_All.getHeroClass().equals("Priest") && Main_All.getMana() < 110) {
-            System.out.println(amuletsSelect);
-            show(armor_Weapon, type_Amulets);
+        if (TheMain.getHeroHp() < 150) {
+            System.out.println(selectShield);
+            show(weapon, type_Shield);
         }
 
     }
 
-    public static void show(String getArmor, String getType) {
+    private static void show(String getArmor, String getType) {
         try {
-            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
+            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
             Statement statementMain = connection.createStatement();
             Statement statementType = connection.createStatement();
             Statement statementArmor = connection.createStatement();
@@ -124,22 +107,21 @@ public class EquipmentDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        setValues();
+        setValuesToMain();
     }
 
-    private static void setValues() {
-        Scanner scanner = new Scanner(System.in);
+    private static void setValuesToMain() {
         try {
-            connection = DriverManager.getConnection(Main_All.getUrl(), Main_All.getUserName(), Main_All.getPassword());
+            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM equipment WHERE id = ?");
-            preparedStatement.setInt(1, scanner.nextInt());
+            preparedStatement.setInt(1, new Scanner(System.in).nextInt());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Main_All.setHeroHP(Main_All.getHeroHP() + resultSet.getInt("hp"));
-                Main_All.setDefaultDamage(Main_All.getDefaultDamage() + resultSet.getInt("damage"));
-                Main_All.setMinSpellDamageHERO(Main_All.getMinSpellDamageHERO() + resultSet.getInt("spell_damage"));
-                Main_All.setMaxSpellDamageHero(Main_All.getMaxSpellDamageHero() + resultSet.getInt("spell_damage"));
-                Main_All.setMana(Main_All.getMana() + resultSet.getInt("mana"));
+                TheMain.setHeroHp(TheMain.getHeroHp() + resultSet.getInt("hp"));
+                TheMain.setHeroDamage(TheMain.getHeroDamage() + resultSet.getInt("damage"));
+                TheMain.setHeroMinSpell(TheMain.getHeroMinSpell() + resultSet.getInt("spell_damage"));
+                TheMain.setHeroMaxSpell(TheMain.getHeroMaxSpell() + resultSet.getInt("spell_damage"));
+                TheMain.setHeroMana(TheMain.getHeroMana() + resultSet.getInt("mana"));
                 System.out.println("You selected " + " +" + resultSet.getInt("hp") + " to HP," + " +" + resultSet.getInt("damage") + " to Damage," + " +" + resultSet.getInt("spell_damage") + " to Spell Damage," + " +" + resultSet.getInt("mana") + " to Mana. ");
             }
         } catch (SQLException e) {
