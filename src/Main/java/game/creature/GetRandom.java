@@ -33,12 +33,17 @@ public class GetRandom {
             preparedStatement = connection.prepareStatement("SELECT * FROM mobs ORDER BY RAND() LIMIT 1");
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                mainCreature.setId(resultSet.getLong("id"));
-                mainCreature.setName(resultSet.getString("name"));
-                mainCreature.setHp(setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult));
-                mainCreature.setMinDamage(setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult));
-                mainCreature.setMaxDamage(setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult));
-                mainCreature.setChanceToSuperDamage(setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
+
+
+
+
+
+//                mainCreature.setId(resultSet.getLong("id"));
+//                mainCreature.setName(resultSet.getString("name"));
+//                mainCreature.setHp(setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult));
+//                mainCreature.setMinDamage(setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult));
+//                mainCreature.setMaxDamage(setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult));
+//                mainCreature.setChanceToSuperDamage(setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
             }
             mainCreature.setValuesToMain();
         } catch (SQLException e) {
