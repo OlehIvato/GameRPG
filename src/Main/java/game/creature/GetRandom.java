@@ -12,21 +12,21 @@ public class GetRandom {
     private static final MainCreature mainCreature = new MainCreature();
 
 
-    static int changer(int a) {      // change values if game without equipment
-        int value = a;
-        int subtract = (a * TheMain.getDefaultPercent()) / 100;
+    static int reduceDifficulty(int getValue) {      // change values if game without equipment
+        int value = getValue;
+        int subtract = (getValue * TheMain.getDefaultPercent()) / 100;
         value -= subtract;
         return value;
     }
 
-    private static int levelChange(int resultSet, int getLevel) {     // change level difficulty
+    private static int setLevelDifficulty(int resultSet, int getLevel) {     // change level difficulty
         int value = resultSet;
         int subtract = (resultSet * getLevel) / 100;
         value += subtract;
         return value;
     }
 
-    public static void random(int lvlDifficult) {
+    public static void randomMob(int lvlDifficult) {
         Game.isBoss = false;
         try {
             connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
@@ -35,10 +35,10 @@ public class GetRandom {
             while (resultSet.next()) {
                 mainCreature.setId(resultSet.getLong("id"));
                 mainCreature.setName(resultSet.getString("name"));
-                mainCreature.setHp(levelChange(resultSet.getInt("hp"), lvlDifficult));
-                mainCreature.setMinDamage(levelChange(resultSet.getInt("minDamage"), lvlDifficult));
-                mainCreature.setMaxDamage(levelChange(resultSet.getInt("maxDamage"), lvlDifficult));
-                mainCreature.setChanceToSuperDamage(levelChange(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
+                mainCreature.setHp(setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult));
+                mainCreature.setMinDamage(setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult));
+                mainCreature.setMaxDamage(setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult));
+                mainCreature.setChanceToSuperDamage(setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
             }
             mainCreature.setValuesToMain();
         } catch (SQLException e) {
@@ -46,7 +46,7 @@ public class GetRandom {
         }
     }
 
-    public static void random_Boss(int lvlDifficult) {
+    public static void randomBoss(int lvlDifficult) {
         Game.isBoss = true;
         try {
             connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
@@ -55,11 +55,11 @@ public class GetRandom {
             while (resultSet.next()) {
                 mainCreature.setId(resultSet.getLong("id"));
                 mainCreature.setName(resultSet.getString("name"));
-                mainCreature.setHp(levelChange(resultSet.getInt("hp"), lvlDifficult));
-                mainCreature.setMinDamage(levelChange(resultSet.getInt("minDamage"), lvlDifficult));
-                mainCreature.setMaxDamage(levelChange(resultSet.getInt("maxDamage"), lvlDifficult));
-                mainCreature.setRestoreHealth(levelChange(resultSet.getInt("restoreHealth"), lvlDifficult));
-                mainCreature.setChanceToSuperDamage(levelChange(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
+                mainCreature.setHp(setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult));
+                mainCreature.setMinDamage(setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult));
+                mainCreature.setMaxDamage(setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult));
+                mainCreature.setRestoreHealth(setLevelDifficulty(resultSet.getInt("restoreHealth"), lvlDifficult));
+                mainCreature.setChanceToSuperDamage(setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
             }
             mainCreature.setValuesToMain();
         } catch (SQLException e) {

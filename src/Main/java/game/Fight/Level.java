@@ -40,9 +40,9 @@ public class Level {
         TheMain.setLevelCount(levelCount);
 
         if (gameCount.equals("VS BOSS") || gameCount.equals("FINAL GAME")) {
-            GetRandom.random_Boss(lvlDifficult);
+            GetRandom.randomBoss(lvlDifficult);
         } else {
-            GetRandom.random(lvlDifficult);
+            GetRandom.randomMob(lvlDifficult);
         }
         new Fight().launch();
     }

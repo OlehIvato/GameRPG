@@ -13,11 +13,14 @@ public class MainCreature {
     private int restoreHealth;
     private int chanceToSuperDamage;
 
-    чекнгути сет прямо в мейн
+    /**
+     * чекнгути сет прямо в мейн
+
+     * і в описі не видно мани
+     */
 
 
-
-    // без статичних полів дані будуть залишатися змінені а не оновлюватися
+    // без статичcних полів дані будуть залишатися змінені а не оновлюватися
     private static int finalHp = TheMain.getMobHp();
     private static int finalMinDamage = TheMain.getMobMinDamage();
     private static int finalMaxDamage = TheMain.getMobMaxDamage();
@@ -36,10 +39,10 @@ public class MainCreature {
 
             if (!Game.isEquip) {
                 TheMain.setMobName(name);
-                TheMain.setMobHp(finalHp + GetRandom.changer(hp));
-                TheMain.setMobMinDamage(finalMinDamage + GetRandom.changer(minDamage));
-                TheMain.setMobMaxDamage(finalMaxDamage + GetRandom.changer(maxDamage));
-                TheMain.setMobChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
+                TheMain.setMobHp(finalHp + GetRandom.reduceDifficulty(hp));
+                TheMain.setMobMinDamage(finalMinDamage + GetRandom.reduceDifficulty(minDamage));
+                TheMain.setMobMaxDamage(finalMaxDamage + GetRandom.reduceDifficulty(maxDamage));
+                TheMain.setMobChanceToSuperDamage(finalChance + GetRandom.reduceDifficulty(chanceToSuperDamage));
             }
         }
         if (Game.isBoss) {
@@ -54,11 +57,11 @@ public class MainCreature {
             }
             if (!Game.isEquip) {
                 TheMain.setMobName(name);
-                TheMain.setMobHp(finalHp + GetRandom.changer(hp));
-                TheMain.setMobMinDamage(finalMinDamage + GetRandom.changer(minDamage));
-                TheMain.setMobMaxDamage(finalMaxDamage + GetRandom.changer(maxDamage));
-                TheMain.setMobRestoreHp(finalRestoreHealth + GetRandom.changer(restoreHealth));
-                TheMain.setMobChanceToSuperDamage(finalChance + GetRandom.changer(chanceToSuperDamage));
+                TheMain.setMobHp(finalHp + GetRandom.reduceDifficulty(hp));
+                TheMain.setMobMinDamage(finalMinDamage + GetRandom.reduceDifficulty(minDamage));
+                TheMain.setMobMaxDamage(finalMaxDamage + GetRandom.reduceDifficulty(maxDamage));
+                TheMain.setMobRestoreHp(finalRestoreHealth + GetRandom.reduceDifficulty(restoreHealth));
+                TheMain.setMobChanceToSuperDamage(finalChance + GetRandom.reduceDifficulty(chanceToSuperDamage));
             }
         }
     }
