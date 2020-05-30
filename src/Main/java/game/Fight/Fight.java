@@ -1,20 +1,21 @@
 package game.fight;
 
-import game.sql.HeroDatabase;
 import game.primary.*;
 import game.primary.TheMain;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Fight extends TheMain implements Text {
     private final static Scanner scan = new Scanner(System.in);
     private final int superDamage = (int) (mobMaxDamage * 1.5);
-    private int heroHpFinal = heroHp; // static will not change... heroHp is static
+    private int heroHpFinal = heroHp; // static will not change...
+    private int mobHpFinal = mobHp;
     private int heroManaFinal = heroMana;
 
+
     public void launch() {
-        zeroChanger();
         if (!Game.isBoss)
             Text.gameDescription(false);
         if (Game.isBoss)
@@ -23,43 +24,53 @@ public class Fight extends TheMain implements Text {
     }
 
     private void move() {
-        System.out.println(turnDescription);
-        while (mobHp > 0 && heroHpFinal > 0) {
-            switch (scan.nextInt()) {
-                case 1:
-                    heroMove();
-                    break;
-                case 2:
-                    spell();
-                    break;
-                case 3:
-                    heal();
-                    break;
-                case 4:
-                    Saving.save(true);
-                    move();
-                    break;
-                case 5:
-                    System.err.println("\nYou gave up \n And turned back to Main Menu");
-                    Game.menu();
-                    break;
+        try {
+            Text.turnDescription();
+            while (mobHpFinal > 0 && heroHpFinal > 0) {
+                switch (new Scanner(System.in).nextInt()) {
+                    case 1:
+                        heroMove();
+                        break;
+                    case 2:
+                        spell();
+                        break;
+                    case 3:
+                        heal();
+                        break;
+                    case 4:
+                        if (Game.isEquip) {
+                            Saving.save(true);
+                        } else {
+                            System.out.println("\nSorry but you can't do that, Try something else");
+                        }
+                        move();
+                        break;
+                    case 5:
+                        System.err.println("\nYou gave up \nAnd turned back to Main Menu");
+                        Game.menu();
+                        break;
+                }
             }
+        } catch (NullPointerException | InputMismatchException | IllegalArgumentException e) {
+            System.out.println("Something went wrong\n");
+            move();
         }
     }
 
+
     private void heroMove() {
-        while (mobHp > 0 && heroHpFinal > 0) {
+        while (mobHpFinal > 0 && heroHpFinal > 0) {
             System.out.println("You hit " + mobName + " on " + heroDamage + " Health point");
             if (!Game.isBoss) {
                 System.out.print("Now " + mobName + " have ");
-                System.out.println(mobHp - heroDamage + " Health point");
-                mobHp -= heroDamage;
+                System.out.println(mobHpFinal - heroDamage + " Health point");
+                mobHpFinal -= heroDamage;
             }
             if (Game.isBoss) {
-                System.out.print("After Recovering " + mobRestoreHp + " Health point " + mobName + " have " + ((mobHp + mobRestoreHp) - heroDamage) + " Health point ");
-                mobHp = (mobHp + mobRestoreHp) - heroDamage;
+                System.out.print("After Recovering " + mobRestoreHp + " Health point " + mobName + " have " + ((mobHpFinal + mobRestoreHp) - heroDamage) + " Health point ");
+                mobHpFinal = (mobHpFinal + mobRestoreHp) - heroDamage;
             }
-            if (mobHp <= 0) {
+            if (mobHpFinal <= 0) {
                 System.out.println(youWon + mobName);
                 break;
             } else mobMove();
@@ -68,7 +79,7 @@ public class Fight extends TheMain implements Text {
     }
 
     private void mobMove() {
-        while (heroHpFinal > 0 && mobHp > 0) {
+        while (heroHpFinal > 0 && mobHpFinal > 0) {
             System.out.println("\n" + mobName + " turn \n");
             int EqualRandom = randomDamage();
             System.out.print(mobName + " hits you on " + EqualRandom + " Health point");
@@ -84,23 +95,23 @@ public class Fight extends TheMain implements Text {
     }
 
     private void spell() {
-        while (mobHp > 0 && heroHpFinal > 0) {
+        while (mobHpFinal > 0 && heroHpFinal > 0) {
             int randomDamage = randomSpell();
             System.out.println("You Hit " + mobName + " using spell on " + randomDamage + " Health point ");
             if (!Game.isBoss) {
                 System.out.print("Now " + mobName + " have ");
-                System.out.println(mobHp - randomDamage + " Health point ");
-                mobHp -= randomDamage;
+                System.out.println(mobHpFinal - randomDamage + " Health point ");
+                mobHpFinal -= randomDamage;
             }
             if (Game.isBoss) {
-                System.out.println("After Recovering " + mobRestoreHp + " health point " + mobName + " have " + ((mobHp + mobRestoreHp) - randomDamage) + " Health point ");
-                mobHp = (mobHp + mobRestoreHp) - randomDamage;
+                System.out.println("After Recovering " + mobRestoreHp + " health point " + mobName + " have " + ((mobHpFinal + mobRestoreHp) - randomDamage) + " Health point ");
+                mobHpFinal = (mobHpFinal + mobRestoreHp) - randomDamage;
             }
             if (heroMinSpell <= 0 && heroMaxSpell <= 0) {
                 System.out.println("\nSorry but you can't do that, Try something else");
                 move();
                 break;
-            } else if (mobHp <= 0) {
+            } else if (mobHpFinal <= 0) {
                 System.out.println(youWon + mobName);
                 break;
             } else mobMove();
@@ -109,11 +120,12 @@ public class Fight extends TheMain implements Text {
     }
 
     private void heal() {
-        while (mobHp > 0 && heroHpFinal > 0) {
+        while (mobHpFinal > 0 && heroHpFinal > 0) {
             if (heroManaFinal >= healCast) {
                 heroHpFinal += (index + heroRestoreHp);
                 System.out.println("\nYou chose Healing yourself ");
                 heroManaFinal -= healCast;
+                TheMain.setHeroMana(heroManaFinal); // that need for show current mana is turn options
                 System.out.println("Now your health point equal " + heroHpFinal);
                 System.out.println("Now you have left " + heroManaFinal + " Mana ");
                 System.out.println(nextOption);
@@ -148,16 +160,13 @@ public class Fight extends TheMain implements Text {
         if (num < mobChanceToSuperDamage) {
             result = superDamage;
             System.out.println(mobName + " uses Super Damage ");
-        } else if (Game.isBoss && mobHp < 30) {
+        } else if (Game.isBoss && mobHpFinal < 30) {
             result = superDamage;
             System.out.println(mobName + " Have less than 30 hp, his damage will be increased.");
         } else
             result = (int) (Math.random() * (mobMaxDamage - mobMinDamage)) + mobMinDamage;
         return result;
     }
-
-
-
 
     private static void defeatOptions() {
         String cases = "\n\n\n Select option: " +
@@ -167,7 +176,7 @@ public class Fight extends TheMain implements Text {
         System.out.println(cases);
         switch (scan.nextInt()) {
             case 1:
-                HeroDatabase.createHero();
+                Game.createNewHero();
                 break;
             case 2:
                 Level.getLevel(TheMain.getLevelCount(), TheMain.getLevelDifficult());
@@ -178,22 +187,4 @@ public class Fight extends TheMain implements Text {
                 break;
         }
     }
-
-    private static void zeroChanger() {
-        if (getHeroDamage() <= 0) {
-            setHeroDamage(0);
-        }
-        if (heroDamage <= 0) {
-            TheMain.setHeroDamage(0);
-        }
-        if (heroMinSpell <= 0 && heroMaxSpell <= 0) {
-            TheMain.setHeroMinSpell(0);
-            TheMain.setHeroMaxSpell(0);
-        }
-        if (heroRestoreHp <= 0) {
-            TheMain.setHeroRestoreHp(0);
-        }
-    }
 }
-
-

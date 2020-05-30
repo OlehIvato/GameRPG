@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-
 @Data
 @Entity
 @Table(name = "hero_classes", schema = "minirpggame")
@@ -17,5 +16,6 @@ public class Hero_Classes {
     @Column(name = "classes_id")
     private Long class_id;
 
-
 }
+
+

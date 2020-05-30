@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "hero")
+@Table(name = "hero", schema = "minirpggame")
 public class HeroModel {
 
     @Id
@@ -51,7 +51,6 @@ public class HeroModel {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Armor> armors;
-
 
 
 

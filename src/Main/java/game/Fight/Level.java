@@ -1,7 +1,7 @@
 package game.fight;
 
 import game.primary.Game;
-import game.creature.GetRandom;
+import game.sql.CreaturesData;
 import game.primary.TheMain;
 
 import java.util.Arrays;
@@ -31,18 +31,27 @@ public class Level {
 
 
     private static void launchGame(int lvlDifficult, int levelCount, String gameCount) {
+        String sign;
+        if (!Game.isEquip) {
+            lvlDifficult = -25;
+        }
+        if (lvlDifficult >= 0) {
+            sign = " DIFFICULT +";
+        } else
+            sign = " DIFFICULT ";
+
         System.out.println("\n\n===========================================================" +
                 " \n========================= Level " + levelCount + " =========================" +
-                " \n==================" + " DIFFICULT +" + lvlDifficult + " PERCENT " + "===================" +
+                " \n==================" + sign + lvlDifficult + " PERCENT " + "===================" +
                 "\n======================== " + gameCount + " =======================" +
                 "\n===========================================================");
         TheMain.setLevelDifficult(lvlDifficult);
         TheMain.setLevelCount(levelCount);
 
         if (gameCount.equals("VS BOSS") || gameCount.equals("FINAL GAME")) {
-            GetRandom.randomBoss(lvlDifficult);
+            CreaturesData.randomBoss(lvlDifficult);
         } else {
-            GetRandom.randomMob(lvlDifficult);
+            CreaturesData.randomMob(lvlDifficult);
         }
         new Fight().launch();
     }

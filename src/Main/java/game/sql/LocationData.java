@@ -6,7 +6,7 @@ import game.primary.TheMain;
 import java.sql.*;
 import java.util.*;
 
-public class LocationDatabase {
+public class LocationData {
     private static Connection connection;
     private static ResultSet resultSet;
 

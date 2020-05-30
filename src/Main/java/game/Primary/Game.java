@@ -1,9 +1,9 @@
 package game.primary;
 
-import game.sql.EquipmentDatabase;
+import game.sql.EquipmentData;
 import game.fight.Level;
-import game.sql.HeroDatabase;
-import game.sql.LocationDatabase;
+import game.sql.HeroData;
+import game.sql.LocationData;
 
 
 import java.util.InputMismatchException;
@@ -43,7 +43,7 @@ public class Game {
                     System.out.println(create);
                     switch (scanner.nextInt()) {
                         case 1:
-                            HeroDatabase.createHero();
+                            Game.createNewHero();
                             break;
                         case 2:
                             Saving.get(false);
@@ -70,17 +70,17 @@ public class Game {
     }
 
 
-    public void createNewHero() {
+    public static void createNewHero() {
+        HeroData.create();
         System.out.println("\n" + Game.getUserName() + " do you wanna choose Armor and Weapon for " + TheMain.getHeroName() + " ?");
-        String cases = "1. Yes \n" +
+        System.out.println("1. Yes \n" +
                 "2. No, play with standard characteristics.     (Creatures characteristics minus " + TheMain.getDefaultPercent() + "% power)."
-                + "\n3. Turn Back";
-        System.out.println(cases);
+                + "\n3. Turn Back");
         switch (scanner.nextInt()) {
             case 1: {
                 isEquip = true;
-                EquipmentDatabase.createEquipment(TheMain.getHeroArmor(), TheMain.getHeroClass());
-                LocationDatabase.createLocation();
+                EquipmentData.createEquipment(TheMain.getHeroArmor(), TheMain.getHeroClass());
+                LocationData.createLocation();
                 System.out.println("Would you like to save your equipment and location?");
                 System.out.println("1 Yes");
                 System.out.println("2 No, Сontinue");
@@ -95,7 +95,7 @@ public class Game {
                 isEquip = false;
                 break;
             case 3:
-                HeroDatabase.createHero();
+                createNewHero();
                 break;
         }
         Level.getLevel(TheMain.getLevelCount(), TheMain.getLevelDifficult());

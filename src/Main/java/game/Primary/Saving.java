@@ -26,8 +26,20 @@ public class Saving implements Serializable {
     private int levelDifficult;
     private int levelCount;
 
+    public static void save(boolean isGameSave) {
+        save_upload_Menu(isGameSave);
+        saving.getMain(isGameSave);
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName));
+            objectOutputStream.writeObject(saving);
+            objectOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     static void get(boolean isGameSave) {
-        saveUploadOptions(isGameSave);
+        save_upload_Menu(isGameSave);
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
             saving = (Saving) objectInputStream.readObject();
@@ -37,18 +49,6 @@ public class Saving implements Serializable {
         }
         Game.isEquip = true;
         Level.getLevel(TheMain.getLevelCount(), TheMain.getLevelDifficult());
-    }
-
-    public static void save(boolean isGameSave) {
-        saveUploadOptions(isGameSave);
-        saving.getMain(isGameSave);
-        try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName));
-            objectOutputStream.writeObject(saving);
-            objectOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void getMain(boolean isGameSave) {
@@ -87,14 +87,15 @@ public class Saving implements Serializable {
         Game.setUserName(userName);
     }
 
-    private static void saveUploadOptions(boolean isGameSave) {
+    private static void save_upload_Menu(boolean isGameSave) {
         String result = "Save name: \n" +
                 "1. Slot 1\n" +
                 "2. Slot 2\n" +
                 "3. Slot 3\n";
         System.out.println(result);
         if (isGameSave) {
-            switch (new Scanner(System.in).nextInt()) {
+            switch (new Scanner(System.in).nextInt() ) {
+
                 case 1:
                     fileName = "GameSave1.txt";   // or "C:/GameSave1.txt"
                     break;

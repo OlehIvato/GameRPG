@@ -16,4 +16,5 @@ public class Hero_Armors {
     @Column(name = "armors_id")
     private Long armor_id;
 
+
 }

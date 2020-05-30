@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-public class EquipmentDatabase {
+public class EquipmentData {
 
     private static Connection connection;
     private static final List<String> typeList = Arrays.asList("Head", "Shoulder", "Chest", "Legs");

@@ -1,19 +1,17 @@
 package game.sql;
 
-import game.primary.Game;
 import game.primary.TheMain;
 
 
 import java.sql.*;
 import java.util.Scanner;
 
-public class HeroDatabase {
+public class HeroData {
     private static Connection connection;
 
-    public static void createHero() {
+    public static void create() {
         showHeroesFromDatabase();
         setHeroToMain();
-        new Game().createNewHero();
     }
 
 
@@ -37,13 +35,26 @@ public class HeroDatabase {
             while (resultSetHero.next() && resultSetClass.next() && resultSetArmor.next()) {
                 TheMain.setHeroClass(resultSetClass.getString("class"));
                 TheMain.setHeroName(resultSetHero.getString("name"));
-                TheMain.setHeroHp(TheMain.getHeroHp() + resultSetHero.getInt("hp"));
-                TheMain.setHeroDamage(TheMain.getHeroDamage() + resultSetHero.getInt("damage"));
-                TheMain.setHeroMinSpell(TheMain.getHeroMinSpell() + resultSetHero.getInt("minSpellDamage"));
-                TheMain.setHeroMaxSpell(TheMain.getHeroMaxSpell() + resultSetHero.getInt("maxSpellDamage"));
-                TheMain.setHeroRestoreHp(TheMain.getHeroRestoreHp() + resultSetHero.getInt("restoreHealth"));
-                TheMain.setHeroMana(TheMain.getHeroMana() + resultSetHero.getInt("mana"));
+                TheMain.setHeroHp(resultSetHero.getInt("hp"));
+                TheMain.setHeroDamage(resultSetHero.getInt("damage"));
+                TheMain.setHeroMinSpell(resultSetHero.getInt("minSpellDamage"));
+                TheMain.setHeroMaxSpell(resultSetHero.getInt("maxSpellDamage"));
+                TheMain.setHeroRestoreHp(resultSetHero.getInt("restoreHealth"));
+                TheMain.setHeroMana(resultSetHero.getInt("mana"));
                 TheMain.setHeroArmor(resultSetArmor.getString("armor"));
+
+
+//                TheMain.setHeroClass(resultSetClass.getString("class"));
+//                TheMain.setHeroName(resultSetHero.getString("name"));
+//                TheMain.setHeroHp(TheMain.getHeroHp() + resultSetHero.getInt("hp"));
+//                TheMain.setHeroDamage(TheMain.getHeroDamage() + resultSetHero.getInt("damage"));
+//                TheMain.setHeroMinSpell(TheMain.getHeroMinSpell() + resultSetHero.getInt("minSpellDamage"));
+//                TheMain.setHeroMaxSpell(TheMain.getHeroMaxSpell() + resultSetHero.getInt("maxSpellDamage"));
+//                TheMain.setHeroRestoreHp(TheMain.getHeroRestoreHp() + resultSetHero.getInt("restoreHealth"));
+//                TheMain.setHeroMana(TheMain.getHeroMana() + resultSetHero.getInt("mana"));
+//                TheMain.setHeroArmor(resultSetArmor.getString("armor"));
+
+
                 System.out.println("You selected " + resultSetHero.getString("name"));
             }
         } catch (SQLException e) {
