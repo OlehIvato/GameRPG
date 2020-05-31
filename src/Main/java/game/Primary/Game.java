@@ -5,12 +5,11 @@ import game.fight.Level;
 import game.sql.HeroData;
 import game.sql.LocationData;
 
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static boolean isEquip;         // info about game with equipment, or without
     public static boolean isBoss;          // info about game with boss, or without
@@ -19,7 +18,6 @@ public class Game {
     static void setUserName(String userName) {
         Game.userName = userName;
     }
-
     public static String getUserName() {
         return userName;
     }
@@ -46,10 +44,10 @@ public class Game {
                             Game.createNewHero();
                             break;
                         case 2:
-                            Saving.get(false);
+                            Storage.get(false);
                             break;
                         case 3:
-                            Saving.get(true);
+                            Storage.get(true);
                             break;
                         case 4:
                             System.err.println("Exit");
@@ -86,7 +84,7 @@ public class Game {
                 System.out.println("2 No, Сontinue");
                 switch (scanner.nextInt()) {
                     case 1:
-                        Saving.save(false);
+                        Storage.save(false);
                     case 2:
                 }
                 break;

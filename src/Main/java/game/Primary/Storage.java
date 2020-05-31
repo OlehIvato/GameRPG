@@ -5,9 +5,9 @@ import game.fight.Level;
 import java.io.*;
 import java.util.Scanner;
 
-public class Saving implements Serializable {
+public class Storage implements Serializable {
 
-    private static Saving saving = new Saving();
+    private static Storage storage = new Storage();
 
     private static String fileName;
 
@@ -28,10 +28,10 @@ public class Saving implements Serializable {
 
     public static void save(boolean isGameSave) {
         save_upload_Menu(isGameSave);
-        saving.getMain(isGameSave);
+        storage.getMain(isGameSave);
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName));
-            objectOutputStream.writeObject(saving);
+            objectOutputStream.writeObject(storage);
             objectOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,10 +42,11 @@ public class Saving implements Serializable {
         save_upload_Menu(isGameSave);
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
-            saving = (Saving) objectInputStream.readObject();
-            saving.saveMain(isGameSave);
+            storage = (Storage) objectInputStream.readObject();
+            storage.saveMain(isGameSave);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("The file is empty, try another");
+            get(isGameSave);
         }
         Game.isEquip = true;
         Level.getLevel(TheMain.getLevelCount(), TheMain.getLevelDifficult());
@@ -88,14 +89,9 @@ public class Saving implements Serializable {
     }
 
     private static void save_upload_Menu(boolean isGameSave) {
-        String result = "Save name: \n" +
-                "1. Slot 1\n" +
-                "2. Slot 2\n" +
-                "3. Slot 3\n";
-        System.out.println(result);
+        System.out.println("\n1. Slot 1\n2. Slot 2\n3. Slot 3\n");
         if (isGameSave) {
-            switch (new Scanner(System.in).nextInt() ) {
-
+            switch (new Scanner(System.in).nextInt()) {
                 case 1:
                     fileName = "GameSave1.txt";   // or "C:/GameSave1.txt"
                     break;
@@ -120,4 +116,5 @@ public class Saving implements Serializable {
             }
         }
     }
+
 }

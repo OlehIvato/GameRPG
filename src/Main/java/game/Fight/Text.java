@@ -15,25 +15,25 @@ public interface Text {
 
         String info = "\n You fight against " + TheMain.getMobName() + "," +
                 "\n He Have " + TheMain.getMobHp() + " hp" +
-                "\n His Max Damage = " + TheMain.getMobMaxDamage() +
-                "\n And Min Damage = " + TheMain.getMobMinDamage() +
+                "\n Max Damage = " + TheMain.getMobMaxDamage() +
+                "\n Min Damage = " + TheMain.getMobMinDamage() +
                 "\n He also have " + TheMain.getMobChanceToSuperDamage() + "% chance on super Damage, Super Damage = " + (int) (TheMain.getMobMaxDamage() * 1.5) + "\n";
+
         if (isBoss) {
             restoreInfo = " He restoring " + TheMain.getMobRestoreHp() + " Health point every move" +
                     "\n When his Health point will be less than 30, his damage will be as super Damage\n";
         }
 
-
-        String heroInfo = "\n\n " + TheMain.getHeroName() + ", Class: " + TheMain.getHeroClass() + "\n Your HP = " + TheMain.getHeroHp() +
-                "\n Your Damage = " + TheMain.getHeroDamage();
+        String heroInfo = "\n\n " + TheMain.getHeroName() + ", Class: " + TheMain.getHeroClass() + "\n Health Point = " + TheMain.getHeroHp() +
+                "\n Damage = " + TheMain.getHeroDamage();
 
         if (TheMain.getHeroMinSpell() != 0) {
-            spellInfo = "\n Your Max Spell Damage = " + TheMain.getHeroMaxSpell() +
-                    "\n Your Min Spell Damage = " + TheMain.getHeroMinSpell();
+            spellInfo = "\n Max Spell Damage = " + TheMain.getHeroMaxSpell() +
+                    "\n Min Spell Damage = " + TheMain.getHeroMinSpell();
         }
 
         if (TheMain.getHeroMana() != 0) {
-            manaInfo = "\n Your plus to restore Health point = " + TheMain.getHeroRestoreHp() + "    (default restore index = " + TheMain.getIndex() + ")" +
+            manaInfo = "\n Plus to restore Health point = " + TheMain.getHeroRestoreHp() + "    (default restore index = " + TheMain.getIndex() + ")" +
                     "\n You Have " + TheMain.getHeroMana() + " Mana, one heal spell = " + TheMain.getHealCast() + " Mana";
         }
 
@@ -49,10 +49,9 @@ public interface Text {
         String ifWith = "";
         String ifMagic = "";
         String ifRestore = "";
-        String valueEnd = "";
 
         String value = "\n Your Turn \n" +
-                "1. Hit " + TheMain.getMobName() + " on " + TheMain.getHeroDamage() + " health point ";
+                "1. Hit " + TheMain.getMobName() + " on " + TheMain.getHeroDamage() + " hp ";
         if (TheMain.getHeroMinSpell() != 0) {
             ifMagic = "\n2. Strike with magic on (Random damage from " + TheMain.getHeroMinSpell() + " to " + TheMain.getHeroMaxSpell() + ") health point ";
         }
@@ -61,12 +60,11 @@ public interface Text {
         }
         if (Game.isEquip) {
             ifWith = "\n4. Save Game" ;
-        } else {
-            valueEnd = "\n5. Get defeat and back to Main Menu ";
         }
+        String valueEnd = "\n5. Get defeat and back to Main Menu ";
+
         System.out.println(value + ifMagic + ifRestore + ifWith + valueEnd);
     }
-
 
     String nextOption = "\nNow Chose Next Options: " +
             "\n1. Hit " + TheMain.getMobName() + " on " + TheMain.getHeroDamage() + " health point " +

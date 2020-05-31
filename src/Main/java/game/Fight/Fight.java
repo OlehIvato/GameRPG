@@ -39,14 +39,20 @@ public class Fight extends TheMain implements Text {
                         break;
                     case 4:
                         if (Game.isEquip) {
-                            Saving.save(true);
+                            Storage.save(true);
                         } else {
                             System.out.println("\nSorry but you can't do that, Try something else");
                         }
-                        move();
+                        System.out.println("Continue game?\n1. Yes\n2. No, Back to Main Menu");
+                        switch (new Scanner(System.in).nextInt()) {
+                            case 1:
+                                move();
+                            case 2:
+                                Game.menu();
+                        }
                         break;
                     case 5:
-                        System.err.println("\nYou gave up \nAnd turned back to Main Menu");
+                        System.err.println("\nYou gave up\n");
                         Game.menu();
                         break;
                 }
@@ -172,7 +178,7 @@ public class Fight extends TheMain implements Text {
         String cases = "\n\n\n Select option: " +
                 "\n   1. Create new Hero and play Again ?  " +
                 "\n   2. Play again from " + TheMain.getLevelCount() + " Level " +
-                "\n   3. EXIT ";
+                "\n   3. Back to Main Menu ";
         System.out.println(cases);
         switch (scan.nextInt()) {
             case 1:
@@ -182,8 +188,7 @@ public class Fight extends TheMain implements Text {
                 Level.getLevel(TheMain.getLevelCount(), TheMain.getLevelDifficult());
                 break;
             case 3:
-                System.err.println("Exit");
-                System.exit(0);
+                Game.menu();
                 break;
         }
     }
