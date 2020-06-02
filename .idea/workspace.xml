@@ -24,7 +24,31 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="604a8a3a-53d0-4a75-a4c9-6c43ed7a4daf" name="Default Changelist" comment="Test" />
+    <list default="true" id="604a8a3a-53d0-4a75-a4c9-6c43ed7a4daf" name="Default Changelist" comment="Test">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Armor/Equipment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Armor/Shield.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Armor/Stick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Armor/Weapon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Fight/Fight.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Fight/Levels.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Fight/Text.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Hero/HeroMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Hero/NewHero.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Location/CreateLocation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Location/MainLocation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Main/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Main/Main_All.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Main/Menu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Main/NewGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Main/UserName.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Сreature/GetRandom.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RPG Game/Сreature/MainCreature.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +113,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -97,22 +121,22 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="spring" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\doc\Desktop\rpg MiniGame\src\main\webapp\WEB-INF\jsp\security" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="spring.service" />
+      <recent name="spring.model" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\doc\Desktop\rpg MiniGame\src\main\webapp\WEB-INF\jsp\game" />
       <recent name="C:\Users\doc\Desktop\rpg MiniGame\src\main\webapp\WEB-INF\jsp\account" />
       <recent name="C:\Users\doc\Desktop\rpg MiniGame\src\main\webapp\WEB-INF\jsp" />
       <recent name="C:\Users\doc\Desktop\rpg MiniGame\src\main\webapp\WEB-INF\jsp\security\admin" />
       <recent name="C:\Users\doc\Desktop\rpg MiniGame\src\main\webapp\WEB-INF\jsp\security\list_of_users" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="spring" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="spring.service" />
-      <recent name="spring.model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\doc\Desktop\rpg MiniGame\src\main\webapp\WEB-INF\jsp\security" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -125,7 +149,7 @@
   <component name="RunManager" selected="Spring Boot.HtmlApplication">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="game.Main" />
-      <module name="rpg MiniGame" />
+      <module name="TestGame" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="game.*" />
@@ -137,7 +161,7 @@
       </method>
     </configuration>
     <configuration name="templates in rpg MiniGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="rpg MiniGame" />
+      <module name="TestGame" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="templates.*" />
@@ -151,7 +175,7 @@
       </method>
     </configuration>
     <configuration name="HtmlApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="rpg MiniGame" />
+      <module name="TestGame" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="spring.*" />
@@ -368,6 +392,10 @@
       <workItem from="1591112927326" duration="77000" />
       <workItem from="1591119675304" duration="11000" />
       <workItem from="1591120602706" duration="322000" />
+      <workItem from="1591121309632" duration="622000" />
+      <workItem from="1591123534873" duration="133000" />
+      <workItem from="1591123699459" duration="61000" />
+      <workItem from="1591123877333" duration="134000" />
     </task>
     <task id="LOCAL-00001" summary="RPG MiniGame">
       <created>1581793246787</created>
@@ -649,7 +677,28 @@
       <option name="project" value="LOCAL" />
       <updated>1591120690219</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="test">
+      <created>1591121478456</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1591121478456</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Test">
+      <created>1591121628564</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1591121628564</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Test">
+      <created>1591121850091</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1591121850091</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -715,50 +764,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="177" y="68" width="1536" height="860" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591120707443" />
-    <state width="1581" height="535" key="GridCell.Tab.0.bottom" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.0.bottom" timestamp="1591124013976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state width="1581" height="535" key="GridCell.Tab.0.center" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013976" />
+    <state width="1581" height="313" key="GridCell.Tab.0.center" timestamp="1591124013976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state width="1581" height="535" key="GridCell.Tab.0.left" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013976" />
+    <state width="1581" height="313" key="GridCell.Tab.0.left" timestamp="1591124013975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state width="1581" height="535" key="GridCell.Tab.0.right" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013975" />
+    <state width="1581" height="313" key="GridCell.Tab.0.right" timestamp="1591124013976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state width="1581" height="535" key="GridCell.Tab.1.bottom" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013976" />
+    <state width="1581" height="313" key="GridCell.Tab.1.bottom" timestamp="1591124013976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state width="1581" height="535" key="GridCell.Tab.1.center" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013976" />
+    <state width="1581" height="313" key="GridCell.Tab.1.center" timestamp="1591124013976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state width="1581" height="535" key="GridCell.Tab.1.left" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013976" />
+    <state width="1581" height="313" key="GridCell.Tab.1.left" timestamp="1591124013976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state width="1581" height="535" key="GridCell.Tab.1.right" timestamp="1591119554795">
+    <state width="1581" height="313" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013976" />
+    <state width="1581" height="313" key="GridCell.Tab.1.right" timestamp="1591124013976">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1581" height="535" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591119554795" />
-    <state x="737" y="222" key="RollbackChangesDialog" timestamp="1590772707028">
+    <state width="1581" height="313" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591124013976" />
+    <state x="737" y="222" key="RollbackChangesDialog" timestamp="1591121671516">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="737" y="222" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590772707028" />
-    <state x="102" y="162" key="SettingsEditor" timestamp="1591111004420">
+    <state x="737" y="222" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591121671516" />
+    <state x="102" y="162" key="SettingsEditor" timestamp="1591123618075">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="102" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591111004420" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591120710315">
+    <state x="102" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591123618075" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591121855380">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591120710315" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591121855380" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590852589557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
