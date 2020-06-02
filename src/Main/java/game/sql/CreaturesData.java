@@ -47,7 +47,6 @@ public class CreaturesData {
                     TheMain.setMobChanceToSuperDamage(reduceDifficulty(resultSet.getInt("chanceToSuperDamage")));
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

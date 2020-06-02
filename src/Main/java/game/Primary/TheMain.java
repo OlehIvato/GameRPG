@@ -6,9 +6,9 @@ public class TheMain {
     private static final String url = "jdbc:mysql://localhost/minirpggame" +
             "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-    private static String heroArmor;
-    private static String heroClass;
-    private static String heroName;
+    protected static String heroArmor;
+    protected static String heroClass;
+    protected static String heroName;
     protected static int heroHp;
     protected static int heroDamage;
     protected static int heroMinSpell;
@@ -25,7 +25,7 @@ public class TheMain {
 
     protected static final int index = 6;           // default index to restore Health point
     protected static final int healCast = 33;       // how much need mana to heal yourself
-    private static final int defaultPercent = 25;   // default index fight without equipment minus all characteristics
+    protected static final int defaultPercent = 25;   // default index fight without equipment minus all characteristics
 
     private static int levelDifficult;              // level difficult for current level
     private static int levelCount;                  // current level
