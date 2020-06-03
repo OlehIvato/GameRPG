@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="minirpggame@localhost" uuid="77820013-a435-4a24-9ff1-92bfbd3fecf7">
+    <data-source name="minirpggame@localhost" uuid="21b5d80e-412b-4e73-8b40-c75ddcafb880">
       <database-info product="MySQL" version="5.5.35" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.15 (Revision: 79a4336f140499bd22dd07f02b708e163844e3d5)" dbms="MYSQL" exact-version="5.5.35" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

@@ -1,14 +1,8 @@
 package spring.model;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.io.File;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.util.Set;
 
 @Data
