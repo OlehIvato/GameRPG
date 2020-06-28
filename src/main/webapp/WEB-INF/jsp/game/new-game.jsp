@@ -49,7 +49,7 @@
         <c:forEach var="hero" items="${heroes}">
         <tr>
             <td>${hero.id}</td>
-            <td><c:forEach items="${hero.classes}" var="className">${className.className}</c:forEach>
+            <td><c:forEach items="${hero.AClasses}" var="className">${className.className}</c:forEach>
             <td>${hero.name}</td>
             <td>${hero.hp}</td>
             <td>${hero.damage}</td>

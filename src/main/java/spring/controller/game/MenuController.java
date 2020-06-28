@@ -1,6 +1,6 @@
 package spring.controller.game;
 
-import game.primary.Game;
+import game.primary.Setting;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class MenuController {
 
     @PostMapping("/new-game")
     public String menu(Model model) {
-        Game menu = new Game();
+        Setting menu = new Setting();
         model.addAttribute("menuForm", menu);
         return "game/new-game";
     }

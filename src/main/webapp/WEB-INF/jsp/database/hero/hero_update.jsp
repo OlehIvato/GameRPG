@@ -55,7 +55,7 @@
                     <label>
                         <select name="class_id">
                             <option selected hidden value='${hero_class.class_id}'>
-                                <c:forEach items="${heroes.classes}" var="classes">
+                                <c:forEach items="${heroes.AClasses}" var="classes">
                                     ${classes.className}
                                 </c:forEach>
                             </option>

@@ -1,59 +1,80 @@
 package game.sql;
 
-import game.primary.TheMain;
+import game.primary.DefaultValues;
+import game.primary.MainData;
+import game.primary.Setting;
 
 import java.sql.*;
 
-public class CreaturesData {
 
-    static int reduceDifficulty(int getValue) {      // change values if game without equipment
-        int value = getValue;
-        int subtract = getValue * (TheMain.getWithOutEquipPercent() * (-1)) / 100;
-        value -= subtract;
-        return value;
-    }
+public class CreaturesData extends MainData implements ConnectSetting, DefaultValues {
 
-    private static int setLevelDifficulty(int resultSet, int getLevel) {     // change level difficulty
-        int value = resultSet;
-        int subtract = (resultSet * getLevel) / 100;
-        value += subtract;
-        return value;
-    }
+
+    private static final String GET_ONE_BOSS = "SELECT * FROM bosses ORDER BY RAND() LIMIT 1";
+    private static final String GET_ONE_MOB = "SELECT * FROM mobs ORDER BY RAND() LIMIT 1";
 
     public static void getRandomCreature(int lvlDifficult) {
         ResultSet resultSet;
         try {
-            Connection connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
+            Connection connection = DriverManager.getConnection(data_url, data_username, data_password);
             Statement statement = connection.createStatement();
-            if (TheMain.isIsBoss()) {
-                resultSet = statement.executeQuery("SELECT * FROM bosses ORDER BY RAND() LIMIT 1");
+            if (Setting.IS_GAME_AGAINST_BOSS) {
+                resultSet = statement.executeQuery(GET_ONE_BOSS);
             } else {
-                resultSet = statement.executeQuery("SELECT * FROM mobs ORDER BY RAND() LIMIT 1");
+                resultSet = statement.executeQuery(GET_ONE_MOB);
             }
             while (resultSet.next()) {
-                if (TheMain.isIsBoss()) {
-                    if (TheMain.isIsEquip()) {
-                        TheMain.setMobRestoreHp((setLevelDifficulty(resultSet.getInt("restoreHealth"), lvlDifficult)));
+                if (Setting.IS_GAME_AGAINST_BOSS) {
+                    if (Setting.IS_GAME_WITH_EQUIPMENTS) {
+                        mobRestoreHp = setLevelDifficulty(resultSet.getInt("restoreHealth"), lvlDifficult);
                     } else {
-                        TheMain.setMobRestoreHp(CreaturesData.reduceDifficulty(resultSet.getInt("restoreHealth")));
+                        mobRestoreHp = CreaturesData.reduceDifficulty(resultSet.getInt("restoreHealth"));
                     }
                 }
-                if (TheMain.isIsEquip()) {
-                    TheMain.setMobHp(setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult));
-                    TheMain.setMobMinDamage(setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult));
-                    TheMain.setMobMaxDamage(setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult));
-                    TheMain.setMobChanceToSuperDamage(setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
+                if (Setting.IS_GAME_WITH_EQUIPMENTS) {
+                    mobHp = setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult);
+                    mobMinDamage = setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult);
+                    mobMaxDamage = setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult);
+                    mobChanceToSuperDamage = mobChanceToSuperDamage + setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult);
                 } else {
-                    TheMain.setMobHp(reduceDifficulty(resultSet.getInt("hp")));
-                    TheMain.setMobMinDamage(reduceDifficulty(resultSet.getInt("minDamage")));
-                    TheMain.setMobMaxDamage(reduceDifficulty(resultSet.getInt("maxDamage")));
-                    TheMain.setMobChanceToSuperDamage(reduceDifficulty(resultSet.getInt("chanceToSuperDamage")));
+                    mobHp = reduceDifficulty(resultSet.getInt("hp"));
+                    mobMinDamage = reduceDifficulty(resultSet.getInt("minDamage"));
+                    mobMaxDamage = reduceDifficulty(resultSet.getInt("maxDamage"));
+                    mobChanceToSuperDamage = reduceDifficulty(resultSet.getInt("chanceToSuperDamage"));
                 }
-                TheMain.setMobName(resultSet.getString("name"));
+                mobName = (resultSet.getString("name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * This method reduces default values from data for every level if game without equipments.
+     *
+     * @param data shows default characteristics from database
+     * @return returns characteristics, reduces difficult for every level
+     * @see Setting There is default value for game without equipments
+     */
+    private static int reduceDifficulty(int data) {
+        int value = data;
+        int subtract = data * (withOutEquipPercent * (-1)) / 100;
+        value -= subtract;
+        return value;
+    }
+
+    /**
+     * This method changes characteristics of creatures, if game with equipments
+     *
+     * @param data              shows default characteristics from database
+     * @param getLevelDifficult shows current difficult for current level
+     * @return returns characteristics, adding difficult according to current level
+     */
+    private static int setLevelDifficulty(int data, int getLevelDifficult) {
+        int value = data;
+        int subtract = (data * getLevelDifficult) / 100;
+        value += subtract;
+        return value;
     }
 }
 

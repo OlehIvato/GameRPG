@@ -1,13 +1,37 @@
 package game.sql;
 
-import game.primary.TheMain;
-
+import game.primary.MainData;
 
 import java.sql.*;
 import java.util.Scanner;
 
-public class HeroData {
+public class HeroData extends MainData implements ConnectSetting {
     private static Connection connection;
+
+    private static final String GET_ALL_HEROES = "SELECT * FROM hero";
+    private static final String GET_ARMOR_BY_HERO_ID = "select armor1_.armor as armor " +
+            "from hero_armors armors0_ " +
+            "inner join armor armor1_ on armors0_.armors_id = armor1_.id " +
+            "order by hero_model_id";
+
+    private static final String GET_CLASS_BY_HERO_ID = "select classtype1_.class as class " +
+            "from hero_classes classes0_" +
+            " inner join class classtype1_ on classes0_.classes_id=classtype1_.id " +
+            "order by hero_model_id";
+
+    private static final String GET_HERO_WHERE_ID_UNKNOWN = "SELECT * FROM hero WHERE id = ?";
+    private static final String GER_CLASS_WHERE_HERO_ID_UNKNOWN = "select classtype1_.class as class  " +
+            "from hero_classes classes0_ " +
+            "inner join class classtype1_ on classes0_.classes_id=classtype1_.id " +
+            "where hero_model_id = ? " +
+            "order by hero_model_id";
+
+    private static final String GER_ARMOR_WHERE_HERO_ID_UNKNOWN = "select armor1_.armor as armor " +
+            "from hero_armors armors0_ " +
+            "inner join armor armor1_ on armors0_.armors_id = armor1_.id  " +
+            "where hero_model_id = ? " +
+            "order by hero_model_id";
+
 
     public static void create() {
         showHeroesFromDatabase();
@@ -17,10 +41,10 @@ public class HeroData {
 
     private static void setHeroToMain() {
         try {
-            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
-            PreparedStatement preparedStatementHero = connection.prepareStatement("SELECT * FROM hero WHERE id = ?");
-            PreparedStatement preparedStatementClass = connection.prepareStatement("select classtype1_.class as class  from hero_classes classes0_ inner join class classtype1_ on classes0_.classes_id=classtype1_.id where hero_model_id = ? order by hero_model_id");
-            PreparedStatement preparedStatementArmor = connection.prepareStatement("select armor1_.armor as armor from hero_armors armors0_ inner join armor armor1_ on armors0_.armors_id = armor1_.id  where hero_model_id = ? order by hero_model_id");
+            connection = DriverManager.getConnection(data_url, data_username, data_password);
+            PreparedStatement preparedStatementHero = connection.prepareStatement(GET_HERO_WHERE_ID_UNKNOWN);
+            PreparedStatement preparedStatementClass = connection.prepareStatement(GER_CLASS_WHERE_HERO_ID_UNKNOWN);
+            PreparedStatement preparedStatementArmor = connection.prepareStatement(GER_ARMOR_WHERE_HERO_ID_UNKNOWN);
 
             int resultScan = new Scanner(System.in).nextInt();
 
@@ -33,16 +57,16 @@ public class HeroData {
             ResultSet resultSetArmor = preparedStatementArmor.executeQuery();
 
             while (resultSetHero.next() && resultSetClass.next() && resultSetArmor.next()) {
-                TheMain.setHeroClass(resultSetClass.getString("class"));
-                TheMain.setHeroName(resultSetHero.getString("name"));
-                TheMain.setHeroHp(resultSetHero.getInt("hp"));
-                TheMain.setHeroDamage(resultSetHero.getInt("damage"));
-                TheMain.setHeroMinSpell(resultSetHero.getInt("minSpellDamage"));
-                TheMain.setHeroMaxSpell(resultSetHero.getInt("maxSpellDamage"));
-                TheMain.setHeroRestoreHp(resultSetHero.getInt("restoreHealth"));
-                TheMain.setHeroMana(resultSetHero.getInt("mana"));
-                TheMain.setHeroArmor(resultSetArmor.getString("armor"));
 
+                heroName = resultSetHero.getString("name");
+                heroClass = resultSetClass.getString("class");
+                heroArmor = resultSetArmor.getString("armor");
+                heroHp = resultSetHero.getInt("hp");
+                heroDamage = resultSetHero.getInt("damage");
+                heroMinSpell = resultSetHero.getInt("minSpellDamage");
+                heroMaxSpell = resultSetHero.getInt("maxSpellDamage");
+                heroRestoreHp = resultSetHero.getInt("restoreHealth");
+                heroMana = resultSetHero.getInt("mana");
                 System.out.println("You selected " + resultSetHero.getString("name"));
             }
         } catch (SQLException e) {
@@ -52,14 +76,14 @@ public class HeroData {
 
     private static void showHeroesFromDatabase() {
         try {
-            connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
+            connection = DriverManager.getConnection(data_url, data_username, data_password);
             Statement statementHero = connection.createStatement();
             Statement statementArmor = connection.createStatement();
             Statement statementClass = connection.createStatement();
 
-            ResultSet resultSetHero = statementHero.executeQuery("SELECT * FROM hero");
-            ResultSet resultSetArmor = statementArmor.executeQuery("select armor1_.armor as armor from hero_armors armors0_ inner join armor armor1_ on armors0_.armors_id = armor1_.id order by hero_model_id");
-            ResultSet resultSetClass = statementClass.executeQuery("select classtype1_.class as class from hero_classes classes0_ inner join class classtype1_ on classes0_.classes_id=classtype1_.id order by hero_model_id");
+            ResultSet resultSetHero = statementHero.executeQuery(GET_ALL_HEROES);
+            ResultSet resultSetArmor = statementArmor.executeQuery(GET_ARMOR_BY_HERO_ID);
+            ResultSet resultSetClass = statementClass.executeQuery(GET_CLASS_BY_HERO_ID);
 
             System.out.println("\nSelect one:");
             while (resultSetHero.next() && resultSetArmor.next() && resultSetClass.next()) {

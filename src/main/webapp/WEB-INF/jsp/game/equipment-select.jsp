@@ -1,5 +1,5 @@
 <%@ page import="java.sql.*" %>
-<%@ page import="game.primary.TheMain" %>
+<%@ page import="game.primary.MainData" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
@@ -20,86 +20,86 @@
 <button style="margin-left: 100px"><a href="/welcome">Back</a></button>
 
 
-<%
+<%--<%--%>
 
 
-    String headSelect = "Select Head Armor:\n";
-    String shoulderSelect = "Select Shoulder Armor:\n";
-    String chestSelect = "Select Chest Armor:\n";
-    String legSelect = "Select Leg Armor\n";
-    String wandSelect = "Select Wand\n";
-    String swordSelect = "Select Sword\n";
-    String shieldSelect = "Select Shield\n";
-    String amuletsSelect = "Select Amulet\n";
+<%--    String headSelect = "Select Head Armor:\n";--%>
+<%--    String shoulderSelect = "Select Shoulder Armor:\n";--%>
+<%--    String chestSelect = "Select Chest Armor:\n";--%>
+<%--    String legSelect = "Select Leg Armor\n";--%>
+<%--    String wandSelect = "Select Wand\n";--%>
+<%--    String swordSelect = "Select Sword\n";--%>
+<%--    String shieldSelect = "Select Shield\n";--%>
+<%--    String amuletsSelect = "Select Amulet\n";--%>
 
-    String type_Head = "Head";
-    String type_Shoulder = "Shoulder";
-    String type_Chest = "Chest";
-    String type_Legs = "Legs";
-    String type_Wand = "Wand";
-    String type_Sword = "Sword";
-    String type_Shield = "Shield";
-    String type_Amulets = "Amulet";
-
-
-    String armor_Cloth = "Cloth";
-    String armor_leather = "Leather";
-    String armor_Plate = "Plate";
-    String armor_Weapon = "Weapon";
+<%--    String type_Head = "Head";--%>
+<%--    String type_Shoulder = "Shoulder";--%>
+<%--    String type_Chest = "Chest";--%>
+<%--    String type_Legs = "Legs";--%>
+<%--    String type_Wand = "Wand";--%>
+<%--    String type_Sword = "Sword";--%>
+<%--    String type_Shield = "Shield";--%>
+<%--    String type_Amulets = "Amulet";--%>
 
 
-    if (TheMain.getHeroArmor().equals("Cloth")) {
-        System.out.println(headSelect);
-
-        show(out, armor_Cloth, type_Head);
-
-
-     }
-
-    if (TheMain.getHeroArmor().equals("Plate")) {
-        System.out.println(headSelect);
-
-        show(out, armor_Plate, type_Head);
+<%--    String armor_Cloth = "Cloth";--%>
+<%--    String armor_leather = "Leather";--%>
+<%--    String armor_Plate = "Plate";--%>
+<%--    String armor_Weapon = "Weapon";--%>
 
 
-    }
-%>
+<%--    if (TheMain.getHeroArmor().equals("Cloth")) {--%>
+<%--        System.out.println(headSelect);--%>
 
-<%!
-    private void show(JspWriter out, String armor, String type) {
+<%--        show(out, armor_Cloth, type_Head);--%>
 
-        try {
-            Connection connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());
-            Statement statementMain = connection.createStatement();
-            Statement statementType = connection.createStatement();
-            Statement statementArmor = connection.createStatement();
 
-            ResultSet resultMain = statementMain.executeQuery("SELECT * FROM equipment ");
-            ResultSet resultType = statementType.executeQuery("select types0_.equipment_model_id as equipmen1_10_0_, type1_.type as type from equipment_types types0_ inner join type type1_ on types0_.types_id=type1_.id   order by equipmen1_10_0_");
-            ResultSet resultArmor = statementArmor.executeQuery("select armors0_.equipment_model_id as equipmen1_9_0_, armor1_.armor as armor from equipment_armors armors0_ inner join armor armor1_ on armors0_.armors_id = armor1_.id order by equipmen1_9_0_");
+<%--     }--%>
 
-            while (resultMain.next() && resultType.next() && resultArmor.next()) {
+<%--    if (TheMain.getHeroArmor().equals("Plate")) {--%>
+<%--        System.out.println(headSelect);--%>
 
-                if (resultArmor.getString("armor").equals(armor) && resultType.getString("type").equals(type)) {
-                    String getFormat = "%1$-4s|%2$-30s|%3$-8s|%4$-11s|%5$-18s|%6$-9s|%7$-16s|%8$-21s|";
-                    String value = String.format(getFormat,
-                            resultMain.getLong("id"),
-                            resultMain.getString("name"),
-                            " HP: " + resultMain.getInt("hp"),
-                            " Damage: " + resultMain.getInt("damage"),
-                            " Spell Damage: " + resultMain.getInt("spell_damage"),
-                            " Mana: " + resultMain.getInt("mana"),
-                            " Type: " + resultType.getString("type"),
-                            " Armor Type: " + resultArmor.getString("armor"));
-                    out.print("\n <h1></h1>"+ value  );
-                out.print(TheMain.getMobName());
-                }
-            }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-%>
+<%--        show(out, armor_Plate, type_Head);--%>
+
+
+<%--    }--%>
+<%--%>--%>
+
+<%--<%!--%>
+<%--    private void show(JspWriter out, String armor, String type) {--%>
+
+<%--        try {--%>
+<%--            Connection connection = DriverManager.getConnection(TheMain.getUrl(), TheMain.getUsername(), TheMain.getPassword());--%>
+<%--            Statement statementMain = connection.createStatement();--%>
+<%--            Statement statementType = connection.createStatement();--%>
+<%--            Statement statementArmor = connection.createStatement();--%>
+
+<%--            ResultSet resultMain = statementMain.executeQuery("SELECT * FROM equipment ");--%>
+<%--            ResultSet resultType = statementType.executeQuery("select types0_.equipment_model_id as equipmen1_10_0_, type1_.type as type from equipment_types types0_ inner join type type1_ on types0_.types_id=type1_.id   order by equipmen1_10_0_");--%>
+<%--         ResultSet resultArmor = statementArmor.executeQuery("select armors0_.equipment_model_id as equipmen1_9_0_, armor1_.armor as armor from equipment_armors armors0_ inner join armor armor1_ on armors0_.armors_id = armor1_.id order by equipmen1_9_0_");--%>
+
+<%--            while (resultMain.next() && resultType.next() && resultArmor.next()) {--%>
+
+<%--                if (resultArmor.getString("armor").equals(armor) && resultType.getString("type").equals(type)) {--%>
+<%--                    String getFormat = "%1$-4s|%2$-30s|%3$-8s|%4$-11s|%5$-18s|%6$-9s|%7$-16s|%8$-21s|";--%>
+<%--                    String value = String.format(getFormat,--%>
+<%--                            resultMain.getLong("id"),--%>
+<%--                            resultMain.getString("name"),--%>
+<%--                            " HP: " + resultMain.getInt("hp"),--%>
+<%--                            " Damage: " + resultMain.getInt("damage"),--%>
+<%--                            " Spell Damage: " + resultMain.getInt("spell_damage"),--%>
+<%--                            " Mana: " + resultMain.getInt("mana"),--%>
+<%--                            " Type: " + resultType.getString("type"),--%>
+<%--                            " Armor Type: " + resultArmor.getString("armor"));--%>
+<%--                    out.print("\n <h1></h1>"+ value  );--%>
+<%--                out.print(TheMain.getMobName());--%>
+<%--                }--%>
+<%--            }--%>
+<%--        } catch (SQLException | IOException e) {--%>
+<%--            e.printStackTrace();--%>
+<%--        }--%>
+<%--    }--%>
+<%--%>--%>
 
 
 
