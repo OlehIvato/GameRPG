@@ -1,25 +1,15 @@
 package spring.service;
 
-import org.springframework.stereotype.Service;
 import spring.model.CalculatorModel;
 
-@Service
-public class CalculatorService {
+public interface CalculatorService {
 
-    public int add(CalculatorModel model) {
-        return model.getA() + model.getB();
-    }
+    int add(CalculatorModel model);
 
-    public int subtract(CalculatorModel model) {
-        return model.getA() - model.getB();
-    }
+    int subtract(CalculatorModel model);
 
-    public int multiply(CalculatorModel model) {
-        return model.getA() * model.getB();
-    }
+    int multiply(CalculatorModel model);
 
-    public double divide(CalculatorModel model) {
-        if (model.getA() == 0 || model.getB() == 0) return 0;
-        return (double) model.getA() / model.getB();
-    }
+    double divide(CalculatorModel model);
+
 }

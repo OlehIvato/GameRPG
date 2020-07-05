@@ -9,8 +9,5 @@ import java.util.List;
 
 @Repository
 public interface HeroRepository extends JpaRepository<HeroModel, Long> {
-
-    List<HeroModel> findAllByName(String name);
-
 }
 

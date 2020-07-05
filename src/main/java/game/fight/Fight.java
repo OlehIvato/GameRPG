@@ -7,29 +7,29 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Fight extends MainData implements DefaultValues {
-    private int heroHpFinal = heroHp;    // static field changes only one time...
-    private int mobHpFinal = mobHp;
-    private int heroManaFinal = heroMana;
+class Fight extends MainData implements DefaultValues {
+    private int heroHpFinal = getHeroHp();    // static field changes only one time...
+    private int mobHpFinal = getMobHp();
+    private int heroManaFinal = getHeroMana();
 
     public void launchGame() {
-        if (!Setting.IS_GAME_AGAINST_BOSS)
-            Text.gameDescription(false);
-        if (Setting.IS_GAME_AGAINST_BOSS)
-            Text.gameDescription(true);
+        if (!Setting.isIsGameAgainstBoss())
+            FightDescription.gameDescription(false);
+        if (Setting.isIsGameAgainstBoss())
+            FightDescription.gameDescription(true);
         getMoveOptions();
     }
 
     private void getMoveOptions() {
         try {
-            Text.turnOptions();
+            FightDescription.turnOptions();
             while (mobHpFinal > 0 && heroHpFinal > 0) {
                 switch (new Scanner(System.in).nextInt()) {
                     case 1 -> heroMove();
                     case 2 -> spell();
                     case 3 -> heal();
                     case 4 -> {
-                        if (Setting.IS_GAME_WITH_EQUIPMENTS) {
+                        if (Setting.isIsGameWithEquipments()) {
                             Storage.saveFileToFolder(true);
                         } else {
                             System.out.println("\nSorry but you can't do that, Try something else");
@@ -55,32 +55,33 @@ public class Fight extends MainData implements DefaultValues {
 
     private void heroMove() {
         if (mobHpFinal > 0 && heroHpFinal > 0) {
-            System.out.println("You hit " + mobName + " on " + heroDamage + " Health point");
-            if (!Setting.IS_GAME_AGAINST_BOSS) {
-                System.out.print("Now " + mobName + " have ");
-                System.out.println(mobHpFinal - heroDamage + " Health point");
-                mobHpFinal -= heroDamage;
+            System.out.println("You hit " + getMobName() + " on " + getHeroDamage() + " Health point");
+            if (!Setting.isIsGameAgainstBoss()) {
+                System.out.print("Now " + getMobName() + " have ");
+                System.out.println(mobHpFinal - getHeroDamage() + " Health point");
+                mobHpFinal -= getHeroDamage();
             }
-            if (Setting.IS_GAME_AGAINST_BOSS) {
-                System.out.print("After Recovering " + mobRestoreHp + " Health point " + mobName + " have " + ((mobHpFinal + mobRestoreHp) - heroDamage) + " Health point ");
-                mobHpFinal = (mobHpFinal + mobRestoreHp) - heroDamage;
+            if (Setting.isIsGameAgainstBoss()) {
+                System.out.print("After Recovering " + getMobRestoreHp() + " Health point " + getMobName() + " have "
+                        + ((mobHpFinal + getMobRestoreHp()) - getHeroDamage()) + " Health point ");
+                mobHpFinal = (mobHpFinal + getMobRestoreHp()) - getHeroDamage();
             }
         }
         if (mobHpFinal <= 0) {
-            System.out.println(Text.youWon + mobName);
+            System.out.println(FightDescription.youWon + getMobName());
         } else mobMove();
     }
 
     private void mobMove() {
         if (heroHpFinal > 0 && mobHpFinal > 0) {
-            System.out.println("\n" + mobName + " turn \n");
+            System.out.println("\n" + getMobName() + " turn \n");
             int EqualRandom = randomCreatureDamage();
-            System.out.print(mobName + " hits you on " + EqualRandom + " Health point");
+            System.out.print(getMobName() + " hits you on " + EqualRandom + " Health point");
             heroHpFinal -= EqualRandom;
             System.out.println("\nNow You Have " + heroHpFinal + " Health point");
         }
         if (heroHpFinal <= 0) {
-            System.out.println(Text.youLose + mobName);
+            System.out.println(FightDescription.youLose + getMobName());
             defeatOptions();
         } else getMoveOptions();
     }
@@ -88,37 +89,38 @@ public class Fight extends MainData implements DefaultValues {
     private void spell() {
         if (mobHpFinal > 0 && heroHpFinal > 0) {
             int randomDamage = randomSpell();
-            System.out.println("You Hit " + mobName + " using spell on " + randomDamage + " Health point ");
-            if (!Setting.IS_GAME_AGAINST_BOSS) {
-                System.out.print("Now " + mobName + " have ");
+            System.out.println("You Hit " + getMobName() + " using spell on " + randomDamage + " Health point ");
+            if (!Setting.isIsGameAgainstBoss()) {
+                System.out.print("Now " + getMobName() + " have ");
                 System.out.println(mobHpFinal - randomDamage + " Health point ");
                 mobHpFinal -= randomDamage;
             }
-            if (Setting.IS_GAME_AGAINST_BOSS) {
-                System.out.println("After Recovering " + mobRestoreHp + " health point " + mobName + " have " + ((mobHpFinal + mobRestoreHp) - randomDamage) + " Health point ");
-                mobHpFinal = (mobHpFinal + mobRestoreHp) - randomDamage;
+            if (Setting.isIsGameAgainstBoss()) {
+                System.out.println("After Recovering " + getMobRestoreHp() + " health point " + getMobName() + " have "
+                        + ((mobHpFinal + getMobRestoreHp()) - randomDamage) + " Health point ");
+                mobHpFinal = (mobHpFinal + getMobRestoreHp()) - randomDamage;
             }
-            if (heroMinSpell <= 0 && heroMaxSpell <= 0) {
+            if (getHeroMinSpell() <= 0 && getHeroMaxSpell() <= 0) {
                 System.out.println("\nSorry but you can't do that, Try something else");
                 getMoveOptions();
             }
         }
         if (mobHpFinal <= 0) {
-            System.out.println(Text.youWon + mobName);
+            System.out.println(FightDescription.youWon + getMobName());
         } else mobMove();
 
     }
 
     private void heal() {
         while (mobHpFinal > 0 && heroHpFinal > 0) {
-            if (heroManaFinal >= healCast) {
-                heroHpFinal += (restoreDefaultIndex + heroRestoreHp);
+            if (heroManaFinal >= DEFAULT_HEAL_CAST) {
+                heroHpFinal += (DEFAULT_RESTORE_HP_INDEX + getHeroRestoreHp());
                 System.out.println("\nYou chose Healing yourself ");
-                heroManaFinal -= healCast;
+                heroManaFinal -= DEFAULT_HEAL_CAST;
                 System.out.println("Now your health point equal " + heroHpFinal);
                 System.out.println("Now you have left " + heroManaFinal + " Mana ");
-                System.out.println(Text.turnSecondOptions);
-                switch (scanner.nextInt()) {
+                System.out.println(FightDescription.turnSecondOptions);
+                switch (SCANNER.nextInt()) {
                     case 1 -> heroMove();
                     case 2 -> spell();
                     case 3 -> {
@@ -127,8 +129,8 @@ public class Fight extends MainData implements DefaultValues {
                     }
                 }
             }
-            if (heroManaFinal < healCast) {
-                System.out.println("\nSorry, but you haven't Mana\nPlease Select Something else");
+            if (heroManaFinal < DEFAULT_HEAL_CAST) {
+                System.err.println("\nSorry, but you haven't Mana\nPlease Select Something else");
                 getMoveOptions();
                 break;
             }
@@ -136,31 +138,31 @@ public class Fight extends MainData implements DefaultValues {
     }
 
     private int randomSpell() {
-        return (int) ((Math.random() * (heroMaxSpell - heroMinSpell)) + heroMinSpell);
+        return (int) ((Math.random() * (getHeroMaxSpell() - getHeroMinSpell())) + getHeroMinSpell());
     }
 
     private int randomCreatureDamage() {
         int result;
         int num = new Random().nextInt(100);
-        if (num < mobChanceToSuperDamage) {
-            result = superDamage;
-            System.out.println(mobName + " uses Super Damage ");
-        } else if (Setting.IS_GAME_AGAINST_BOSS && mobHpFinal < 30) {
-            result = superDamage;
-            System.out.println(mobName + " Have less than 30 hp, his damage will be increased.");
+        if (num < getMobChanceToSuperDamage()) {
+            result = getMobChanceToSuperDamage();
+            System.out.println(getMobName() + " uses Super Damage ");
+        } else if (Setting.isIsGameAgainstBoss() && mobHpFinal < 30) {
+            result = SUPER_DAMAGE;
+            System.out.println(getMobName() + " Have less than 30 hp, his damage will be increased.");
         } else
-            result = (int) (Math.random() * (mobMaxDamage - mobMinDamage)) + mobMinDamage;
+            result = (int) (Math.random() * (getMobMaxDamage() - getMobMinDamage())) + getMobMinDamage();
         return result;
     }
 
     private static void defeatOptions() {
         System.out.println("\n\n\n Select option: " +
                 "\n   1. Create new Hero and play Again ?  " +
-                "\n   2. Play again from " + Setting.LEVEL_COUNT + " Level " +
+                "\n   2. Play again from " + Setting.getLevelCount() + " Level " +
                 "\n   3. Back to Main Menu ");
-        switch (scanner.nextInt()) {
+        switch (SCANNER.nextInt()) {
             case 1 -> Menu.second();
-            case 2 -> LaunchGame.getLevel(Setting.LEVEL_COUNT, Setting.LEVEL_DIFFICULT);
+            case 2 -> LaunchGame.getLevel(Setting.getLevelCount(), Setting.getLevelDifficult());
             case 3 -> Menu.main();
         }
     }

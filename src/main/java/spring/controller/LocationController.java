@@ -11,12 +11,12 @@ import java.util.List;
 @Controller
 @RequestMapping("location/")
 public class LocationController {
+
     private final LocationService locationService;
 
     public LocationController(LocationService locationService) {
         this.locationService = locationService;
     }
-
 
     @GetMapping("all")
     public String findAll(Model model) {

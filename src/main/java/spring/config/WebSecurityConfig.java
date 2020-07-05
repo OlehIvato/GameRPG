@@ -1,6 +1,5 @@
 package spring.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,19 +7,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import spring.model.User;
-import spring.service.UserService;
-
-import java.util.UUID;
+import spring.service.imp.UserServiceImp;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserService userService;
+    UserServiceImp userServiceImp;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -31,37 +26,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() // це якогось роду захист
+                .csrf().disable() // it is kind of protection
 
                 .authorizeRequests()
-                .antMatchers("/registration").not().fullyAuthenticated()   // дозвіл тільки коли не авторизований
+                .antMatchers("/registration").not().fullyAuthenticated()   // permission only when NOT authorized
 
-                // це заборонити зміну ролі, видаляти, міняти пароль, ім'я, і особисту інформацію користовачу "admin"
-                .antMatchers("/admin/setrole/1", "/admin/removeuser/1", "/admin/userinfo/1",
-                        "/account/edit-password/1", "/account/edit-username/1","/account/edit-info/1","/account/edit-avatar/1").denyAll()
+
+                .antMatchers().hasAnyAuthority()
 
 
                 .antMatchers("/admin/**",
                         "/**/update/**",
                         "/**/create/**",
                         "/**/delete/**",
-                        "/**/image/**").hasRole("ADMIN")                             // всі перечислені операції тільки для адміна
-
+                        "/**/image/**").hasRole("ADMIN") // all operations are for admin only
 
                 .antMatchers("/login").permitAll()
 
-                //все інше треба authenticated
+                // everything else needs authorization
                 .anyRequest().authenticated()
 
                 .and()
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/welcome", true).permitAll()
                 .and()
-                .logout().permitAll().logoutSuccessUrl("/login");
+                .logout().permitAll().logoutSuccessUrl("/login")
+
+                .and()
+                .exceptionHandling().accessDeniedPage("/forbidden");
+
     }
 
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+        authenticationManagerBuilder.userDetailsService(userServiceImp).passwordEncoder(bCryptPasswordEncoder());
     }
 }

@@ -7,5 +7,4 @@ import java.util.List;
 
 @Repository
 public interface BossesRepository extends JpaRepository <BossesModel, Long> {
-    List<BossesModel> findAllByName(String name);
 }

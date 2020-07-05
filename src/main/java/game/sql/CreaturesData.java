@@ -6,43 +6,42 @@ import game.primary.Setting;
 
 import java.sql.*;
 
+public class CreaturesData extends ConnectSetting implements DefaultValues {
 
-public class CreaturesData extends MainData implements ConnectSetting, DefaultValues {
+    private static final String GET_RANDOM_BOSS = "SELECT * FROM bosses ORDER BY RAND() LIMIT 1";
+    private static final String GET_RANDOM_MOB = "SELECT * FROM mobs ORDER BY RAND() LIMIT 1";
 
 
-    private static final String GET_ONE_BOSS = "SELECT * FROM bosses ORDER BY RAND() LIMIT 1";
-    private static final String GET_ONE_MOB = "SELECT * FROM mobs ORDER BY RAND() LIMIT 1";
-
-    public static void getRandomCreature(int lvlDifficult) {
-        ResultSet resultSet;
+    public static void getRandomCreatureFomDatabase(int lvlDifficult) {
         try {
-            Connection connection = DriverManager.getConnection(data_url, data_username, data_password);
-            Statement statement = connection.createStatement();
-            if (Setting.IS_GAME_AGAINST_BOSS) {
-                resultSet = statement.executeQuery(GET_ONE_BOSS);
+            connectToDataBase();
+            statement = connection.createStatement();
+            if (Setting.isIsGameAgainstBoss()) {
+                resultSet = statement.executeQuery(GET_RANDOM_BOSS);
             } else {
-                resultSet = statement.executeQuery(GET_ONE_MOB);
+                resultSet = statement.executeQuery(GET_RANDOM_MOB);
             }
             while (resultSet.next()) {
-                if (Setting.IS_GAME_AGAINST_BOSS) {
-                    if (Setting.IS_GAME_WITH_EQUIPMENTS) {
-                        mobRestoreHp = setLevelDifficulty(resultSet.getInt("restoreHealth"), lvlDifficult);
+                if (Setting.isIsGameAgainstBoss()) {
+                    if (Setting.isIsGameWithEquipments()) {
+                        MainData.setMobRestoreHp(setLevelDifficulty(resultSet.getInt("restoreHealth"), lvlDifficult));
                     } else {
-                        mobRestoreHp = CreaturesData.reduceDifficulty(resultSet.getInt("restoreHealth"));
+                        MainData.setMobRestoreHp(reduceDifficulty(resultSet.getInt("restoreHealth")));
                     }
                 }
-                if (Setting.IS_GAME_WITH_EQUIPMENTS) {
-                    mobHp = setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult);
-                    mobMinDamage = setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult);
-                    mobMaxDamage = setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult);
-                    mobChanceToSuperDamage = mobChanceToSuperDamage + setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult);
+                if (Setting.isIsGameWithEquipments()) {
+                    MainData.setMobHp(setLevelDifficulty(resultSet.getInt("hp"), lvlDifficult));
+                    MainData.setMobMinDamage(setLevelDifficulty(resultSet.getInt("minDamage"), lvlDifficult));
+                    MainData.setMobMaxDamage(setLevelDifficulty(resultSet.getInt("maxDamage"), lvlDifficult));
+                    MainData.setMobChanceToSuperDamage(setLevelDifficulty(resultSet.getInt("chanceToSuperDamage"), lvlDifficult));
+
                 } else {
-                    mobHp = reduceDifficulty(resultSet.getInt("hp"));
-                    mobMinDamage = reduceDifficulty(resultSet.getInt("minDamage"));
-                    mobMaxDamage = reduceDifficulty(resultSet.getInt("maxDamage"));
-                    mobChanceToSuperDamage = reduceDifficulty(resultSet.getInt("chanceToSuperDamage"));
+                    MainData.setMobHp(reduceDifficulty(resultSet.getInt("hp")));
+                    MainData.setMobMinDamage(reduceDifficulty(resultSet.getInt("minDamage")));
+                    MainData.setMobMaxDamage(reduceDifficulty(resultSet.getInt("maxDamage")));
+                    MainData.setMobChanceToSuperDamage(reduceDifficulty(resultSet.getInt("chanceToSuperDamage")));
                 }
-                mobName = (resultSet.getString("name"));
+                MainData.setMobName(resultSet.getString("name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,7 +57,7 @@ public class CreaturesData extends MainData implements ConnectSetting, DefaultVa
      */
     private static int reduceDifficulty(int data) {
         int value = data;
-        int subtract = data * (withOutEquipPercent * (-1)) / 100;
+        int subtract = data * (DEFAULT_INDEX_FOR_GAME_WITHOUT_EQUIPMENTS * (-1)) / 100;
         value -= subtract;
         return value;
     }
@@ -76,5 +75,7 @@ public class CreaturesData extends MainData implements ConnectSetting, DefaultVa
         value += subtract;
         return value;
     }
+
+
 }
 

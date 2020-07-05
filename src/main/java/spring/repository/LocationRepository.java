@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface LocationRepository extends JpaRepository <LocationModel,Long> {
-    List<LocationModel> findAllByName(String name);
-
 }

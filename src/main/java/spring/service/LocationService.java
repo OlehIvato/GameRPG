@@ -1,41 +1,16 @@
 package spring.service;
-
-
-import org.springframework.stereotype.Service;
 import spring.model.LocationModel;
-import spring.repository.LocationRepository;
 
 import java.util.List;
 
+public interface LocationService {
 
-@Service
-public class LocationService {
+    List<LocationModel> findAll();
 
-    private final LocationRepository locationRepository;
+    LocationModel findOneById(Long id);
 
-    public LocationService(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;
-    }
+    LocationModel save(LocationModel heroModel);
 
-
-    public List<LocationModel> findAll() {
-        return locationRepository.findAll();
-    }
-
-    public LocationModel findOneById(Long id) {
-        return locationRepository.getOne(id);
-    }
-
-    public LocationModel save(LocationModel heroModel) {
-        return locationRepository.save(heroModel);
-    }
-
-    public void delete(Long id) {
-        locationRepository.deleteById(id);
-    }
-
-    public List<LocationModel> getName(String name) {
-        return locationRepository.findAllByName(name);
-    }
+    void delete(Long id);
 
 }

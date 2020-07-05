@@ -1,11 +1,12 @@
 package spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import spring.config.MvcConfig;
 import spring.model.Profile;
 import spring.model.User;
 import spring.model.User_Profile;
@@ -15,57 +16,66 @@ import spring.repository.User_RolesRepository;
 import spring.service.ProfileService;
 import spring.service.UserService;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 @Controller
 @RequestMapping("account/")
 public class AccountController {
 
-    @Autowired
-    UserService userService;
-    @Autowired
-    ProfileService profileService;
-    @Autowired
-    User_ProfileRepository user_profileRepository;
-    @Autowired
-    User_RolesRepository user_rolesRepository;
+    private final UserService userService;
+    private final ProfileService profileService;
+    private final User_ProfileRepository user_profileRepository;
+    private final User_RolesRepository user_rolesRepository;
 
+    public AccountController(UserService userService, ProfileService profileService,
+                             User_ProfileRepository user_profileRepository, User_RolesRepository user_rolesRepository) {
+        this.userService = userService;
+        this.profileService = profileService;
+        this.user_profileRepository = user_profileRepository;
+        this.user_rolesRepository = user_rolesRepository;
+    }
 
-    @GetMapping("user/{id}")
-    public String getUserInfo(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getOneById(id));
+    @GetMapping("user")
+    public String getUserInfo(@AuthenticationPrincipal User currentUser, Model model) {
+        model.addAttribute("user", userService.getOneById(currentUser.getId()));
+        model.addAttribute("currentUser", currentUser.getId());
         return "account/profile";
     }
 
-    @GetMapping("edit-info/{id}")
-    public String openEditorInfo(Model model, @PathVariable("id") Long id) {
-        Profile profile = profileService.findOneById(id);
+    @GetMapping("edit-info")
+    public String openEditorInfo(@AuthenticationPrincipal User currentUser, Model model) {
+        Profile profile = profileService.findOneById(currentUser.getId());
         model.addAttribute("profile", profile);
-        model.addAttribute("user", userService.getOneById(id));
-        model.addAttribute("user_roles", user_rolesRepository.getOne(id));
-        model.addAttribute("user_profile", user_profileRepository.getOne(id));
+        model.addAttribute("user", userService.getOneById(currentUser.getId()));
+        model.addAttribute("user_roles", user_rolesRepository.getOne(currentUser.getId()));
+        model.addAttribute("user_profile", user_profileRepository.getOne(currentUser.getId()));
         return "account/edit-info";
     }
 
 
     @PostMapping("edit-info")
-    public String saveInformationInfo(Profile profile, User user, User_Roles user_roles, User_Profile user_profile) {
+    public String saveInformationInfo(User user, Profile profile, User_Roles user_roles, User_Profile user_profile) {
         profileService.save(profile);
         userService.save(user);
         user_profileRepository.save(user_profile);
         user_rolesRepository.save(user_roles);
-        return "redirect:/account/user/" + user.getId();
+        return "redirect:/account/user";
     }
 
 
-    @GetMapping("edit-username/{id}")
-    public String openEditorUsername(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getOneById(id));
-        model.addAttribute("user_roles", user_rolesRepository.getOne(id));
-        model.addAttribute("user_profile", user_profileRepository.getOne(id));
+    @GetMapping("edit-username")
+    public String openEditorUsername(@AuthenticationPrincipal User currentUser, Model model) {
+        model.addAttribute("user", userService.getOneById(currentUser.getId()));
+        model.addAttribute("user_roles", user_rolesRepository.getOne(currentUser.getId()));
+        model.addAttribute("user_profile", user_profileRepository.getOne(currentUser.getId()));
         return "account/edit-username";
     }
 
     @PostMapping("edit-username")
-    public String saveNewUsername(User user, Model model, BindingResult bindingResult, User_Roles user_roles, User_Profile user_profile) {
+    public String saveNewUsername(User user, Model model, BindingResult bindingResult, User_Roles user_roles,
+                                  User_Profile user_profile) {
         if (bindingResult.hasErrors()) {
             return "account/edit-username";
         }
@@ -76,20 +86,20 @@ public class AccountController {
         userService.save(user);
         user_profileRepository.save(user_profile);
         user_rolesRepository.save(user_roles);
-        return "redirect:/account/user/" + user.getId();
+        return "redirect:/account/user";
     }
 
-
-    @GetMapping("edit-password/{id}")
-    public String openEditorPassword(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getOneById(id));
-        model.addAttribute("user_roles", user_rolesRepository.getOne(id));
-        model.addAttribute("user_profile", user_profileRepository.getOne(id));
+    @GetMapping("edit-password")
+    public String openEditorPassword(@AuthenticationPrincipal User currentUser, Model model) {
+        model.addAttribute("user", userService.getOneById(currentUser.getId()));
+        model.addAttribute("user_roles", user_rolesRepository.getOne(currentUser.getId()));
+        model.addAttribute("user_profile", user_profileRepository.getOne(currentUser.getId()));
         return "account/edit-password";
     }
 
     @PostMapping("edit-password")
-    public String saveNewPassword(User user, Model model, BindingResult bindingResult, User_Roles user_roles, User_Profile user_profile) {
+    public String saveNewPassword(User user, Model model, BindingResult bindingResult, User_Roles user_roles,
+                                  User_Profile user_profile) {
         if (bindingResult.hasErrors()) {
             return "account/edit-password";
         }
@@ -99,28 +109,35 @@ public class AccountController {
         }
         user_profileRepository.save(user_profile);
         user_rolesRepository.save(user_roles);
-        return "redirect:/account/user/" + user.getId();
+        return "redirect:/account/user";
     }
 
-    @GetMapping("edit-avatar/{id}")
-    public String openEditorAvatar(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("profile", profileService.findOneById(id));
-        model.addAttribute("user", userService.getOneById(id));
+    @GetMapping("edit-avatar")
+    public String openEditorAvatar(@AuthenticationPrincipal User currentUser, Model model) {
+        model.addAttribute("profile", profileService.findOneById(currentUser.getId()));
+        model.addAttribute("user", userService.getOneById(currentUser.getId()));
         return "account/edit-avatar";
     }
 
     @PostMapping("edit-avatar")
-    public String saveAvatar(Profile profile, User user, @RequestParam("ava") MultipartFile file) {
+    public String saveAvatar(Profile profile, @RequestParam("ava") MultipartFile file) {
         profileService.saveAvatar(profile, file);
-        return "redirect:/account/user/" + user.getId();
+        return "redirect:/account/user";
     }
 
-    @GetMapping("delete-avatar/{id}")
-    public String deleteAvatar(User user, @PathVariable("id") Long id) {
-        Profile profile = profileService.findOneById(id);
+    @GetMapping("delete-avatar")
+    public String deleteAvatar(@AuthenticationPrincipal User currentUser) {
+        Profile profile = profileService.findOneById(currentUser.getId());
+        Path path = Path.of(MvcConfig.pathAvatars + profile.getAvatar());
+        try {
+            Files.delete(path);
+        } catch (IOException e) {
+            System.out.println("No such file");
+            e.printStackTrace();
+        }
         profile.setAvatar(null);
         profileService.save(profile);
-        return "redirect:/account/user/" + user.getId();
+        return "redirect:/account/user";
     }
 
 }

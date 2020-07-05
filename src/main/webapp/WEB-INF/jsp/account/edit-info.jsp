@@ -1,43 +1,16 @@
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
-
-    <style>
-        textarea {
-            font-size: .8rem;
-            letter-spacing: 1px;
-        }
-
-        textarea {
-            padding: 10px;
-            line-height: 1.5;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-shadow: 1px 1px 1px #999;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-    </style>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <title>Profile</title>
-
+    <link href="${pageContext.request.contextPath}/css/account_edit.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+<%@include file="/WEB-INF/jsp/navBar.jsp" %>
+<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 
 <div style="margin-left:80px">
     <h1 style="margin-top: 10px">Edit profile</h1><br>
-    <form action="${pageContext.request.contextPath}/account/edit-info/" method="post">
+    <form action="${pageContext.request.contextPath}/account/edit-info" method="post">
 
         <c:if test="${profile != null}">
             <input type="hidden" name="id" value="<c:out value='${profile.id}' />"/>
@@ -49,16 +22,16 @@
                    value="<c:out value='${profile.id}'/>"/>
         </label>
 
-
         <label><strong> Name: </strong>
             <input style="margin-left: 5px" type="text" name="name" placeholder="Your name..."
-                   value="<c:out value='${profile.name}'/>" pattern="[A-Z][a-z]{0,12}" title="Please provide a valid Name."/>
+                   value="<c:out value='${profile.name}'/>" pattern="[A-Z][a-z]{0,12}"
+                   title="Please provide a valid Name."/>
         </label><br>
-
 
         <label><strong> Surname: </strong>
             <input style="margin-left: 5px" type="text" name="surname" placeholder="Your surname..."
-                   value="<c:out value='${profile.surname}'/>" pattern="[A-Z][a-z]{2,}" title="Please provide a valid Surname."/>
+                   value="<c:out value='${profile.surname}'/>" pattern="[A-Z][a-z]{2,}"
+                   title="Please provide a valid Surname."/>
         </label><br>
 
         <label> <strong> Email: </strong>
@@ -71,7 +44,6 @@
                    value="<c:out value='${profile.birthday}'/>"/>
         </label><br>
 
-
         <label><strong> Gender: </strong>
             <select name="gender">
                 <option hidden selected value="<c:out value='${profile.gender}'/>">${profile.gender} </option>
@@ -81,12 +53,11 @@
         </label><br>
 
 
-
         <label><strong> Phone: </strong>
-            <input style="margin-left: 5px" type="tel" name="phone" placeholder="Your phone number..." maxlength="12" size="12"  pattern="[0-9]{0,}"
+            <input style="margin-left: 5px" type="tel" name="phone" placeholder="Your phone number..." maxlength="12"
+                   size="12" pattern="[0-9]{0,}"
                    value="<c:out value='${profile.phone}'/>"/>
         </label><br>
-
 
         <label><strong> Country: </strong>
             <select name="country">
@@ -345,21 +316,18 @@
                    value="<c:out value='${profile.city}'/>"/>
         </label><br>
 
-
         <label><strong> Zip: </strong>
             <input style="margin-left: 5px" type="tel" name="zip" size="9" maxlength="9"
                    value="<c:out value='${profile.zip}'/>" pattern="[0-9]{0,}"/>
         </label><br>
 
-
         <label><strong> Bio: </strong>
-            <textarea rows="5" cols="60" name='bio' id='test' placeholder="About you..." ><c:out
-                    value="${profile.bio}"/></textarea>
+            <textarea rows="5" cols="60" name='bio' id='test' placeholder="About you..."><c:out
+                    value="${profile.bio}"/>
+            </textarea>
         </label><br>
 
-
         <input type="hidden" name="avatar" value="<c:out value='${profile.avatar}'/>"/>
-
         <input type="hidden" name="username" value="<c:out value='${user.username}'/>"/>
         <input type="hidden" name="password" value="<c:out value='${user.password}'/>"/>
 
@@ -372,21 +340,10 @@
         <div class="btn-group">
             <button class="btn btn-primary" type="submit" value="Save">Save</button>
             <a class="btn btn-primary"
-               href="${pageContext.request.contextPath}/account/user/<c:out value='${profile.id}'/>">Back</a>
+               href="${pageContext.request.contextPath}/account/user">Back</a>
         </div>
 
     </form>
 </div>
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
 </body>
 </html>

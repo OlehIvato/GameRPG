@@ -1,38 +1,19 @@
 package spring.service;
 
-import org.springframework.stereotype.Service;
 import spring.model.EquipmentModel;
-import spring.repository.EquipmentRepository;
+
 import java.util.List;
 
-@Service
-public class EquipmentService {
 
-    private final EquipmentRepository equipmentRepository;
+public interface EquipmentService {
 
-    public EquipmentService(EquipmentRepository equipmentRepository) {
-        this.equipmentRepository = equipmentRepository;
-    }
+    List<EquipmentModel> findAll();
 
-    public java.util.List<EquipmentModel> findAll() {
-        return equipmentRepository.findAll();
-    }
+    EquipmentModel findOneById(Long id);
 
-    public EquipmentModel findOneById(Long id) {
-        return equipmentRepository.getOne(id);
-    }
+    EquipmentModel save(EquipmentModel heroModel);
 
-    public EquipmentModel save(EquipmentModel heroModel) {
-        return equipmentRepository.save(heroModel);
-    }
-
-    public void delete(Long id) {
-        equipmentRepository.deleteById(id);
-    }
-
-    public List<EquipmentModel> getName(String name) {
-        return equipmentRepository.findAllByName(name);
-    }
+    void delete(Long id);
 
 }
 

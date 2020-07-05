@@ -1,25 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
 <head>
-
     <title>Change Your Image</title>
 </head>
 <body>
+<%@include file="/WEB-INF/jsp/navBar.jsp" %>
+<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 
 <h1 style="margin-left: 50px">Upload An Image</h1><br>
-<form action="${pageContext.request.contextPath}/account/edit-avatar/" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath}/account/edit-avatar" method="post" enctype="multipart/form-data">
 
     <c:if test="${profile != null}">
         <input type="hidden" name="id" value="<c:out value='${profile.id}' />"/>
     </c:if>
 
-
     <label style="margin-left: 50px">
         <input name="ava" id="ava" type="file" value="<c:out value='${profile.avatar}'/>">
     </label><br><br>
-
 
     <input type="hidden" name="id" value="<c:out value='${profile.id}'/>"/>
     <input type="hidden" name="name" value="<c:out value='${profile.name}'/>"/>
@@ -36,18 +33,18 @@
     <input type="hidden" name="bio" value="<c:out value='${profile.bio}'/>"/>
 
 
-    <div class="btn-group" style="margin-left: 50px">
-        <button style="color: green" class="btn btn-primary" type="submit" value="Save">Save</button>
-        <button class="btn btn-primary"
-                href="${pageContext.request.contextPath}/account/user/<c:out value='${user.id}'/>">Back
+    <div style="margin-left: 50px">
+        <button class="buttonStyle" style="background-color: forestgreen" type="submit" value="Save">Save</button>
+
+        <button class="buttonStyle" style="background-color: cornflowerblue"
+                href="${pageContext.request.contextPath}/account/user">Back
         </button>
-        <a style="color: red" href="${pageContext.request.contextPath}/account/delete-avatar/<c:out value='${user.id}'/>">Delete
+
+        <a style="color: #ff3030"
+                href="${pageContext.request.contextPath}/account/delete-avatar">Delete
         </a>
     </div>
-
-
 </form>
-
 
 </body>
 </html>

@@ -1,6 +1,5 @@
 package spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,20 +9,20 @@ import spring.repository.Hero_ArmorsRepository;
 import spring.repository.Hero_ClassesRepository;
 import spring.service.HeroService;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("hero/")
 public class HeroController {
 
-    @Autowired
-    private HeroService heroService;
+    private final HeroService heroService;
+    private final Hero_ClassesRepository heroClassesRepository;
+    private final Hero_ArmorsRepository heroArmorsRepository;
 
-    @Autowired
-    private Hero_ClassesRepository heroClassesRepository;
-
-    @Autowired
-    private Hero_ArmorsRepository heroArmorsRepository;
+    public HeroController(HeroService heroService, Hero_ClassesRepository heroClassesRepository,
+                          Hero_ArmorsRepository heroArmorsRepository) {
+        this.heroService = heroService;
+        this.heroClassesRepository = heroClassesRepository;
+        this.heroArmorsRepository = heroArmorsRepository;
+    }
 
     @GetMapping("all")
     public String findAll(Model model) {
@@ -65,6 +64,7 @@ public class HeroController {
         heroService.delete(id);
         return "redirect:/hero/all";
     }
+
 
 }
 

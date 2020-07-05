@@ -1,6 +1,5 @@
 package spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +9,15 @@ import spring.model.CalculatorModel;
 import spring.service.CalculatorService;
 
 @Controller
-public class  CalculatorController {
+public class CalculatorController {
 
-    private CalculatorModel calculatorModel = new CalculatorModel();
+    private static final CalculatorModel calculatorModel = new CalculatorModel();
 
-    @Autowired
-    private CalculatorService service;
+    private final CalculatorService service;
+
+    public CalculatorController(CalculatorService service) {
+        this.service = service;
+    }
 
     @GetMapping("/calculator")
     public String getCalculatorPage(Model model) {

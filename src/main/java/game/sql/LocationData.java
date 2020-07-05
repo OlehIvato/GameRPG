@@ -5,9 +5,7 @@ import game.primary.MainData;
 import java.sql.*;
 import java.util.*;
 
-public class LocationData extends MainData implements ConnectSetting {
-    private static Connection connection;
-    private static ResultSet resultSet;
+public class  LocationData extends ConnectSetting {
 
     private static final String GET_ALL_EQUIPMENTS = "SELECT * FROM location";
     private static final String GET_LOCATIONS_WHERE_ID_UNKNOWN = "SELECT * FROM location WHERE id = ?";
@@ -20,11 +18,12 @@ public class LocationData extends MainData implements ConnectSetting {
 
     private static void showLocations() {
         try {
-            connection = DriverManager.getConnection(data_url, data_username, data_password);
-            Statement statement = connection.createStatement();
+            connectToDataBase();
+            statement = connection.createStatement();
             resultSet = statement.executeQuery(GET_ALL_EQUIPMENTS);
             while (resultSet.next()) {
-                String getFormat = "%1$-3s|%2$-14s -  %3$-6s %4$-8s|%5$-19s|%6$-12s|%7$-21s  ||| %8$-15s %9$-9s|%10$-13s|%11$-27s";
+                String getFormat = "%1$-3s|%2$-14s -  %3$-6s %4$-8s|%5$-19s|%6$-12s|%7$-21s  " +
+                        "||| %8$-15s %9$-9s|%10$-13s|%11$-27s";
                 String result = String.format(getFormat,
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -46,21 +45,21 @@ public class LocationData extends MainData implements ConnectSetting {
 
     private static void setLocationToMain() {
         try {
-            connection = DriverManager.getConnection(data_url, data_username, data_password);
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_LOCATIONS_WHERE_ID_UNKNOWN);
+            connectToDataBase();
+            preparedStatement = connection.prepareStatement(GET_LOCATIONS_WHERE_ID_UNKNOWN);
             preparedStatement.setInt(1, new Scanner(System.in).nextInt());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                heroHp = heroHp + resultSet.getInt("heroHp");
-                heroDamage = heroDamage + resultSet.getInt("heroDamage");
-                heroMinSpell = heroMinSpell + resultSet.getInt("heroSpellDamage");
-                heroMaxSpell = heroMaxSpell + resultSet.getInt("heroSpellDamage");
-                heroRestoreHp = heroRestoreHp + resultSet.getInt("heroRestoreHealth");
+                MainData.setHeroHp(MainData.getHeroHp() + resultSet.getInt("heroHp"));
+                MainData.setHeroDamage(MainData.getHeroDamage() + resultSet.getInt("heroDamage"));
+                MainData.setHeroMinSpell(MainData.getHeroMinSpell() + resultSet.getInt("heroSpellDamage"));
+                MainData.setHeroMaxSpell(MainData.getHeroMaxSpell() + resultSet.getInt("heroSpellDamage"));
+                MainData.setHeroRestoreHp(MainData.getHeroRestoreHp() + resultSet.getInt("heroRestoreHealth"));
 
-                mobHp = mobHp + resultSet.getInt("creatureHp");
-                mobMinDamage = mobMinDamage + resultSet.getInt("creatureDamage");
-                mobMaxDamage = mobMaxDamage + resultSet.getInt("creatureDamage");
-                mobChanceToSuperDamage = mobChanceToSuperDamage + resultSet.getInt("creatureChance");
+                MainData.setMobHp(MainData.getMobHp() + resultSet.getInt("creatureHp"));
+                MainData.setMobMinDamage(MainData.getMobMinDamage() + resultSet.getInt("creatureDamage"));
+                MainData.setMobMaxDamage(MainData.getMobMaxDamage() + resultSet.getInt("creatureDamage"));
+                MainData.setMobChanceToSuperDamage(MainData.getMobChanceToSuperDamage() + resultSet.getInt("creatureChance"));
 
                 System.out.println("You selected " + resultSet.getString("name") + "\n");
             }

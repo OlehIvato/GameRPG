@@ -1,37 +1,17 @@
 package spring.service;
 
-import org.springframework.stereotype.Service;
 import spring.model.BossesModel;
-import spring.repository.BossesRepository;
 
 import java.util.List;
 
-@Service
-public class BossesService {
+public interface BossesService {
 
-    private final BossesRepository bossesRepository;
+    List<BossesModel> findAll();
 
-    public BossesService(BossesRepository bossesRepository) {
-        this.bossesRepository = bossesRepository;
-    }
+    BossesModel findOneById(Long id);
 
-    public List<BossesModel> findAll() {
-        return bossesRepository.findAll();
-    }
+    BossesModel save(BossesModel heroModel);
 
-    public BossesModel findOneById(Long id) {
-        return bossesRepository.getOne(id);
-    }
+    void delete(Long id);
 
-    public BossesModel save(BossesModel heroModel) {
-        return bossesRepository.save(heroModel);
-    }
-
-    public void delete(Long id) {
-        bossesRepository.deleteById(id);
-    }
-
-    public List<BossesModel> getName(String name) {
-        return bossesRepository.findAllByName(name);
-    }
 }

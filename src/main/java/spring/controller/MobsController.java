@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import spring.model.MobsModel;
 import spring.service.MobsService;
 
-import java.util.List;
-
-
 @Controller
 @RequestMapping("mob/")
 public class MobsController {
@@ -18,7 +15,6 @@ public class MobsController {
     public MobsController(MobsService mobsService) {
         this.mobsService = mobsService;
     }
-
 
     @GetMapping("all")
     public String findAll(Model model) {

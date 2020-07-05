@@ -4,10 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Menu extends MainData{
+public class Menu implements DefaultValues {
 
     public static void main() {
-       try {
+        try {
             System.out.println("Main Menu \n 1. New Game \n 2. Upload saved game \n 3. Exit".toUpperCase());
             switch (new Scanner(System.in).nextInt()) {
                 case 1 -> {
@@ -22,14 +22,14 @@ public class Menu extends MainData{
             }
         } catch (NullPointerException | InputMismatchException |
                 IllegalArgumentException e) {
-            System.out.println("Something went wrong\n");
+            System.err.println("Something went wrong\n");
             main();
         }
 
     }
 
     public static void second() {
-        String create = "\n" + Setting.PLAYER_NAME + ", select next option:\n" +
+        String create = "\n" + Setting.getPlayerName() + ", select next option:\n" +
                 "1. Create new Hero \n" +
                 "2. Upload saved equipped hero, and play new game \n" +
                 "3. Back";
@@ -42,16 +42,16 @@ public class Menu extends MainData{
     }
 
     private static void createPlayerName() {
-        if (Setting.PLAYER_NAME == null) {
+        if (Setting.getPlayerName() == null) {
             System.out.println("What is your name ? ");
             Pattern pattern = Pattern.compile("[A-Za-z]*");
-            while (scanner.hasNext()) {
-                if (scanner.hasNext(pattern)) {
-                    Setting.PLAYER_NAME = scanner.next();
+            while (SCANNER.hasNext()) {
+                if (SCANNER.hasNext(pattern)) {
+                    Setting.setPlayerName(SCANNER.next());
                     break;
                 } else
-                    System.out.println("Attribute name must contain word characters only");
-                scanner.next();
+                    System.err.println("Attribute name must contain word characters only");
+                SCANNER.next();
             }
         }
     }

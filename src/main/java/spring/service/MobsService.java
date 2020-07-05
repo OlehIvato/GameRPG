@@ -1,41 +1,18 @@
 package spring.service;
 
-
-import org.springframework.stereotype.Service;
 import spring.model.MobsModel;
-import spring.repository.MobsRepository;
 
 import java.util.List;
 
-@Service
-public class MobsService {
-
-    private final MobsRepository mobsRepository;
-
-    public MobsService(MobsRepository mobsRepository) {
-        this.mobsRepository = mobsRepository;
-    }
+public interface MobsService {
 
 
-    public List<MobsModel> findAll() {
-        return mobsRepository.findAll();
-    }
+    List<MobsModel> findAll();
 
-    public MobsModel findOneById(Long id) {
-        return mobsRepository.getOne(id);
-    }
+    MobsModel findOneById(Long id);
 
-    public MobsModel save(MobsModel heroModel) {
-        return mobsRepository.save(heroModel);
-    }
+    MobsModel save(MobsModel heroModel);
 
-    public void delete(Long id) {
-        mobsRepository.deleteById(id);
-    }
-
-    public List<MobsModel> getName(String name) {
-        return mobsRepository.findAllByName(name);
-    }
-
+    void delete(Long id);
 
 }

@@ -16,7 +16,8 @@ public class LaunchGame implements DefaultValues {
 
     /**
      * This method for level and difficulty generation
-     * checking, if, level count and level difficult equals null, if yes, start new game from first level, if not, we get saved game
+     * checking, if, level count and level difficult equals null, if yes, start new game from first level,
+     * if not, we get saved game
      */
     public static void getLevel(int getLvlCount, int getLvlDifficult) {
         int lvlD = 0;
@@ -25,7 +26,7 @@ public class LaunchGame implements DefaultValues {
             lvlC = getLvlCount;
             lvlD = lvlDifficultList.indexOf(getLvlDifficult);
         }
-        if (getLvlDifficult == withOutEquipPercent) {
+        if (getLvlDifficult == DEFAULT_INDEX_FOR_GAME_WITHOUT_EQUIPMENTS) {
             lvlD = lvlDifficultList.indexOf(0);
         }
         for (int a = lvlD, b = lvlC; a <= lvlDifficultList.size() && b <= lvlCountList; a++, b++) {
@@ -43,12 +44,13 @@ public class LaunchGame implements DefaultValues {
      * @param getLvlDifficult shows difficulty for game with equipments, if game without equipment,
      *                        this default represent is fixed for every levels, also this parameter uses for save game
      * @param getLevelCount   shows the number of levels, mainly need for save game, and remember last level
-     * @param getGameCount    shows game count, there are 3 game against mobs and one game against boss, after those four game you will pass the level
+     * @param getGameCount    shows game count, there are 3 game against mobs and one game against boss,
+     *                        after those four game you will pass the level
      */
     private static void startLevel(int getLvlDifficult, int getLevelCount, String getGameCount) {
         String sign;
-        if (!Setting.IS_GAME_WITH_EQUIPMENTS) {
-            getLvlDifficult = withOutEquipPercent;
+        if (!Setting.isIsGameWithEquipments()) {
+            getLvlDifficult = DEFAULT_INDEX_FOR_GAME_WITHOUT_EQUIPMENTS;
         }
         if (getLvlDifficult >= 0) {
             sign = " DIFFICULT +";
@@ -61,15 +63,15 @@ public class LaunchGame implements DefaultValues {
                 "\n======================== " + getGameCount + " =======================" +
                 "\n===========================================================");
 
-        Setting.LEVEL_DIFFICULT = getLvlDifficult;
-        Setting.LEVEL_COUNT = getLevelCount;
+        Setting.setLevelCount(getLevelCount);
+        Setting.setLevelDifficult(getLvlDifficult);
 
         if (getGameCount.equals("VS BOSS") || getGameCount.equals("FINAL GAME")) {
-         Setting.IS_GAME_AGAINST_BOSS = true;
-            CreaturesData.getRandomCreature(getLvlDifficult);
+            Setting.setIsGameAgainstBoss(true);
+            CreaturesData.getRandomCreatureFomDatabase(getLvlDifficult);
         } else
-            Setting.IS_GAME_AGAINST_BOSS = false;
-        CreaturesData.getRandomCreature(getLvlDifficult);
+            Setting.setIsGameAgainstBoss(false);
+        CreaturesData.getRandomCreatureFomDatabase(getLvlDifficult);
 
         new Fight().launchGame();
     }
@@ -77,7 +79,7 @@ public class LaunchGame implements DefaultValues {
 
     private static void win() {
         String win = "\n\n\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
-                "\n" + Setting.PLAYER_NAME + " you went through" + lvlCountList + " levels and won    " +
+                "\n" + Setting.getPlayerName() + " you went through" + lvlCountList + " levels and won    " +
                 "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
         System.out.println(win.toUpperCase());
         Menu.main();

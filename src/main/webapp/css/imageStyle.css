@@ -1,0 +1,16 @@
+#avatar {
+    width: 300px;
+    background-color: #999999;
+    border: #999999;
+    margin-left: 25px;
+
+    display: none;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#avatar:target {
+    display: block;
+}

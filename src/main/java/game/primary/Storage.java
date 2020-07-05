@@ -21,7 +21,8 @@ public class Storage {
      * This method shows all list of files in folder for equipment or game, then gets these files, sets value to main Data,
      * and sets value, this is a game with equipments.
      *
-     * @param isGameSave need to check if game is saved or equipment is saved, because for game and equipments saved there is two different folder.
+     * @param isGameSave need to check if game is saved or equipment is saved,
+     *                   because for game and equipments saved there is two different folder.
      */
     public static void getFilesFromFolder(boolean isGameSave) {
         try {
@@ -49,10 +50,10 @@ public class Storage {
                     objectInputStream = new ObjectInputStream(new FileInputStream(equipmentSavePath + fileName));
                 }
                 saveData = (SaveData) objectInputStream.readObject();
-                saveData.saveValuesToMain(isGameSave);
+                saveData.saveValuesToMainData(isGameSave);
 
-                Setting.IS_GAME_WITH_EQUIPMENTS = true;
-                LaunchGame.getLevel(Setting.LEVEL_COUNT, Setting.LEVEL_DIFFICULT);
+                Setting.setIsGameWithEquipments(true);
+                LaunchGame.getLevel(Setting.getLevelCount(), Setting.getLevelDifficult());
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -65,8 +66,10 @@ public class Storage {
      * @param isGameSave need to check if this save for game or equipment, because there is two different folder.
      */
     public static void saveFileToFolder(boolean isGameSave) {
-        saveData.getValuesFromMain(isGameSave);
-        String a = (isGameSave) ? "\nWrite name of your file, for Game save:" : "\nWrite name of your file, for Equipment save:";
+        saveData.getValuesFromMainData(isGameSave);
+        String a = (isGameSave)
+                ? "\nWrite name of your file, for Game save:"
+                : "\nWrite name of your file, for Equipment save:";
         System.out.println(a);
         fileName = new Scanner(System.in).nextLine();
         try {
@@ -105,43 +108,41 @@ public class Storage {
         private int serialize_levelCount;
 
 
-        private void getValuesFromMain(boolean isGameSave) {
+        private void getValuesFromMainData(boolean isGameSave) {
             if (isGameSave) {
-
-                serialize_levelCount = Setting.LEVEL_COUNT;
-                serialize_levelDifficult = Setting.LEVEL_DIFFICULT;
+                serialize_levelCount = Setting.getLevelCount();
+                serialize_levelDifficult = Setting.getLevelDifficult();
             }
-            serialize_heroArmor = heroArmor;
-            serialize_heroClass = heroClass;
-            serialize_heroName = heroName;
-            serialize_heroHp = heroHp;
-            serialize_heroDamage = heroDamage;
-            serialize_heroMinSpell = heroMinSpell;
-            serialize_heroMaxSpell = heroMaxSpell;
-            serialize_heroRestoreHp = heroRestoreHp;
-            serialize_heroMana = heroMana;
+            serialize_heroArmor = getHeroArmor();
+            serialize_heroClass = getHeroClass();
+            serialize_heroName = getHeroName();
+            serialize_heroHp = getHeroHp();
+            serialize_heroDamage = getHeroDamage();
+            serialize_heroMinSpell = getHeroMinSpell();
+            serialize_heroMaxSpell = getHeroMaxSpell();
+            serialize_heroRestoreHp = getHeroRestoreHp();
+            serialize_heroMana = getHeroMana();
 
-            serialize_playerName = Setting.PLAYER_NAME;
+            serialize_playerName = Setting.getPlayerName();
         }
 
 
-        private void saveValuesToMain(boolean isGameSave) {
+        private void saveValuesToMainData(boolean isGameSave) {
             if (isGameSave) {
-                Setting.LEVEL_COUNT = serialize_levelCount;
-                Setting.LEVEL_DIFFICULT = serialize_levelDifficult;
+                Setting.setLevelCount(serialize_levelCount);
+                Setting.setLevelDifficult(serialize_levelDifficult);
             }
-            heroArmor = serialize_heroArmor;
-            heroClass = serialize_heroClass;
-            heroName = serialize_heroName;
-            heroHp = serialize_heroHp;
-            heroDamage = serialize_heroDamage;
-            heroMinSpell = serialize_heroMinSpell;
-            heroMaxSpell = serialize_heroMaxSpell;
-            heroRestoreHp = serialize_heroRestoreHp;
-            heroMana = serialize_heroMana;
+            setHeroArmor(serialize_heroArmor);
+            setHeroClass(serialize_heroClass);
+            setHeroName(serialize_heroName);
+            setHeroHp(serialize_heroHp);
+            setHeroDamage(serialize_heroDamage);
+            setHeroMinSpell(serialize_heroMinSpell);
+            setHeroMaxSpell(serialize_heroMaxSpell);
+            setHeroRestoreHp(serialize_heroRestoreHp);
+            setHeroMana(serialize_heroMana);
 
-            Setting.PLAYER_NAME = serialize_playerName;
-
+            Setting.setPlayerName(serialize_playerName);
         }
     }
 

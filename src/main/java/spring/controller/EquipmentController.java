@@ -1,7 +1,5 @@
 package spring.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,19 +10,20 @@ import spring.repository.Equipment_ArmorsRepository;
 import spring.repository.Equipment_TypesRepository;
 import spring.service.EquipmentService;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("equipment/")
 public class EquipmentController {
 
-    @Autowired
-    private EquipmentService equipmentService;
-    @Autowired
-    private Equipment_TypesRepository equipmentTypesRepository;
-    @Autowired
-    private Equipment_ArmorsRepository equipment_armorsRepository;
+    private final EquipmentService equipmentService;
+    private final Equipment_TypesRepository equipmentTypesRepository;
+    private final Equipment_ArmorsRepository equipment_armorsRepository;
 
+    public EquipmentController(EquipmentService equipmentService, Equipment_TypesRepository equipmentTypesRepository,
+                               Equipment_ArmorsRepository equipment_armorsRepository) {
+        this.equipmentService = equipmentService;
+        this.equipmentTypesRepository = equipmentTypesRepository;
+        this.equipment_armorsRepository = equipment_armorsRepository;
+    }
 
     @GetMapping("all")
     public String findAll(Model model) {
