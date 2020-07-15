@@ -1,14 +1,12 @@
+<%@include file="design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
-
     <title>Main</title>
     <link href="${pageContext.request.contextPath}/css/main.css" type="text/css" rel="stylesheet"/>
+
 </head>
 <body>
-<%@include file="navBar.jsp" %>
-<%@include file="bootstrap.jsp" %>
-
 <div style="text-align: center;"><h1>Main</h1></div>
 
 <div class="container">
@@ -22,14 +20,25 @@
         <a href="${pageContext.request.contextPath}/equipment/all" class="btn btn-primary">Equipment</a>
     </div>
 </div>
-
+<br>
 
 <div class="container">
-    <p>
+    <h2>Game</h2>
     <div class="btn-group">
-        <a style=" font-size: 10px"
-           href="${pageContext.request.contextPath}/calculator" class="btn btn-primary">Calculator</a>
+        <a href="${pageContext.request.contextPath}/game/menu/main">
+            <button type="button" class="btn btn-success btn-lg">Start</button>
+        </a>
+        <a href="${pageContext.request.contextPath}/game/setting">
+            <button type="button" class="btn btn-success btn-sm">Setting</button>
+        </a>
     </div>
+</div>
+
+<br>
+<div class="container">
+    <a href="${pageContext.request.contextPath}/calculator">
+        <button type="button" class="btn btn-warning">Calculator</button>
+    </a>
 </div>
 
 </body>

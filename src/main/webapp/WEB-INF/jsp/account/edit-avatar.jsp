@@ -1,14 +1,12 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
     <title>Change Your Image</title>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <h1 style="margin-left: 50px">Upload An Image</h1><br>
-<form action="${pageContext.request.contextPath}/account/edit-avatar" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath}/game/hero/select" method="post">
 
     <c:if test="${profile != null}">
         <input type="hidden" name="id" value="<c:out value='${profile.id}' />"/>
@@ -41,7 +39,7 @@
         </button>
 
         <a style="color: #ff3030"
-                href="${pageContext.request.contextPath}/account/delete-avatar">Delete
+           href="${pageContext.request.contextPath}/account/delete-avatar">Delete
         </a>
     </div>
 </form>

@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,6 @@
     <link href="${pageContext.request.contextPath}/css/account_edit.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div style="margin-left:80px">
     <h1 style="margin-top: 10px">Change password</h1><br>
 

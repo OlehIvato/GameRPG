@@ -8,6 +8,9 @@ public class ForbiddenPageController {
 
     @RequestMapping("/forbidden")
     public String accessDenied() {
-        return "forbiddenIndex";
+        return "security/forbiddenIndex";
     }
+
+
 }
+

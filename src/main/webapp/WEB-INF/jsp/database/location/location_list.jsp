@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,6 @@
     <link href="${pageContext.request.contextPath}/css/tablesStyle.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 
 <div style="text-align: center"><h1>Location Database</h1></div>
 <a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome">
@@ -15,22 +13,28 @@
 </a>
 
 <div align="center" id="tableMargin">
+
+
     <table class="table table-striped table-bordered table-sm" id="tableSize">
         <thead>
         <tr>
+            <th colspan="2">location</th>
+            <th colspan="4">For Hero</th>
+            <th colspan="3">For Creature</th>
+        </tr>
+        <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Hero HP</th>
-            <th>Hero Damage</th>
-            <th>Hero Spell Damage</th>
-            <th>Hero Restore HP</th>
-            <th class="verticalLineForLocationTable">Creature HP</th>
-            <th>Creature Damage</th>
-            <th>Creature Chance</th>
+            <th>HP</th>
+            <th>Damage</th>
+            <th>Spell Damage</th>
+            <th>Restore HP</th>
+            <th>HP</th>
+            <th>Damage</th>
+            <th>Chance</th>
         </tr>
         </thead>
         <tbody>
-
         <c:forEach var="location" items="${locations}">
             <tr>
                 <td>${location.id}</td>
@@ -39,12 +43,10 @@
                 <td>${location.heroDamage}</td>
                 <td>${location.heroSpellDamage}</td>
                 <td>${location.heroRestoreHealth}</td>
-                <td class="verticalLineForLocationTable">${location.creatureHp}</td>
+                <td>${location.creatureHp}</td>
                 <td>${location.creatureDamage}</td>
-
                 <td>${location.creatureChance}</td>
-
-                <sec:authorize access="hasRole('ADMIN')">
+                <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
                     <td>
                         <a href="${pageContext.request.contextPath}/location/update/<c:out value='${location.id}'/>">
                             <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
@@ -59,24 +61,11 @@
             </tr>
         </c:forEach>
         </tbody>
-        <tfoot>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Hero HP</th>
-            <th>Hero Damage</th>
-            <th>Hero Spell Damage</th>
-            <th>Hero Restore HP</th>
-            <th class="verticalLineForLocationTable">Creature HP</th>
-            <th>Creature Damage</th>
-            <th>Creature Chance</th>
-        </tr>
-        </tfoot>
     </table>
 </div>
 
 
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
     <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/location/create">Create
         new Location</a></button>
 </sec:authorize>

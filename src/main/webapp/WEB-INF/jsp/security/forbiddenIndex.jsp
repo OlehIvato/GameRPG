@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,10 +12,6 @@
     <title>403  Access is denied</title>
 </head>
 <body>
-<%@include file="bootstrap.jsp" %>
-<%@include file="navBar.jsp" %>
-
 <h1 class="center"> 403 - Forbidden: Access is denied </h1>
-
 </body>
 </html>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,7 @@ import spring.service.imp.UserServiceImp;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)     // for @PreAuthorize access
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -30,31 +32,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/registration").not().fullyAuthenticated()   // permission only when NOT authorized
-
-
                 .antMatchers().hasAnyAuthority()
 
-
-                .antMatchers("/admin/**",
-                        "/**/update/**",
-                        "/**/create/**",
-                        "/**/delete/**",
-                        "/**/image/**").hasRole("ADMIN") // all operations are for admin only
+                .antMatchers("/**/update/**", "/**/create/**", "/**/delete/**", "/**/image/**")
+                .hasAnyRole("ADMIN", "MODERATOR") // for all tables
 
                 .antMatchers("/login").permitAll()
-
-                // everything else needs authorization
                 .anyRequest().authenticated()
+                .and().formLogin().loginPage("/login")
 
-                .and()
-                .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/welcome", true).permitAll()
-                .and()
-                .logout().permitAll().logoutSuccessUrl("/login")
-
-                .and()
-                .exceptionHandling().accessDeniedPage("/forbidden");
-
+                .and().logout().permitAll().logoutSuccessUrl("/login")
+                .and().exceptionHandling().accessDeniedPage("/forbidden");
     }
 
     @Autowired

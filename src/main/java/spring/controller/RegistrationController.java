@@ -35,11 +35,11 @@ public class RegistrationController {
             model.addAttribute("passwordError", "Password don't match");
             return "security/registration";
         }
-        if (!userService.checkUsername(user)) {
+        if (!userService.updateUsername(user)) {
             model.addAttribute("usernameError", "Someone already have that username");
             return "security/registration";
         }
-        if (!userService.checkEmail(user)) {
+        if (!userService.updateEmail(user)) {
             model.addAttribute("emailError", "Someone already have that email address");
             return "security/registration";
         }

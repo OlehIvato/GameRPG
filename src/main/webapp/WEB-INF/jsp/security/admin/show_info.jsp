@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,15 +7,13 @@
     <link href="${pageContext.request.contextPath}/css/imageStyle.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
 
 <div style="text-align: center"><h1>User Info</h1></div>
 
 <hr class="redLine">
 
 <div align="center">
-    <form action="${pageContext.request.contextPath}/admin/userinfo/" method="post">
+    <form action="${pageContext.request.contextPath}/admin/user-info/" method="post">
         <c:forEach items="${all_users_info.profile}" var="profile">
             <table border="1" cellpadding="5">
                 <thead>
@@ -64,7 +63,7 @@
 </div>
 
 <div align="center">
-    <a href="/admin/userlist">
+    <a href="/admin/user-list">
         <button class="buttonStyle" style="background-color: forestgreen">Back to List</button>
     </a>
 </div>

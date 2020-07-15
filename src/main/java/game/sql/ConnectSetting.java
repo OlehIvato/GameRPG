@@ -18,10 +18,20 @@ abstract class ConnectSetting {
     protected static void connectToDataBase() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
+
+    protected static void closeConnect() {
+        try {
+            connection.close();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         }
     }
 
 
 }
+
+

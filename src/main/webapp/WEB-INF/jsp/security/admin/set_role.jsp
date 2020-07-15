@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,13 +7,9 @@
     <link href="${pageContext.request.contextPath}/css/buttonStyle.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div style="text-align: center"><h1>Role Updating</h1></div>
-
 <div align="center">
-    <form action="${pageContext.request.contextPath}/admin/setrole" method="post">
+    <form action="${pageContext.request.contextPath}/admin/set-role" method="post">
         <table>
             <c:if test="${user_roles != null}">
                 <input type="hidden" name="id" value="<c:out value='${user_roles.user_id}' />"/>
@@ -29,8 +26,8 @@
                 <label><strong> Role: </strong>
                     <select name="roles_id">
                         <option hidden selected value="<c:out value='${user_roles.roles_id}'/>">${role.name} </option>
-                        <option value="1">ROLE_USER</option>
-                        <option value="2">ROLE_ADMIN</option>
+                        <option value="2">ROLE_MODERATOR</option>
+                        <option value="3">ROLE_USER</option>
                     </select>
                 </label>
             </tr>
@@ -40,7 +37,7 @@
                         <button class="buttonStyle" type="submit" style="background-color: #4CAF50" value="Save">Save
                         </button>
                     </a>
-                    <a href="${pageContext.request.contextPath}/admin/userlist">
+                    <a href="${pageContext.request.contextPath}/admin/user-list">
                         <button class="buttonStyle" style="background-color: crimson">Back</button>
                     </a>
                 </td>

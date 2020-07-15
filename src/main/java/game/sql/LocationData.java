@@ -40,6 +40,8 @@ public class  LocationData extends ConnectSetting {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnect();
         }
     }
 
@@ -65,6 +67,8 @@ public class  LocationData extends ConnectSetting {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnect();
         }
     }
 

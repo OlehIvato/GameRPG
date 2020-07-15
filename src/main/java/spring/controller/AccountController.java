@@ -1,10 +1,14 @@
 package spring.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import spring.config.MvcConfig;
 import spring.model.Profile;
@@ -22,6 +26,7 @@ import java.nio.file.Path;
 
 @Controller
 @RequestMapping("account/")
+@PreAuthorize("hasAnyRole('USER','MODERATOR')")
 public class AccountController {
 
     private final UserService userService;
@@ -54,16 +59,14 @@ public class AccountController {
         return "account/edit-info";
     }
 
-
     @PostMapping("edit-info")
     public String saveInformationInfo(User user, Profile profile, User_Roles user_roles, User_Profile user_profile) {
         profileService.save(profile);
         userService.save(user);
-        user_profileRepository.save(user_profile);
         user_rolesRepository.save(user_roles);
+        user_profileRepository.save(user_profile);
         return "redirect:/account/user";
     }
-
 
     @GetMapping("edit-username")
     public String openEditorUsername(@AuthenticationPrincipal User currentUser, Model model) {
@@ -79,7 +82,7 @@ public class AccountController {
         if (bindingResult.hasErrors()) {
             return "account/edit-username";
         }
-        if (!userService.checkUsername(user)) {
+        if (!userService.updateUsername(user)) {
             model.addAttribute("userError", "Someone already have that username");
             return "account/edit-username";
         }
@@ -103,7 +106,7 @@ public class AccountController {
         if (bindingResult.hasErrors()) {
             return "account/edit-password";
         }
-        if (!userService.editPassword(user)) {
+        if (!userService.updatePassword(user)) {
             model.addAttribute("passwordError", "Passwords did't match or current password is incorrect");
             return "account/edit-password";
         }

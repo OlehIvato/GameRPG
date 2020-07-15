@@ -13,9 +13,9 @@ interface FightDescription extends DefaultValues {
      * @param isBoss shows if game against boss or mob
      */
     static void gameDescription(boolean isBoss) {
-        String restoreInfo = null;
-        String manaInfo = null;
-        String spellInfo = null;
+        String restoreInfo = "";
+        String manaInfo = "";
+        String spellInfo = "";
 
         System.out.println("\n\n ====================== GAME ======================");
 
@@ -59,9 +59,9 @@ interface FightDescription extends DefaultValues {
      * This method shows options every turn for hero
      */
     static void turnOptions() {
-        String ifWith = null;
-        String ifMagic = null;
-        String ifRestore = null;
+        String ifWith = "";
+        String ifMagic = "";
+        String ifRestore = "";
 
         String value = "\n Your Turn \n" +
                 "1. Hit " + MainData.getMobName() + " on " + MainData.getHeroDamage() + " hp ";

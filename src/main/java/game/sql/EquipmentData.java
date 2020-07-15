@@ -8,29 +8,40 @@ import java.util.*;
 
 public class EquipmentData extends ConnectSetting {
 
-    private static final Iterator<String> descriptionSelect =
-            Arrays.asList("Select Head Armor:\n", "Select Shoulder Armor:\n", "Select Chest Armor:\n", "Select Leg Armor:\n")
-                    .iterator();
+    private static final Iterator<String> descriptionSelect = Arrays
+            .asList(
+                    "Select Head Armor:\n",
+                    "Select Shoulder Armor:\n",
+                    "Select Chest Armor:\n",
+                    "Select Leg Armor:\n")
+            .iterator();
 
-    private static final Iterator<String> type = Arrays.asList("Head", "Shoulder", "Chest", "Legs").iterator();
+    private static final Iterator<String> type = Arrays
+            .asList(
+                    "Head",
+                    "Shoulder",
+                    "Chest",
+                    "Legs")
+            .iterator();
 
     private static final String[] armor = new String[]{"Cloth", "Leather", "Plate"};
-
 
     private static final String GET_ALL_EQUIPMENTS = "SELECT * FROM equipment ";
     private static final String GET_EQUIPMENTS_WHERE_ID_UNKNOWN = "SELECT * FROM equipment WHERE id = ?";
 
-    private static final String GET_TYPE_BY_EQUIPMENTS_ID = "select types0_.equipment_model_id as equipmen1_10_0_, " +
-            "type1_.type as type " +
-            "from equipment_types types0_ " +
-            "inner join type type1_ on types0_.types_id=type1_.id " +
-            "order by equipmen1_10_0_";
+    private static final String GET_TYPE_BY_EQUIPMENTS_ID =
+            "select types0_.equipment_model_id as equipmen1_10_0_," +
+                    "type1_.type as type " +
+                    "from equipment_types types0_ " +
+                    "inner join type type1_ on types0_.types_id=type1_.id " +
+                    "order by equipmen1_10_0_";
 
-    private static final String GET_ARMOR_BY_EQUIPMENTS_ID = "select armors0_.equipment_model_id as equipmen1_9_0_, " +
-            "armor1_.armor as armor " +
-            "from equipment_armors armors0_ " +
-            "inner join armor armor1_ on armors0_.armors_id = armor1_.id " +
-            "order by equipmen1_9_0_";
+    private static final String GET_ARMOR_BY_EQUIPMENTS_ID =
+            "select armors0_.equipment_model_id as equipmen1_9_0_, " +
+                    "armor1_.armor as armor " +
+                    "from equipment_armors armors0_ " +
+                    "inner join armor armor1_ on armors0_.armors_id = armor1_.id " +
+                    "order by equipmen1_9_0_";
 
 
     public static void createEquipments(String getArmor, String getClass) {
@@ -68,7 +79,7 @@ public class EquipmentData extends ConnectSetting {
                 show("Weapon", type);
             }
         }
-        if (getClass.equals(Class.WARRIOR)
+        if (getClass.equals(Class.MAGE)
                 || getClass.equals(Class.PALADIN)
                 || getClass.equals(Class.SHAMAN)) {
             new Create().getWeapon("Wand", "\nSelect Wand:\n");
@@ -124,6 +135,8 @@ public class EquipmentData extends ConnectSetting {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnect();
         }
         setValuesToMain(listOfSelectedId);
     }
@@ -155,6 +168,8 @@ public class EquipmentData extends ConnectSetting {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnect();
         }
     }
 

@@ -1,12 +1,18 @@
 package spring.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GeneratorType;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "t_profile", schema = "minirpggame")
 public class Profile {
 

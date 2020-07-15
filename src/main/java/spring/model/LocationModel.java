@@ -10,10 +10,8 @@ import javax.persistence.*;
 @Table(name = "location")
 public class LocationModel {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id")
     private Long id;
 

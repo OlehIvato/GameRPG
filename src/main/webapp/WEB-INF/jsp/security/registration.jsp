@@ -1,11 +1,10 @@
+<%@include file="/WEB-INF/jsp/design/bootstrap.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
     <title>Registration</title>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div class="container">
     <form:form class="form-horizontal" method="POST" modelAttribute="userForm" action="/registration"
                style="margin: auto;">

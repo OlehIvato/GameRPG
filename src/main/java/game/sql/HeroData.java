@@ -8,28 +8,34 @@ import java.util.Scanner;
 public class HeroData extends ConnectSetting {
 
     private static final String GET_ALL_HEROES = "SELECT * FROM hero";
-    private static final String GET_ARMOR_BY_HERO_ID = "select armor1_.armor as armor " +
-            "from hero_armors armors0_ " +
-            "inner join armor armor1_ on armors0_.armors_id = armor1_.id " +
-            "order by hero_model_id";
-
-    private static final String GET_CLASS_BY_HERO_ID = "select classtype1_.class as class " +
-            "from hero_classes classes0_" +
-            " inner join class classtype1_ on classes0_.classes_id=classtype1_.id " +
-            "order by hero_model_id";
-
     private static final String GET_HERO_WHERE_ID_UNKNOWN = "SELECT * FROM hero WHERE id = ?";
-    private static final String GER_CLASS_WHERE_HERO_ID_UNKNOWN = "select classtype1_.class as class  " +
-            "from hero_classes classes0_ " +
-            "inner join class classtype1_ on classes0_.classes_id=classtype1_.id " +
-            "where hero_model_id = ? " +
-            "order by hero_model_id";
 
-    private static final String GER_ARMOR_WHERE_HERO_ID_UNKNOWN = "select armor1_.armor as armor " +
-            "from hero_armors armors0_ " +
-            "inner join armor armor1_ on armors0_.armors_id = armor1_.id  " +
-            "where hero_model_id = ? " +
-            "order by hero_model_id";
+    private static final String GET_ARMOR_BY_HERO_ID =
+            "select armor1_.armor as armor " +
+                    "from hero_armors armors0_ " +
+                    "inner join armor armor1_ on armors0_.armors_id = armor1_.id " +
+                    "order by hero_model_id";
+
+    private static final String GET_CLASS_BY_HERO_ID =
+            "select classtype1_.class as class " +
+                    "from hero_classes classes0_" +
+                    " inner join class classtype1_ on classes0_.classes_id=classtype1_.id " +
+                    "order by hero_model_id";
+
+
+    private static final String GER_CLASS_WHERE_HERO_ID_UNKNOWN =
+            "select classtype1_.class as class  " +
+                    "from hero_classes classes0_ " +
+                    "inner join class classtype1_ on classes0_.classes_id=classtype1_.id " +
+                    "where hero_model_id = ? " +
+                    "order by hero_model_id";
+
+    private static final String GER_ARMOR_WHERE_HERO_ID_UNKNOWN =
+            "select armor1_.armor as armor " +
+                    "from hero_armors armors0_ " +
+                    "inner join armor armor1_ on armors0_.armors_id = armor1_.id  " +
+                    "where hero_model_id = ? " +
+                    "order by hero_model_id";
 
 
     public static void createHero() {
@@ -69,6 +75,8 @@ public class HeroData extends ConnectSetting {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnect();
         }
     }
 
@@ -101,6 +109,8 @@ public class HeroData extends ConnectSetting {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnect();
         }
     }
 

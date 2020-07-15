@@ -1,13 +1,11 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
     <title>Profile</title>
-    <link href="${pageContext.request.contextPath}/css/profile.css" type="text/css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/css/profile.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div style="margin-left: 50px">
     <c:forEach items="${user.profile}" var="profile">
         <form method="post">
@@ -46,7 +44,8 @@
             </fieldset>
 
             <fieldset>
-                <th><strong>Bio:</strong>
+                <th>
+                    <strong>Bio:</strong>
                     <label>
                         <textarea readonly rows="5" cols="60"> ${profile.bio} </textarea>
                     </label>
@@ -58,7 +57,8 @@
                 <div class="image">
                     <img style="width: 350px" alt="User Avatar" src="<c:url value="/ava/${profile.avatar}"/>"/>
                 </div>
-                <a style="width: 250px" class="btn btn-primary" href="${pageContext.request.contextPath}/account/edit-avatar">Edit
+                <a style="width: 250px" class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/account/edit-avatar">Edit
                     Avatar</a>
             </div>
         </form>

@@ -18,7 +18,8 @@ public class Storage {
     private final static String equipmentSavePath = "src\\main\\java\\game\\primary\\save\\equipment\\";
 
     /**
-     * This method shows all list of files in folder for equipment or game, then gets these files, sets value to main Data,
+     * This method shows all list of files in folder for equipment or game,
+     * then gets these files, sets value to main Data,
      * and sets value, this is a game with equipments.
      *
      * @param isGameSave need to check if game is saved or equipment is saved,

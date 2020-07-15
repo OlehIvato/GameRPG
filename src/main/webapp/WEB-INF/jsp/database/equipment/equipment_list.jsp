@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,6 @@
     <link href="${pageContext.request.contextPath}/css/tablesStyle.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div style="text-align: center"><h1>Equipment Database</h1></div>
 
 <a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome">
@@ -42,7 +40,7 @@
                 <td><c:forEach items="${equip.types}" var="type">${type.type}</c:forEach></td>
                 <td><c:forEach items="${equip.armors}" var="armor">${armor.armorName}</c:forEach></td>
 
-                <sec:authorize access="hasRole('ADMIN')">
+                <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
                     <td>
                         <a href="${pageContext.request.contextPath}/equipment/update/<c:out value='${equip.id}'/>">
                             <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
@@ -71,7 +69,7 @@
         </tfoot>
     </table>
 </div>
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
     <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/equipment/create">Create
         new Equipment</a></button>
 </sec:authorize>

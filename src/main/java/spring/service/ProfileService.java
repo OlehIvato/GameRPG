@@ -2,6 +2,7 @@ package spring.service;
 
 import org.springframework.web.multipart.MultipartFile;
 import spring.model.Profile;
+import spring.model.User;
 
 public interface ProfileService {
 
@@ -12,6 +13,8 @@ public interface ProfileService {
     void deleteById(Long id);
 
     void saveAvatar(Profile profile, MultipartFile file);
+
+
 
 }
 

@@ -1,11 +1,10 @@
+<%@include file="/WEB-INF/jsp/design/bootstrap.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
     <title>Log In</title>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <sec:authorize access="!isAuthenticated()">
     <div>
         <h3 class="text-center">Log In</h3>
@@ -16,10 +15,11 @@
                     <input name="username" type="text" placeholder="Username" class="form-control"
                            autofocus="true"/>
                     <input name="password" type="password" placeholder="Password" class="form-control"/>
-                    <span>${error}</span>
+                        ${error}
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-                    <h4 class="text-center"><a href="${pageContext.request.contextPath}/registration">Create an
-                        account</a></h4>
+                    <h4 class="text-center">
+                        <a href="${pageContext.request.contextPath}/registration">Create an account</a>
+                    </h4>
                 </div>
             </div>
         </form>

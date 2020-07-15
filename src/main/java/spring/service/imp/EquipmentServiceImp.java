@@ -35,6 +35,11 @@ public class EquipmentServiceImp implements EquipmentService {
     public void delete(Long id) {
         equipmentRepository.deleteById(id);
     }
+
+    @Override
+    public List<EquipmentModel> findByArmorsAndTypes(int armors_id, int type_id) {
+        return equipmentRepository.findByArmorsAndTypes(armors_id, type_id);
+    }
 }
 
 

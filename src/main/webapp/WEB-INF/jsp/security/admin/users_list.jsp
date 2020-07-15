@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,9 +22,6 @@
     <link href="${pageContext.request.contextPath}/css/tablesStyle.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div align="center" id="tableMargin">
     <table class="table table-striped table-bordered table-sm" id="tableSize">
         <thead>
@@ -46,23 +44,24 @@
                 <td><c:forEach items="${user.roles}" var="role">${role.name}</c:forEach></td>
 
                 <td>
-                    <a href="/admin/setrole/<c:out value='${user.id}'/>">
+                    <a href="/admin/set-role/<c:out value='${user.id}'/>">
                         <button class="buttonStyle" style="background-color: forestgreen">Edit Role</button>
                     </a>
                 </td>
 
                 <td>
-                    <a href="/admin/userinfo/<c:out value='${user.id}'/>">
+                    <a href="/admin/user-info/<c:out value='${user.id}'/>">
                         <button class="buttonStyle" style="background-color: forestgreen">All info</button>
                     </a>
                 </td>
 
-                <td>
-                    <a href="/admin/removeuser/<c:out value='${user.id}'/>">
-                        <button class="buttonStyle" style="background-color: darkred">Delete User</button>
-                    </a>
-                </td>
-
+                <sec:authorize access="hasRole('ADMIN')">
+                    <td>
+                        <a href="/admin/remove-user/<c:out value='${user.id}'/>">
+                            <button class="buttonStyle" style="background-color: darkred">Delete User</button>
+                        </a>
+                    </td>
+                </sec:authorize>
             </tr>
         </c:forEach>
         </tbody>

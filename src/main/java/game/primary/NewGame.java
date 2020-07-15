@@ -36,11 +36,13 @@ public class NewGame extends MainData implements DefaultValues {
 
 
     private static void getEquipments() {
-        System.out.println("\n" + Setting.getPlayerName() + " do you wanna choose Armor and Weapon for " + getHeroName() + " ?");
-        System.out.println("1. Yes \n" +
-                "2. No, play with standard characteristics. " +
-                " (Creatures characteristics " + DEFAULT_INDEX_FOR_GAME_WITHOUT_EQUIPMENTS + "% power)."
-                + "\n3. Turn Back");
+        System.out.println("\n" + Setting.getPlayerName()
+                + " do you wanna choose Armor and Weapon for " + getHeroName() + " ?");
+        System.out.println(
+                "1. Yes \n" +
+                        "2. No, play with standard characteristics. " +
+                        " (Creatures characteristics " + DEFAULT_INDEX_GAME_WITHOUT_EQUIP + "% power)."
+                        + "\n3. Turn Back");
         switch (SCANNER.nextInt()) {
             case 1 -> Setting.setIsGameWithEquipments(true);
             case 2 -> Setting.setIsGameWithEquipments(false);

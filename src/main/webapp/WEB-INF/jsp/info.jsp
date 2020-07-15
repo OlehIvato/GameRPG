@@ -1,3 +1,4 @@
+<%@include file="design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,13 +8,8 @@
 
 </head>
 <body>
-<%@include file="navBar.jsp" %>
-<%@include file="bootstrap.jsp" %>
-
 <div style="margin-left: 50px">
-
     <h1>... </h1>
-
 </div>
 </body>
 </html>

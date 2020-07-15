@@ -5,14 +5,27 @@ import game.primary.Menu;
 import game.primary.Setting;
 import game.sql.CreaturesData;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LaunchGame implements DefaultValues {
 
-    private static final int lvlCountList = 10;
-    private static final List<Integer> lvlDifficultList = Arrays.asList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90);
-    private static final List<String> gameCountList = Arrays.asList("FIRST GAME", "SECOND GAME", "THIRD GAME", "VS BOSS");
+    private static int lvlCountList = LEVEL_COUNT;
+    private static List<Integer> lvlDifficultList = new ArrayList<>();
+
+    static {
+        for (int i = 0; i < lvlCountList + 100; i = i + 10) {
+            lvlDifficultList.add(i);
+        }
+    }
+
+    private static List<String> gameCountList = Arrays
+            .asList(
+                    "FIRST GAME",
+                    "SECOND GAME",
+                    "THIRD GAME",
+                    "VS BOSS");
 
     /**
      * This method for level and difficulty generation
@@ -20,13 +33,14 @@ public class LaunchGame implements DefaultValues {
      * if not, we get saved game
      */
     public static void getLevel(int getLvlCount, int getLvlDifficult) {
+
         int lvlD = 0;
         int lvlC = 1;
         if (getLvlCount != 0 && getLvlDifficult != 0) {
             lvlC = getLvlCount;
             lvlD = lvlDifficultList.indexOf(getLvlDifficult);
         }
-        if (getLvlDifficult == DEFAULT_INDEX_FOR_GAME_WITHOUT_EQUIPMENTS) {
+        if (getLvlDifficult == DEFAULT_INDEX_GAME_WITHOUT_EQUIP) {
             lvlD = lvlDifficultList.indexOf(0);
         }
         for (int a = lvlD, b = lvlC; a <= lvlDifficultList.size() && b <= lvlCountList; a++, b++) {
@@ -34,7 +48,9 @@ public class LaunchGame implements DefaultValues {
                 startLevel(lvlDifficultList.get(a), b, c);
             }
         }
-        startLevel(110, 11, "FINAL GAME");
+        startLevel(lvlDifficultList.get(lvlDifficultList.size() - 1) + 10,
+                LEVEL_COUNT + 1,
+                "FINAL GAME");
         win();
     }
 
@@ -50,7 +66,7 @@ public class LaunchGame implements DefaultValues {
     private static void startLevel(int getLvlDifficult, int getLevelCount, String getGameCount) {
         String sign;
         if (!Setting.isIsGameWithEquipments()) {
-            getLvlDifficult = DEFAULT_INDEX_FOR_GAME_WITHOUT_EQUIPMENTS;
+            getLvlDifficult = DEFAULT_INDEX_GAME_WITHOUT_EQUIP;
         }
         if (getLvlDifficult >= 0) {
             sign = " DIFFICULT +";

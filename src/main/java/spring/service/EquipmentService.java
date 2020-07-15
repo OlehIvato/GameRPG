@@ -1,9 +1,7 @@
 package spring.service;
 
 import spring.model.EquipmentModel;
-
 import java.util.List;
-
 
 public interface EquipmentService {
 
@@ -14,6 +12,8 @@ public interface EquipmentService {
     EquipmentModel save(EquipmentModel heroModel);
 
     void delete(Long id);
+
+    List<EquipmentModel> findByArmorsAndTypes(int armors_id, int type_id );
 
 }
 

@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,9 +26,6 @@
     <link href="${pageContext.request.contextPath}/css/tablesStyle.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div style="text-align: center"><h1>Hero Database</h1></div>
 
 <a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome">
@@ -72,7 +70,7 @@
                         <img width="50%" src="/heroImg/${hero.image}" alt="Hero Image"/>
                     </div>
                 </td>
-                <sec:authorize access="hasRole('ADMIN')">
+                <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
                     <td>
                         <a href="${pageContext.request.contextPath}/hero/update/<c:out value='${hero.id}'/>">
                             <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
@@ -105,7 +103,7 @@
         </tfoot>
     </table>
 </div>
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
     <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/hero/create">Create new
         Hero</a></button>
 </sec:authorize>

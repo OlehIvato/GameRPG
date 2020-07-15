@@ -2,6 +2,7 @@ package spring.service;
 
 import spring.model.User;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -13,13 +14,12 @@ public interface UserService {
 
     boolean createAccount(User user);
 
-    boolean checkUsername(User user);
+    boolean updateUsername(User user);
 
-    boolean checkEmail(User user);
+    boolean updateEmail(User user);
 
-    boolean editPassword(User user);
+    boolean updatePassword(User user);
 
-    void deleteUser(Long userId);
-
+    void deleteUser(String username,Long userId);
 }
 

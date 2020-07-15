@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,9 +7,6 @@
 
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div style="text-align: center"><h1>Mob Database</h1></div>
 
 <a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome">
@@ -37,7 +35,7 @@
                 <td>${mob.maxDamage}</td>
                 <td>${mob.chanceToSuperDamage}</td>
 
-                <sec:authorize access="hasRole('ADMIN')">
+                <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
                     <td><a href="${pageContext.request.contextPath}/mob/update/<c:out value='${mob.id}'/>">
                         <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                     </a></td>
@@ -61,7 +59,7 @@
     </table>
 </div>
 
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
     <button class="btn" style="margin-left: 100px;"><a href="${pageContext.request.contextPath}/mob/create">Create new
         Mob</a></button>
 </sec:authorize>

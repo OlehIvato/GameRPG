@@ -12,3 +12,8 @@
     border-top-width: 0px;
     height: 40px;
 }
+
+#toCenter{
+    margin-left: 50px;
+    margin-right: 50px;
+}

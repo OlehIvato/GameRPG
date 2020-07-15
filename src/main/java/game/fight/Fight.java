@@ -12,7 +12,7 @@ class Fight extends MainData implements DefaultValues {
     private int mobHpFinal = getMobHp();
     private int heroManaFinal = getHeroMana();
 
-    public void launchGame() {
+    void launchGame() {
         if (!Setting.isIsGameAgainstBoss())
             FightDescription.gameDescription(false);
         if (Setting.isIsGameAgainstBoss())
@@ -51,7 +51,6 @@ class Fight extends MainData implements DefaultValues {
             getMoveOptions();
         }
     }
-
 
     private void heroMove() {
         if (mobHpFinal > 0 && heroHpFinal > 0) {
@@ -108,7 +107,6 @@ class Fight extends MainData implements DefaultValues {
         if (mobHpFinal <= 0) {
             System.out.println(FightDescription.youWon + getMobName());
         } else mobMove();
-
     }
 
     private void heal() {
@@ -118,12 +116,12 @@ class Fight extends MainData implements DefaultValues {
                 System.out.println("\nYou chose Healing yourself ");
                 heroManaFinal -= DEFAULT_HEAL_CAST;
                 System.out.println("Now your health point equal " + heroHpFinal);
-                System.out.println("Now you have left " + heroManaFinal + " Mana ");
-                System.out.println(FightDescription.turnSecondOptions);
-                switch (SCANNER.nextInt()) {
-                    case 1 -> heroMove();
-                    case 2 -> spell();
-                    case 3 -> {
+                        System.out.println("Now you have left " + heroManaFinal + " Mana ");
+                        System.out.println(FightDescription.turnSecondOptions);
+                        switch (SCANNER.nextInt()) {
+                            case 1 -> heroMove();
+                            case 2 -> spell();
+                            case 3 -> {
                         System.err.println("\nYou gave up \n And turn back to Main Menu");
                         Menu.main();
                     }

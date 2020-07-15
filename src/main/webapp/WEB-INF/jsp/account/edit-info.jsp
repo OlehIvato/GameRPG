@@ -1,3 +1,4 @@
+<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,6 @@
     <link href="${pageContext.request.contextPath}/css/account_edit.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<%@include file="/WEB-INF/jsp/navBar.jsp" %>
-<%@include file="/WEB-INF/jsp/bootstrap.jsp" %>
-
 <div style="margin-left:80px">
     <h1 style="margin-top: 10px">Edit profile</h1><br>
     <form action="${pageContext.request.contextPath}/account/edit-info" method="post">
@@ -17,49 +15,63 @@
         </c:if>
 
 
-        <label hidden><strong> ID: </strong>
+        <label hidden>
+            <strong> ID: </strong>
             <input style="margin-left: 5px; border: 0;" type="text" name="id"
                    value="<c:out value='${profile.id}'/>"/>
         </label>
 
-        <label><strong> Name: </strong>
+        <label>
+            <strong> Name: </strong>
             <input style="margin-left: 5px" type="text" name="name" placeholder="Your name..."
                    value="<c:out value='${profile.name}'/>" pattern="[A-Z][a-z]{0,12}"
                    title="Please provide a valid Name."/>
-        </label><br>
+        </label>
+        <br>
 
-        <label><strong> Surname: </strong>
+        <label>
+            <strong> Surname: </strong>
             <input style="margin-left: 5px" type="text" name="surname" placeholder="Your surname..."
                    value="<c:out value='${profile.surname}'/>" pattern="[A-Z][a-z]{2,}"
                    title="Please provide a valid Surname."/>
-        </label><br>
+        </label>
+        <br>
 
-        <label> <strong> Email: </strong>
+        <label>
+            <strong> Email: </strong>
             <input style="margin-left: 5px" type="email" name="email" placeholder="Email Address..."
                    value="<c:out value='${user.email}'/>"/>
-        </label><br>
+        </label>
+        <br>
 
-        <label><strong> Birthday: </strong>
+        <label>
+            <strong> Birthday: </strong>
             <input required style="margin-left: 5px" name="birthday" type="date"
                    value="<c:out value='${profile.birthday}'/>"/>
-        </label><br>
+        </label>
+        <br>
 
-        <label><strong> Gender: </strong>
+        <label>
+            <strong> Gender: </strong>
             <select name="gender">
                 <option hidden selected value="<c:out value='${profile.gender}'/>">${profile.gender} </option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
-        </label><br>
+        </label>
+        <br>
 
 
-        <label><strong> Phone: </strong>
+        <label>
+            <strong> Phone: </strong>
             <input style="margin-left: 5px" type="tel" name="phone" placeholder="Your phone number..." maxlength="12"
                    size="12" pattern="[0-9]{0,}"
                    value="<c:out value='${profile.phone}'/>"/>
-        </label><br>
+        </label>
+        <br>
 
-        <label><strong> Country: </strong>
+        <label>
+            <strong> Country: </strong>
             <select name="country">
                 <option hidden selected value="<c:out value='${profile.country}'/>">${profile.country} </option>
                 <option value="Afghanistan">Afghanistan</option>
@@ -309,23 +321,30 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </select>
-        </label><br>
+        </label>
+        <br>
 
-        <label><strong> City: </strong>
+        <label>
+            <strong> City: </strong>
             <input style="margin-left: 5px" type="text" name="city" placeholder="City..."
                    value="<c:out value='${profile.city}'/>"/>
-        </label><br>
+        </label>
+        <br>
 
-        <label><strong> Zip: </strong>
+        <label>
+            <strong> Zip: </strong>
             <input style="margin-left: 5px" type="tel" name="zip" size="9" maxlength="9"
                    value="<c:out value='${profile.zip}'/>" pattern="[0-9]{0,}"/>
-        </label><br>
+        </label>
+        <br>
 
-        <label><strong> Bio: </strong>
-            <textarea rows="5" cols="60" name='bio' id='test' placeholder="About you..."><c:out
-                    value="${profile.bio}"/>
+        <label>
+            <strong> Bio: </strong>
+            <textarea rows="5" cols="60" name='bio' id='test' placeholder="About you...">
+                <c:out value="${profile.bio}"/>
             </textarea>
-        </label><br>
+        </label>
+        <br>
 
         <input type="hidden" name="avatar" value="<c:out value='${profile.avatar}'/>"/>
         <input type="hidden" name="username" value="<c:out value='${user.username}'/>"/>
