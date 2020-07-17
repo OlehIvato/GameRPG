@@ -21,8 +21,14 @@ public class Game_Location_Model {
     @Column(name = "hero_damage")
     private int heroDamage;
 
+    @Column(name = "hero_energy")
+    private int heroEnergy;
+
     @Column(name = "hero_spell")
     private int heroSpellDamage;
+
+    @Column(name = "hero_mana")
+    private int heroMana;
 
     @Column(name = "hero_restore")
     private int heroRestoreHealth;

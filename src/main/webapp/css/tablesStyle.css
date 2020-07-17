@@ -1,5 +1,6 @@
 @import "main.css";
 
+
 .buttonStyle {
     background-color: darkred;
     padding: 0px 4px;
@@ -8,19 +9,20 @@
     border-bottom-width: 0px;
     border-top-width: 0px;
 }
-#tableMargin{
+
+#tableMargin {
     margin-left: 50px;
     margin-right: 50px;
 }
 
-#tableSize{
-    width: 900px;
+#tableSize {
+    width: 66% ;
 }
 
 .btn {
     flex: 1 1 auto;
     margin: 10px;
-        padding: 15px;
+    padding: 15px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -31,11 +33,18 @@
     background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
 }
 
-th {
-  text-align: center;
+.fixed {
+    table-layout: fixed;
+
 }
 
-td {
+th,td {
     text-align: center;
 }
+
+
+.optionWidth{
+    width: 1%
+}
+
 

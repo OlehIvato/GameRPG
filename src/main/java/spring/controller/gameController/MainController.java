@@ -28,7 +28,9 @@ public class MainController {
     private final ClassRepository classRepository;
 
     @GetMapping("main")
-    public String start() {
+    public String start(@AuthenticationPrincipal User currentUser, Model model) {
+        Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
+        model.addAttribute("fight", fight);
         return "rpg/main_menu";
     }
 
@@ -39,7 +41,7 @@ public class MainController {
         model.addAttribute("hero", hero);
         model.addAttribute("heroClass", heroClass.getClassName());
         model.addAttribute("armorId", armorId);
-        return "rpg/main/select_mode";
+        return "rpg/select_mode";
     }
 
     @GetMapping("mode/without-equipment")
@@ -47,15 +49,16 @@ public class MainController {
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
         fight.setIsGameWithEquipments(0);
         gameFightRepository.save(fight);
-        return "redirect:/game/level/get";
+        return "rpg/get_location";
     }
 
     @GetMapping("again-first-level")
     public String playAgainFromFirstLevel(@AuthenticationPrincipal User currentUser) {
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
-        hero.setHp(LevelController.HERO_MAIN_HP);
-        hero.setMana(LevelController.HERO_MAIN_MANA);
+        hero.setHp(LevelController.HERO_START_GAME_HP);
+        hero.setEnergy(LevelController.HERO_START_GAME_ENERGY);
+        hero.setMana(LevelController.HERO_START_GAME_MANA);
         fight.setIsGameStarted(0);
         gameHeroRepository.save(hero);
         gameFightRepository.save(fight);
@@ -68,12 +71,10 @@ public class MainController {
                                             @PathVariable("levelDifficult") int levelDifficult,
                                             @PathVariable("gameCount") int gameCount) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
-        hero.setHp(LevelController.HERO_MAIN_HP);
-        hero.setMana(LevelController.HERO_MAIN_MANA);
+        hero.setHp(LevelController.HERO_CURRENT_GAME_HP);
         LevelController.levelCount = levelCount;
         LevelController.levelDifficult = levelDifficult;
         LevelController.gameCount = gameCount - 1;
-        LevelController.isGameContinue = true;
         gameHeroRepository.save(hero);
         return "redirect:/game/level/get";
     }
@@ -82,11 +83,13 @@ public class MainController {
     public String continueGame(@AuthenticationPrincipal User currentUser) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
-        LevelController.HERO_MAIN_HP = hero.getHp();
-        LevelController.HERO_MAIN_MANA = hero.getMana();
+        LevelController.HERO_START_GAME_HP = hero.getHp();
+        LevelController.HERO_START_GAME_ENERGY = hero.getEnergy();
+        LevelController.HERO_START_GAME_MANA = hero.getMana();
         LevelController.levelCount = fight.getLevelCount();
         LevelController.levelDifficult = fight.getLevelDifficult();
         LevelController.gameCount = fight.getGameCount();
+        LevelController.isGameContinue = true;
         return "redirect:/game/level/get";
 
     }
@@ -94,11 +97,13 @@ public class MainController {
     @GetMapping("without-location")
     public String withOutLocation(@AuthenticationPrincipal User currentUser) {
         Game_Location_Model location = gameLocationRepository.findByUsername(currentUser.getUsername());
-        location.setName(null);
+        location.setName("null");
         location.setHeroHp(0);
         location.setHeroRestoreHealth(0);
         location.setHeroDamage(0);
+        location.setHeroEnergy(0);
         location.setHeroSpellDamage(0);
+        location.setHeroMana(0);
         location.setCreatureHp(0);
         location.setCreatureChance(0);
         location.setCreatureDamage(0);
@@ -109,7 +114,7 @@ public class MainController {
 
     @GetMapping("get-location")
     public String getLocation() {
-        return "rpg/main/get_location";
+        return "rpg/get_location";
     }
 
     @GetMapping("get-level")

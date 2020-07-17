@@ -20,12 +20,12 @@
     <a href="/game/equipment/get/<c:out value='${armorId}'/>">
         <button type="button" class="btn btn-primary">Game with equipments</button>
     </a>
-    <a href="${pageContext.request.contextPath}/game/menu/get-location">
+    <a href="${pageContext.request.contextPath}/game/menu/mode/without-equipment">
         <button type="button" class="btn btn-primary">Game without equipments</button>
     </a>
     <br>
     <small>
-        <a href="#" data-toggle="tooltip" title="some information about game with or without equipments!">help</a>
+        <a href="#" data-toggle="tooltip" title="some information about game with or without equipments!">about</a>
     </small>
 </div>
 </body>

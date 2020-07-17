@@ -21,6 +21,9 @@ public class LocationModel {
     @Column(name = "herohp")
     private int heroHp;
 
+    @Column(name = "heroenergy")
+    private int heroEnergy;
+
     @Column(name = "herodamage")
     private int heroDamage;
 
@@ -29,6 +32,9 @@ public class LocationModel {
 
     @Column(name = "herorestorehealth")
     private int heroRestoreHealth;
+
+    @Column(name = "heromana")
+    private int heroMana;
 
     @Column(name = "creaturehp")
     private int creatureHp;

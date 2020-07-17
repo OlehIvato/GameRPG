@@ -40,12 +40,15 @@
             <th>Name</th>
             <th>Health Point</th>
             <th>Damage</th>
+            <th>Energy</th>
+            <th>Energy Restoration</th>
             <th>Min Spell Damage</th>
             <th>Max Spell Damage</th>
             <th>Restore Hp</th>
             <th>Mana</th>
+            <th>Mana Restoration</th>
             <th>Armor type</th>
-            <th>Logo</th>
+            <th>Hero Image</th>
         </tr>
         </thead>
         <tbody>
@@ -56,28 +59,31 @@
                 <td>${hero.name}</td>
                 <td>${hero.hp}</td>
                 <td>${hero.damage}</td>
+                <td>${hero.energy}</td>
+                <td>${hero.energyRes}</td>
                 <td>${hero.minSpell}</td>
                 <td>${hero.maxSpell}</td>
                 <td>${hero.restore}</td>
                 <td>${hero.mana}</td
                 <td></td>
+                <td>${hero.manaRes}</td>
                 <td>
                     <c:forEach items="${hero.armors}" var="armor">${armor.armorName}</c:forEach>
                 </td>
                 <td>
                     <div class="showImage">
-                        <img style="width: 60px" src="/heroImg/${hero.image}" alt="Hero Image"/>
-                        <img width="50%" src="/heroImg/${hero.image}" alt="Hero Image"/>
+                        <img style="width: 60px" src="/heroImg/${hero.image}" alt="Image"/>
+                        <img width="50%" src="/heroImg/${hero.image}" alt="Image"/>
                     </div>
                 </td>
                 <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/hero/update/<c:out value='${hero.id}'/>">
                             <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                         </a>
                     </td>
 
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/hero/delete/<c:out value='${hero.id}'/>">
                             <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                         </a>
@@ -93,10 +99,13 @@
             <th>Name</th>
             <th>Health Point</th>
             <th>Damage</th>
+            <th>Energy</th>
+            <th>Energy Restoration</th>
             <th>Min Spell Damage</th>
             <th>Max Spell Damage</th>
             <th>Restore Hp</th>
             <th>Mana</th>
+            <th>Mana Restoration</th>
             <th>Armor type</th>
             <th>Logo</th>
         </tr>

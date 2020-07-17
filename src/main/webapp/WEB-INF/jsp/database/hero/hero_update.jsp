@@ -80,6 +80,28 @@
             </tr>
 
             <tr>
+                <th>Energy:</th>
+                <td>
+                    <label>
+                        <input required type="text" name="energy" maxlength="3" size="3"
+                               value="<c:out value='${heroes.energy}' />"
+                        />
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Energy Restoration:</th>
+                <td>
+                    <label>
+                        <input required type="text" name="energyRes" maxlength="3" size="3"
+                               value="<c:out value='${heroes.energyRes}' />"
+                        />
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
                 <th>Min Spell Damage:</th>
                 <td>
                     <label>
@@ -118,6 +140,17 @@
                     <label>
                         <input required type="text" name="mana" maxlength="3" size="3"
                                value="<c:out value='${heroes.mana}' />"
+                        />
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Mana Restoration:</th>
+                <td>
+                    <label>
+                        <input required type="text" name="manaRes" maxlength="3" size="3"
+                               value="<c:out value='${heroes.manaRes}' />"
                         />
                     </label>
                 </td>

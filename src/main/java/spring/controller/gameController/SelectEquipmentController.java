@@ -35,7 +35,7 @@ public class SelectEquipmentController {
         fight.setIsGameWithEquipments(1);
         gameFightRepository.save(fight);
         if (fight.getIsGameStarted() == 1) {
-            return "rpg/main/forbidden_move";
+            return "rpg/forbidden_move";
         }
 
         typeForEquipment++;
@@ -74,7 +74,7 @@ public class SelectEquipmentController {
         }
 
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
-        model.addAttribute("hero",hero);
+        model.addAttribute("hero", hero);
         long classId = hero.getHeroClass();
         byte weaponArmorId = 4;
         typeForWeapon++;
@@ -86,7 +86,7 @@ public class SelectEquipmentController {
                     || classId == HeroClass.DRUID) {
                 model.addAttribute("type", Type.WAND);
                 model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.WAND));
-                return "rpg/equipment/select_equipment";
+                return "rpg/select_equipment";
             }
         }
         if (typeForWeapon == 2) {
@@ -96,7 +96,7 @@ public class SelectEquipmentController {
                     || classId == HeroClass.ROGUE) {
                 model.addAttribute("type", Type.SWORD);
                 model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SWORD));
-                return "rpg/equipment/select_equipment";
+                return "rpg/select_equipment";
             }
         }
         if (typeForWeapon == 3) {
@@ -105,14 +105,14 @@ public class SelectEquipmentController {
                     || classId == HeroClass.MAGE) {
                 model.addAttribute("type", Type.AMULET);
                 model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.AMULET));
-                return "rpg/equipment/select_equipment";
+                return "rpg/select_equipment";
             }
         }
         if (typeForWeapon == 4) {
             if (hero.getHp() < 150) {
                 model.addAttribute("type", Type.SHIELD);
                 model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SHIELD));
-                return "rpg/equipment/select_equipment";
+                return "rpg/select_equipment";
             }
         }
         if (typeForWeapon > 4) {
@@ -128,11 +128,11 @@ public class SelectEquipmentController {
                                    @PathVariable("armorId") int armorId,
                                    Model model) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
-        model.addAttribute("hero",hero);
+        model.addAttribute("hero", hero);
         model.addAttribute("user", currentUser.getUsername());
         model.addAttribute("type", typeForEquipment);
         model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(armorId, typeId));
-        return "rpg/equipment/select_equipment";
+        return "rpg/select_equipment";
     }
 
     @GetMapping("save/{armorId}/{equipmentId}")
@@ -143,9 +143,12 @@ public class SelectEquipmentController {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
         hero.setHp(hero.getHp() + equipment.getHp());
         hero.setDamage(hero.getDamage() + equipment.getDamage());
+        hero.setEnergy(hero.getEnergy() + equipment.getEnergy());
+        hero.setEnergyRes(hero.getEnergyRes() + equipment.getEnergyRes());
         hero.setMinSpell(hero.getMinSpell() + equipment.getSpell_damage());
         hero.setMaxSpell(hero.getMaxSpell() + equipment.getSpell_damage());
         hero.setMana(hero.getMana() + equipment.getMana());
+        hero.setManaRes(hero.getManaRes() + equipment.getManaRes());
         gameHeroRepository.save(hero);
         return "redirect:/game/equipment/get"
                 + "/" + armorId;

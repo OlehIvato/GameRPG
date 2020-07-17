@@ -35,12 +35,12 @@
                 <td>${boss.restoreHealth}</td>
                 <td>${boss.chanceToSuperDamage}</td>
                 <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/boss/update/<c:out value='${boss.id}'/>">
                             <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                         </a>
                     </td>
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/boss/delete/<c:out value='${boss.id}'/>">
                             <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                         </a>

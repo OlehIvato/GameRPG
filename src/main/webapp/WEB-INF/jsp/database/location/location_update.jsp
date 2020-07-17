@@ -55,6 +55,17 @@
             </tr>
 
             <tr>
+                <th>Energy</th>
+                <td>
+                    <label>
+                        <input type="text" name="heroEnergy" maxlength="3" size="3"
+                               value="<c:out value='${locations.heroEnergy}' />"
+                        />
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
                 <th>Hero Spell Damage:</th>
                 <td>
                     <label>
@@ -71,6 +82,17 @@
                     <label>
                         <input type="text" name="heroRestoreHealth" maxlength="3" size="3"
                                value="<c:out value='${locations.heroRestoreHealth}' />"
+                        />
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Hero Mana:</th>
+                <td>
+                    <label>
+                        <input type="text" name="heroMana" maxlength="3" size="3"
+                               value="<c:out value='${locations.heroMana}' />"
                         />
                     </label>
                 </td>

@@ -18,17 +18,19 @@
     <table class="table table-striped table-bordered table-sm" id="tableSize">
         <thead>
         <tr>
-            <th colspan="2">location</th>
-            <th colspan="4">For Hero</th>
-            <th colspan="3">For Creature</th>
+            <th colspan="2"><h4>location</h4></th>
+            <th colspan="6"><h4>For Hero</h4></th>
+            <th colspan="3"><h4>For Creature</h4></th>
         </tr>
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>HP</th>
             <th>Damage</th>
+            <th>Energy</th>
             <th>Spell Damage</th>
             <th>Restore HP</th>
+            <th>Mana</th>
             <th>HP</th>
             <th>Damage</th>
             <th>Chance</th>
@@ -41,18 +43,20 @@
                 <td>${location.name}</td>
                 <td>${location.heroHp}</td>
                 <td>${location.heroDamage}</td>
+                <td>${location.heroEnergy}</td>
                 <td>${location.heroSpellDamage}</td>
                 <td>${location.heroRestoreHealth}</td>
+                <td>${location.heroMana}</td>
                 <td>${location.creatureHp}</td>
                 <td>${location.creatureDamage}</td>
                 <td>${location.creatureChance}</td>
                 <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/location/update/<c:out value='${location.id}'/>">
                             <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                         </a>
                     </td>
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/location/delete/<c:out value='${location.id}'/>">
                             <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                         </a>

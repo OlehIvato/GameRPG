@@ -16,20 +16,29 @@ public class Game_SettingModel {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "level_difficult_percent")
+    private int LEVEL_DIFFICULT_PERCENT;
+
     @Column(name = "restore_hp_index")
-    private int DEFAULT_RESTORE_HP_INDEX;
+    private int RESTORE_HP_INDEX;
+
+    @Column(name = "energy_hit_index")
+    private int ENERGY_HIT_INDEX;
+
+    @Column(name = "energy_multiply_index")
+    private int ENERGY_MULTIPLY_INDEX;
 
     @Column(name = "heal_cast_index")
-    private int DEFAULT_HEAL_CAST;
+    private int HEAL_CAST_INDEX;
 
-    @Column(name = "super_damage")
-    private double SUPER_DAMAGE;
+    @Column(name = "super_damage_multiply_index")
+    private double SUPER_DAMAGE_MULTIPLY_INDEX;
 
-    @Column(name = "level_count")
-    private int LEVEL_COUNT;
+    @Column(name = "level_count_index")
+    private int LEVEL_COUNT_INDEX;
 
-    @Column(name = "without_equipment_dufficult")
-    private int DEFAULT_GAME_WITHOUT_EQUIP_INDEX;
+    @Column(name = "without_equipment_difficult_index")
+    private int GAME_WITHOUT_EQUIP_INDEX;
 
 
 }

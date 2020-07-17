@@ -43,22 +43,22 @@
 
                 <td><c:forEach items="${user.roles}" var="role">${role.name}</c:forEach></td>
 
-                <td>
+                <td class="optionWidth">
                     <a href="/admin/set-role/<c:out value='${user.id}'/>">
-                        <button class="buttonStyle" style="background-color: forestgreen">Edit Role</button>
+                        <button class="buttonStyle" style="background-color: forestgreen">Edit</button>
                     </a>
                 </td>
 
-                <td>
+                <td class="optionWidth">
                     <a href="/admin/user-info/<c:out value='${user.id}'/>">
-                        <button class="buttonStyle" style="background-color: forestgreen">All info</button>
+                        <button class="buttonStyle" style="background-color: forestgreen">Info</button>
                     </a>
                 </td>
 
                 <sec:authorize access="hasRole('ADMIN')">
-                    <td>
+                    <td class="optionWidth">
                         <a href="/admin/remove-user/<c:out value='${user.id}'/>">
-                            <button class="buttonStyle" style="background-color: darkred">Delete User</button>
+                            <button class="buttonStyle" style="background-color: darkred">Delete</button>
                         </a>
                     </td>
                 </sec:authorize>

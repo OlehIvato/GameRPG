@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <title>Equipment Database</title>
     <link href="${pageContext.request.contextPath}/css/tablesStyle.css" type="text/css" rel="stylesheet"/>
 </head>
@@ -21,8 +22,11 @@
             <th>Name</th>
             <th>Health Point</th>
             <th>Damage</th>
+            <th>Energy</th>
+            <th>Energy Restoration</th>
             <th style="width: content-box">Spell Damage</th>
             <th>Mana</th>
+            <th>Mana Restoration</th>
             <th>Type</th>
             <th>Armor Type</th>
         </tr>
@@ -33,20 +37,23 @@
             <tr>
                 <td>${equip.id}</td>
                 <td>${equip.name}</td>
-                <td>${equip.hp}</td>
+                <td style="text-align: center">${equip.hp}</td>
                 <td>${equip.damage}</td>
+                <td>${equip.energy}</td>
+                <td>${equip.energyRes}</td>
                 <td>${equip.spell_damage}</td>
                 <td>${equip.mana}</td>
+                <td>${equip.manaRes}</td>
                 <td><c:forEach items="${equip.types}" var="type">${type.type}</c:forEach></td>
                 <td><c:forEach items="${equip.armors}" var="armor">${armor.armorName}</c:forEach></td>
 
                 <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/equipment/update/<c:out value='${equip.id}'/>">
                             <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
                         </a>
                     </td>
-                    <td>
+                    <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/equipment/delete/<c:out value='${equip.id}'/>">
                             <button class="buttonStyle" style="background-color: darkred"> Delete</button>
                         </a>
@@ -61,8 +68,11 @@
             <th>Name</th>
             <th>Health Point</th>
             <th>Damage</th>
+            <th>Energy</th>
+            <th>Energy Restoration</th>
             <th>Spell Damage</th>
             <th>Mana</th>
+            <th>Mana Restoration</th>
             <th>Type</th>
             <th>Armor Type</th>
         </tr>

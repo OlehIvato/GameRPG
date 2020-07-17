@@ -44,12 +44,12 @@
 
 <header>
     <code><h2>
-        <c:if test="${getGameCount ==  1}"> FIRST GAME, </c:if>
-        <c:if test="${getGameCount ==  2}"> SECOND GAME, </c:if>
-        <c:if test="${getGameCount ==  3}"> THIRD GAME, </c:if>
-        <c:if test="${getGameCount ==  4}"> GAME VS BOSS, </c:if>
-        <c:if test="${getGameCount ==  5}"> FINAL GAME, </c:if>
-        Level: ${getLevelCount}, Difficult +(${getLvlDifficult}%)</h2></code>
+        <c:if test="${fight.gameCount ==  1}"> FIRST GAME, </c:if>
+        <c:if test="${fight.gameCount ==  2}"> SECOND GAME, </c:if>
+        <c:if test="${fight.gameCount ==  3}"> THIRD GAME, </c:if>
+        <c:if test="${fight.gameCount ==  4}"> GAME VS BOSS, </c:if>
+        <c:if test="${fight.gameCount ==  5}"> FINAL GAME, </c:if>
+        Level: ${fight.levelCount}, Difficult +(${fight.levelDifficult}%)</h2></code>
 </header>
 
 <section>
@@ -60,23 +60,30 @@
             <p>Min Damage: ${creature.minDamage}</p>
             <p>Max Damage: ${creature.maxDamage}</p>
             <p>He also have ${creature.chanceToSuperDamage}% chance on super damage, super
-                damage: ${creature.maxDamage * index.SUPER_DAMAGE} </p>
-            <c:if test="${isBoss ==  1}">
+                damage: ${creature.maxDamage * index.SUPER_DAMAGE_MULTIPLY_INDEX} </p>
+            <c:if test="${fight.isBoss ==  1}">
                 <p>He restoring ${creature.restoreHp} hp every move </p>
                 <p>When his Health point will be less than 30, his damage will be as super Damage</p>
             </c:if>
             <br>
             <p>${hero.name}, Class: ${heroClass}</p>
             <p>Health Point: ${hero.hp}</p>
-            <p>Damage: ${hero.damage}</p>
-            <c:if test="${hero.minSpell != 0}">
+            <c:if test="${hero.damage > 0}">
+                <p>Damage: ${hero.damage}</p>
+            </c:if>
+            <c:if test="${hero.energy >= index.ENERGY_HIT_INDEX}">
+                <p>You Have: ${hero.energy} Energy, one energy hit: ${index.ENERGY_HIT_INDEX} energy</p>
+                <p>Every next level restoring ${hero.energyRes} energy</p>
+            </c:if>
+            <c:if test="${hero.minSpell > 0}">
                 <p>Min Spell Damage: ${hero.minSpell}</p>
                 <p>Max Spell Damage: ${hero.maxSpell}</p>
             </c:if>
-            <c:if test="${hero.mana != 0}">
+            <c:if test="${hero.mana >= index.HEAL_CAST_INDEX}">
                 <p>Plus to restore Health Point: ${hero.restore}, default restore
-                    index: ${index.DEFAULT_RESTORE_HP_INDEX}</p>
-                <p>You Have: ${hero.mana} Mana, one heal spell: ${index.DEFAULT_HEAL_CAST}</p>
+                    index: ${index.RESTORE_HP_INDEX}</p>
+                <p>You Have: ${hero.mana} Mana, one heal spell: ${index.HEAL_CAST_INDEX}</p>
+                <p>Every next level restoring ${hero.manaRes} mana</p>
             </c:if>
         </div>
     </code>
@@ -86,17 +93,24 @@
     <code>
         <c:if test="${isLose == false}">
             <div style="text-align: left;">
-                <a href="${pageContext.request.contextPath}/game/fight/hero-move">
-                    Hit ${creature.name} on ${hero.damage} hp</a>
-                <br>
+                <c:if test="${hero.damage >0}">
+                    <a href="${pageContext.request.contextPath}/game/fight/hero-hit">
+                        Hit ${creature.name} on ${hero.damage} hp</a>
+                    <br>
+                </c:if>
+                <c:if test="${hero.energy >= index.ENERGY_HIT_INDEX}">
+                    <a href="${pageContext.request.contextPath}/game/fight/hero-energy_hit">
+                        Hit ${creature.name} on ${hero.damage * index.ENERGY_MULTIPLY_INDEX} hp using Energy </a>
+                    <br>
+                </c:if>
                 <c:if test="${hero.minSpell > 0}">
                     <a href="${pageContext.request.contextPath}/game/fight/hero-spell">
                         Strike with magic on (Random damage from ${hero.minSpell} to ${hero.maxSpell} hp)</a>
                     <br>
                 </c:if>
-                <c:if test="${isHeal == false && hero.mana > 0}">
+                <c:if test="${isHeal == false && hero.mana > index.HEAL_CAST_INDEX}">
                     <a href="${pageContext.request.contextPath}/game/fight/hero-heal">
-                        Restore ${index.DEFAULT_RESTORE_HP_INDEX + hero.restore} hp</a>
+                        Restore ${index.HEAL_CAST_INDEX + hero.restore} hp</a>
                     <br>
                 </c:if>
                 <br>
@@ -105,7 +119,7 @@
         </c:if>
 
         <c:if test="${isLose == true}">
-            <c:if test="${getGameCount == 5}">
+            <c:if test="${fight.gameCount == 5}">
                 <h1>You lost Final Game </h1>
                 <br>
             </c:if>
@@ -113,7 +127,7 @@
             <br>
             <a href="${pageContext.request.contextPath}/game/menu/again-first-level">Play Again from first level</a>
             <br>
-            <a href="/game/menu/again-current-game/${getLevelCount}/${getLvlDifficult}/${getGameCount}">Play
+            <a href="/game/menu/again-current-game/${fight.levelCount}/${fight.levelDifficult}/${fight.gameCount}">Play
                 Again from current game</a>
             <br>
             <a href="${pageContext.request.contextPath}/game/hero/select">Create new Player</a>
@@ -134,6 +148,7 @@
                 <a> Move count: ${moveCount}</a>
             </c:if>
             <p> ${HERO_HIT}</p>
+            <p> ${HERO_ENERGY_HIT}</p>
             <p> ${HERO_SPELL}</p>
             <p style="color: forestgreen">${HERO_HEAL}</p>
             <strong><p style="color: #84fab0">${BOSS_RESTORE}</p></strong>

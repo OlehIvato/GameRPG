@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface EquipmentRepository extends JpaRepository<EquipmentModel, Long> {
 
-    @Query(value = "select equipment.id, name, hp, damage, spell_damage, mana, equipment_armors.armors_id, equipment_types.types_id\n" +
+    @Query(value = "select equipment.id, name, hp, damage, energy, energy_res, spell_damage, mana, mana_res, " +
+            "equipment_armors.armors_id, equipment_types.types_id\n" +
             "from equipment\n" +
             "inner join equipment_armors on equipment.id = equipment_armors.equipment_model_id\n" +
             "inner join equipment_types on equipment.id = equipment_types.equipment_model_id\n" +

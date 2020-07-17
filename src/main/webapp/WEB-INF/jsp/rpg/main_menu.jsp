@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Menu</title>
 </head>
 <body>
 <a style="margin-left: 100px" href="${pageContext.request.contextPath}/welcome">
@@ -17,9 +17,12 @@
     <a href="${pageContext.request.contextPath}/game/hero/select">
         <button type="button" class="btn btn-primary">Create new Hero</button>
     </a>
-    <a href="${pageContext.request.contextPath}/game/menu/continue-game">
-        <button type="button" class="btn btn-primary">Continue Game</button>
-    </a>
+
+    <c:if test="${fight.gameCount > 0}">
+        <a href="${pageContext.request.contextPath}/game/menu/continue-game">
+            <button type="button" class="btn btn-primary">Continue Game</button>
+        </a>
+    </c:if>
 </div>
 
 </body>

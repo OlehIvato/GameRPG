@@ -46,10 +46,18 @@ public class LevelController {
     static int levelDifficult = 0;
     static int gameCount = 0;
 
-    static int HERO_MAIN_HP;
-    static int HERO_MAIN_MANA;
+    static int HERO_START_GAME_HP;
+    static int HERO_START_GAME_ENERGY;
+    static int HERO_START_GAME_MANA;
+
+    static int HERO_CURRENT_GAME_HP;
+    static int HERO_CURRENT_GAME_ENERGY;
+    static int HERO_CURRENT_GAME_MANA;
+
 
     static boolean isGameContinue = false;
+    private static boolean isLevelUp = false;
+    private static boolean isGameUp = false;
 
     @GetMapping("get")
     public String getLevel(@AuthenticationPrincipal User currentUser, Model model) {
@@ -61,7 +69,7 @@ public class LevelController {
                     "Congratulations "
                             + currentUser.getUsername()
                             + " you went through all levels and won the game");
-            return "rpg/fight/win_game";
+            return "rpg/win_game";
         }
 
 
@@ -69,29 +77,41 @@ public class LevelController {
             levelCount = 0;
             levelDifficult = 0;
             gameCount = 0;
-            HERO_MAIN_HP = hero.getHp();
-            HERO_MAIN_MANA = hero.getMana();
+            HERO_START_GAME_HP = hero.getHp();
+            HERO_START_GAME_ENERGY = hero.getEnergy();
+            HERO_START_GAME_MANA = hero.getMana();
         }
-
         gameCount++;
+
         if (gameCount > 4) {
             gameCount = 0;
             gameCount++;
         }
-        if (gameCount == 1 && !isGameContinue) {
+        if (gameCount == 1) {
             levelCount++;
-            levelDifficult += 10;
-            isGameContinue = false;
+            levelDifficult += setting.getLEVEL_DIFFICULT_PERCENT();
+            HERO_CURRENT_GAME_HP = hero.getHp();
+            HERO_CURRENT_GAME_ENERGY = hero.getEnergy();
+            HERO_CURRENT_GAME_MANA = hero.getMana();
+            if (levelCount > 1) {
+                isLevelUp = true;
+            }
         }
         if (levelCount == 1) {
             levelDifficult = 0;
         }
+        if (isGameContinue) {
+            gameCount = fight.getGameCount();
+            levelCount = fight.getLevelCount();
+            isGameContinue = false;
+        }
         if (fight.getIsGameWithEquipments() == 0) {
-            levelDifficult = setting.getDEFAULT_GAME_WITHOUT_EQUIP_INDEX();
+            levelDifficult = setting.getGAME_WITHOUT_EQUIP_INDEX();
+            isGameUp = true;
         }
 
         // if that count equals default levelCount in Setting table, then will be last fight
-        if (setting.getLEVEL_COUNT() == levelCount) {
+        if (setting.getLEVEL_COUNT_INDEX() == levelCount) {
             return "redirect:/game/level/start"
                     + "/" + 110
                     + "/" + 999
@@ -110,10 +130,25 @@ public class LevelController {
                              @PathVariable("getLevelCount") int getLevelCount,
                              @PathVariable("getGameCount") int getGameCount) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
-        hero.setHp(HERO_MAIN_HP);
-        hero.setMana(HERO_MAIN_MANA);
-
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
+        Game_SettingModel setting = gameSettingRepository.getOne(1L);
+        hero.setHp(HERO_START_GAME_HP);
+
+
+        if (isLevelUp && fight.getIsGameWithEquipments() == 1) {
+            hero.setEnergy(hero.getEnergy() + hero.getEnergyRes());
+            hero.setMana(hero.getMana() + hero.getManaRes());
+            gameHeroRepository.save(hero);
+            isLevelUp = false;
+        }
+
+        if (isGameUp) {
+            hero.setEnergy(hero.getEnergy() + hero.getEnergyRes());
+            hero.setMana(hero.getMana() + hero.getManaRes());
+            gameHeroRepository.save(hero);
+            isGameUp = false;
+        }
+
         fight.setLevelDifficult(getLvlDifficult);
         fight.setLevelCount(getLevelCount);
         fight.setGameCount(getGameCount);
@@ -189,7 +224,7 @@ public class LevelController {
     private int reduceDifficulty(int valueFromDataBase) {
         Game_SettingModel setting = gameSettingRepository.getOne(1L);
         int value = valueFromDataBase;
-        int subtract = valueFromDataBase * (setting.getDEFAULT_GAME_WITHOUT_EQUIP_INDEX() * (-1)) / 100;
+        int subtract = valueFromDataBase * (setting.getGAME_WITHOUT_EQUIP_INDEX() * (-1)) / 100;
         value -= subtract;
         return value;
     }

@@ -19,7 +19,7 @@ public class Game_SettingController {
     @GetMapping("setting")
     public String getLevel(Model model) {
         model.addAttribute("settingTable", gameSettingRepository.getOne((long) 1));
-        return "rpg/main/setting";
+        return "rpg/setting";
     }
 
     @PostMapping("setting")

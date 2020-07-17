@@ -24,11 +24,21 @@ public class EquipmentModel {
     @Column(name = "damage")
     private int damage;
 
+    @Column(name = "energy")
+    private int energy;
+
+    @Column(name = "energy_res")
+    private int energyRes;
+
     @Column(name = "spell_damage")
     private int spell_damage;
 
     @Column(name = "mana")
     private int mana;
+
+    @Column(name = "mana_res")
+    private int manaRes;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Type> types;

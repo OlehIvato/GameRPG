@@ -29,39 +29,45 @@ public class SelectLocation {
 
     @GetMapping("show")
     public String findAll(@AuthenticationPrincipal User currentUser, Model model) {
-        Game_Fight_Model game_fight_model = gameFightRepository.findByUsername(currentUser.getUsername());
-        if (game_fight_model.getIsGameStarted() == 1) {
-            return "rpg/main/forbidden_move";
+        Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
+       Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
+        if (fight.getIsGameStarted() == 1) {
+            return "rpg/forbidden_move";
         }
 
         model.addAttribute("location", locationServiceImp.findAll());
-        return "rpg/location/select_location";
+        model.addAttribute("hero", hero);
+        return "rpg/select_location";
     }
 
     @GetMapping("save/{locationId}")
     public String save(@AuthenticationPrincipal User currentUser, @PathVariable("locationId") Long locationId) {
-        LocationModel locationModel = locationServiceImp.findOneById(locationId);
-        Game_Hero_Model gameHeroModel = gameHeroRepository.findByUsername(currentUser.getUsername());
-        Game_Location_Model game_location_model = new Game_Location_Model();
+        LocationModel location = locationServiceImp.findOneById(locationId);
+        Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
+        Game_Location_Model game_location = new Game_Location_Model();
 
-        gameHeroModel.setHp(gameHeroModel.getHp() + locationModel.getHeroHp());
-        gameHeroModel.setDamage(gameHeroModel.getDamage() + locationModel.getHeroDamage());
-        gameHeroModel.setMinSpell(gameHeroModel.getMinSpell() + locationModel.getHeroSpellDamage());
-        gameHeroModel.setMaxSpell(gameHeroModel.getMaxSpell() + locationModel.getHeroSpellDamage());
-        gameHeroModel.setRestore(gameHeroModel.getRestore() + locationModel.getHeroRestoreHealth());
+        hero.setHp(hero.getHp() + location.getHeroHp());
+        hero.setDamage(hero.getDamage() + location.getHeroDamage());
+        hero.setEnergy(hero.getEnergy() + location.getHeroEnergy());
+        hero.setMinSpell(hero.getMinSpell() + location.getHeroSpellDamage());
+        hero.setMaxSpell(hero.getMaxSpell() + location.getHeroSpellDamage());
+        hero.setMana(hero.getMana() + location.getHeroMana());
+        hero.setRestore(hero.getRestore() + location.getHeroRestoreHealth());
 
-        game_location_model.setName(locationModel.getName());
-        game_location_model.setUsername(currentUser.getUsername());
-        game_location_model.setHeroHp(locationModel.getHeroHp());
-        game_location_model.setHeroDamage(locationModel.getHeroDamage());
-        game_location_model.setHeroSpellDamage(locationModel.getHeroSpellDamage());
-        game_location_model.setHeroRestoreHealth(locationModel.getHeroRestoreHealth());
-        game_location_model.setCreatureHp(locationModel.getCreatureHp());
-        game_location_model.setCreatureDamage(locationModel.getCreatureDamage());
-        game_location_model.setCreatureChance(locationModel.getCreatureChance());
+        game_location.setName(location.getName());
+        game_location.setUsername(currentUser.getUsername());
+        game_location.setHeroHp(location.getHeroHp());
+        game_location.setHeroEnergy(location.getHeroEnergy());
+        game_location.setHeroDamage(location.getHeroDamage());
+        game_location.setHeroSpellDamage(location.getHeroSpellDamage());
+        game_location.setHeroRestoreHealth(location.getHeroRestoreHealth());
+        game_location.setHeroMana(location.getHeroMana());
+        game_location.setCreatureHp(location.getCreatureHp());
+        game_location.setCreatureDamage(location.getCreatureDamage());
+        game_location.setCreatureChance(location.getCreatureChance());
 
-        gameLocationRepository.save(game_location_model);
-        gameHeroRepository.save(gameHeroModel);
+        gameLocationRepository.save(game_location);
+        gameHeroRepository.save(hero);
         return "redirect:/game/menu/get-level";
     }
 }

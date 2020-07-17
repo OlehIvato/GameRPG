@@ -24,6 +24,12 @@ public class HeroModel {
     @Column(name = "damage")
     private int damage;
 
+    @Column(name = "energy")
+    private int energy;
+
+    @Column(name = "energy_res")
+    private int energyRes;
+
     @Column(name = "minspelldamage")
     private int minSpell;
 
@@ -35,6 +41,9 @@ public class HeroModel {
 
     @Column(name = "mana")
     private int mana;
+
+    @Column(name = "mana_res")
+    private int manaRes;
 
     @Column(name = "image")
     private String image;

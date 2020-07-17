@@ -24,6 +24,12 @@ public class Game_Hero_Model {
     @Column(name = "damage")
     private int damage;
 
+    @Column(name = "energy")
+    private int energy;
+
+    @Column(name = "energy_res")
+    private int energyRes;
+
     @Column(name = "minspell")
     private int minSpell;
 
@@ -35,6 +41,9 @@ public class Game_Hero_Model {
 
     @Column(name = "mana")
     private int mana;
+
+    @Column(name = "mana_res")
+    private int manaRes;
 
     @Column(name = "class_id")
     private Long heroClass;

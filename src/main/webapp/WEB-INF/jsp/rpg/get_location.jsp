@@ -19,14 +19,14 @@
         <button type="button" class="btn btn-primary">No</button>
     </a>
     <br>
+    <small>
+        <a href="#" data-toggle="tooltip" title="some information about locations">about</a>
+    </small>
+    <br>
+    <br>
     <a href="${pageContext.request.contextPath}/game/hero/select">
         <button type="button" class="btn btn-primary">Create new Hero</button>
     </a>
-    <br>
-    <br>
-    <small>
-        <a href="#" data-toggle="tooltip" title="some information about locations">help</a>
-    </small>
 </div>
 
 

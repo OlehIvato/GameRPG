@@ -36,12 +36,16 @@
                 <td>${mob.chanceToSuperDamage}</td>
 
                 <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
-                    <td><a href="${pageContext.request.contextPath}/mob/update/<c:out value='${mob.id}'/>">
-                        <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
-                    </a></td>
-                    <td><a href="${pageContext.request.contextPath}/mob/delete/<c:out value='${mob.id}'/>">
-                        <button class="buttonStyle" style="background-color: darkred"> Delete</button>
-                    </a></td>
+                    <td class="optionWidth">
+                        <a href="${pageContext.request.contextPath}/mob/update/<c:out value='${mob.id}'/>">
+                            <button class="buttonStyle" style="background-color: forestgreen"> Edit</button>
+                        </a>
+                    </td>
+                    <td class="optionWidth">
+                        <a href="${pageContext.request.contextPath}/mob/delete/<c:out value='${mob.id}'/>">
+                            <button class="buttonStyle" style="background-color: darkred"> Delete</button>
+                        </a>
+                    </td>
                 </sec:authorize>
             </tr>
         </c:forEach>
