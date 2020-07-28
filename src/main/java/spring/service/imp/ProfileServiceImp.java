@@ -9,6 +9,7 @@ import spring.service.ProfileService;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -37,7 +38,7 @@ public class ProfileServiceImp implements ProfileService {
 
     @Override
     public void saveAvatar(Profile profile, MultipartFile file) {
-        if (file != null && !file.isEmpty()) {
+        if (Optional.ofNullable(file).isPresent() && !file.isEmpty()) {
             String getAvatarName = file.getOriginalFilename();
             String fileName = UUID.randomUUID().toString() + getAvatarName;
             try {

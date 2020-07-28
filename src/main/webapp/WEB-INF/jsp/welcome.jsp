@@ -11,7 +11,6 @@
 
 <div class="container">
     <h2>Databases</h2>
-    <p>list / delete / update / create</p>
     <div class="btn-group">
         <a href="${pageContext.request.contextPath}/hero/all" class="btn btn-primary">Hero</a>
         <a href="${pageContext.request.contextPath}/location/all" class="btn btn-primary">Location</a>
@@ -28,9 +27,11 @@
         <a href="${pageContext.request.contextPath}/game/menu/main">
             <button type="button" class="btn btn-success btn-lg">Start</button>
         </a>
-        <a href="${pageContext.request.contextPath}/game/setting">
-            <button type="button" class="btn btn-success btn-sm">Setting</button>
-        </a>
+<%--        <sec:authorize access="hasAnyRole('ADMIN','MODERATOR')">--%>
+            <a href="${pageContext.request.contextPath}/game/setting">
+                <button type="button" class="btn btn-success btn-sm">Setting</button>
+            </a>
+<%--        </sec:authorize>--%>
     </div>
 </div>
 

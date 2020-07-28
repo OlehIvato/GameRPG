@@ -1,6 +1,6 @@
 package spring.service;
 import org.springframework.web.multipart.MultipartFile;
-import spring.model.HeroModel;
+import spring.model.databaseModel.HeroModel;
 import java.util.List;
 
 public interface HeroService {

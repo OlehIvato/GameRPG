@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import spring.model.Class;
+import spring.model.databaseModel.Class;
 import spring.model.User;
 import spring.model.gameModel.Game_Fight_Model;
 import spring.model.gameModel.Game_Hero_Model;

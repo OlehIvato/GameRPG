@@ -1,8 +1,9 @@
 package spring.service.imp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.model.LocationModel;
-import spring.repository.LocationRepository;
+import spring.model.databaseModel.LocationModel;
+import spring.repository.databaseRepository.LocationRepository;
 import spring.service.LocationService;
 
 import java.util.List;
@@ -10,12 +11,13 @@ import java.util.List;
 @Service
 public class LocationServiceImp implements LocationService {
 
-    private final LocationRepository locationRepository;
+    @Autowired
+    private  LocationRepository locationRepository;
 
-    public LocationServiceImp(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;
+
+    public LocationServiceImp(){
+
     }
-
     @Override
     public List<LocationModel> findAll() {
         return locationRepository.findAll();

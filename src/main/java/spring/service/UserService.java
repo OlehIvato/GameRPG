@@ -1,8 +1,8 @@
 package spring.service;
 
 import spring.model.User;
+
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
@@ -12,6 +12,8 @@ public interface UserService {
 
     User getOneById(Long id);
 
+    User getOneByEmail(String email);
+
     boolean createAccount(User user);
 
     boolean updateUsername(User user);
@@ -20,6 +22,11 @@ public interface UserService {
 
     boolean updatePassword(User user);
 
-    void deleteUser(String username,Long userId);
+    boolean resetPassword(User user);
+
+    void deleteUser(String username, Long userId);
+
+
+
 }
 

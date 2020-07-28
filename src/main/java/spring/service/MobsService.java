@@ -1,6 +1,6 @@
 package spring.service;
 
-import spring.model.MobsModel;
+import spring.model.databaseModel.MobsModel;
 
 import java.util.List;
 

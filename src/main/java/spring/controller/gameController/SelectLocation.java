@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import spring.model.LocationModel;
+import spring.model.databaseModel.LocationModel;
 import spring.model.User;
 import spring.model.gameModel.Game_Fight_Model;
 import spring.model.gameModel.Game_Hero_Model;
@@ -30,7 +30,7 @@ public class SelectLocation {
     @GetMapping("show")
     public String findAll(@AuthenticationPrincipal User currentUser, Model model) {
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
-       Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
+        Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
         if (fight.getIsGameStarted() == 1) {
             return "rpg/forbidden_move";
         }

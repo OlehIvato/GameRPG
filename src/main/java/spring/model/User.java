@@ -34,8 +34,11 @@ public class User implements UserDetails {
     @Transient
     private String password_current;
     @Transient
+    @Size(min = 6, message = "Password must be over 6 characters.")
     private String password_new;
+
     @Transient
+    @Size(min = 6, message = "Password must be over 6 characters.")
     private String password_confirm;
 
     @ManyToMany(fetch = FetchType.EAGER)

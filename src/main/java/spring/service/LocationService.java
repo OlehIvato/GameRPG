@@ -1,5 +1,5 @@
 package spring.service;
-import spring.model.LocationModel;
+import spring.model.databaseModel.LocationModel;
 
 import java.util.List;
 

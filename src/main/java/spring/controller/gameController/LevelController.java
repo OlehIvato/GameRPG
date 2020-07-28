@@ -6,13 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import spring.model.BossesModel;
-import spring.model.MobsModel;
+import spring.model.databaseModel.BossesModel;
+import spring.model.databaseModel.MobsModel;
 import spring.model.User;
 import spring.model.gameModel.*;
-import spring.repository.BossesRepository;
-import spring.repository.MobsRepository;
+import spring.repository.databaseRepository.BossesRepository;
+import spring.repository.databaseRepository.MobsRepository;
 import spring.repository.gameRepository.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("game/level/")
@@ -58,6 +60,19 @@ public class LevelController {
     static boolean isGameContinue = false;
     private static boolean isLevelUp = false;
     private static boolean isGameUp = false;
+
+    /**
+     * This method takes information from Fight table and generates a level,
+     * if  it is a new game, then generates the first level and the first game,
+     * if it is a continue game then generates according last played level and game,
+     * also if it's a game is without equipments it retains the corresponding values
+     *
+     * @param currentUser needed to know for which user the game is.
+     * @param model       if user pass all levels and won the game
+     * @return returns the appropriate level, game, and difficulty to the start method
+     * also there other return:
+     * if level count will be equals to default level count in Setting table, then will be last fight.
+     */
 
     @GetMapping("get")
     public String getLevel(@AuthenticationPrincipal User currentUser, Model model) {
@@ -106,11 +121,11 @@ public class LevelController {
             isGameContinue = false;
         }
         if (fight.getIsGameWithEquipments() == 0) {
-            levelDifficult = setting.getGAME_WITHOUT_EQUIP_INDEX();
+            levelDifficult = setting.getGAME_WITHOUT_EQUIP_DIFFICULTY();
             isGameUp = true;
         }
 
-        // if that count equals default levelCount in Setting table, then will be last fight
+
         if (setting.getLEVEL_COUNT_INDEX() == levelCount) {
             return "redirect:/game/level/start"
                     + "/" + 110
@@ -123,7 +138,19 @@ public class LevelController {
                 + "/" + gameCount;
     }
 
-
+    /**
+     * This method start game according to next parameters
+     *
+     * @param currentUser     needed to know for which user the game is,
+     *                        and maybe he continues it instead of playing from the beginning
+     *                        Fight table contains all information about the game,
+     *                        whether it game with equipments or without,
+     *                        whether it is a continuation of the game or new game.
+     * @param getLvlDifficult needed to know the difficult of this level.
+     * @param getLevelCount   needed to know from which level is.
+     * @param getGameCount    needed to know from which game count to start.
+     * @return returns the fight page where the whole game is.
+     */
     @GetMapping("start/{getLvlDifficult}/{getLevelCount}/{getGameCount}")
     public String startLevel(@AuthenticationPrincipal User currentUser,
                              @PathVariable("getLvlDifficult") int getLvlDifficult,
@@ -131,7 +158,6 @@ public class LevelController {
                              @PathVariable("getGameCount") int getGameCount) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
-        Game_SettingModel setting = gameSettingRepository.getOne(1L);
         hero.setHp(HERO_START_GAME_HP);
 
 
@@ -158,7 +184,7 @@ public class LevelController {
         BossesModel boss = bossesRepository.getOneRandomBoss();
         MobsModel mob = mobsRepository.getOneRandomMob();
 
-        if (creature_game.getUsername() != null) {
+        if (Optional.ofNullable(creature_game.getUsername()).isPresent()) {
             game_creatureRepository.delete(creature_game);
         }
         creature_game.setUsername(currentUser.getUsername());
@@ -206,14 +232,18 @@ public class LevelController {
             }
             creature_game.setName(mob.getName());
         }
-
         game_creatureRepository.save(creature_game);
         gameFightRepository.save(fight);
         return "redirect:/game/fight/launch";
 
     }
 
-
+    /**
+     * This method changes characteristics of creatures, if game with equipments
+     *
+     * @param valueFromDataBase shows default characteristics from database
+     * @return returns characteristics, adding difficult according to current level
+     */
     private int setLvlDifficult(int valueFromDataBase) {
         int value = valueFromDataBase;
         int subtract = (valueFromDataBase * levelDifficult) / 100;
@@ -221,10 +251,17 @@ public class LevelController {
         return value;
     }
 
+    /**
+     * This method reduces default values from data for every level if game without equipments.
+     *
+     * @param valueFromDataBase shows default characteristics from database
+     * @return returns characteristics, reduces difficult for every level
+     * Setting table, there is all default values for game
+     */
     private int reduceDifficulty(int valueFromDataBase) {
-        Game_SettingModel setting = gameSettingRepository.getOne(1L);
         int value = valueFromDataBase;
-        int subtract = valueFromDataBase * (setting.getGAME_WITHOUT_EQUIP_INDEX() * (-1)) / 100;
+        int subtract = valueFromDataBase
+                * (gameSettingRepository.getOne(1L).getGAME_WITHOUT_EQUIP_DIFFICULTY() * (-1)) / 100;
         value -= subtract;
         return value;
     }

@@ -10,23 +10,23 @@
     <h1 style="margin-top: 10px">Change Username</h1><br>
     <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/account/edit-username" >
 
-        <c:if test="${user != null}">
-            <input type="hidden" name="id" value="<c:out value='${user.id}' />"/>
+        <c:if test="${user_profile != null}">
+            <input type="hidden" name="id" value="<c:out value='${user_profile.id}' />"/>
         </c:if>
 
         <label><strong> Username: </strong>
             <input style="margin-left: 5px" type="text" name="username" placeholder="Username..."
-                   value="<c:out value='${user.username}'/>"/>
+                   value="<c:out value='${user_profile.username}'/>"/>
                 ${userError}
 
         </label><br>
 
-        <input type="hidden" name="id" value="<c:out value='${user.id}'/>"/>
-        <input type="hidden" name="password" value="<c:out value='${user.password}'/>"/>
-        <input type="hidden" name="email" value="<c:out value='${user.email}'/>"/>
+        <input type="hidden" name="id" value="<c:out value='${user_profile.id}'/>"/>
+        <input type="hidden" name="password" value="<c:out value='${user_profile.password}'/>"/>
+        <input type="hidden" name="email" value="<c:out value='${user_profile.email}'/>"/>
 
-        <input type="hidden" name="user_id" value="<c:out value='${user_roles.user_id}'/>"/>
-        <input type="hidden" name="roles_id" value="<c:out value='${user_roles.roles_id}'/>"/>
+        <input type="hidden" name="user_id" value="<c:out value='${user_profile.user_id}'/>"/>
+        <input type="hidden" name="roles_id" value="<c:out value='${user_profile.roles_id}'/>"/>
         <input type="hidden" name="user_id" value="<c:out value='${user_profile.user_id}'/>"/>
         <input type="hidden" name="profile_id" value="<c:out value='${user_profile.profile_id}'/>"/>
 

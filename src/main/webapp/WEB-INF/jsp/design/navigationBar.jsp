@@ -24,10 +24,10 @@
             <div class="navbar-nav">
                 <a href="/welcome" class="nav-item nav-link active">Home</a>
                 <a href="/info" class="nav-item nav-link">About Game</a>
-                <sec:authorize access="hasAnyRole('ADMIN','MODERATOR')">
+<%--                <sec:authorize access="hasAnyRole('ADMIN','MODERATOR')">--%>
                     <a href="${pageContext.request.contextPath}/admin/user-list" class="nav-item nav-link">List of
                         Users</a>
-                </sec:authorize>
+<%--                </sec:authorize>--%>
             </div>
         </div>
         <sec:authentication var="principal" property="principal"/>
@@ -37,7 +37,7 @@
             <a class="nav-item nav-link active" style="color: gold">${principal.username}</a>
             <sec:authorize access="isAuthenticated()">
                 <a class="nav-item nav-link" style="color: #ff3030"
-                   href="${pageContext.request.contextPath}/logout">Log out</a>
+                   href="${pageContext.request.contextPath}/log-out">Log out</a>
             </sec:authorize>
         </div>
     </nav>
@@ -47,7 +47,6 @@
 
 </body>
 </html>
-
 
 
 

@@ -1,8 +1,8 @@
 package spring.service.imp;
 
 import org.springframework.stereotype.Service;
-import spring.model.EquipmentModel;
-import spring.repository.EquipmentRepository;
+import spring.model.databaseModel.EquipmentModel;
+import spring.repository.databaseRepository.EquipmentRepository;
 import spring.service.EquipmentService;
 
 import java.util.List;

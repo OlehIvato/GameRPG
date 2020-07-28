@@ -1,6 +1,7 @@
 package spring.controller.gameController;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import spring.repository.gameRepository.Game_SettingRepository;
 @Controller
 @RequestMapping("game/")
 @AllArgsConstructor
+@PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
 public class Game_SettingController {
 
     private final Game_SettingRepository gameSettingRepository;

@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import spring.model.Class;
+import spring.dto.Game_Creature_Hero_Fight_Dto;
+import spring.model.databaseModel.Class;
 import spring.model.User;
 import spring.model.gameModel.Game_Creature_Model;
 import spring.model.gameModel.Game_Fight_Model;
@@ -62,7 +63,13 @@ public class FightController {
     private int heroEnergyHitView;
     private String mobNameVIew;
 
-
+    /**
+     * This method make fight page, the whole description according to the hero and the creatures movements.
+     *
+     * @param currentUser needed to know for which user the game is.
+     * @param model       to show whole descriptions in jsp page
+     * @return returns fight page
+     */
     @GetMapping("launch")
     public String launchGame(@AuthenticationPrincipal User currentUser, Model model) {
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
@@ -85,9 +92,13 @@ public class FightController {
         }
         fight.setIsGameStarted(1);
         gameFightRepository.save(fight);
-        model.addAttribute("fight", fight);
-        model.addAttribute("creature", gameCreatureRepository.findByUsername(currentUser.getUsername()));
-        model.addAttribute("hero", gameHeroRepository.findByUsername(currentUser.getUsername()));
+
+        model.addAttribute("CHF",
+                new Game_Creature_Hero_Fight_Dto(
+                        gameCreatureRepository.findByUsername(currentUser.getUsername()),
+                        gameHeroRepository.findByUsername(currentUser.getUsername()),
+                        gameFightRepository.findByUsername(currentUser.getUsername())));
+
         model.addAttribute("index", settingRepository.getOne(1L));
         model.addAttribute("moveCount", MOVE_COUNT);
         model.addAttribute("isLose", YOU_LOSE);
@@ -147,7 +158,12 @@ public class FightController {
         return "rpg/fight";
     }
 
-
+    /**
+     * This method for simple hit of the hero
+     *
+     * @param currentUser needed to know for which user the game is.
+     * @return returns movement of the creature
+     */
     @GetMapping("hero-hit")
     public String heroHit(@AuthenticationPrincipal User currentUser) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
@@ -159,6 +175,13 @@ public class FightController {
         return "redirect:/game/fight/mob-move";
     }
 
+
+    /**
+     * This method for energy hit of the hero
+     *
+     * @param currentUser needed to know for which user the game is.
+     * @return returns movement of the creature
+     */
     @GetMapping("hero-energy_hit")
     public String heroEnergyHit(@AuthenticationPrincipal User currentUser) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
@@ -175,7 +198,12 @@ public class FightController {
         return "redirect:/game/fight/mob-move";
     }
 
-
+    /**
+     * This method for spell hit of the hero
+     *
+     * @param currentUser needed to know for which user the game is.
+     * @return returns movement of the creature
+     */
     @GetMapping("hero-spell")
     public String heroSpell(@AuthenticationPrincipal User currentUser) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
@@ -189,6 +217,13 @@ public class FightController {
         return "redirect:/game/fight/mob-move";
     }
 
+
+    /**
+     * This Method for healing of the hero
+     *
+     * @param currentUser needed to know for which user the game is.
+     * @return returns fight page to show information on the monitor
+     */
     @GetMapping("hero-heal")
     public String heroHEal(@AuthenticationPrincipal User currentUser) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
@@ -205,6 +240,12 @@ public class FightController {
     }
 
 
+    /**
+     * This method for the creature, here is its damage for hero, super damage etc.
+     *
+     * @param currentUser needed to know for which user the game is.
+     * @return returns fight page to show information on the monitor
+     */
     @GetMapping("mob-move")
     public String mobMove(@AuthenticationPrincipal User currentUser) {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
@@ -224,7 +265,6 @@ public class FightController {
         int result;
         int damage = (int) ((Math.random() * (mob.getMaxDamage() - mob.getMinDamage())) + mob.getMinDamage());
         int superDamage = (int) (mob.getMaxDamage() * setting.getSUPER_DAMAGE_MULTIPLY_INDEX());
-        System.out.println(new Random().nextInt(100) < mob.getChanceToSuperDamage());
         if (new Random().nextInt(100) < mob.getChanceToSuperDamage()) {
             MOB_SUPER_DAMAGE = true;
             MOB_HIT = true;

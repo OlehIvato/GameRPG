@@ -32,6 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/registration").not().fullyAuthenticated()   // permission only when NOT authorized
+                .antMatchers("/forgot-password").not().fullyAuthenticated()
+                .antMatchers("/new-password").not().fullyAuthenticated()
                 .antMatchers().hasAnyAuthority()
 
                 .antMatchers("/**/update/**", "/**/create/**", "/**/delete/**", "/**/image/**")
@@ -40,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login")
+
 
                 .defaultSuccessUrl("/welcome", true).permitAll()
                 .and().logout().permitAll().logoutSuccessUrl("/login")

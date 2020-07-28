@@ -1,8 +1,8 @@
 package spring.service.imp;
 
 import org.springframework.stereotype.Service;
-import spring.model.MobsModel;
-import spring.repository.MobsRepository;
+import spring.model.databaseModel.MobsModel;
+import spring.repository.databaseRepository.MobsRepository;
 import spring.service.MobsService;
 
 import java.util.List;

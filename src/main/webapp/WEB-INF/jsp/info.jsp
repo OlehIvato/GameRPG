@@ -17,7 +17,7 @@
         <p>The boss differs from a simple mob in that the boss has additional features</p>
         <p>You can select Hero, add equipments, add location for fight </p>
         <p>Or you can play without equipments, in that case all creatures characteristics will reduce
-            on ${index.GAME_WITHOUT_EQUIP_INDEX}% for every game</p>
+            on ${index.GAME_WITHOUT_EQUIP_DIFFICULTY}% for every game</p>
         <p>If you play with equipments all creatures characteristics will increase every level
             on ${index.LEVEL_DIFFICULT_PERCENT}%</p>
         <p>Every Hero have different features, some can only beat, other only use spell, healing, energy hit etc</p>

@@ -1,5 +1,7 @@
 package spring.service.imp;
 
+import lombok.AllArgsConstructor;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,9 +22,10 @@ import spring.service.UserService;
 
 import java.util.Collections;
 import java.util.List;
-
+import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImp implements UserService, UserDetailsService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -33,23 +36,8 @@ public class UserServiceImp implements UserService, UserDetailsService {
     private final Game_CreatureRepository gameCreatureRepository;
     private final Game_LocationRepository gameLocationRepository;
     private final Game_FightRepository gameFightRepository;
+    private static final Logger logger = Logger.getLogger(UserServiceImp.class.getName());
 
-    public UserServiceImp(BCryptPasswordEncoder bCryptPasswordEncoder,
-                          UserRepository userRepository, ProfileServiceImp profileServiceImp,
-                          User_ProfileRepository user_profileRepository,
-                          Game_HeroRepository gameHeroRepository,
-                          Game_CreatureRepository gameCreatureRepository,
-                          Game_LocationRepository gameLocationRepository,
-                          Game_FightRepository gameFightRepository) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userRepository = userRepository;
-        this.profileServiceImp = profileServiceImp;
-        this.user_profileRepository = user_profileRepository;
-        this.gameHeroRepository = gameHeroRepository;
-        this.gameCreatureRepository = gameCreatureRepository;
-        this.gameLocationRepository = gameLocationRepository;
-        this.gameFightRepository = gameFightRepository;
-    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -59,8 +47,12 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found!!!");
+        if (Optional.ofNullable(user).isEmpty()) {
+            logger.error("User tried to get a username [" + username + "] which doesn't exist");
+        }
+        if (Optional.ofNullable(userRepository.findByUsername(username).getUsername())
+                .equals(Optional.ofNullable(userRepository.findByUsername(username).getUsername()))) {
+            logger.info("User " + username + " is logged in");
         }
         return user;
     }
@@ -68,36 +60,47 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     public boolean createAccount(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
+        if (userFromDB != null) {
+            return false;
+        }
         User_Profile user_profile = new User_Profile();
         Profile profile = new Profile();
         Game_Hero_Model game_hero_model = new Game_Hero_Model();
         Game_Location_Model game_location_model = new Game_Location_Model();
         Game_Creature_Model game_creature_model = new Game_Creature_Model();
         Game_Fight_Model game_fight_model = new Game_Fight_Model();
-        if (userFromDB != null) {
-            return false;
-        }
 
         user.setRoles((Collections.singleton(new Role((long) 3, "ROLE_USER")))); //role 3 (user), role name
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        logger.info("Created role and encode password for new User");
 
         userRepository.save(user);
+        logger.info("User table: added new User: " + user.getUsername());
 
         profile.setId(user.getId());
         profileServiceImp.save(profile);
+        logger.info("Added Profile row for User: " + user.getUsername());
 
         user_profile.setUser_id(user.getId());
         user_profile.setProfile_id(profile.getId());
         user_profileRepository.save(user_profile);
+        logger.info("Profile table: binding to the User table for User: " + user.getUsername());
 
         game_creature_model.setUsername(user.getUsername());
         gameCreatureRepository.save(game_creature_model);
+        logger.info("Game_Creature table: binding to the User table for User: " + user.getUsername());
+
         game_hero_model.setUsername(user.getUsername());
         gameHeroRepository.save(game_hero_model);
+        logger.info("Game_Hero table: binding to the User table for User: " + user.getUsername());
+
         game_location_model.setUsername(user.getUsername());
         gameLocationRepository.save(game_location_model);
+        logger.info("Game_Location table: binding to the Users table for User: " + user.getUsername());
+
         game_fight_model.setUsername(user.getUsername());
         gameFightRepository.save(game_fight_model);
+        logger.info("Game_Fight table: binding to the User table for User: " + user.getUsername());
         return true;
     }
 
@@ -110,6 +113,19 @@ public class UserServiceImp implements UserService, UserDetailsService {
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword_new()));
         userRepository.save(user);
+        logger.info("User: " + user.getUsername() + " changed his password");
+        return true;
+    }
+
+    @Override
+    public boolean resetPassword(User user) {
+        User userFromDatabase = userRepository.findByEmail(user.getEmail());
+        if (!user.getPassword_new().equals(user.getPassword_confirm())) {
+            return false;
+        }
+        userFromDatabase.setPassword(bCryptPasswordEncoder.encode(user.getPassword_new()));
+        userRepository.save(userFromDatabase);
+        logger.info("User: " + user.getUsername() + " reset his password");
         return true;
     }
 
@@ -126,6 +142,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     public User getOneById(Long id) {
         return userRepository.getOneById(id);
+    }
+
+    @Override
+    public User getOneByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     @Override
@@ -148,11 +169,21 @@ public class UserServiceImp implements UserService, UserDetailsService {
         Game_Fight_Model game_fight_model = gameFightRepository.findByUsername(username);
 
         userRepository.deleteById(userId);
-        profileServiceImp.deleteById(userId);
-        gameLocationRepository.delete(game_location_model);
-        gameHeroRepository.delete(game_hero_model);
-        gameCreatureRepository.delete(game_creature_model);
-        gameFightRepository.delete(game_fight_model);
+        logger.info("Deleted " + username + " from User table");
 
+        profileServiceImp.deleteById(userId);
+        logger.info("Deleted bind from Profile table for User: " + username);
+
+        gameLocationRepository.delete(game_location_model);
+        logger.info("Deleted bind from Game_Location table for User: " + username);
+
+        gameHeroRepository.delete(game_hero_model);
+        logger.info("Deleted bind from Game_Hero table for User: " + username);
+
+        gameCreatureRepository.delete(game_creature_model);
+        logger.info("Deleted bind from Game_Creature table for User: " + username);
+
+        gameFightRepository.delete(game_fight_model);
+        logger.info("Deleted bind from Game_Fight table for User: " + username);
     }
 }

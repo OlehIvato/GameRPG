@@ -1,9 +1,9 @@
 package spring.service.imp;
 
 import org.springframework.stereotype.Service;
-import spring.model.BossesModel;
+import spring.model.databaseModel.BossesModel;
 
-import spring.repository.BossesRepository;
+import spring.repository.databaseRepository.BossesRepository;
 import spring.service.BossesService;
 
 import java.util.List;

@@ -3,13 +3,14 @@ package spring.service.imp;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import spring.config.MvcConfig;
-import spring.model.HeroModel;
-import spring.repository.HeroRepository;
+import spring.model.databaseModel.HeroModel;
+import spring.repository.databaseRepository.HeroRepository;
 import spring.service.HeroService;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -43,7 +44,7 @@ public class HeroServiceImp implements HeroService {
 
     @Override
     public void saveWithImage(HeroModel hero, MultipartFile file) {
-        if (file != null && !file.isEmpty()) {
+        if (Optional.ofNullable(file).isPresent() && !file.isEmpty()) {
             String getOriginalName = file.getOriginalFilename();
             String fileName = UUID.randomUUID().toString() + getOriginalName;
             try {

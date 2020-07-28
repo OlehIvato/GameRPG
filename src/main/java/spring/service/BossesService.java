@@ -1,6 +1,6 @@
 package spring.service;
 
-import spring.model.BossesModel;
+import spring.model.databaseModel.BossesModel;
 
 import java.util.List;
 

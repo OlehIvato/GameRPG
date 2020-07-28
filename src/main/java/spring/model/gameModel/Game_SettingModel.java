@@ -38,7 +38,7 @@ public class Game_SettingModel {
     private int LEVEL_COUNT_INDEX;
 
     @Column(name = "without_equipment_difficult_index")
-    private int GAME_WITHOUT_EQUIP_INDEX;
+    private int GAME_WITHOUT_EQUIP_DIFFICULTY;
 
 
 }

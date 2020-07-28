@@ -1,6 +1,6 @@
 package spring.service;
 
-import spring.model.EquipmentModel;
+import spring.model.databaseModel.EquipmentModel;
 import java.util.List;
 
 public interface EquipmentService {

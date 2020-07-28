@@ -5,11 +5,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.model.EquipmentModel;
+import spring.model.databaseModel.EquipmentModel;
 import spring.model.User;
+import spring.model.databaseModel.Type;
 import spring.model.gameModel.Game_Fight_Model;
 import spring.model.gameModel.Game_Hero_Model;
-import spring.repository.EquipmentRepository;
+import spring.repository.databaseRepository.EquipmentRepository;
 import spring.repository.gameRepository.Game_FightRepository;
 import spring.repository.gameRepository.Game_HeroRepository;
 import spring.service.imp.EquipmentServiceImp;
@@ -53,6 +54,7 @@ public class SelectEquipmentController {
     public String getWeapon(@AuthenticationPrincipal User currentUser,
                             @PathVariable("armorId") int armorId,
                             Model model) {
+
         class HeroClass {
             private static final byte MAGE = 1;
             private static final byte WARRIOR = 2;
@@ -154,4 +156,3 @@ public class SelectEquipmentController {
                 + "/" + armorId;
     }
 }
-
