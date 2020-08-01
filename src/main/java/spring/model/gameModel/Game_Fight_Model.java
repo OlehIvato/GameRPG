@@ -1,17 +1,21 @@
 package spring.model.gameModel;
 
 import lombok.Data;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "game_fight", schema = "minirpggame")
+@NoArgsConstructor
 public class Game_Fight_Model {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "username")
     private String username;
 
@@ -33,7 +37,9 @@ public class Game_Fight_Model {
     @Column(name = "level_difficult")
     private int levelDifficult;
 
-
+    public Game_Fight_Model(String username) {
+        this.username = username;
+    }
 }
 
 

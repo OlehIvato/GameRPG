@@ -30,12 +30,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserRepository userRepository;
-    private final ProfileServiceImp profileServiceImp;
-    private final User_ProfileRepository user_profileRepository;
     private final Game_HeroRepository gameHeroRepository;
     private final Game_CreatureRepository gameCreatureRepository;
     private final Game_LocationRepository gameLocationRepository;
     private final Game_FightRepository gameFightRepository;
+    private final ProfileRepository profileRepository;
     private static final Logger logger = Logger.getLogger(UserServiceImp.class.getName());
 
 
@@ -59,51 +58,21 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     public boolean createAccount(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
-        if (userFromDB != null) {
+        Optional<User> userFromDatabase = Optional.ofNullable(userRepository.findByUsername(user.getUsername()));
+        if (userFromDatabase.isPresent()) {
             return false;
         }
-        User_Profile user_profile = new User_Profile();
-        Profile profile = new Profile();
-        Game_Hero_Model game_hero_model = new Game_Hero_Model();
-        Game_Location_Model game_location_model = new Game_Location_Model();
-        Game_Creature_Model game_creature_model = new Game_Creature_Model();
-        Game_Fight_Model game_fight_model = new Game_Fight_Model();
-
-        user.setRoles((Collections.singleton(new Role((long) 3, "ROLE_USER")))); //role 3 (user), role name
+        user.setRoles((Collections.singleton(new Role((long) 3, "ROLE_USER"))));
+        user.setProfile(Collections.singleton(profileRepository.save(new Profile(user.getUsername()))));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        logger.info("Created role and encode password for new User");
-
         userRepository.save(user);
+        gameCreatureRepository.save(new Game_Creature_Model(user.getUsername()));
+        gameHeroRepository.save(new Game_Hero_Model(user.getUsername()));
+        gameLocationRepository.save(new Game_Location_Model(user.getUsername()));
+        gameFightRepository.save(new Game_Fight_Model(user.getUsername()));
         logger.info("User table: added new User: " + user.getUsername());
-
-        profile.setId(user.getId());
-        profileServiceImp.save(profile);
-        logger.info("Added Profile row for User: " + user.getUsername());
-
-        user_profile.setUser_id(user.getId());
-        user_profile.setProfile_id(profile.getId());
-        user_profileRepository.save(user_profile);
-        logger.info("Profile table: binding to the User table for User: " + user.getUsername());
-
-        game_creature_model.setUsername(user.getUsername());
-        gameCreatureRepository.save(game_creature_model);
-        logger.info("Game_Creature table: binding to the User table for User: " + user.getUsername());
-
-        game_hero_model.setUsername(user.getUsername());
-        gameHeroRepository.save(game_hero_model);
-        logger.info("Game_Hero table: binding to the User table for User: " + user.getUsername());
-
-        game_location_model.setUsername(user.getUsername());
-        gameLocationRepository.save(game_location_model);
-        logger.info("Game_Location table: binding to the Users table for User: " + user.getUsername());
-
-        game_fight_model.setUsername(user.getUsername());
-        gameFightRepository.save(game_fight_model);
-        logger.info("Game_Fight table: binding to the User table for User: " + user.getUsername());
         return true;
     }
-
 
     @Override
     public boolean updatePassword(User user) {
@@ -112,7 +81,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
             return false;
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword_new()));
-        userRepository.save(user);
+        save(user);
         logger.info("User: " + user.getUsername() + " changed his password");
         return true;
     }
@@ -124,7 +93,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
             return false;
         }
         userFromDatabase.setPassword(bCryptPasswordEncoder.encode(user.getPassword_new()));
-        userRepository.save(userFromDatabase);
+        save(userFromDatabase);
         logger.info("User: " + user.getUsername() + " reset his password");
         return true;
     }
@@ -136,7 +105,23 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     public User save(User user) {
-        return userRepository.saveAndFlush(user);
+        User userFromDatabase = userRepository.findByUsername(user.getUsername());
+
+        if (Optional.ofNullable(user.getId()).isEmpty()) {
+            user.setId(userFromDatabase.getId());
+        }
+        if (Optional.ofNullable(user.getUsername()).isEmpty()) {
+            user.setUsername(userFromDatabase.getUsername());
+        }
+        if (Optional.ofNullable(user.getPassword()).isEmpty()) {
+            user.setPassword(userFromDatabase.getPassword());
+        }
+        if (Optional.ofNullable(user.getEmail()).isEmpty()) {
+            user.setEmail(userFromDatabase.getEmail());
+        }
+        user.setRoles(userFromDatabase.getRoles());
+        user.setProfile(userFromDatabase.getProfile());
+        return userRepository.save(user);
     }
 
     @Override
@@ -145,14 +130,44 @@ public class UserServiceImp implements UserService, UserDetailsService {
     }
 
     @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
     public User getOneByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
     @Override
-    public boolean updateUsername(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
-        return userFromDB == null;
+    public boolean updateUsername(Long currentUserId, User newUser) {
+        if (Optional.ofNullable(userRepository.findByUsername(newUser.getUsername())).isPresent()) {
+            return false;
+        }
+        User user = userRepository.getOneById(currentUserId);
+        String currentUsername = user.getUsername();
+
+        user.setUsername(newUser.getUsername());
+        userRepository.save(user);
+
+        Profile profile = profileRepository.findByUsername(currentUsername);
+        Game_Creature_Model game_creature_model = gameCreatureRepository.findByUsername(currentUsername);
+        Game_Fight_Model game_fight_model = gameFightRepository.findByUsername(currentUsername);
+        Game_Hero_Model game_hero_model = gameHeroRepository.findByUsername(currentUsername);
+        Game_Location_Model game_location_model = gameLocationRepository.findByUsername(currentUsername);
+
+        profile.setUsername(newUser.getUsername());
+        game_creature_model.setUsername(newUser.getUsername());
+        game_fight_model.setUsername(newUser.getUsername());
+        game_hero_model.setUsername(newUser.getUsername());
+        game_location_model.setUsername(newUser.getUsername());
+
+        profileRepository.save(profile);
+        gameCreatureRepository.save(game_creature_model);
+        gameFightRepository.save(game_fight_model);
+        gameHeroRepository.save(game_hero_model);
+        gameLocationRepository.save(game_location_model);
+        return true;
     }
 
     @Override
@@ -163,27 +178,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     public void deleteUser(String username, Long userId) {
-        Game_Location_Model game_location_model = gameLocationRepository.findByUsername(username);
-        Game_Hero_Model game_hero_model = gameHeroRepository.findByUsername(username);
-        Game_Creature_Model game_creature_model = gameCreatureRepository.findByUsername(username);
-        Game_Fight_Model game_fight_model = gameFightRepository.findByUsername(username);
-
         userRepository.deleteById(userId);
-        logger.info("Deleted " + username + " from User table");
-
-        profileServiceImp.deleteById(userId);
-        logger.info("Deleted bind from Profile table for User: " + username);
-
-        gameLocationRepository.delete(game_location_model);
-        logger.info("Deleted bind from Game_Location table for User: " + username);
-
-        gameHeroRepository.delete(game_hero_model);
-        logger.info("Deleted bind from Game_Hero table for User: " + username);
-
-        gameCreatureRepository.delete(game_creature_model);
-        logger.info("Deleted bind from Game_Creature table for User: " + username);
-
-        gameFightRepository.delete(game_fight_model);
-        logger.info("Deleted bind from Game_Fight table for User: " + username);
+        profileRepository.delete(profileRepository.findByUsername(username));
+        gameLocationRepository.delete(gameLocationRepository.findByUsername(username));
+        gameHeroRepository.delete(gameHeroRepository.findByUsername(username));
+        gameCreatureRepository.delete(gameCreatureRepository.findByUsername(username));
+        gameFightRepository.delete(gameFightRepository.findByUsername(username));
     }
 }

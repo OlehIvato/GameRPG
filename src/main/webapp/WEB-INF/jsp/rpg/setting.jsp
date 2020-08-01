@@ -130,8 +130,8 @@
                 </th>
                 <td>
                     <label>
-                        <input required type="text" name="GAME_WITHOUT_EQUIP_INDEX" maxlength="3" size="3"
-                               value="<c:out value='${settingTable.GAME_WITHOUT_EQUIP_INDEX}' />"
+                        <input required type="text" name="GAME_WITHOUT_EQUIP_DIFFICULTY" maxlength="3" size="3"
+                               value="<c:out value='${settingTable.GAME_WITHOUT_EQUIP_DIFFICULTY}' />"
                         />
                     </label>
                 </td>

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.model.databaseModel.EquipmentModel;
 import spring.model.User;
-import spring.model.databaseModel.Type;
 import spring.model.gameModel.Game_Fight_Model;
 import spring.model.gameModel.Game_Hero_Model;
 import spring.repository.databaseRepository.EquipmentRepository;
@@ -87,7 +86,8 @@ public class SelectEquipmentController {
                     || classId == HeroClass.PRIEST
                     || classId == HeroClass.DRUID) {
                 model.addAttribute("type", Type.WAND);
-                model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.WAND));
+                model.addAttribute("equipment",
+                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.WAND));
                 return "rpg/select_equipment";
             }
         }
@@ -97,7 +97,8 @@ public class SelectEquipmentController {
                     || classId == HeroClass.HUNTER
                     || classId == HeroClass.ROGUE) {
                 model.addAttribute("type", Type.SWORD);
-                model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SWORD));
+                model.addAttribute("equipment",
+                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SWORD));
                 return "rpg/select_equipment";
             }
         }
@@ -106,14 +107,16 @@ public class SelectEquipmentController {
                     || classId == HeroClass.PRIEST
                     || classId == HeroClass.MAGE) {
                 model.addAttribute("type", Type.AMULET);
-                model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.AMULET));
+                model.addAttribute("equipment",
+                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.AMULET));
                 return "rpg/select_equipment";
             }
         }
         if (typeForWeapon == 4) {
             if (hero.getHp() < 150) {
                 model.addAttribute("type", Type.SHIELD);
-                model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SHIELD));
+                model.addAttribute("equipment",
+                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SHIELD));
                 return "rpg/select_equipment";
             }
         }
@@ -156,3 +159,5 @@ public class SelectEquipmentController {
                 + "/" + armorId;
     }
 }
+
+

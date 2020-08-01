@@ -27,3 +27,8 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/ava/**").addResourceLocations("file:" + pathAvatars).setCachePeriod(Integer.MAX_VALUE);
     }
 }
+
+
+
+
+

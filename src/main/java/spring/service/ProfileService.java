@@ -2,19 +2,14 @@ package spring.service;
 
 import org.springframework.web.multipart.MultipartFile;
 import spring.model.Profile;
-import spring.model.User;
 
 public interface ProfileService {
 
-    Profile findOneById(Long id);
+    Profile findOneByUsername(String username);
 
     Profile save(Profile profile);
 
-    void deleteById(Long id);
-
     void saveAvatar(Profile profile, MultipartFile file);
-
-
 
 }
 

@@ -44,7 +44,7 @@ public class SelectLocation {
     public String save(@AuthenticationPrincipal User currentUser, @PathVariable("locationId") Long locationId) {
         LocationModel location = locationServiceImp.findOneById(locationId);
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
-        Game_Location_Model game_location = new Game_Location_Model();
+        Game_Location_Model game_location = gameLocationRepository.findByUsername(currentUser.getUsername());
 
         hero.setHp(hero.getHp() + location.getHeroHp());
         hero.setDamage(hero.getDamage() + location.getHeroDamage());

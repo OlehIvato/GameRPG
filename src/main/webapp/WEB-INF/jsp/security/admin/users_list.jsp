@@ -41,7 +41,7 @@
                 <td>${user.password}</td>
                 <td>${user.email}</td>
 
-                <td><c:forEach items="${user.roles}" var="role">${role.name}</c:forEach></td>
+                <td><c:forEach items="${user.roles}" var="role">${role.name} </c:forEach></td>
 
                 <td class="optionWidth">
                     <a href="/admin/set-role/<c:out value='${user.id}'/>">

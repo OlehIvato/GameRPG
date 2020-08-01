@@ -1,14 +1,21 @@
 package spring.model.gameModel;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "game_location", schema = "minirpggame")
+@NoArgsConstructor
 public class Game_Location_Model {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "username")
     private String username;
 
@@ -42,8 +49,9 @@ public class Game_Location_Model {
     @Column(name = "creature_damage")
     private int creatureChance;
 
-
-
+    public Game_Location_Model(String username) {
+        this.username = username;
+    }
 
 
 }

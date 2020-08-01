@@ -179,7 +179,7 @@ public class LevelController {
         fight.setLevelCount(getLevelCount);
         fight.setGameCount(getGameCount);
 
-        Game_Creature_Model creature_game = new Game_Creature_Model();
+        Game_Creature_Model creature_game = game_creatureRepository.findByUsername(currentUser.getUsername());
         Game_Location_Model game_location = gameLocationRepository.findByUsername(currentUser.getUsername());
         BossesModel boss = bossesRepository.getOneRandomBoss();
         MobsModel mob = mobsRepository.getOneRandomMob();

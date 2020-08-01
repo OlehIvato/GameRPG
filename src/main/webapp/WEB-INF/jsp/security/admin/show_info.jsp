@@ -63,7 +63,7 @@
 </div>
 
 <div align="center">
-    <a href="/admin/user-list">
+    <a href="${pageContext.request.contextPath}/admin/user-list">
         <button class="buttonStyle" style="background-color: forestgreen">Back to List</button>
     </a>
 </div>

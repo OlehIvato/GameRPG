@@ -66,7 +66,8 @@
             <p>He have ${CHF.creatureHp} hp</p>
             <p>Min Damage: ${CHF.creatureMinDamage}</p>
             <p>Max Damage: ${CHF.creatureMaxDamage}</p>
-            <p>He also have ${CHF.creatureChanceToSuperDamage}% chance on super damage, which equals: ${CHF.creatureMaxDamage * index.SUPER_DAMAGE_MULTIPLY_INDEX}</p>
+            <p>He also have ${CHF.creatureChanceToSuperDamage}% chance on super damage, which
+                equals: ${CHF.creatureMaxDamage * index.SUPER_DAMAGE_MULTIPLY_INDEX}</p>
             <c:if test="${CHF.fightIsBoss ==  1}">
                 <p>He restoring ${CHF.creatureRestoreHp} hp every move </p>
                 <p>When his Health point will be less than 30, his damage will be as super Damage</p>
@@ -152,17 +153,18 @@
                 <h5>Description of actions</h5>
                 <a> Move count: ${moveCount}</a>
             </c:if>
-            <p> ${HERO_HIT}</p>
-            <p> ${HERO_ENERGY_HIT}</p>
-            <p> ${HERO_SPELL}</p>
-            <p style="color: forestgreen">${HERO_HEAL}</p>
-            <strong><p style="color: #84fab0">${BOSS_RESTORE}</p></strong>
-            <strong><p style="color: darkslategray">${BOSS_LESS_HP}</p></strong>
-            <strong><p style="color: chocolate;">${MOB_SUPER_DAMAGE}</p></strong>
-            <p> ${MOB_HIT}</p>
+                <p> ${HERO_HIT}</p>
+                <p> ${HERO_ENERGY_HIT}</p>
+                <p> ${HERO_SPELL}</p>
+                <p style="color: forestgreen">${HERO_HEAL}</p>
+                <strong><p style="color: #84fab0">${BOSS_RESTORE}</p></strong>
+                <strong><p style="color: darkslategray">${BOSS_LESS_HP}</p></strong>
+                <strong><p style="color: chocolate;">${MOB_SUPER_DAMAGE}</p></strong>
+                <p> ${MOB_HIT}</p>
             <strong><p style="color: green; font-size:20px;">${YOU_WIN}</p></strong>
             <strong><p style="color: black; font-size:20px">${NEW_CREATURE}</p></strong>
             <strong><p style="color: red; font-size:20px;">${YOU_LOSE}</p></strong>
+
         </div>
     </code>
 </section>

@@ -7,17 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import spring.model.User;
-import spring.service.UserService;
+import spring.service.imp.UserServiceImp;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class RegistrationController {
 
-    private final UserService userService;
+    private final UserServiceImp userServiceImp;
 
-    public RegistrationController(UserService userService) {
-        this.userService = userService;
+    public RegistrationController(UserServiceImp userServiceImp) {
+        this.userServiceImp = userServiceImp;
     }
 
     @GetMapping("/registration")
@@ -35,15 +36,15 @@ public class RegistrationController {
             model.addAttribute("passwordError", "Password don't match");
             return "security/registration";
         }
-        if (!userService.updateUsername(user)) {
+        if (Optional.ofNullable(userServiceImp.findUserByUsername(user.getUsername())).isPresent()) {
             model.addAttribute("usernameError", "Someone already have that username");
             return "security/registration";
         }
-        if (!userService.updateEmail(user)) {
+        if (!userServiceImp.updateEmail(user)) {
             model.addAttribute("emailError", "Someone already have that email address");
             return "security/registration";
         }
-        userService.createAccount(user);
+        userServiceImp.createAccount(user);
         return "redirect:/login";
     }
 }

@@ -1,6 +1,8 @@
 package spring.model.gameModel;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "game_setting", schema = "minirpggame")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Game_SettingModel {
 
     @Id

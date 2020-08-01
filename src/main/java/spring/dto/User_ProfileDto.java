@@ -5,12 +5,14 @@ import spring.model.Profile;
 import spring.model.User;
 import spring.model.User_Profile;
 import spring.model.User_Roles;
+
 import java.util.Date;
 
 @Data
 public class User_ProfileDto {
 
-    private Long id;
+    private Long userID;
+  private Long profileID;
     private String username;
     private String email;
     private String name;
@@ -34,15 +36,17 @@ public class User_ProfileDto {
 
 
     public User_ProfileDto(User user, Profile profile) {
-        this.id = user.getId();
-        this.id = profile.getId();
-        this.username = user.getUsername();
+        this.userID = user.getId();
         this.password = user.getPassword();
         this.email = user.getEmail();
+
+        this.profileID = profile.getId();
         this.name = profile.getName();
         this.surname = profile.getSurname();
         this.birthday = profile.getBirthday();
         this.gender = profile.getGender();
+
+        this.username = user.getUsername();
         this.phone = profile.getPhone();
         this.country = profile.getCountry();
         this.city = profile.getCity();
@@ -53,11 +57,12 @@ public class User_ProfileDto {
 
 
     public User_ProfileDto(User user, Profile profile, User_Roles userRoles, User_Profile userProfile) {
-        this.id = user.getId();
-        this.id = profile.getId();
+        this.userID = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.email = user.getEmail();
+
+       this.profileID = profile.getId();
         this.name = profile.getName();
         this.surname = profile.getSurname();
         this.birthday = profile.getBirthday();
@@ -77,7 +82,7 @@ public class User_ProfileDto {
 
 
     public User_ProfileDto(User user, User_Roles userRoles, User_Profile userProfile) {
-        this.id = user.getId();
+        this.userID = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.email = user.getEmail();

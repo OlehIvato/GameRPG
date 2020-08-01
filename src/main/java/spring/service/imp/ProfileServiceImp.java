@@ -22,19 +22,51 @@ public class ProfileServiceImp implements ProfileService {
     }
 
     @Override
-    public Profile findOneById(Long id) {
-        return profileRepository.getOne(id);
+    public Profile findOneByUsername(String username) {
+        return profileRepository.findByUsername(username);
     }
 
     @Override
     public Profile save(Profile profile) {
+      Profile profileDatabase = profileRepository.findByUsername(profile.getUsername());
+
+        if (Optional.ofNullable(profile.getId()).isEmpty()) {
+            profile.setId(profileDatabase.getId());
+        }
+        if (Optional.ofNullable(profile.getName()).isEmpty()) {
+            profile.setName(profileDatabase.getName());
+        }
+        if (Optional.ofNullable(profile.getSurname()).isEmpty()) {
+            profile.setSurname(profileDatabase.getSurname());
+        }
+        if (Optional.ofNullable(profile.getBirthday()).isEmpty()) {
+            profile.setBirthday(profileDatabase.getBirthday());
+        }
+        if (Optional.ofNullable(profile.getGender()).isEmpty()) {
+            profile.setGender(profileDatabase.getGender());
+        }
+        if (Optional.ofNullable(profile.getPhone()).isEmpty()) {
+            profile.setPhone(profileDatabase.getPhone());
+        }
+        if (Optional.ofNullable(profile.getCountry()).isEmpty()) {
+            profile.setCountry(profileDatabase.getCountry());
+        }
+        if (Optional.ofNullable(profile.getCity()).isEmpty()) {
+            profile.setCity(profileDatabase.getCity());
+        }
+        if (Optional.ofNullable(profile.getZip()).isEmpty()) {
+            profile.setZip(profileDatabase.getZip());
+        }
+        if (Optional.ofNullable(profile.getBio()).isEmpty()) {
+            profile.setBio(profileDatabase.getBio());
+        }
+        if (Optional.ofNullable(profile.getAvatar()).isEmpty()) {
+            profile.setAvatar(profileDatabase.getAvatar());
+        }
+        profile.setUser(profileDatabase.getUser());
         return profileRepository.save(profile);
     }
 
-    @Override
-    public void deleteById(Long id) {
-        profileRepository.deleteById(id);
-    }
 
     @Override
     public void saveAvatar(Profile profile, MultipartFile file) {

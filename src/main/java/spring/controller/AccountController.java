@@ -16,12 +16,8 @@ import spring.config.MvcConfig;
 import spring.dto.User_ProfileDto;
 import spring.model.Profile;
 import spring.model.User;
-import spring.model.User_Profile;
-import spring.model.User_Roles;
 import spring.repository.User_ProfileRepository;
 import spring.repository.User_RolesRepository;
-import spring.service.ProfileService;
-import spring.service.UserService;
 import spring.service.imp.ProfileServiceImp;
 import spring.service.imp.UserServiceImp;
 
@@ -36,12 +32,10 @@ import java.nio.file.Path;
 @AllArgsConstructor
 public class AccountController {
 
-
     private final ProfileServiceImp profileServiceImp;
     private final User_ProfileRepository user_profileRepository;
     private final User_RolesRepository user_rolesRepository;
     private final UserServiceImp userServiceImp;
-
 
     private static final Logger logger = Logger.getLogger(AccountController.class.getName());
 
@@ -50,7 +44,7 @@ public class AccountController {
         model.addAttribute("user_profile",
                 new User_ProfileDto(
                         userServiceImp.getOneById(currentUser.getId()),
-                        profileServiceImp.findOneById(currentUser.getId())));
+                        profileServiceImp.findOneByUsername(currentUser.getUsername())));
         return "account/profile";
     }
 
@@ -59,19 +53,16 @@ public class AccountController {
         model.addAttribute("user_profile",
                 new User_ProfileDto(
                         userServiceImp.getOneById(currentUser.getId()),
-                        profileServiceImp.findOneById(currentUser.getId()),
+                        profileServiceImp.findOneByUsername(currentUser.getUsername()),
                         user_rolesRepository.getOne(currentUser.getId()),
                         user_profileRepository.getOne(currentUser.getId())));
-
         return "account/edit-info";
     }
 
     @PostMapping("edit-info")
-    public String saveInformationInfo(User user, Profile profile, User_Roles user_roles, User_Profile user_profile) {
+    public String saveInfo(User user, Profile profile) {
         profileServiceImp.save(profile);
         userServiceImp.save(user);
-        user_rolesRepository.save(user_roles);
-        user_profileRepository.save(user_profile);
         logger.info("User: " + user.getUsername() + " updated his personal information");
         return "redirect:/account/user";
     }
@@ -83,23 +74,22 @@ public class AccountController {
                         userServiceImp.getOneById(currentUser.getId()),
                         user_rolesRepository.getOne(currentUser.getId()),
                         user_profileRepository.getOne(currentUser.getId())));
+
         return "account/edit-username";
     }
 
     @PostMapping("edit-username")
-    public String saveNewUsername(User user, Model model, BindingResult bindingResult, User_Roles user_roles,
-                                  User_Profile user_profile) {
+    public String saveNewUsername(@AuthenticationPrincipal User currentUser, User newUser, Model model,
+                                  BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "account/edit-username";
         }
-        if (!userServiceImp.updateUsername(user)) {
+        if (!userServiceImp.updateUsername(currentUser.getId(), newUser)) {
             model.addAttribute("userError", "Someone already have that username");
             return "account/edit-username";
         }
-        userServiceImp.save(user);
-        user_profileRepository.save(user_profile);
-        user_rolesRepository.save(user_roles);
-        logger.info("User " + user.getUsername() + " changed his username");
+        logger.info("User " + currentUser.getUsername() + " changed his username on " + newUser.getUsername());
+        currentUser.setUsername(newUser.getUsername()); // for AuthenticationPrincipal
         return "redirect:/account/user";
     }
 
@@ -114,8 +104,7 @@ public class AccountController {
     }
 
     @PostMapping("edit-password")
-    public String saveNewPassword(User user, Model model, BindingResult bindingResult, User_Roles user_roles,
-                                  User_Profile user_profile) {
+    public String saveNewPassword(User user, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "account/edit-password";
         }
@@ -123,8 +112,6 @@ public class AccountController {
             model.addAttribute("passwordError", "Passwords did't match or current password is incorrect");
             return "account/edit-password";
         }
-        user_profileRepository.save(user_profile);
-        user_rolesRepository.save(user_roles);
         return "redirect:/account/user";
     }
 
@@ -133,7 +120,7 @@ public class AccountController {
         model.addAttribute("user_profile",
                 new User_ProfileDto(
                         userServiceImp.getOneById(currentUser.getId()),
-                        profileServiceImp.findOneById(currentUser.getId())));
+                        profileServiceImp.findOneByUsername(currentUser.getUsername())));
         return "account/edit-avatar";
     }
 
@@ -148,7 +135,7 @@ public class AccountController {
 
     @GetMapping("delete-avatar")
     public String deleteAvatar(@AuthenticationPrincipal User currentUser) {
-        Profile profile = profileServiceImp.findOneById(currentUser.getId());
+        Profile profile = profileServiceImp.findOneByUsername(currentUser.getUsername());
         Path path = Path.of(MvcConfig.pathAvatars + profile.getAvatar());
         try {
             Files.delete(path);
