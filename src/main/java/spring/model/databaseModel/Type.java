@@ -20,7 +20,7 @@ public class Type {
     private String type;
 
     @Transient
-    @ManyToMany
-    private Set<EquipmentModel> equipmentModels;
+    @OneToOne
+    private EquipmentModel equipment;
 
 }

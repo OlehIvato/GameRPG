@@ -19,7 +19,6 @@ import java.util.Random;
 
 @Controller
 @RequestMapping("game/fight/")
-
 public class FightController {
 
     private final Game_CreatureRepository gameCreatureRepository;

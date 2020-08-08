@@ -8,13 +8,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
 import java.util.Collection;
-import java.util.Set;
+import java.util.Collections;
 
 @Data
 @Entity
 @Table(name = "t_user")
+@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -28,13 +28,13 @@ public class User implements UserDetails {
     @Size(min = 6, message = "Password must be over 6 characters.")
     private String password;
 
-
     @Pattern(regexp = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Please provide a valid email address")
     private String email;
 
     @Transient
     private String password_current;
+
     @Transient
     @Size(min = 6, message = "Password must be over 6 characters.")
     private String password_new;
@@ -43,19 +43,25 @@ public class User implements UserDetails {
     @Size(min = 6, message = "Password must be over 6 characters.")
     private String password_confirm;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Profile> profile;
+    @Column(name = "role_id")
+    private Long role_id;
 
+    @Transient
+    @Column(name = "profile_id")
+    private Long profile_id;
 
-    public User() {
-    }
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Role role;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    private Profile profile;
+//    insertable = false, updatable = false
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return Collections.singleton(getRole());
     }
 
     @Override

@@ -20,8 +20,8 @@ public class Role implements GrantedAuthority {
     private String name;
 
     @Transient
-    @ManyToMany
-    private Set<User> users;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private User users;
 
     public Role(Long id) {
         this.id = id;

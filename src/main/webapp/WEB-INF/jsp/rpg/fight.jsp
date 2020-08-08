@@ -59,7 +59,6 @@
 </header>
 
 <section>
-
     <code>
         <div style="text-align: left;">
             <p>You fight against ${CHF.creatureName} </p>

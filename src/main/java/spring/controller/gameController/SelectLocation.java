@@ -34,7 +34,6 @@ public class SelectLocation {
         if (fight.getIsGameStarted() == 1) {
             return "rpg/forbidden_move";
         }
-
         model.addAttribute("location", locationServiceImp.findAll());
         model.addAttribute("hero", hero);
         return "rpg/select_location";

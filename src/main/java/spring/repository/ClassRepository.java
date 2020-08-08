@@ -6,4 +6,5 @@ import spring.model.databaseModel.Class;
 
 @Repository
 public interface ClassRepository extends JpaRepository<Class, Long> {
+
 }

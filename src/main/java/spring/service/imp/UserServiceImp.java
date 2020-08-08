@@ -23,6 +23,7 @@ import spring.service.UserService;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 @Service
 @AllArgsConstructor
@@ -62,9 +63,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
         if (userFromDatabase.isPresent()) {
             return false;
         }
-        user.setRoles((Collections.singleton(new Role((long) 3, "ROLE_USER"))));
-        user.setProfile(Collections.singleton(profileRepository.save(new Profile(user.getUsername()))));
+        user.setRole(new Role((long) 3, "ROLE_USER"));
+        user.setProfile(new Profile(user.getUsername()));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRole_id(user.getRole().getId());
+
         userRepository.save(user);
         gameCreatureRepository.save(new Game_Creature_Model(user.getUsername()));
         gameHeroRepository.save(new Game_Hero_Model(user.getUsername()));
@@ -105,7 +108,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     public User save(User user) {
-        User userFromDatabase = userRepository.findByUsername(user.getUsername());
+        User userFromDatabase = (userRepository.findByUsername(user.getUsername()));
 
         if (Optional.ofNullable(user.getId()).isEmpty()) {
             user.setId(userFromDatabase.getId());
@@ -119,7 +122,12 @@ public class UserServiceImp implements UserService, UserDetailsService {
         if (Optional.ofNullable(user.getEmail()).isEmpty()) {
             user.setEmail(userFromDatabase.getEmail());
         }
-        user.setRoles(userFromDatabase.getRoles());
+        if (Optional.ofNullable(user.getRole_id()).isEmpty()) {
+            user.setRole_id(userFromDatabase.getRole_id());
+        }
+        if (Optional.ofNullable(user.getProfile_id()).isEmpty()) {
+            user.setProfile_id(userFromDatabase.getProfile_id());
+        }
         user.setProfile(userFromDatabase.getProfile());
         return userRepository.save(user);
     }
@@ -179,10 +187,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     public void deleteUser(String username, Long userId) {
         userRepository.deleteById(userId);
-        profileRepository.delete(profileRepository.findByUsername(username));
         gameLocationRepository.delete(gameLocationRepository.findByUsername(username));
         gameHeroRepository.delete(gameHeroRepository.findByUsername(username));
         gameCreatureRepository.delete(gameCreatureRepository.findByUsername(username));
         gameFightRepository.delete(gameFightRepository.findByUsername(username));
     }
+
 }
+

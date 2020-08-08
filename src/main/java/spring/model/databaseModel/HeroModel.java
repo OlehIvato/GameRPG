@@ -1,7 +1,11 @@
 package spring.model.databaseModel;
 
 import lombok.Data;
+import spring.model.Profile;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -48,12 +52,20 @@ public class HeroModel {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Class> classes;
+    @Column(name = "armor_id")
+    private Long armor_id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Armor> armors;
+    @Column(name = "class_id")
+    private Long class_id;
 
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "armor_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Armor armor;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "class_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Class classes;
 
 
 }

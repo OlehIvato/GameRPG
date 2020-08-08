@@ -1,5 +1,7 @@
 package spring.controller;
-
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import spring.model.User;
 import spring.service.imp.UserServiceImp;
-
 import javax.validation.Valid;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -17,12 +18,20 @@ import java.util.logging.Logger;
 public class LoginController {
     private final UserServiceImp userServiceImp;
     private String userEmailAddress;
+
     private static final Logger logger = Logger.getLogger(LoginController.class.getName());
 
     public LoginController(UserServiceImp userServiceImp) {
         this.userServiceImp = userServiceImp;
     }
 
+
+    @GetMapping("/test")
+    public String test(Model model) {
+
+            model.addAttribute("error", "username or password is invalid.");
+        return "security/login";
+    }
 
     @GetMapping("/login")
     public String logIn(Model model, String error) {

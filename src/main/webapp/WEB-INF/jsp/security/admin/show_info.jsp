@@ -14,7 +14,7 @@
 
 <div align="center">
     <form action="${pageContext.request.contextPath}/admin/user-info/" method="post">
-        <c:forEach items="${all_users_info.profile}" var="profile">
+
             <table border="1" cellpadding="5">
                 <thead>
                 <tr>
@@ -32,22 +32,22 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>${profile.name}</td>
-                    <td>${profile.surname}</td>
+                    <td>${all_users_info.profile.name}</td>
+                    <td>${all_users_info.profile.surname}</td>
                     <td>${all_users_info.email}</td>
-                    <td>${profile.birthday}</td>
-                    <td>${profile.gender}</td>
-                    <td>${profile.phone}</td>
-                    <td>${profile.country}</td>
-                    <td>${profile.city}</td>
-                    <td>${profile.zip}</td>
+                    <td>${all_users_info.profile.birthday}</td>
+                    <td>${all_users_info.profile.gender}</td>
+                    <td>${all_users_info.profile.phone}</td>
+                    <td>${all_users_info.profile.country}</td>
+                    <td>${all_users_info.profile.city}</td>
+                    <td>${all_users_info.profile.zip}</td>
                     <td><a href="#avatar">show</a></td>
                 </tr>
                 </tbody>
             </table>
 
             <div id="avatar">
-                <img alt="User Avatar" src="<c:url value="/ava/${profile.avatar}"/>"/>
+                <img alt="User Avatar" src="<c:url value="/ava/${all_users_info.profile.avatar}"/>"/>
                 <a href="#" class="close">close</a>
             </div>
 
@@ -55,10 +55,9 @@
                 <h2 style="margin-top: 10px">Bio</h2>
                 <label for='test'></label>
                 <textarea readonly rows="5" cols="110" name='bio' id='test'>
-                    <c:out value="${profile.bio}"/>
+                    <c:out value="${all_users_info.profile.bio}"/>
                 </textarea>
             </div>
-        </c:forEach>
     </form>
 </div>
 

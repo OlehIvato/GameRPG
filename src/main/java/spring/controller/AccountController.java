@@ -16,15 +16,13 @@ import spring.config.MvcConfig;
 import spring.dto.User_ProfileDto;
 import spring.model.Profile;
 import spring.model.User;
-import spring.repository.User_ProfileRepository;
-import spring.repository.User_RolesRepository;
+
 import spring.service.imp.ProfileServiceImp;
 import spring.service.imp.UserServiceImp;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
 
 @Controller
 @RequestMapping("account/")
@@ -33,8 +31,7 @@ import java.nio.file.Path;
 public class AccountController {
 
     private final ProfileServiceImp profileServiceImp;
-    private final User_ProfileRepository user_profileRepository;
-    private final User_RolesRepository user_rolesRepository;
+
     private final UserServiceImp userServiceImp;
 
     private static final Logger logger = Logger.getLogger(AccountController.class.getName());
@@ -53,9 +50,7 @@ public class AccountController {
         model.addAttribute("user_profile",
                 new User_ProfileDto(
                         userServiceImp.getOneById(currentUser.getId()),
-                        profileServiceImp.findOneByUsername(currentUser.getUsername()),
-                        user_rolesRepository.getOne(currentUser.getId()),
-                        user_profileRepository.getOne(currentUser.getId())));
+                        profileServiceImp.findOneByUsername(currentUser.getUsername())));
         return "account/edit-info";
     }
 
@@ -71,10 +66,7 @@ public class AccountController {
     public String openEditorUsername(@AuthenticationPrincipal User currentUser, Model model) {
         model.addAttribute("user_profile",
                 new User_ProfileDto(
-                        userServiceImp.getOneById(currentUser.getId()),
-                        user_rolesRepository.getOne(currentUser.getId()),
-                        user_profileRepository.getOne(currentUser.getId())));
-
+                        userServiceImp.getOneById(currentUser.getId())));
         return "account/edit-username";
     }
 
@@ -97,9 +89,7 @@ public class AccountController {
     public String openEditorPassword(@AuthenticationPrincipal User currentUser, Model model) {
         model.addAttribute("user_profile",
                 new User_ProfileDto(
-                        userServiceImp.getOneById(currentUser.getId()),
-                        user_rolesRepository.getOne(currentUser.getId()),
-                        user_profileRepository.getOne(currentUser.getId())));
+                        userServiceImp.getOneById(currentUser.getId())));
         return "account/edit-password";
     }
 

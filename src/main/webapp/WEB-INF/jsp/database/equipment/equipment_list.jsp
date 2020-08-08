@@ -13,7 +13,6 @@
     <button> Back</button>
 </a>
 
-
 <div align="center" id="tableMargin">
     <table class="table table-striped table-bordered table-sm" id="tableSize">
         <thead>
@@ -44,9 +43,8 @@
                 <td>${equip.spell_damage}</td>
                 <td>${equip.mana}</td>
                 <td>${equip.manaRes}</td>
-                <td><c:forEach items="${equip.types}" var="type">${type.type}</c:forEach></td>
-                <td><c:forEach items="${equip.armors}" var="armor">${armor.armorName}</c:forEach></td>
-
+                <td>${equip.type.type}</td>
+                <td>${equip.armor.armorName}</td>
                 <sec:authorize access="hasRole('ADMIN') or hasRole('MODERATOR')">
                     <td class="optionWidth">
                         <a href="${pageContext.request.contextPath}/equipment/update/<c:out value='${equip.id}'/>">

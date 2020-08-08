@@ -40,14 +40,15 @@
                 <td>${user.username}</td>
                 <td>${user.password}</td>
                 <td>${user.email}</td>
+                <td>${user.role.name}</td>
 
-                <td><c:forEach items="${user.roles}" var="role">${role.name} </c:forEach></td>
-
-                <td class="optionWidth">
-                    <a href="/admin/set-role/<c:out value='${user.id}'/>">
-                        <button class="buttonStyle" style="background-color: forestgreen">Edit</button>
-                    </a>
-                </td>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <td class="optionWidth">
+                        <a href="/admin/set-role/<c:out value='${user.id}'/>">
+                            <button class="buttonStyle" style="background-color: forestgreen">Edit</button>
+                        </a>
+                    </td>
+                </sec:authorize>
 
                 <td class="optionWidth">
                     <a href="/admin/user-info/<c:out value='${user.id}'/>">

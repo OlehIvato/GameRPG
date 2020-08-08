@@ -27,11 +27,7 @@
                 <td>
                     <label>
                         <select name="class_id">
-                            <option selected hidden value='${hero_class.class_id}'>
-                                <c:forEach items="${heroes.classes}" var="classes">
-                                    ${classes.className}
-                                </c:forEach>
-                            </option>
+                            <option hidden selected value="<c:out value='${heroes.class_id}'/>">${heroes.classes.className} </option>
                             <option value='1'>Mage</option>
                             <option value='2'>Warrior</option>
                             <option value='3'>Druid</option>
@@ -161,11 +157,7 @@
                 <td>
                     <label>
                         <select name="armor_id">
-                            <option hidden selected value='${hero_armors.armor_id}'>
-                                <c:forEach items="${heroes.armors}" var="armor">
-                                    ${armor.armorName}
-                                </c:forEach>
-                            </option>
+                            <option hidden selected value="<c:out value='${heroes.armor_id}'/>">${heroes.armor.armorName} </option>
                             <option value='1'>Cloth</option>
                             <option value='2'>Leather</option>
                             <option value='3'>Plate</option>

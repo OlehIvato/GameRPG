@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import spring.model.User;
-import spring.model.User_Roles;
-import spring.repository.RoleRepository;
-import spring.repository.User_RolesRepository;
 import spring.service.UserService;
 
 @Controller
@@ -23,8 +20,6 @@ import spring.service.UserService;
 public class AdminController {
 
     private final UserService userService;
-    private final User_RolesRepository userRolesRepository;
-    private final RoleRepository roleRepository;
 
     private static final Logger logger = Logger.getLogger(AdminController.class.getName());
 
@@ -45,20 +40,21 @@ public class AdminController {
         return "security/admin/show_info";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("set-role/{id}")
-    public String setRole(@AuthenticationPrincipal User currentUser, @PathVariable("id") Long user_id, Model model) {
-        User_Roles user_roles = userRolesRepository.getOne(user_id);
-        model.addAttribute("user_roles", user_roles);
-        model.addAttribute("role", roleRepository.getOne(user_roles.getRoles_id()));
+    public String setRole(@AuthenticationPrincipal User currentUser, @PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.getOneById(id));
         logger.info("User " + currentUser.getUsername()
                 + " clicked on set role button for user "
-                + userService.getOneById(user_id).getUsername());
+                + userService.getOneById(id).getUsername());
         return "security/admin/set_role";
     }
 
     @PostMapping("set-role")
-    public String setRole(User_Roles userRoles) {
-        userRolesRepository.save(userRoles);
+    public String setRole(User user) {
+        User userFromDatabase = userService.getOneById(user.getId());
+        userFromDatabase.setRole_id(user.getRole_id());
+        userService.save(userFromDatabase);
         return "redirect:/admin/user-list";
     }
 

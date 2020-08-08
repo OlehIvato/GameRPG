@@ -28,21 +28,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() // it is kind of protection
-
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/registration").not().fullyAuthenticated()   // permission only when NOT authorized
-                .antMatchers("/forgot-password").not().fullyAuthenticated()
-                .antMatchers("/new-password").not().fullyAuthenticated()
+                .antMatchers("/registration","/forgot-password","/new-password").not().fullyAuthenticated()
                 .antMatchers().hasAnyAuthority()
 
                 .antMatchers("/**/update/**", "/**/create/**", "/**/delete/**", "/**/image/**")
-                .hasAnyRole("ADMIN", "MODERATOR") // for all tables
+                .hasAnyRole("ADMIN", "MODERATOR")
 
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login")
-
 
                 .defaultSuccessUrl("/welcome", true).permitAll()
                 .and().logout().permitAll().logoutSuccessUrl("/login")

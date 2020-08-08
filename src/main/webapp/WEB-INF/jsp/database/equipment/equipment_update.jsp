@@ -115,12 +115,8 @@
                 <th>Type:</th>
                 <td>
                     <label>
-                        <select name="types_id">
-                            <option hidden selected value='${equipment_type.types_id}'>
-                                <c:forEach
-                                        items="${equipment.types}" var="type">${type.type}
-                                </c:forEach>
-                            </option>
+                        <select name="type_id">
+                            <option hidden selected value="<c:out value='${equipment.type_id}'/>">${equipment.type.type} </option>
                             <option value='1'>Head</option>
                             <option value='2'>Shoulder</option>
                             <option value='3'>Chest</option>
@@ -138,12 +134,8 @@
                 <th>Armor Type:</th>
                 <td>
                     <label>
-                        <select size="1" name="armors_id">
-                            <option hidden selected value='${equipment_armor.armors_id}'>
-                                <c:forEach
-                                        items="${equipment.armors}" var="armor">${armor.armorName}
-                                </c:forEach>
-                            </option>
+                        <select size="1" name="armor_id">
+                            <option hidden selected value="<c:out value='${equipment.armor_id}'/>">${equipment.armor.armorName} </option>
                             <option value='4'>Weapon</option>
                             <option value='1'>Cloth</option>
                             <option value='2'>Leather</option>

@@ -1,6 +1,9 @@
 package spring.model.databaseModel;
 
 import lombok.Data;
+import spring.model.Profile;
+import spring.model.Role;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -39,12 +42,26 @@ public class EquipmentModel {
     @Column(name = "mana_res")
     private int manaRes;
 
+    @Column(name = "armor_id")
+    private Long armor_id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Type> types;
+    @Column(name = "type_id")
+    private Long type_id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Armor> armors;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "armor_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Armor armor;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "type_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Type type;
+
+
+
+
+
+
+
 
 }
 

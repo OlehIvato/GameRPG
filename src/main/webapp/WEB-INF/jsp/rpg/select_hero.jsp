@@ -35,7 +35,7 @@
         <c:forEach var="hero" items="${heroes}">
         <tr>
             <td>${hero.id}</td>
-            <td><c:forEach items="${hero.classes}" var="className">${className.className}</c:forEach>
+            <td>${hero.classes.className}</td>
             <td>${hero.name}</td>
             <td>${hero.hp}</td>
             <td>${hero.damage}</td>
@@ -47,10 +47,9 @@
             <td>${hero.mana}</td
             <td></td>
             <td>${hero.manaRes}</td
+                <td></td>
+            <td>${hero.armor.armorName}</td
             <td></td>
-            <td>
-                <c:forEach items="${hero.armors}" var="armor">${armor.armorName}</c:forEach>
-            </td>
             <td class="optionWidth">
                 <a href="${pageContext.request.contextPath}/game/hero/select/<c:out value='${hero.id}'/>">
                     <button class="buttonStyle" style="background-color: forestgreen"> Choose</button>

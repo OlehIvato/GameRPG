@@ -55,8 +55,8 @@ public class Profile {
     private String avatar;
 
     @Transient
-    @ManyToMany
-    private Set<User> user;
+    @OneToOne
+    private User user;
 
 
     public Profile(String username) {

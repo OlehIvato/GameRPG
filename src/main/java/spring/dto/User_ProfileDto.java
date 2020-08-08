@@ -3,8 +3,6 @@ package spring.dto;
 import lombok.Data;
 import spring.model.Profile;
 import spring.model.User;
-import spring.model.User_Profile;
-import spring.model.User_Roles;
 
 import java.util.Date;
 
@@ -56,42 +54,11 @@ public class User_ProfileDto {
     }
 
 
-    public User_ProfileDto(User user, Profile profile, User_Roles userRoles, User_Profile userProfile) {
+    public User_ProfileDto(User user ) {
         this.userID = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.email = user.getEmail();
-
-       this.profileID = profile.getId();
-        this.name = profile.getName();
-        this.surname = profile.getSurname();
-        this.birthday = profile.getBirthday();
-        this.gender = profile.getGender();
-        this.phone = profile.getPhone();
-        this.country = profile.getCountry();
-        this.city = profile.getCity();
-        this.zip = profile.getZip();
-        this.bio = profile.getBio();
-        this.avatar = profile.getAvatar();
-
-        this.user_id = userProfile.getUser_id();
-        this.user_id = userRoles.getUser_id();
-        this.profile_id = userProfile.getProfile_id();
-        this.roles_id = userRoles.getRoles_id();
-    }
-
-
-    public User_ProfileDto(User user, User_Roles userRoles, User_Profile userProfile) {
-        this.userID = user.getId();
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-        this.email = user.getEmail();
-
-        this.user_id = userProfile.getUser_id();
-        this.user_id = userRoles.getUser_id();
-        this.profile_id = userProfile.getProfile_id();
-        this.roles_id = userRoles.getRoles_id();
-
         this.password_current = user.getPassword_current();
         this.password_new = user.getPassword_new();
         this.password_confirm = user.getPassword_confirm();

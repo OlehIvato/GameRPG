@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
+ <%@include file="/WEB-INF/jsp/design/navigationBar.jsp" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -60,9 +60,9 @@
                 <td>${equip.spell_damage}</td>
                 <td>${equip.mana}</td>
                 <td>${equip.manaRes}</td>
-                <td><c:forEach items="${equip.types}" var="type">${type.type}</c:forEach></td>
+                <td>${equip.type.type}</td>
                 <c:if test="${typeId <= 4}">
-                    <td><c:forEach items="${equip.armors}" var="armor">${armor.armorName}</c:forEach></td>
+                    <td>${equip.armor.armorName}</td>
                 </c:if>
                 <td class="optionWidth">
                     <a href="${pageContext.request.contextPath}/game/equipment/save/

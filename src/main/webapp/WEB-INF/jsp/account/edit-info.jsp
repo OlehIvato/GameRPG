@@ -15,8 +15,6 @@
             <input type="hidden" name="username" value="<c:out value='${user_profile.username}' />"/>
         </c:if>
 
-<%--        <input type="hidden" name="username" value="<c:out value='${user_profile.username}'/>"/>--%>
-
         <label>
             <strong> Name: </strong>
             <input style="margin-left: 5px" type="text" name="name" placeholder="Your name..."

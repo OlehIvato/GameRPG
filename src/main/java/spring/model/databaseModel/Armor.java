@@ -12,7 +12,6 @@ public class Armor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id")
     private Long id;
 
@@ -20,10 +19,10 @@ public class Armor {
     private String armorName;
 
     @Transient
-    @ManyToMany
-    private Set<HeroModel> heroes;
+    @OneToOne
+    private HeroModel heroes;
 
     @Transient
-    @ManyToMany
-    private Set<EquipmentModel> equipmentModels;
+    @OneToOne
+    private EquipmentModel equipment;
 }

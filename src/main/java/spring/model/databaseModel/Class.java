@@ -1,6 +1,7 @@
 package spring.model.databaseModel;
 
 import lombok.Data;
+import spring.model.gameModel.Game_Equipment_Setting_Model;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,7 +13,6 @@ public class Class {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id")
     private Long id;
 
@@ -20,6 +20,11 @@ public class Class {
     private String className;
 
     @Transient
-    @ManyToMany
-    private Set<HeroModel> heroes;
+    @OneToOne
+    private HeroModel heroes;
+
+    @Transient
+    @OneToMany
+    private Set<Game_Equipment_Setting_Model> game_equipment_setting_models;
+
 }

@@ -71,11 +71,7 @@ public class Game_Creature_Hero_Fight_Dto {
         this.fightGameCount = fight.getGameCount();
         this.fightLevelCount = fight.getLevelCount();
         this.fightLevelDifficult = fight.getLevelDifficult();
-
-
     }
-
-
 }
 
 

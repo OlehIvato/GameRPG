@@ -7,12 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.model.*;
 import spring.model.databaseModel.HeroModel;
-import spring.model.databaseModel.Hero_Armors;
-import spring.model.databaseModel.Hero_Classes;
 import spring.model.gameModel.Game_Fight_Model;
 import spring.model.gameModel.Game_Hero_Model;
-import spring.repository.databaseRepository.Hero_ArmorsRepository;
-import spring.repository.databaseRepository.Hero_ClassesRepository;
 import spring.repository.gameRepository.Game_FightRepository;
 import spring.repository.gameRepository.Game_HeroRepository;
 import spring.service.imp.HeroServiceImp;
@@ -24,8 +20,6 @@ public class SelectHeroController {
 
     private final HeroServiceImp heroServiceImp;
     private final Game_HeroRepository gameHeroRepository;
-    private final Hero_ClassesRepository heroClassesRepository;
-    private final Hero_ArmorsRepository hero_armorsRepository;
     private final Game_FightRepository gameFightRepository;
 
     @GetMapping("select")
@@ -37,14 +31,11 @@ public class SelectHeroController {
     @GetMapping("select/{heroId}")
     public String saveHeroToTable(@AuthenticationPrincipal User currentUser, @PathVariable("heroId") Long heroId) {
         HeroModel heroModel = heroServiceImp.findOneById(heroId);
-        Hero_Armors hero_armors = hero_armorsRepository.getOne(heroId);
-        Hero_Classes hero_classes = heroClassesRepository.getOne(heroId);
         Game_Hero_Model gameHeroModel = gameHeroRepository.findByUsername(currentUser.getUsername());
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
 
         fight.setIsGameStarted(0);
-        SelectEquipmentController.typeForEquipment = 0;
-        SelectEquipmentController.typeForWeapon = 0;
+        SelectEquipmentController.typeCount = 0;
         gameFightRepository.save(fight);
 
         gameHeroModel.setName(heroModel.getName());
@@ -58,9 +49,9 @@ public class SelectHeroController {
         gameHeroModel.setRestore(heroModel.getRestore());
         gameHeroModel.setMana(heroModel.getMana());
         gameHeroModel.setManaRes(heroModel.getManaRes());
-        gameHeroModel.setArmor(hero_armors.getArmor_id());
-        gameHeroModel.setHeroClass(hero_classes.getClass_id());
+        gameHeroModel.setArmor(heroModel.getArmor_id());
+        gameHeroModel.setHeroClass(heroModel.getClass_id());
         gameHeroRepository.save(gameHeroModel);
-        return "redirect:/game/menu/mode/" + hero_armors.getArmor_id();
+        return "redirect:/game/menu/mode/" + heroModel.getArmor_id();
     }
 }

@@ -1,22 +1,25 @@
 package spring.controller.gameController;
 
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import spring.model.databaseModel.EquipmentModel;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import spring.model.User;
+import spring.model.databaseModel.Class;
+import spring.model.databaseModel.EquipmentModel;
+import spring.model.gameModel.Game_Equipment_Setting_Model;
 import spring.model.gameModel.Game_Fight_Model;
 import spring.model.gameModel.Game_Hero_Model;
+import spring.repository.ClassRepository;
 import spring.repository.databaseRepository.EquipmentRepository;
+import spring.repository.gameRepository.Game_Equipment_SettingRepository;
 import spring.repository.gameRepository.Game_FightRepository;
 import spring.repository.gameRepository.Game_HeroRepository;
 import spring.service.imp.EquipmentServiceImp;
 
-
 @Controller
-@AllArgsConstructor
 @RequestMapping("game/equipment/")
 public class SelectEquipmentController {
 
@@ -24,106 +27,87 @@ public class SelectEquipmentController {
     private final Game_HeroRepository gameHeroRepository;
     private final EquipmentRepository equipmentRepository;
     private final Game_FightRepository gameFightRepository;
+    private final Game_Equipment_SettingRepository game_equipment_settingRepository;
+    private final ClassRepository classRepository;
 
-    static int typeForEquipment = 0; // from 1 to 4 need for main equipment like (head,shoulder,chest,legs)
-    static int typeForWeapon = 0; // from 5 to 8
 
+    public SelectEquipmentController(EquipmentServiceImp equipmentServiceImp,
+                                     Game_HeroRepository gameHeroRepository,
+                                     EquipmentRepository equipmentRepository,
+                                     Game_FightRepository gameFightRepository,
+                                     Game_Equipment_SettingRepository game_equipment_settingRepository,
+                                     ClassRepository classRepository) {
+        this.equipmentServiceImp = equipmentServiceImp;
+        this.gameHeroRepository = gameHeroRepository;
+        this.equipmentRepository = equipmentRepository;
+        this.gameFightRepository = gameFightRepository;
+        this.game_equipment_settingRepository = game_equipment_settingRepository;
+        this.classRepository = classRepository;
+    }
+
+    static int typeCount = 0;
 
     @GetMapping("get/{armorId}")
-    public String get(@AuthenticationPrincipal User currentUser, @PathVariable("armorId") int armorId) {
+    public String generateEquipment(@AuthenticationPrincipal User currentUser, @PathVariable("armorId") int armorId) {
         Game_Fight_Model fight = gameFightRepository.findByUsername(currentUser.getUsername());
         fight.setIsGameWithEquipments(1);
         gameFightRepository.save(fight);
         if (fight.getIsGameStarted() == 1) {
             return "rpg/forbidden_move";
         }
-
-        typeForEquipment++;
-        if (typeForEquipment >= 4) {
-            return "redirect:/game/equipment/weapon"
-                    + "/" + armorId;
-        } else
-            return "redirect:/game/equipment/select"
-                    + "/" + typeForEquipment
-                    + "/" + armorId;
-    }
-
-
-    @GetMapping("weapon/{armorId}")
-    public String getWeapon(@AuthenticationPrincipal User currentUser,
-                            @PathVariable("armorId") int armorId,
-                            Model model) {
-
-        class HeroClass {
-            private static final byte MAGE = 1;
-            private static final byte WARRIOR = 2;
-            private static final byte DRUID = 3;
-            private static final byte ROGUE = 4;
-            private static final byte MONK = 5;
-            private static final byte SHAMAN = 6;
-            private static final byte PRIEST = 7;
-            private static final byte HUNTER = 8;
-            private static final byte PALADIN = 9;
-        }
-
-        class Type {
-            private static final byte WAND = 5;
-            private static final byte SWORD = 6;
-            private static final byte SHIELD = 7;
-            private static final byte AMULET = 8;
-
-        }
-
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
-        model.addAttribute("hero", hero);
-        long classId = hero.getHeroClass();
-        byte weaponArmorId = 4;
-        typeForWeapon++;
-        if (typeForWeapon == 1) {
-            if (classId == HeroClass.MAGE
-                    || classId == HeroClass.SHAMAN
-                    || classId == HeroClass.PALADIN
-                    || classId == HeroClass.PRIEST
-                    || classId == HeroClass.DRUID) {
-                model.addAttribute("type", Type.WAND);
-                model.addAttribute("equipment",
-                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.WAND));
-                return "rpg/select_equipment";
+        Game_Equipment_Setting_Model equip_setting = game_equipment_settingRepository.getOne(hero.getHeroClass());
+        Class heroClass = classRepository.getOne(equip_setting.getId());
+        byte weaponId = 4;
+        typeCount++;
+        if (heroClass.getId().equals(equip_setting.getId())) {
+            if (equip_setting.getHead() == 1 && typeCount == 1) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + armorId;
+            }
+            if (equip_setting.getShoulder() == 1 && typeCount == 2) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + armorId;
+            }
+            if (equip_setting.getChest() == 1 && typeCount == 3) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + armorId;
+            }
+            if (equip_setting.getLegs() == 1 && typeCount == 4) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + armorId;
+            }
+            if (equip_setting.getWand() == 1 && typeCount == 5) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + weaponId;
+            }
+            if (equip_setting.getSword() == 1 && typeCount == 6) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + weaponId;
+            }
+            if (equip_setting.getShield() == 1 && typeCount == 7) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + weaponId;
+            }
+            if (equip_setting.getAmulet() == 1 && typeCount == 8) {
+                return "redirect:/game/equipment/select"
+                        + "/" + typeCount
+                        + "/" + weaponId;
+            }
+            if (typeCount > 8) {
+                typeCount = 0;
+                return "redirect:/game/menu/get-location";
+
             }
         }
-        if (typeForWeapon == 2) {
-            if (classId == HeroClass.WARRIOR
-                    || classId == HeroClass.MONK
-                    || classId == HeroClass.HUNTER
-                    || classId == HeroClass.ROGUE) {
-                model.addAttribute("type", Type.SWORD);
-                model.addAttribute("equipment",
-                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SWORD));
-                return "rpg/select_equipment";
-            }
-        }
-        if (typeForWeapon == 3) {
-            if (classId == HeroClass.DRUID
-                    || classId == HeroClass.PRIEST
-                    || classId == HeroClass.MAGE) {
-                model.addAttribute("type", Type.AMULET);
-                model.addAttribute("equipment",
-                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.AMULET));
-                return "rpg/select_equipment";
-            }
-        }
-        if (typeForWeapon == 4) {
-            if (hero.getHp() < 150) {
-                model.addAttribute("type", Type.SHIELD);
-                model.addAttribute("equipment",
-                        equipmentServiceImp.findByArmorsAndTypes(weaponArmorId, Type.SHIELD));
-                return "rpg/select_equipment";
-            }
-        }
-        if (typeForWeapon > 4) {
-            return "redirect:/game/menu/get-location";
-        }
-        return "redirect:/game/equipment/weapon"
+        return "redirect:/game/equipment/get"
                 + "/" + armorId;
     }
 
@@ -135,7 +119,7 @@ public class SelectEquipmentController {
         Game_Hero_Model hero = gameHeroRepository.findByUsername(currentUser.getUsername());
         model.addAttribute("hero", hero);
         model.addAttribute("user", currentUser.getUsername());
-        model.addAttribute("type", typeForEquipment);
+        model.addAttribute("type", typeId);
         model.addAttribute("equipment", equipmentServiceImp.findByArmorsAndTypes(armorId, typeId));
         return "rpg/select_equipment";
     }

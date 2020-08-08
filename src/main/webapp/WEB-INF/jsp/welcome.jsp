@@ -35,12 +35,5 @@
     </div>
 </div>
 
-<br>
-<div class="container">
-    <a href="${pageContext.request.contextPath}/calculator">
-        <button type="button" class="btn btn-warning">Calculator</button>
-    </a>
-</div>
-
 </body>
 </html>
